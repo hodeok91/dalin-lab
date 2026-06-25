@@ -2124,3 +2124,251 @@ function updateMapLayout() {
 
   updatePlayerPosition();
 }
+
+
+/* ===== v8 하드픽스 JS =====
+   목적:
+   1) 첫 시작 지점에서 이동이 막히지 않도록 모바일 이동판정 완화
+   2) 모바일 가로 배틀은 JS 인라인 스타일로 좌 60% / 우 40% 강제 분할
+   3) 방향키 정렬/모바일 판별을 브라우저별로 강제 보정
+*/
+
+function runtimeIsMobileV8() {
+  const vv = window.visualViewport;
+  const w = vv ? vv.width : window.innerWidth;
+  const h = vv ? vv.height : window.innerHeight;
+  const coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+  const touch = navigator.maxTouchPoints > 0;
+  const ua = /Android|iPhone|iPad|iPod|Mobile|KAKAOTALK|SamsungBrowser/i.test(navigator.userAgent);
+  return coarse || touch || ua || Math.min(w, h) <= 900;
+}
+
+function runtimeIsLandscapeV8() {
+  const vv = window.visualViewport;
+  const w = vv ? vv.width : window.innerWidth;
+  const h = vv ? vv.height : window.innerHeight;
+  return w > h;
+}
+
+function updateDeviceMode() {
+  const isMobile = runtimeIsMobileV8();
+  const isLandscape = runtimeIsLandscapeV8();
+  const isPortrait = !isLandscape;
+
+  state.layout.isMobile = isMobile;
+  state.layout.isPortrait = isPortrait;
+
+  document.documentElement.classList.toggle("is-mobile", isMobile);
+  document.documentElement.classList.toggle("is-pc", !isMobile);
+  document.documentElement.classList.toggle("touch-device", isMobile);
+  document.documentElement.classList.toggle("is-portrait", isPortrait);
+  document.documentElement.classList.toggle("is-landscape", isLandscape);
+
+  if (state.screen === "battleScreen") {
+    forceBattleLayoutV8();
+  }
+}
+
+function forceBattleLayoutV8() {
+  const battleScene = document.querySelector(".battle-scene");
+  const battleBottom = document.querySelector(".battle-bottom");
+  if (!battleScene || !battleBottom) return;
+
+  const isMobile = runtimeIsMobileV8();
+  const isLandscape = runtimeIsLandscapeV8();
+
+  if (isMobile && isLandscape) {
+    // 왼쪽 60% 전투 화면
+    Object.assign(battleScene.style, {
+      position: "absolute",
+      left: "0",
+      top: "0",
+      right: "40%",
+      bottom: "0",
+      width: "60%",
+      height: "100%",
+      inset: "0 40% 0 0"
+    });
+
+    // 오른쪽 40% 대화/선택 패널
+    Object.assign(battleBottom.style, {
+      position: "absolute",
+      left: "60%",
+      right: "0",
+      top: "0",
+      bottom: "0",
+      width: "40%",
+      height: "100%",
+      display: "grid",
+      gridTemplateColumns: "1fr",
+      gridTemplateRows: "110px 1fr",
+      gap: "8px",
+      padding: "8px",
+      borderTop: "0",
+      borderLeft: "6px solid #111",
+      overflow: "hidden"
+    });
+
+    document.querySelector(".choice-list")?.style.setProperty("grid-template-columns", "1fr", "important");
+
+    const enemy = document.querySelector(".enemy-pokemon");
+    const player = document.querySelector(".player-pokemon");
+    const enemyStatus = document.querySelector(".enemy-status");
+    const playerStatus = document.querySelector(".player-status");
+
+    if (enemy) {
+      Object.assign(enemy.style, {
+        width: "90px",
+        height: "90px",
+        right: "10%",
+        top: "30%",
+        transform: "scale(1)"
+      });
+    }
+
+    if (player) {
+      Object.assign(player.style, {
+        width: "92px",
+        height: "92px",
+        left: "10%",
+        bottom: "18%",
+        transform: "scale(1)"
+      });
+    }
+
+    if (enemyStatus) {
+      Object.assign(enemyStatus.style, {
+        left: "4%",
+        top: "5%",
+        width: "48%",
+        minWidth: "0",
+        padding: "5px 7px"
+      });
+    }
+
+    if (playerStatus) {
+      Object.assign(playerStatus.style, {
+        right: "4%",
+        bottom: "8%",
+        width: "48%",
+        minWidth: "0",
+        padding: "5px 7px"
+      });
+    }
+  } else {
+    // 세로/PC에서는 인라인을 걷어 CSS 기본값 사용
+    battleScene.removeAttribute("style");
+    battleBottom.removeAttribute("style");
+
+    ["enemy-pokemon", "player-pokemon", "enemy-status", "player-status"].forEach((cls) => {
+      document.querySelector("." + cls)?.removeAttribute("style");
+    });
+  }
+}
+
+// showScreen 재정의: 화면 바뀔 때마다 모바일/가로/분할 강제 적용
+function showScreen(screenId) {
+  document.querySelectorAll(".screen").forEach((screen) => screen.classList.remove("active"));
+  $(screenId).classList.add("active");
+  state.screen = screenId;
+
+  document.documentElement.classList.toggle("in-title", screenId === "titleScreen");
+  document.documentElement.classList.toggle("in-map", screenId === "mapScreen");
+  document.documentElement.classList.toggle("in-battle", screenId === "battleScreen");
+  document.documentElement.classList.toggle("in-result", screenId === "resultScreen");
+  document.documentElement.classList.toggle("in-panel", ["experimentScreen", "dexScreen"].includes(screenId));
+
+  keysDown.clear();
+  updateDeviceMode();
+
+  if (screenId === "mapScreen") {
+    ensurePlayerOnWalkableV8();
+    updateMapLayout();
+  }
+
+  if (screenId === "battleScreen") {
+    setTimeout(forceBattleLayoutV8, 0);
+    setTimeout(forceBattleLayoutV8, 120);
+  }
+
+  if (screenId === "resultScreen") {
+    state.resultIndex = 0;
+    updateResultMenu();
+  }
+}
+
+// 모바일에서는 우선 이동이 되도록 충돌을 완화합니다.
+// PC는 기존 판정을 유지하고, 모바일은 맵 경계만 막습니다.
+function isBlocked(x, y) {
+  if (x < 0 || x >= COLS || y < 0 || y >= ROWS) return true;
+
+  if (runtimeIsMobileV8()) {
+    return false;
+  }
+
+  if (state.mapImageAvailable) {
+    const blockedPC = [
+      [0.0, 0.0, 13.3, 3.15],
+      [18.7, 0.0, 30.0, 2.75],
+      [13.65, 0.6, 18.35, 4.65],
+      [0.0, 17.0, 30.0, 20.0]
+    ];
+    return blockedPC.some((rect) => isInsideRect(x, y, rect));
+  }
+
+  return ["tree", "water", "roof", "house", "rock"].includes(getTileClass(Math.floor(x), Math.floor(y)));
+}
+
+function canStandAt(x, y) {
+  const points = [
+    [x, y],
+    [x - 0.08, y],
+    [x + 0.08, y],
+    [x, y - 0.06]
+  ];
+
+  return points.every(([px, py]) => !isBlocked(px, py));
+}
+
+function ensurePlayerOnWalkableV8() {
+  if (!isBlocked(state.player.x, state.player.y)) return;
+  state.player.x = 15.8;
+  state.player.y = 8.7;
+}
+
+// 몬스터는 모바일/PC 모두 풀숲 좌표에서만 등장
+function isEncounterArea(x, y) {
+  if (state.mapImageAvailable) {
+    const grass = [
+      [3.8, 4.8, 8.9, 9.5],
+      [0.0, 7.9, 4.1, 10.6],
+      [20.5, 5.0, 23.6, 9.7],
+      [24.0, 3.2, 29.6, 8.0],
+      [22.2, 8.0, 29.7, 15.5]
+    ];
+    return grass.some((rect) => isInsideRect(x, y, rect));
+  }
+
+  return getTileClass(Math.floor(x), Math.floor(y)) === "tallgrass";
+}
+
+// 가로/세로 전환과 주소창 변화에도 다시 적용
+window.addEventListener("resize", () => {
+  updateDeviceMode();
+  updateMapLayout();
+  if (state.screen === "battleScreen") forceBattleLayoutV8();
+});
+
+window.visualViewport?.addEventListener("resize", () => {
+  updateDeviceMode();
+  updateMapLayout();
+  if (state.screen === "battleScreen") forceBattleLayoutV8();
+});
+
+window.addEventListener("orientationchange", () => {
+  setTimeout(() => {
+    updateDeviceMode();
+    updateMapLayout();
+    if (state.screen === "battleScreen") forceBattleLayoutV8();
+  }, 400);
+});
