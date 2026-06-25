@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>달인 연구소</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      padding: 70px 24px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 48px;
+    }
+
+    header p {
+      margin-top: 16px;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .intro {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    }
+
+    .card .emoji {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>달인 연구소</h1>
+    <p>
+      수업을 더 쉽고 재미있게 만드는<br>
+      교육용 웹앱과 달인시리즈 자료실
+    </p>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h2 class="section-title">달인 연구소란?</h2>
+      <p>
+        달인 연구소는 교사와 학생이 바로 사용할 수 있는 교육용 도구를 만들고 공유하는 공간입니다.
+        앞으로 바이브코딩 달인, 스마트팜 달인, 감정카드 달인, 평가도구 달인 등 다양한 달인시리즈를 이곳에 모아둘 예정입니다.
+      </p>
+    </section>
+
+    <section style="margin-top: 40px;">
+      <h2 class="section-title">달인시리즈</h2>
+
+      <div class="cards">
+        <a class="card" href="apps/vibe-glossary/">
+          <div class="emoji">📘</div>
+          <h3>바이브코딩 용어사전</h3>
+          <p>AI와 함께 앱을 만들 때 필요한 용어를 쉽게 찾아보는 한글 사전입니다.</p>
+        </a>
+
+        <a class="card" href="#">
+          <div class="emoji">🌱</div>
+          <h3>스마트팜 달인</h3>
+          <p>수경재배와 센서 원리를 배우는 교육용 웹앱을 준비 중입니다.</p>
+        </a>
+
+        <a class="card" href="#">
+          <div class="emoji">😊</div>
+          <h3>감정카드 달인</h3>
+          <p>학생의 감정 표현과 의사소통을 돕는 자료를 준비 중입니다.</p>
+        </a>
+
+        <a class="card" href="#">
+          <div class="emoji">🧩</div>
+          <h3>평가도구 달인</h3>
+          <p>성취기준과 교육활동을 연결하는 평가 도구를 준비 중입니다.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    달인 연구소 · Dalin Lab
+  </footer>
+</body>
+</html>
