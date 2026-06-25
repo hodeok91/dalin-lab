@@ -467,6 +467,12 @@ function showScreen(screenId) {
   $(screenId).classList.add("active");
   state.screen = screenId;
 
+  document.documentElement.classList.toggle("in-title", screenId === "titleScreen");
+  document.documentElement.classList.toggle("in-map", screenId === "mapScreen");
+  document.documentElement.classList.toggle("in-battle", screenId === "battleScreen");
+  document.documentElement.classList.toggle("in-result", screenId === "resultScreen");
+  document.documentElement.classList.toggle("in-panel", ["experimentScreen", "dexScreen"].includes(screenId));
+
   keysDown.clear();
 
   if (screenId === "mapScreen") {
@@ -945,9 +951,11 @@ function updateMapLayout() {
     const minWidthFromHeight = stageH * (COLS / ROWS);
 
     if (isPortrait) {
-      mapW = Math.max(stageW * 2.35, minWidthFromHeight * 1.08);
+      // 세로 모드는 너무 확대되면 답답해서 1.85배 정도로 낮춥니다.
+      mapW = Math.max(stageW * 1.85, minWidthFromHeight * 1.02);
     } else {
-      mapW = Math.max(stageW * 1.42, minWidthFromHeight);
+      // 가로 모드는 전체가 너무 작아지지 않게 1.28배 정도만 확대합니다.
+      mapW = Math.max(stageW * 1.28, minWidthFromHeight);
     }
 
     mapH = mapW * (ROWS / COLS);
