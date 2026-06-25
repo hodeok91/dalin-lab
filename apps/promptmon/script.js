@@ -1578,3 +1578,207 @@ function escapeHtml(text) {
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
+
+
+/* ===== 3차 수정 JS: 이미지 기반 충돌 + 풀숲 조우 + 모바일 전투 안정화 ===== */
+
+let collisionCanvas = null;
+let collisionCtx = null;
+let collisionReady = false;
+
+function buildCollisionCanvas() {
+  const img = $("mapImage");
+  if (!img || !img.complete || !img.naturalWidth || !img.naturalHeight) {
+    collisionReady = false;
+    return;
+  }
+
+  try {
+    collisionCanvas = document.createElement("canvas");
+    collisionCanvas.width = img.naturalWidth;
+    collisionCanvas.height = img.naturalHeight;
+    collisionCtx = collisionCanvas.getContext("2d", { willReadFrequently: true });
+    collisionCtx.drawImage(img, 0, 0);
+    collisionReady = true;
+  } catch {
+    collisionReady = false;
+  }
+}
+
+// 기존 함수 덮어쓰기: map.png 로드 후 색상 기반 충돌 캔버스 생성
+function handleMapImageFallback() {
+  const mapImage = $("mapImage");
+
+  mapImage.onload = () => {
+    state.mapImageAvailable = true;
+    $("fallbackTileMap").style.display = "none";
+    mapImage.style.display = "block";
+    buildCollisionCanvas();
+    updateMapLayout();
+  };
+
+  mapImage.onerror = () => {
+    state.mapImageAvailable = false;
+    collisionReady = false;
+    mapImage.style.display = "none";
+    $("fallbackTileMap").style.display = "grid";
+    updateMapLayout();
+  };
+
+  if (mapImage.complete && mapImage.naturalWidth) {
+    state.mapImageAvailable = true;
+    $("fallbackTileMap").style.display = "none";
+    mapImage.style.display = "block";
+    buildCollisionCanvas();
+  }
+}
+
+function getMapPixelAtTile(x, y) {
+  if (!collisionReady || !collisionCtx || !collisionCanvas) return null;
+
+  const px = Math.floor(clamp(x / COLS, 0, 0.9999) * collisionCanvas.width);
+  const py = Math.floor(clamp(y / ROWS, 0, 0.9999) * collisionCanvas.height);
+
+  try {
+    return collisionCtx.getImageData(px, py, 1, 1).data;
+  } catch {
+    return null;
+  }
+}
+
+function isPixelTallGrass(pixel) {
+  if (!pixel) return false;
+
+  const [r, g, b, a] = pixel;
+  if (a < 20) return false;
+
+  // 어두운 풀숲은 녹색이 강하고, 일반 바닥보다 어둡습니다.
+  // 나무와 구분하기 위해 파란 성분이 너무 낮은 색은 제외합니다.
+  const greenStrong = g > r * 1.25 && g > b * 0.9;
+  const notTooDark = g > 70;
+  const hasTeal = b > 45;
+  const notTreeBrown = !(r > 90 && g < 120 && b < 80);
+  return greenStrong && notTooDark && hasTeal && notTreeBrown && r < 95;
+}
+
+function isPixelWalkable(pixel) {
+  if (!pixel) return false;
+
+  const [r, g, b, a] = pixel;
+  if (a < 20) return false;
+
+  // 모래 길/흙길
+  const sandPath = r > 145 && g > 115 && b < 125;
+
+  // 밝은 민트색 풀밭/바닥
+  const lightGround = g > 120 && b > 85 && r < 175 && g >= r + 8;
+
+  // 어두운 풀숲
+  const tallGrass = isPixelTallGrass(pixel);
+
+  // 꽃 위도 바닥으로 통과 가능
+  const flowerWhite = r > 190 && g > 190 && b > 170;
+  const flowerOrange = r > 150 && g > 75 && g < 155 && b < 110;
+
+  return sandPath || lightGround || tallGrass || flowerWhite || flowerOrange;
+}
+
+// 기존 함수 덮어쓰기: 모바일/PC 모두 map.png 색상 기반으로 이동 가능 여부 판단
+function isBlocked(x, y) {
+  if (x < 0 || x >= COLS || y < 0 || y >= ROWS) return true;
+
+  if (state.mapImageAvailable && collisionReady) {
+    // 캐릭터 발밑 기준으로 여러 점을 보고 한 점이라도 장애물이면 막습니다.
+    const pixel = getMapPixelAtTile(x, y);
+    return !isPixelWalkable(pixel);
+  }
+
+  if (state.mapImageAvailable) {
+    const inWalkable = WALKABLE_RECTS.some((rect) => isInsideRect(x, y, rect));
+    const inBlocked = BLOCKED_RECTS.some((rect) => isInsideRect(x, y, rect));
+    return !inWalkable || inBlocked;
+  }
+
+  return ["tree", "water", "roof", "house", "rock"].includes(getTileClass(Math.floor(x), Math.floor(y)));
+}
+
+// 기존 함수 덮어쓰기: 몬스터는 실제 풀숲 색상에서만 등장
+function isEncounterArea(x, y) {
+  if (state.mapImageAvailable && collisionReady) {
+    const samples = [
+      getMapPixelAtTile(x, y),
+      getMapPixelAtTile(x - 0.12, y),
+      getMapPixelAtTile(x + 0.12, y),
+      getMapPixelAtTile(x, y - 0.12)
+    ];
+
+    return samples.some(isPixelTallGrass);
+  }
+
+  if (state.mapImageAvailable) {
+    return TALL_GRASS_RECTS.some((rect) => isInsideRect(x, y, rect));
+  }
+
+  return getTileClass(Math.floor(x), Math.floor(y)) === "tallgrass";
+}
+
+// 기존 함수 덮어쓰기: 충돌 체크를 발밑 중심 위주로 단순화해서 '갈 수 있는 곳인데 막힘'을 줄임
+function canStandAt(x, y) {
+  const points = [
+    [x, y],
+    [x - PLAYER_RADIUS_X * 0.75, y],
+    [x + PLAYER_RADIUS_X * 0.75, y],
+    [x, y - PLAYER_RADIUS_Y * 0.55]
+  ];
+
+  return points.every(([px, py]) => !isBlocked(px, py));
+}
+
+// 모바일 카메라 확대 비율 다시 조정: 너무 확대되지 않게, 조작 가능한 정도만 확대
+function updateMapLayout() {
+  const stage = $("mapStage");
+  const camera = $("mapCamera");
+
+  if (!stage || !camera) return;
+
+  const rect = stage.getBoundingClientRect();
+  const stageW = rect.width || window.innerWidth;
+  const stageH = rect.height || window.innerHeight;
+  const isMobile = state.layout.isMobile;
+  const isPortrait = state.layout.isPortrait;
+
+  let mapW;
+  let mapH;
+
+  if (isMobile) {
+    const minWidthFromHeight = stageH * (COLS / ROWS);
+
+    if (isPortrait) {
+      mapW = Math.max(stageW * 1.62, minWidthFromHeight * 1.01);
+    } else {
+      mapW = Math.max(stageW * 1.16, minWidthFromHeight);
+    }
+
+    mapH = mapW * (ROWS / COLS);
+
+    if (mapH < stageH * 1.02) {
+      mapH = stageH * 1.02;
+      mapW = mapH * (COLS / ROWS);
+    }
+  } else {
+    mapW = stageW;
+    mapH = stageH;
+  }
+
+  state.layout.stageW = stageW;
+  state.layout.stageH = stageH;
+  state.layout.mapW = mapW;
+  state.layout.mapH = mapH;
+  state.layout.tileW = mapW / COLS;
+  state.layout.tileH = mapH / ROWS;
+
+  camera.style.width = `${mapW}px`;
+  camera.style.height = `${mapH}px`;
+
+  updatePlayerPosition();
+}
