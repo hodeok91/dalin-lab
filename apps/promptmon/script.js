@@ -1,86 +1,13 @@
 "use strict";
 
-const STORAGE_KEY = "promptmon_final_map_sound_fixed_v2";
+const STORAGE_KEY = "promptmon_responsive_camera_final_v1";
 const COLS = 30;
 const ROWS = 20;
 const ENCOUNTER_RATE = 0.25;
 
-// 방향키를 누르고 있는 동안 requestAnimationFrame으로 부드럽게 이동합니다.
-const MOVE_SPEED = 5.3; // 초당 타일 이동 속도
+const MOVE_SPEED = 5.3;
 const PLAYER_RADIUS_X = 0.18;
 const PLAYER_RADIUS_Y = 0.16;
-
-// 실제 map.png 기준 30 x 20 좌표계입니다.
-// 아래 WALKABLE_RECTS 안에 있는 곳만 이동 가능합니다.
-// 나무, 건물, 돌, 절벽은 BLOCKED_RECTS로 다시 막습니다.
-const WALKABLE_RECTS = [
-  // 왼쪽 위 밝은 이동 가능 지역
-  [0.0, 4.7, 4.2, 10.2],
-  // 왼쪽 위 풀숲
-  [4.1, 5.1, 8.6, 9.9],
-  // 왼쪽 중간 길/풀밭
-  [0.0, 10.5, 8.0, 13.7],
-  // 중앙 왼쪽 밝은 풀밭
-  [7.6, 4.3, 15.3, 8.7],
-  // 건물 아래 세로 길
-  [15.3, 0.0, 17.9, 10.7],
-  // 중앙 하단 큰 이동 가능 지역
-  [11.1, 8.5, 17.6, 12.4],
-  [14.0, 11.0, 23.2, 16.0],
-  // 오른쪽 중간 이동 가능 지역
-  [18.2, 6.1, 23.8, 10.0],
-  // 오른쪽 위 풀숲
-  [24.2, 3.4, 29.6, 8.2],
-  // 오른쪽 아래 풀숲/길
-  [22.4, 8.2, 29.5, 15.4],
-  // 아래쪽 세로 길
-  [19.2, 13.3, 21.4, 17.4]
-];
-
-// 절대 통과 금지 영역.
-// 화면에서 나무 덩어리, 건물, 돌/절벽처럼 보이는 부분을 막습니다.
-const BLOCKED_RECTS = [
-  // 상단 나무 숲
-  [0.0, 0.0, 15.0, 4.55],
-  [18.0, 0.0, 30.0, 3.35],
-
-  // 건물
-  [14.75, 1.0, 18.25, 5.15],
-
-  // 왼쪽 위 절벽/나무/장애물
-  [0.0, 4.8, 0.75, 8.2],
-  [3.65, 4.9, 4.35, 9.5],
-  [5.3, 7.7, 8.55, 10.65],
-
-  // 중앙 왼쪽 나무 덩어리
-  [8.65, 8.8, 10.3, 13.25],
-  [10.25, 9.8, 13.8, 13.6],
-  [12.0, 8.6, 15.15, 11.3],
-
-  // 건물 오른쪽 세로 숲
-  [17.55, 0.0, 19.1, 8.15],
-  [18.9, 8.9, 22.25, 10.85],
-
-  // 오른쪽 숲 덩어리
-  [23.15, 5.45, 26.15, 9.35],
-  [23.35, 12.0, 26.75, 15.8],
-
-  // 하단 숲
-  [0.0, 14.55, 16.0, 20.0],
-  [16.2, 16.55, 30.0, 20.0]
-];
-
-// 랜덤 몬스터는 아래 풀숲 영역에서만 등장합니다.
-const TALL_GRASS_RECTS = [
-  [4.15, 5.15, 8.45, 9.65],
-  [0.1, 8.2, 4.15, 10.0],
-  [21.25, 5.2, 23.7, 9.45],
-  [24.25, 3.55, 29.45, 8.0],
-  [22.7, 8.35, 29.3, 15.2]
-];
-
-const keysDown = new Set();
-let lastFrameTime = 0;
 
 const PLAYER_SPRITES = {
   down: "./assets/trainer-down.png",
@@ -89,7 +16,71 @@ const PLAYER_SPRITES = {
   right: "./assets/trainer-right.png"
 };
 
-const $ = (id) => document.getElementById(id);
+// map.png 기준 30 x 20 좌표입니다.
+// 이동 가능 영역: 길, 밝은 풀밭, 풀숲을 크게 잡고,
+// 장애물 영역: 나무, 건물, 절벽, 돌은 BLOCKED_RECTS에서 다시 막습니다.
+const WALKABLE_RECTS = [
+  [0.0, 4.7, 4.2, 10.2],
+  [4.1, 5.1, 8.6, 9.9],
+  [0.0, 10.5, 8.0, 13.7],
+  [7.6, 4.3, 15.3, 8.7],
+  [15.3, 0.0, 17.9, 10.7],
+  [11.1, 8.5, 17.6, 12.4],
+  [14.0, 11.0, 23.2, 16.0],
+  [18.2, 6.1, 23.8, 10.0],
+  [24.2, 3.4, 29.6, 8.2],
+  [22.4, 8.2, 29.5, 15.4],
+  [19.2, 13.3, 21.4, 17.4]
+];
+
+const BLOCKED_RECTS = [
+  [0.0, 0.0, 15.0, 4.55],
+  [18.0, 0.0, 30.0, 3.35],
+  [14.75, 1.0, 18.25, 5.15],
+  [0.0, 4.8, 0.75, 8.2],
+  [3.65, 4.9, 4.35, 9.5],
+  [5.3, 7.7, 8.55, 10.65],
+  [8.65, 8.8, 10.3, 13.25],
+  [10.25, 9.8, 13.8, 13.6],
+  [12.0, 8.6, 15.15, 11.3],
+  [17.55, 0.0, 19.1, 8.15],
+  [18.9, 8.9, 22.25, 10.85],
+  [23.15, 5.45, 26.15, 9.35],
+  [23.35, 12.0, 26.75, 15.8],
+  [0.0, 14.55, 16.0, 20.0],
+  [16.2, 16.55, 30.0, 20.0]
+];
+
+const TALL_GRASS_RECTS = [
+  [4.15, 5.15, 8.45, 9.65],
+  [0.1, 8.2, 4.15, 10.0],
+  [21.25, 5.2, 23.7, 9.45],
+  [24.25, 3.55, 29.45, 8.0],
+  [22.7, 8.35, 29.3, 15.2]
+];
+
+const fallbackWorld = [
+  "TTTTTTTTTTTHHHHTTTTTTTTTTTTTT",
+  "TTTTTTTTTTTHHHHTTTTTTTTTTTTTT",
+  "AAAAAAAAAAGHHHHGAAAAAAAAAAAAAA",
+  "AAAAAAAAAAGPPPPGAAAAAGGGGGAAA",
+  "AAAGGGGGGGPPPPGGGAAAGFFFFFAAA",
+  "AAGGWWWWGGPPPPGGGAAAAFFFFFAAA",
+  "AAGGWWWWGGPPPPGGGGGGGAAAAAAGG",
+  "GGGGWWWWGGPPPPPPPPPPPGGGGGGGG",
+  "GGGGGGGGGGGGGGGGGGPPPGAAAAAAA",
+  "GGGAAAAAAAGGGGGGGGPPPGAAAAAAA",
+  "GGGAAAAAAAGGGGGGGGPPPGGGGGGGG",
+  "GGGGGGGGGGGGGGGGGGPPPPPPPPPGG",
+  "GGGGGGGGWWWWGGGGGGGGGGGGGPPPG",
+  "TTTGGGGGWWWWWWGGGGGGGGGGPPPGG",
+  "TTTGGGGGWWWWWWWWGGGGRRRRGGGGG",
+  "TTTAAAAAGGGWWWWWWGGGRRRRGGGGG",
+  "TTTAAAAAGGGGGGGWWGGGRRCGGGGGG",
+  "TTTAAAAAGGGGGGGGGGGGRRRGGGGGG",
+  "TTTTTTTTGGGGGGGGGGGGGGGGGGGGG",
+  "TTTTTTTTGGGGGGGGGGGGGGGGGGGGG"
+];
 
 const categories = [
   { key: "role", label: "역할", score: 10 },
@@ -336,29 +327,6 @@ const quests = [
   }
 ];
 
-const fallbackWorld = [
-  "TTTTTTTTTTTHHHHTTTTTTTTTTTTTT",
-  "TTTTTTTTTTTHHHHTTTTTTTTTTTTTT",
-  "AAAAAAAAAAGHHHHGAAAAAAAAAAAAAA",
-  "AAAAAAAAAAGPPPPGAAAAAGGGGGAAA",
-  "AAAGGGGGGGPPPPGGGAAAGFFFFFAAA",
-  "AAGGWWWWGGPPPPGGGAAAAFFFFFAAA",
-  "AAGGWWWWGGPPPPGGGGGGGAAAAAAGG",
-  "GGGGWWWWGGPPPPPPPPPPPGGGGGGGG",
-  "GGGGGGGGGGGGGGGGGGPPPGAAAAAAA",
-  "GGGAAAAAAAGGGGGGGGPPPGAAAAAAA",
-  "GGGAAAAAAAGGGGGGGGPPPGGGGGGGG",
-  "GGGGGGGGGGGGGGGGGGPPPPPPPPPGG",
-  "GGGGGGGGWWWWGGGGGGGGGGGGGPPPG",
-  "TTTGGGGGWWWWWWGGGGGGGGGGPPPGG",
-  "TTTGGGGGWWWWWWWWGGGGRRRRGGGGG",
-  "TTTAAAAAGGGWWWWWWGGGRRRRGGGGG",
-  "TTTAAAAAGGGGGGGWWGGGRRCGGGGGG",
-  "TTTAAAAAGGGGGGGGGGGGRRRGGGGGG",
-  "TTTTTTTTGGGGGGGGGGGGGGGGGGGGG",
-  "TTTTTTTTGGGGGGGGGGGGGGGGGGGGG"
-];
-
 const state = {
   screen: "titleScreen",
   titleIndex: 0,
@@ -374,33 +342,85 @@ const state = {
   selected: {},
   finalScore: 0,
   finalPrompt: "",
-  mapImageAvailable: true
+  mapImageAvailable: true,
+  layout: {
+    stageW: 0,
+    stageH: 0,
+    mapW: 0,
+    mapH: 0,
+    tileW: 0,
+    tileH: 0,
+    cameraX: 0,
+    cameraY: 0,
+    isMobile: false,
+    isPortrait: false
+  }
 };
+
+const keysDown = new Set();
+let lastFrameTime = 0;
+
+const $ = (id) => document.getElementById(id);
 
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
+  updateDeviceMode();
   renderFallbackMap();
   bindEvents();
   preloadTitlePokemon();
   loadPlayerBattlePokemon();
   handleMapImageFallback();
-  updatePlayerPosition();
+  updateMapLayout();
   showScreen("titleScreen");
 }
 
 function bindEvents() {
   document.addEventListener("keydown", handleKeydown);
   document.addEventListener("keyup", handleKeyup);
-  window.addEventListener("resize", updatePlayerPosition);
-  requestAnimationFrame(gameLoop);
+
+  window.addEventListener("resize", () => {
+    updateDeviceMode();
+    updateMapLayout();
+  });
+
+  window.addEventListener("orientationchange", () => {
+    setTimeout(() => {
+      updateDeviceMode();
+      updateMapLayout();
+    }, 350);
+  });
+
+  document.addEventListener("touchmove", (event) => {
+    if (["titleScreen", "mapScreen", "battleScreen"].includes(state.screen)) {
+      event.preventDefault();
+    }
+  }, { passive: false });
 
   document.querySelectorAll("[data-title-action]").forEach((button, index) => {
     button.addEventListener("click", () => runTitleAction(index));
   });
 
   document.querySelectorAll("[data-move]").forEach((button) => {
-    button.addEventListener("click", () => movePlayer(button.dataset.move));
+    const direction = button.dataset.move;
+
+    button.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+      startMobileMove(direction);
+    });
+
+    button.addEventListener("pointerup", (event) => {
+      event.preventDefault();
+      stopMobileMove(direction);
+    });
+
+    button.addEventListener("pointercancel", () => stopMobileMove(direction));
+    button.addEventListener("pointerleave", () => stopMobileMove(direction));
+
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      movePlayer(direction);
+    });
   });
 
   $("copyAndMapBtn").addEventListener("click", copyAndReturnMap);
@@ -419,96 +439,26 @@ function bindEvents() {
   });
 
   $("dexToMapBtn").addEventListener("click", returnToMap);
-}
-
-
-function handleKeyup(event) {
-  if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.key)) {
-    keysDown.delete(event.key);
-  }
-}
-
-function gameLoop(time) {
-  const dt = Math.min(0.05, (time - lastFrameTime) / 1000 || 0);
-  lastFrameTime = time;
-
-  if (state.screen === "mapScreen" && !state.inEncounter) {
-    updateSmoothMovement(dt);
-  }
 
   requestAnimationFrame(gameLoop);
 }
 
-function updateSmoothMovement(dt) {
-  if (keysDown.size === 0) return;
+/* 기기 / 화면 방향 */
 
-  let dx = 0;
-  let dy = 0;
+function updateDeviceMode() {
+  const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+  const isSmallScreen = window.innerWidth <= 900;
+  const isMobile = isTouchDevice || isSmallScreen;
+  const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
-  // 방향은 가장 최근 느낌이 자연스럽도록 수직/수평 입력을 동시에 허용합니다.
-  if (keysDown.has("ArrowLeft")) dx -= 1;
-  if (keysDown.has("ArrowRight")) dx += 1;
-  if (keysDown.has("ArrowUp")) dy -= 1;
-  if (keysDown.has("ArrowDown")) dy += 1;
+  state.layout.isMobile = isMobile;
+  state.layout.isPortrait = isPortrait;
 
-  if (dx === 0 && dy === 0) return;
-
-  if (Math.abs(dx) > Math.abs(dy)) {
-    state.player.dir = dx < 0 ? "left" : "right";
-  } else if (dy !== 0) {
-    state.player.dir = dy < 0 ? "up" : "down";
-  }
-
-  // 대각선 속도 보정
-  const len = Math.hypot(dx, dy) || 1;
-  dx = (dx / len) * MOVE_SPEED * dt;
-  dy = (dy / len) * MOVE_SPEED * dt;
-
-  tryMoveBy(dx, dy);
+  document.documentElement.classList.toggle("is-mobile", isMobile);
+  document.documentElement.classList.toggle("is-pc", !isMobile);
+  document.documentElement.classList.toggle("is-portrait", isPortrait);
+  document.documentElement.classList.toggle("is-landscape", !isPortrait);
 }
-
-function tryMoveBy(dx, dy) {
-  let moved = false;
-
-  const nextX = state.player.x + dx;
-  if (canStandAt(nextX, state.player.y)) {
-    state.player.x = nextX;
-    moved = true;
-  }
-
-  const nextY = state.player.y + dy;
-  if (canStandAt(state.player.x, nextY)) {
-    state.player.y = nextY;
-    moved = true;
-  }
-
-  if (moved) {
-    if (isEncounterArea(state.player.x, state.player.y)) {
-      state.grassSteps += Math.abs(dx) + Math.abs(dy);
-    } else {
-      state.grassSteps = 0;
-    }
-
-    tryEncounter();
-    updatePlayerPosition();
-  } else {
-    updatePlayerPosition();
-  }
-}
-
-function canStandAt(x, y) {
-  const points = [
-    [x, y],
-    [x - PLAYER_RADIUS_X, y],
-    [x + PLAYER_RADIUS_X, y],
-    [x, y - PLAYER_RADIUS_Y],
-    [x - PLAYER_RADIUS_X, y - PLAYER_RADIUS_Y],
-    [x + PLAYER_RADIUS_X, y - PLAYER_RADIUS_Y]
-  ];
-
-  return points.every(([px, py]) => !isBlocked(px, py));
-}
-
 
 /* 화면 */
 
@@ -517,8 +467,11 @@ function showScreen(screenId) {
   $(screenId).classList.add("active");
   state.screen = screenId;
 
+  keysDown.clear();
+
   if (screenId === "mapScreen") {
-    updatePlayerPosition();
+    updateDeviceMode();
+    updateMapLayout();
   }
 
   if (screenId === "resultScreen") {
@@ -574,9 +527,7 @@ function playSfx(id) {
     audio.currentTime = 0;
     audio.volume = 0.7;
     audio.play().catch(() => {});
-  } catch {
-    // 효과음이 없거나 브라우저가 막으면 넘어갑니다.
-  }
+  } catch {}
 }
 
 function toggleMute() {
@@ -618,9 +569,7 @@ function playEncounterEffect() {
       osc.start(ctx.currentTime + index * 0.08);
       osc.stop(ctx.currentTime + index * 0.08 + 0.1);
     });
-  } catch {
-    // 효과음 생성이 막힌 환경에서는 넘어갑니다.
-  }
+  } catch {}
 }
 
 /* PokeAPI */
@@ -707,7 +656,7 @@ function loadPlayerBattlePokemon() {
   setPokemonSprite("playerPokemonSprite", "playerFallback", "pikachu", "back");
 }
 
-/* 키보드 */
+/* 키보드 / 터치 */
 
 function handleKeydown(event) {
   if (state.helpOpen && ["Enter", " "].includes(event.key)) {
@@ -718,9 +667,72 @@ function handleKeydown(event) {
   }
 
   if (state.screen === "titleScreen") handleTitleKey(event);
-  if (state.screen === "mapScreen") handleMapKey(event);
-  if (state.screen === "battleScreen") handleBattleKey(event);
-  if (state.screen === "resultScreen") handleResultKey(event);
+  else if (state.screen === "mapScreen") handleMapKey(event);
+  else if (state.screen === "battleScreen") handleBattleKey(event);
+  else if (state.screen === "resultScreen") handleResultKey(event);
+}
+
+function handleKeyup(event) {
+  if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.key)) {
+    keysDown.delete(event.key);
+  }
+}
+
+function startMobileMove(direction) {
+  if (state.screen !== "mapScreen") return;
+
+  const key = directionToKey(direction);
+  if (key) keysDown.add(key);
+}
+
+function stopMobileMove(direction) {
+  const key = directionToKey(direction);
+  if (key) keysDown.delete(key);
+}
+
+function directionToKey(direction) {
+  if (direction === "up") return "ArrowUp";
+  if (direction === "down") return "ArrowDown";
+  if (direction === "left") return "ArrowLeft";
+  if (direction === "right") return "ArrowRight";
+  return "";
+}
+
+function gameLoop(time) {
+  const dt = Math.min(0.05, (time - lastFrameTime) / 1000 || 0);
+  lastFrameTime = time;
+
+  if (state.screen === "mapScreen" && !state.inEncounter) {
+    updateSmoothMovement(dt);
+  }
+
+  requestAnimationFrame(gameLoop);
+}
+
+function updateSmoothMovement(dt) {
+  if (keysDown.size === 0) return;
+
+  let dx = 0;
+  let dy = 0;
+
+  if (keysDown.has("ArrowLeft")) dx -= 1;
+  if (keysDown.has("ArrowRight")) dx += 1;
+  if (keysDown.has("ArrowUp")) dy -= 1;
+  if (keysDown.has("ArrowDown")) dy += 1;
+
+  if (dx === 0 && dy === 0) return;
+
+  if (Math.abs(dx) > Math.abs(dy)) {
+    state.player.dir = dx < 0 ? "left" : "right";
+  } else if (dy !== 0) {
+    state.player.dir = dy < 0 ? "up" : "down";
+  }
+
+  const len = Math.hypot(dx, dy) || 1;
+  dx = (dx / len) * MOVE_SPEED * dt;
+  dy = (dy / len) * MOVE_SPEED * dt;
+
+  tryMoveBy(dx, dy);
 }
 
 function handleTitleKey(event) {
@@ -864,7 +876,7 @@ function updateResultMenu() {
   });
 }
 
-/* 맵 */
+/* 맵 / 카메라 / 충돌 */
 
 function handleMapImageFallback() {
   const mapImage = $("mapImage");
@@ -873,12 +885,14 @@ function handleMapImageFallback() {
     state.mapImageAvailable = true;
     $("fallbackTileMap").style.display = "none";
     mapImage.style.display = "block";
+    updateMapLayout();
   };
 
   mapImage.onerror = () => {
     state.mapImageAvailable = false;
     mapImage.style.display = "none";
     $("fallbackTileMap").style.display = "grid";
+    updateMapLayout();
   };
 }
 
@@ -896,7 +910,7 @@ function renderFallbackMap() {
 }
 
 function getTileClass(x, y) {
-  const code = fallbackWorld[y][x];
+  const code = fallbackWorld[y]?.[x];
 
   if (code === "T") return "tree";
   if (code === "A") return "tallgrass";
@@ -908,6 +922,171 @@ function getTileClass(x, y) {
   if (code === "C") return "cave";
 
   return "grass";
+}
+
+function updateMapLayout() {
+  const stage = $("mapStage");
+  const camera = $("mapCamera");
+
+  if (!stage || !camera) return;
+
+  const rect = stage.getBoundingClientRect();
+  const stageW = rect.width || window.innerWidth;
+  const stageH = rect.height || window.innerHeight;
+  const isMobile = state.layout.isMobile;
+  const isPortrait = state.layout.isPortrait;
+
+  let mapW;
+  let mapH;
+
+  if (isMobile) {
+    // 모바일은 맵을 크게 두고 카메라가 따라갑니다.
+    // 세로는 더 크게, 가로는 조금만 크게 보여줍니다.
+    const minWidthFromHeight = stageH * (COLS / ROWS);
+
+    if (isPortrait) {
+      mapW = Math.max(stageW * 2.35, minWidthFromHeight * 1.08);
+    } else {
+      mapW = Math.max(stageW * 1.42, minWidthFromHeight);
+    }
+
+    mapH = mapW * (ROWS / COLS);
+
+    if (mapH < stageH * 1.03) {
+      mapH = stageH * 1.03;
+      mapW = mapH * (COLS / ROWS);
+    }
+  } else {
+    // PC는 전체 맵을 게임 프레임 안에 맞춰 보여줍니다.
+    mapW = stageW;
+    mapH = stageH;
+  }
+
+  state.layout.stageW = stageW;
+  state.layout.stageH = stageH;
+  state.layout.mapW = mapW;
+  state.layout.mapH = mapH;
+  state.layout.tileW = mapW / COLS;
+  state.layout.tileH = mapH / ROWS;
+
+  camera.style.width = `${mapW}px`;
+  camera.style.height = `${mapH}px`;
+
+  updatePlayerPosition();
+}
+
+function updatePlayerPosition() {
+  const { tileW, tileH, isMobile } = state.layout;
+  if (!tileW || !tileH) return;
+
+  const player = $("player");
+  const sprite = $("playerSprite");
+
+  const px = state.player.x * tileW + tileW / 2;
+  const py = state.player.y * tileH + tileH;
+
+  player.style.left = `${px}px`;
+  player.style.top = `${py}px`;
+
+  const width = isMobile
+    ? Math.max(28, Math.min(42, tileW * 0.8))
+    : Math.max(30, Math.min(46, tileW * 1.05));
+
+  const height = isMobile
+    ? Math.max(38, Math.min(56, tileH * 1.15))
+    : Math.max(42, Math.min(62, tileH * 1.45));
+
+  player.style.width = `${width}px`;
+  player.style.height = `${height}px`;
+
+  sprite.src = PLAYER_SPRITES[state.player.dir];
+
+  updateCamera();
+}
+
+function updateCamera() {
+  const camera = $("mapCamera");
+  const { stageW, stageH, mapW, mapH, tileW, tileH, isMobile } = state.layout;
+
+  if (!camera || !tileW || !tileH) return;
+
+  if (!isMobile) {
+    state.layout.cameraX = 0;
+    state.layout.cameraY = 0;
+    camera.style.transform = "translate3d(0, 0, 0)";
+    return;
+  }
+
+  const playerPx = state.player.x * tileW + tileW / 2;
+  const playerPy = state.player.y * tileH + tileH / 2;
+
+  let cameraX = stageW / 2 - playerPx;
+  let cameraY = stageH / 2 - playerPy;
+
+  cameraX = clamp(cameraX, stageW - mapW, 0);
+  cameraY = clamp(cameraY, stageH - mapH, 0);
+
+  state.layout.cameraX = cameraX;
+  state.layout.cameraY = cameraY;
+
+  camera.style.transform = `translate3d(${cameraX}px, ${cameraY}px, 0)`;
+}
+
+function movePlayer(direction) {
+  if (state.inEncounter) return;
+
+  const delta = {
+    up: [0, -1],
+    down: [0, 1],
+    left: [-1, 0],
+    right: [1, 0]
+  };
+
+  const [dx, dy] = delta[direction];
+  state.player.dir = direction;
+
+  tryMoveBy(dx * 0.35, dy * 0.35);
+}
+
+function tryMoveBy(dx, dy) {
+  let moved = false;
+
+  const nextX = state.player.x + dx;
+  if (canStandAt(nextX, state.player.y)) {
+    state.player.x = nextX;
+    moved = true;
+  }
+
+  const nextY = state.player.y + dy;
+  if (canStandAt(state.player.x, nextY)) {
+    state.player.y = nextY;
+    moved = true;
+  }
+
+  if (moved) {
+    if (isEncounterArea(state.player.x, state.player.y)) {
+      state.grassSteps += Math.abs(dx) + Math.abs(dy);
+    } else {
+      state.grassSteps = 0;
+    }
+
+    tryEncounter();
+  }
+
+  updatePlayerPosition();
+}
+
+function canStandAt(x, y) {
+  const points = [
+    [x, y],
+    [x - PLAYER_RADIUS_X, y],
+    [x + PLAYER_RADIUS_X, y],
+    [x, y - PLAYER_RADIUS_Y],
+    [x - PLAYER_RADIUS_X, y - PLAYER_RADIUS_Y],
+    [x + PLAYER_RADIUS_X, y - PLAYER_RADIUS_Y]
+  ];
+
+  return points.every(([px, py]) => !isBlocked(px, py));
 }
 
 function isInsideRect(x, y, rect) {
@@ -932,41 +1111,6 @@ function isEncounterArea(x, y) {
   }
 
   return getTileClass(Math.floor(x), Math.floor(y)) === "tallgrass";
-}
-
-function updatePlayerPosition() {
-  const game = $("game");
-  const tileW = game.clientWidth / COLS;
-  const tileH = game.clientHeight / ROWS;
-
-  const player = $("player");
-  player.style.left = `${state.player.x * tileW + tileW / 2}px`;
-  player.style.top = `${state.player.y * tileH + tileH}px`;
-
-  // 맵에 비해 캐릭터가 너무 커지지 않도록 제한합니다.
-  const width = Math.max(30, Math.min(46, tileW * 1.05));
-  const height = Math.max(42, Math.min(62, tileH * 1.45));
-
-  player.style.width = `${width}px`;
-  player.style.height = `${height}px`;
-
-  $("playerSprite").src = PLAYER_SPRITES[state.player.dir];
-}
-
-function movePlayer(direction) {
-  if (state.inEncounter) return;
-
-  const delta = {
-    up: [0, -1],
-    down: [0, 1],
-    left: [-1, 0],
-    right: [1, 0]
-  };
-
-  const [dx, dy] = delta[direction];
-  state.player.dir = direction;
-
-  tryMoveBy(dx * 0.35, dy * 0.35);
 }
 
 function tryEncounter() {
@@ -1108,7 +1252,7 @@ function selectCurrentChoice() {
 
 function playAttackMotion(done) {
   const player = $("playerPokemonSprite");
-  const enemy = $("enemyPokemonSprite");
+  const enemy = $("enemyPokemonSprite") || $("enemyFallback");
 
   player.classList.remove("attack-motion");
   enemy.classList.remove("hit-shake");
@@ -1244,7 +1388,6 @@ function renderResult(result) {
     area.appendChild(div);
   });
 }
-
 
 function runAway() {
   $("battleMessage").textContent = "무사히 도망쳤다! 맵으로 돌아간다.";
@@ -1422,4 +1565,8 @@ function escapeHtml(text) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
 }
