@@ -1927,3 +1927,200 @@ function updateMapLayout() {
 
   updatePlayerPosition();
 }
+
+
+/* ===== v7 최종 보정 JS: 시작 위치 이동 가능 + 모바일/가로 강제 판별 + 이동 판정 단순화 ===== */
+
+function updateDeviceMode() {
+  const coarse = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+  const touchPoints = navigator.maxTouchPoints && navigator.maxTouchPoints > 0;
+  const smallScreen = Math.min(window.innerWidth, window.innerHeight) <= 900;
+  const mobileUA = /Android|iPhone|iPad|iPod|Mobile|KAKAOTALK|SamsungBrowser/i.test(navigator.userAgent);
+  const isMobile = coarse || touchPoints || smallScreen || mobileUA;
+  const isPortrait = window.innerHeight >= window.innerWidth;
+
+  state.layout.isMobile = isMobile;
+  state.layout.isPortrait = isPortrait;
+
+  document.documentElement.classList.toggle("is-mobile", isMobile);
+  document.documentElement.classList.toggle("is-pc", !isMobile);
+  document.documentElement.classList.toggle("touch-device", isMobile);
+  document.documentElement.classList.toggle("is-portrait", isPortrait);
+  document.documentElement.classList.toggle("is-landscape", !isPortrait);
+}
+
+// 시작 위치가 막힌 곳에 걸리지 않도록 안전 좌표로 재배치
+function ensurePlayerOnWalkable() {
+  if (!isBlocked(state.player.x, state.player.y)) return;
+
+  const candidates = [
+    [15.7, 8.6],
+    [15.7, 7.2],
+    [14.8, 8.6],
+    [13.5, 8.5],
+    [16.7, 8.5],
+    [12.5, 8.7],
+    [19.5, 8.6],
+    [21.2, 8.7]
+  ];
+
+  const found = candidates.find(([x, y]) => !isBlocked(x, y));
+
+  if (found) {
+    state.player.x = found[0];
+    state.player.y = found[1];
+  }
+}
+
+// 이동 가능 영역을 더 넓게 잡고, 건물/큰 나무/하단 숲만 막습니다.
+const WALKABLE_V7 = [
+  [0.0, 3.5, 30.0, 16.7],
+  [14.2, 0.0, 18.2, 16.7],
+  [18.0, 3.0, 30.0, 16.7]
+];
+
+const BLOCKED_V7 = [
+  // 상단 숲 좌우
+  [0.0, 0.0, 13.3, 3.15],
+  [18.7, 0.0, 30.0, 2.75],
+
+  // 건물
+  [13.65, 0.6, 18.35, 4.65],
+
+  // 하단 숲
+  [0.0, 17.0, 30.0, 20.0],
+
+  // 눈에 띄는 나무 덩어리만 막음
+  [0.0, 5.2, 0.8, 8.1],
+  [4.1, 7.6, 6.8, 9.95],
+  [7.1, 7.6, 8.7, 10.1],
+  [8.8, 9.4, 11.8, 12.7],
+  [10.8, 9.6, 13.6, 13.4],
+  [17.7, 4.6, 18.9, 8.2],
+  [19.2, 8.4, 22.0, 10.75],
+  [23.2, 5.2, 25.8, 9.1],
+  [23.2, 12.0, 26.7, 15.7]
+];
+
+const TALL_GRASS_V7 = [
+  [3.8, 4.8, 8.9, 9.5],
+  [0.0, 7.9, 4.1, 10.6],
+  [20.5, 5.0, 23.6, 9.7],
+  [24.0, 3.2, 29.6, 8.0],
+  [22.2, 8.0, 29.7, 15.5]
+];
+
+function inRectListV7(x, y, list) {
+  return list.some((rect) => isInsideRect(x, y, rect));
+}
+
+function isBlocked(x, y) {
+  if (x < 0 || x >= COLS || y < 0 || y >= ROWS) return true;
+
+  if (state.mapImageAvailable) {
+    return !inRectListV7(x, y, WALKABLE_V7) || inRectListV7(x, y, BLOCKED_V7);
+  }
+
+  return ["tree", "water", "roof", "house", "rock"].includes(getTileClass(Math.floor(x), Math.floor(y)));
+}
+
+function isEncounterArea(x, y) {
+  if (state.mapImageAvailable) {
+    return inRectListV7(x, y, TALL_GRASS_V7);
+  }
+
+  return getTileClass(Math.floor(x), Math.floor(y)) === "tallgrass";
+}
+
+function canStandAt(x, y) {
+  const points = [
+    [x, y],
+    [x - 0.08, y],
+    [x + 0.08, y],
+    [x, y - 0.06]
+  ];
+
+  return points.every(([px, py]) => !isBlocked(px, py));
+}
+
+function showScreen(screenId) {
+  document.querySelectorAll(".screen").forEach((screen) => screen.classList.remove("active"));
+  $(screenId).classList.add("active");
+  state.screen = screenId;
+
+  document.documentElement.classList.toggle("in-title", screenId === "titleScreen");
+  document.documentElement.classList.toggle("in-map", screenId === "mapScreen");
+  document.documentElement.classList.toggle("in-battle", screenId === "battleScreen");
+  document.documentElement.classList.toggle("in-result", screenId === "resultScreen");
+  document.documentElement.classList.toggle("in-panel", ["experimentScreen", "dexScreen"].includes(screenId));
+
+  keysDown.clear();
+
+  if (screenId === "mapScreen") {
+    updateDeviceMode();
+    ensurePlayerOnWalkable();
+    updateMapLayout();
+  }
+
+  if (screenId === "battleScreen") {
+    updateDeviceMode();
+  }
+
+  if (screenId === "resultScreen") {
+    state.resultIndex = 0;
+    updateResultMenu();
+  }
+}
+
+// 첫 로딩 후 지도 레이아웃 생성 시에도 안전 위치 확인
+function updateMapLayout() {
+  const stage = $("mapStage");
+  const camera = $("mapCamera");
+
+  if (!stage || !camera) return;
+
+  updateDeviceMode();
+
+  const rect = stage.getBoundingClientRect();
+  const stageW = rect.width || window.innerWidth;
+  const stageH = rect.height || window.innerHeight;
+  const isMobile = state.layout.isMobile;
+  const isPortrait = state.layout.isPortrait;
+
+  ensurePlayerOnWalkable();
+
+  let mapW;
+  let mapH;
+
+  if (isMobile) {
+    const minWidthFromHeight = stageH * (COLS / ROWS);
+
+    if (isPortrait) {
+      mapW = Math.max(stageW * 1.52, minWidthFromHeight * 1.01);
+    } else {
+      mapW = Math.max(stageW * 1.08, minWidthFromHeight);
+    }
+
+    mapH = mapW * (ROWS / COLS);
+
+    if (mapH < stageH * 1.02) {
+      mapH = stageH * 1.02;
+      mapW = mapH * (COLS / ROWS);
+    }
+  } else {
+    mapW = stageW;
+    mapH = stageH;
+  }
+
+  state.layout.stageW = stageW;
+  state.layout.stageH = stageH;
+  state.layout.mapW = mapW;
+  state.layout.mapH = mapH;
+  state.layout.tileW = mapW / COLS;
+  state.layout.tileH = mapH / ROWS;
+
+  camera.style.width = `${mapW}px`;
+  camera.style.height = `${mapH}px`;
+
+  updatePlayerPosition();
+}
