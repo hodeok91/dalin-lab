@@ -1627,3 +1627,173 @@ th {
   bottom: 4% !important;
   left: 10% !important;
 }
+
+
+/* ===== 4차 수정: 방향키 정확한 십자 정렬 + 가로 배틀 우측 패널 ===== */
+
+/* 모바일 방향키를 3열 2행 십자 구조로 강제 */
+.is-mobile .mobile-dpad {
+  display: grid !important;
+  grid-template-columns: 52px 52px 52px !important;
+  grid-template-rows: 52px 52px !important;
+  gap: 6px !important;
+  width: auto !important;
+}
+
+.is-mobile .mobile-dpad > button[data-move="up"] {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  justify-self: center !important;
+  align-self: center !important;
+}
+
+.is-mobile .mobile-dpad > div {
+  grid-column: 1 / 4 !important;
+  grid-row: 2 !important;
+  display: grid !important;
+  grid-template-columns: 52px 52px 52px !important;
+  gap: 6px !important;
+}
+
+.is-mobile .mobile-dpad button[data-move="left"] {
+  grid-column: 1 !important;
+}
+
+.is-mobile .mobile-dpad button[data-move="down"] {
+  grid-column: 2 !important;
+}
+
+.is-mobile .mobile-dpad button[data-move="right"] {
+  grid-column: 3 !important;
+}
+
+.is-mobile .mobile-dpad button {
+  width: 52px !important;
+  height: 52px !important;
+  padding: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+.is-mobile.is-landscape .mobile-dpad {
+  grid-template-columns: 44px 44px 44px !important;
+  grid-template-rows: 44px 44px !important;
+  gap: 5px !important;
+}
+
+.is-mobile.is-landscape .mobile-dpad > div {
+  grid-template-columns: 44px 44px 44px !important;
+  gap: 5px !important;
+}
+
+.is-mobile.is-landscape .mobile-dpad button {
+  width: 44px !important;
+  height: 44px !important;
+}
+
+/* 모바일 가로 전투: 왼쪽 60% 전투장, 오른쪽 40% 선택 패널 */
+.is-mobile.is-landscape .battle-scene {
+  inset: 0 40% 0 0 !important;
+  width: 60% !important;
+  height: 100% !important;
+}
+
+.is-mobile.is-landscape .battle-bottom {
+  left: 60% !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 40% !important;
+  height: 100% !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  grid-template-rows: minmax(92px, 28%) 1fr !important;
+  gap: 8px !important;
+  padding: 8px !important;
+  border-top: 0 !important;
+  border-left: 6px solid #111 !important;
+  overflow: hidden !important;
+}
+
+.is-mobile.is-landscape .battle-message,
+.is-mobile.is-landscape .battle-command {
+  min-height: 0 !important;
+  width: 100% !important;
+}
+
+.is-mobile.is-landscape .battle-message {
+  overflow: hidden !important;
+}
+
+.is-mobile.is-landscape .battle-message p {
+  font-size: clamp(14px, 2.7vw, 18px) !important;
+  line-height: 1.32 !important;
+}
+
+.is-mobile.is-landscape .battle-command {
+  overflow-y: auto !important;
+}
+
+.is-mobile.is-landscape .choice-list {
+  grid-template-columns: 1fr !important;
+  gap: 6px !important;
+}
+
+.is-mobile.is-landscape .choice-btn {
+  min-height: auto !important;
+  padding: 7px 8px !important;
+  font-size: clamp(11px, 2.2vw, 14px) !important;
+  line-height: 1.28 !important;
+}
+
+/* 왼쪽 전투장 내부 요소를 60% 영역 안에 맞게 재배치 */
+.is-mobile.is-landscape .enemy-status {
+  left: 4% !important;
+  top: 6% !important;
+  width: 48% !important;
+}
+
+.is-mobile.is-landscape .player-status {
+  right: 4% !important;
+  bottom: 8% !important;
+  width: 48% !important;
+}
+
+.is-mobile.is-landscape .enemy-pokemon {
+  width: 90px !important;
+  height: 90px !important;
+  right: 10% !important;
+  top: 28% !important;
+}
+
+.is-mobile.is-landscape .player-pokemon {
+  width: 92px !important;
+  height: 92px !important;
+  left: 10% !important;
+  bottom: 18% !important;
+}
+
+.is-mobile.is-landscape .enemy-platform {
+  right: 6% !important;
+  top: 52% !important;
+  width: 36% !important;
+  height: 10% !important;
+}
+
+.is-mobile.is-landscape .player-platform {
+  left: 5% !important;
+  bottom: 16% !important;
+  width: 38% !important;
+  height: 10% !important;
+}
+
+/* 모바일 가로에서는 맵 조작 버튼이 오른쪽 패널과 겹치지 않게 조금 위로 */
+.is-mobile.is-landscape .mobile-controls {
+  right: calc(env(safe-area-inset-right) + 12px) !important;
+  bottom: calc(env(safe-area-inset-bottom) + 42px) !important;
+}
+
+/* battle 화면에서는 이동키 숨김이 확실해야 함 */
+.is-mobile.in-battle .mobile-controls {
+  display: none !important;
+}
