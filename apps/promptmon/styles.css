@@ -1239,3 +1239,236 @@ th {
 .is-mobile:has(#titleScreen.active) .mobile-controls {
   display: none !important;
 }
+
+
+/* ===== 2차 긴급 수정: 모바일 조작 버튼/전투 화면 정리 ===== */
+
+/* 모바일에서 불필요한 안내 말풍선 제거: 세로 글자 깨짐 방지 */
+.mobile-info {
+  display: none !important;
+}
+
+/* 모바일 방향키는 작게, 한쪽 아래에 고정 */
+.is-mobile .mobile-controls {
+  gap: 0 !important;
+  pointer-events: auto;
+}
+
+.is-mobile .mobile-dpad {
+  gap: 6px !important;
+}
+
+.is-mobile .mobile-dpad div {
+  gap: 6px !important;
+}
+
+.is-mobile .mobile-dpad button {
+  width: 54px !important;
+  height: 54px !important;
+  border-width: 4px !important;
+  border-radius: 10px !important;
+  font-size: 22px !important;
+  background: rgba(255, 255, 255, 0.82) !important;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.25) !important;
+}
+
+/* 세로 모드: 왼쪽 아래에 두어 화면 중앙을 가리지 않게 함 */
+.is-mobile.is-portrait .mobile-controls {
+  left: calc(env(safe-area-inset-left) + 14px) !important;
+  right: auto !important;
+  bottom: calc(env(safe-area-inset-bottom) + 58px) !important;
+  transform: none !important;
+}
+
+/* 가로 모드: 오른쪽 아래, 브라우저 하단바보다 위 */
+.is-mobile.is-landscape .mobile-controls {
+  right: calc(env(safe-area-inset-right) + 14px) !important;
+  left: auto !important;
+  bottom: calc(env(safe-area-inset-bottom) + 46px) !important;
+  transform: none !important;
+}
+
+.is-mobile.is-landscape .mobile-dpad button {
+  width: 48px !important;
+  height: 48px !important;
+  font-size: 20px !important;
+}
+
+/* 맵 이름표도 모바일에서 너무 크지 않게 */
+.is-mobile .place-name {
+  padding: 8px 12px !important;
+  border-width: 4px !important;
+  font-size: clamp(15px, 4.5vw, 22px) !important;
+}
+
+/* 모바일 세로는 약간 덜 확대해서 전체 맥락이 보이게 */
+.is-mobile.is-portrait .player {
+  width: 28px !important;
+  height: 38px !important;
+}
+
+/* ===== 모바일 전투 화면 ===== */
+
+/* 모바일 세로: 전투 화면은 위 38%, 아래 62%로 두어 선택지가 보이게 */
+.is-mobile.is-portrait .battle-scene {
+  inset: 0 0 62% 0 !important;
+}
+
+.is-mobile.is-portrait .battle-bottom {
+  height: 62% !important;
+  grid-template-columns: 1fr !important;
+  gap: 8px !important;
+  padding: 8px !important;
+  overflow: hidden !important;
+}
+
+.is-mobile.is-portrait .battle-message {
+  min-height: 74px !important;
+  max-height: 92px !important;
+  padding: 10px !important;
+}
+
+.is-mobile.is-portrait .battle-message p {
+  font-size: 18px !important;
+  line-height: 1.35 !important;
+}
+
+.is-mobile.is-portrait .battle-command {
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  padding: 10px !important;
+}
+
+.is-mobile.is-portrait .choice-list {
+  grid-template-columns: 1fr !important;
+  gap: 7px !important;
+}
+
+.is-mobile.is-portrait .choice-btn {
+  min-height: auto !important;
+  padding: 10px !important;
+  font-size: 15px !important;
+  line-height: 1.35 !important;
+}
+
+/* 모바일 가로: 브라우저 주소창 때문에 높이가 작으므로 전투장을 줄이고 선택창을 크게 */
+.is-mobile.is-landscape .battle-scene {
+  inset: 0 0 58% 0 !important;
+}
+
+.is-mobile.is-landscape .battle-bottom {
+  height: 58% !important;
+  grid-template-columns: 35% 65% !important;
+  gap: 8px !important;
+  padding: 8px !important;
+}
+
+.is-mobile.is-landscape .battle-message,
+.is-mobile.is-landscape .battle-command {
+  padding: 9px !important;
+}
+
+.is-mobile.is-landscape .battle-message p {
+  font-size: 16px !important;
+  line-height: 1.3 !important;
+}
+
+.is-mobile.is-landscape .battle-command {
+  overflow-y: auto !important;
+}
+
+.is-mobile.is-landscape .bad-prompt {
+  padding: 6px 8px !important;
+  margin-bottom: 5px !important;
+}
+
+.is-mobile.is-landscape .bad-prompt span {
+  font-size: 12px !important;
+}
+
+.is-mobile.is-landscape .bad-prompt strong {
+  font-size: 15px !important;
+}
+
+.is-mobile.is-landscape .battle-step-line {
+  font-size: 14px !important;
+  margin: 4px 0 6px !important;
+}
+
+.is-mobile.is-landscape .choice-list {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 6px !important;
+}
+
+.is-mobile.is-landscape .choice-btn {
+  min-height: 42px !important;
+  padding: 7px 8px !important;
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+}
+
+/* 모바일 전투의 포켓몬/상태창을 작게 해서 화면을 덜 가리게 */
+.is-mobile .status-box {
+  border-width: 4px !important;
+  padding: 7px 8px !important;
+  width: 42% !important;
+  min-width: 0 !important;
+}
+
+.is-mobile .status-name {
+  font-size: 15px !important;
+}
+
+.is-mobile .hp-line {
+  margin-top: 4px !important;
+}
+
+.is-mobile .hp-bar {
+  height: 13px !important;
+  border-width: 2px !important;
+}
+
+.is-mobile .status-box p {
+  font-size: 12px !important;
+}
+
+.is-mobile .enemy-pokemon,
+.is-mobile .player-pokemon {
+  width: 95px !important;
+  height: 95px !important;
+  transform: scale(1.0) !important;
+}
+
+.is-mobile.is-landscape .enemy-pokemon,
+.is-mobile.is-landscape .player-pokemon {
+  width: 78px !important;
+  height: 78px !important;
+}
+
+.is-mobile .enemy-status {
+  left: 4% !important;
+  top: 6% !important;
+}
+
+.is-mobile .player-status {
+  right: 4% !important;
+  bottom: 8% !important;
+}
+
+.is-mobile .enemy-pokemon {
+  right: 12% !important;
+  top: 24% !important;
+}
+
+.is-mobile .player-pokemon {
+  left: 12% !important;
+  bottom: 7% !important;
+}
+
+/* 전투 화면에서는 모바일 이동키 확실히 숨김 - :has 미지원 브라우저 대비 JS 클래스와 함께 사용 */
+.is-mobile.in-battle .mobile-controls,
+.is-mobile.in-title .mobile-controls,
+.is-mobile.in-result .mobile-controls,
+.is-mobile.in-panel .mobile-controls {
+  display: none !important;
+}
