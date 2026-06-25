@@ -1782,3 +1782,148 @@ function updateMapLayout() {
 
   updatePlayerPosition();
 }
+
+
+/* ===== 4차 수정 JS: 이동판정 완화 + 풀숲 조우 유지 =====
+   이전 픽셀 기반 충돌은 맵 색감 차이 때문에 길/풀숲 일부가 엉뚱하게 막혔습니다.
+   그래서 이동은 넓은 길/풀밭 영역 기준으로 허용하고,
+   명확한 건물/큰 숲/절벽만 막는 방식으로 다시 바꿉니다.
+*/
+
+const MOBILE_WALKABLE_RECTS_V2 = [
+  // 왼쪽 상단 필드와 풀숲
+  [0.0, 3.6, 9.2, 10.7],
+  // 왼쪽 중하단 필드
+  [0.0, 9.4, 12.2, 14.5],
+  // 중앙 건물 앞 길과 주변
+  [12.0, 0.0, 18.3, 12.2],
+  // 중앙 가로 이동 영역
+  [8.0, 5.5, 23.2, 12.8],
+  // 중앙 아래 길/필드
+  [13.0, 10.4, 23.8, 16.8],
+  // 오른쪽 상단 풀숲/필드
+  [20.0, 3.0, 30.0, 10.4],
+  // 오른쪽 중하단 풀숲/필드
+  [21.0, 8.6, 30.0, 16.3],
+  // 아래쪽 길 일부
+  [18.2, 13.0, 22.1, 18.0]
+];
+
+const MOBILE_BLOCKED_RECTS_V2 = [
+  // 상단 큰 숲. 중앙 건물 앞 길은 제외되도록 좌우만 막음
+  [0.0, 0.0, 13.2, 3.4],
+  [18.6, 0.0, 30.0, 2.9],
+
+  // 건물 본체
+  [13.7, 0.7, 18.4, 4.9],
+
+  // 화면 아래 숲
+  [0.0, 16.8, 30.0, 20.0],
+
+  // 큰 나무 덩어리들. 너무 세게 막지 않기 위해 핵심 덩어리만 지정
+  [0.0, 5.2, 1.0, 8.2],
+  [4.0, 7.7, 6.9, 10.0],
+  [7.0, 7.6, 8.8, 10.4],
+  [8.7, 9.3, 12.0, 12.9],
+  [10.8, 9.7, 13.8, 13.5],
+  [17.7, 4.5, 19.0, 8.5],
+  [19.2, 8.5, 22.0, 10.8],
+  [23.1, 5.2, 25.9, 9.2],
+  [23.2, 12.0, 26.7, 15.8]
+];
+
+const MOBILE_TALL_GRASS_RECTS_V2 = [
+  [3.7, 4.8, 8.9, 9.4],
+  [0.0, 8.0, 4.1, 10.5],
+  [20.5, 5.0, 23.5, 9.6],
+  [24.0, 3.3, 29.5, 8.0],
+  [22.2, 8.1, 29.7, 15.4]
+];
+
+function isInAnyRectList(x, y, list) {
+  return list.some((rect) => isInsideRect(x, y, rect));
+}
+
+// 최종 이동 판정 덮어쓰기
+function isBlocked(x, y) {
+  if (x < 0 || x >= COLS || y < 0 || y >= ROWS) return true;
+
+  if (state.mapImageAvailable) {
+    const inWalkable = isInAnyRectList(x, y, MOBILE_WALKABLE_RECTS_V2);
+    const inBlocked = isInAnyRectList(x, y, MOBILE_BLOCKED_RECTS_V2);
+
+    return !inWalkable || inBlocked;
+  }
+
+  return ["tree", "water", "roof", "house", "rock"].includes(getTileClass(Math.floor(x), Math.floor(y)));
+}
+
+// 최종 풀숲 조우 판정 덮어쓰기
+function isEncounterArea(x, y) {
+  if (state.mapImageAvailable) {
+    return isInAnyRectList(x, y, MOBILE_TALL_GRASS_RECTS_V2);
+  }
+
+  return getTileClass(Math.floor(x), Math.floor(y)) === "tallgrass";
+}
+
+// 발밑 기준 판정: 너무 넓게 검사하면 옆 나무에 걸려서 못 가므로 폭을 좁힘
+function canStandAt(x, y) {
+  const points = [
+    [x, y],
+    [x - 0.10, y],
+    [x + 0.10, y],
+    [x, y - 0.08]
+  ];
+
+  return points.every(([px, py]) => !isBlocked(px, py));
+}
+
+// 모바일 카메라 확대를 조금 줄여서 오른쪽 이동 시 막힌 것처럼 느껴지는 문제 완화
+function updateMapLayout() {
+  const stage = $("mapStage");
+  const camera = $("mapCamera");
+
+  if (!stage || !camera) return;
+
+  const rect = stage.getBoundingClientRect();
+  const stageW = rect.width || window.innerWidth;
+  const stageH = rect.height || window.innerHeight;
+  const isMobile = state.layout.isMobile;
+  const isPortrait = state.layout.isPortrait;
+
+  let mapW;
+  let mapH;
+
+  if (isMobile) {
+    const minWidthFromHeight = stageH * (COLS / ROWS);
+
+    if (isPortrait) {
+      mapW = Math.max(stageW * 1.55, minWidthFromHeight * 1.01);
+    } else {
+      mapW = Math.max(stageW * 1.08, minWidthFromHeight);
+    }
+
+    mapH = mapW * (ROWS / COLS);
+
+    if (mapH < stageH * 1.02) {
+      mapH = stageH * 1.02;
+      mapW = mapH * (COLS / ROWS);
+    }
+  } else {
+    mapW = stageW;
+    mapH = stageH;
+  }
+
+  state.layout.stageW = stageW;
+  state.layout.stageH = stageH;
+  state.layout.mapW = mapW;
+  state.layout.mapH = mapH;
+  state.layout.tileW = mapW / COLS;
+  state.layout.tileH = mapH / ROWS;
+
+  camera.style.width = `${mapW}px`;
+  camera.style.height = `${mapH}px`;
+
+  updatePlayerPosition();
+}
