@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#1E1E1E">
   <meta name="description" content="바이브코딩 모두를 위한 한글 사전 - 원문 75개 용어 + 보강 가이드 91개">
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="icon-192.png">
   <title>바이브코딩 필수 용어사전</title>
   <style>
     :root, [data-theme="dark"], [data-theme="light"] {
@@ -263,7 +261,7 @@
       border: 1px solid #3C3C3C;
       background: #252526;
       display: grid;
-      grid-template-columns: 1fr auto auto;
+      grid-template-columns: 1fr auto;
       gap: 8px;
       align-items: center;
       padding: 8px;
@@ -446,7 +444,7 @@
       letter-spacing: -.04em;
     }
     .result-head h2::before { content: ""; }
-    .result-head h2::after { content: " = [];"; color: #D4D4D4; font-weight: 500; }
+    .result-head h2::after { content: ""; }
     .result-head p {
       margin: 5px 0 0;
       color: #858585;
@@ -770,6 +768,137 @@
     }
     .statusbar .right { margin-left: auto; display:flex; gap:14px; }
     mark { background: rgba(215,186,125,.35); color: #FFFFFF; border-radius:2px; padding: 0 .12em; }
+
+    /* 자료 성격에 따라 카드와 상세 화면을 다르게 보여주기 */
+    .term-card.compare-card { border-left: 0; }
+    .term-card.compare-card::before { background: #D7BA7D; }
+    .term-card.check-card::before { background: #6A9955; }
+    .term-card.step-card::before { background: #569CD6; }
+    .term-card.prompt-card::before { background: #C586C0; }
+    .format-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 7px;
+      border-radius: 4px;
+      border: 1px solid #3C3C3C;
+      background: #1E1E1E;
+      color: #DCDCAA;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .card-preview { margin-top: 13px; }
+    .mini-table-wrap, .detail-table-wrap { width: 100%; overflow-x: auto; border-radius: 4px; }
+    .mini-table, .detail-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #1E1E1E;
+      border: 1px solid #3C3C3C;
+      overflow: hidden;
+    }
+    .mini-table th, .mini-table td, .detail-table th, .detail-table td {
+      border: 1px solid #3C3C3C;
+      padding: 8px 9px;
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.45;
+      word-break: keep-all;
+    }
+    .mini-table th, .detail-table th {
+      color: #9CDCFE;
+      background: #252526;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: -.02em;
+      white-space: nowrap;
+    }
+    .mini-table td {
+      color: #D4D4D4;
+      font-size: 12px;
+    }
+    .mini-table td:first-child, .detail-table td:first-child {
+      color: #DCDCAA;
+      font-weight: 800;
+      width: 34%;
+    }
+    .detail-table td { font-size: 14px; }
+    .check-list, .step-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .check-list li, .step-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 9px;
+      align-items: start;
+      padding: 9px 10px;
+      border: 1px solid #3C3C3C;
+      background: #1E1E1E;
+      border-radius: 4px;
+      line-height: 1.5;
+      word-break: keep-all;
+    }
+    .check-list li::before {
+      content: "✓";
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 4px;
+      background: rgba(106,153,85,.18);
+      color: #B5CEA8;
+      font-family: var(--mono);
+      font-weight: 900;
+    }
+    .step-list { counter-reset: step; }
+    .step-list li { counter-increment: step; }
+    .step-list li::before {
+      content: counter(step);
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 4px;
+      background: rgba(86,156,214,.18);
+      color: #9CDCFE;
+      font-family: var(--mono);
+      font-weight: 900;
+    }
+    .prompt-block {
+      border: 1px solid #3C3C3C;
+      border-left: 3px solid #C586C0;
+      background: #1E1E1E;
+      border-radius: 4px;
+      padding: 12px;
+      color: #D4D4D4;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      word-break: keep-all;
+    }
+    .prompt-block b { color: #DCDCAA; }
+    .preview-lines {
+      display: grid;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .preview-lines li {
+      padding: 8px 9px;
+      border: 1px solid #3C3C3C;
+      background: #1E1E1E;
+      border-radius: 4px;
+      color: #D4D4D4;
+      font-size: 12px;
+      line-height: 1.45;
+      word-break: keep-all;
+    }
+
     @media (max-width: 980px) {
       .vscode-shell { width: 100%; min-height: 100vh; margin: 0; border-left: 0; border-right: 0; }
       .editor-hero { grid-template-columns: 1fr; }
@@ -864,6 +993,137 @@
     }
     
     /* 모바일에서도 바깥 여백 없이 꽉 차게 */
+
+    /* 자료 성격에 따라 카드와 상세 화면을 다르게 보여주기 */
+    .term-card.compare-card { border-left: 0; }
+    .term-card.compare-card::before { background: #D7BA7D; }
+    .term-card.check-card::before { background: #6A9955; }
+    .term-card.step-card::before { background: #569CD6; }
+    .term-card.prompt-card::before { background: #C586C0; }
+    .format-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 7px;
+      border-radius: 4px;
+      border: 1px solid #3C3C3C;
+      background: #1E1E1E;
+      color: #DCDCAA;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .card-preview { margin-top: 13px; }
+    .mini-table-wrap, .detail-table-wrap { width: 100%; overflow-x: auto; border-radius: 4px; }
+    .mini-table, .detail-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #1E1E1E;
+      border: 1px solid #3C3C3C;
+      overflow: hidden;
+    }
+    .mini-table th, .mini-table td, .detail-table th, .detail-table td {
+      border: 1px solid #3C3C3C;
+      padding: 8px 9px;
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.45;
+      word-break: keep-all;
+    }
+    .mini-table th, .detail-table th {
+      color: #9CDCFE;
+      background: #252526;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: -.02em;
+      white-space: nowrap;
+    }
+    .mini-table td {
+      color: #D4D4D4;
+      font-size: 12px;
+    }
+    .mini-table td:first-child, .detail-table td:first-child {
+      color: #DCDCAA;
+      font-weight: 800;
+      width: 34%;
+    }
+    .detail-table td { font-size: 14px; }
+    .check-list, .step-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .check-list li, .step-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 9px;
+      align-items: start;
+      padding: 9px 10px;
+      border: 1px solid #3C3C3C;
+      background: #1E1E1E;
+      border-radius: 4px;
+      line-height: 1.5;
+      word-break: keep-all;
+    }
+    .check-list li::before {
+      content: "✓";
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 4px;
+      background: rgba(106,153,85,.18);
+      color: #B5CEA8;
+      font-family: var(--mono);
+      font-weight: 900;
+    }
+    .step-list { counter-reset: step; }
+    .step-list li { counter-increment: step; }
+    .step-list li::before {
+      content: counter(step);
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 4px;
+      background: rgba(86,156,214,.18);
+      color: #9CDCFE;
+      font-family: var(--mono);
+      font-weight: 900;
+    }
+    .prompt-block {
+      border: 1px solid #3C3C3C;
+      border-left: 3px solid #C586C0;
+      background: #1E1E1E;
+      border-radius: 4px;
+      padding: 12px;
+      color: #D4D4D4;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      word-break: keep-all;
+    }
+    .prompt-block b { color: #DCDCAA; }
+    .preview-lines {
+      display: grid;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .preview-lines li {
+      padding: 8px 9px;
+      border: 1px solid #3C3C3C;
+      background: #1E1E1E;
+      border-radius: 4px;
+      color: #D4D4D4;
+      font-size: 12px;
+      line-height: 1.45;
+      word-break: keep-all;
+    }
+
     @media (max-width: 980px) {
       .vscode-shell {
         width: 100%;
@@ -925,7 +1185,6 @@
                 <input id="search" placeholder="용어 검색... 예: API, 프롬프트, MCP, GAS, 배포" autocomplete="off">
               </label>
               <button class="tool-btn" id="clearBtn">초기화</button>
-              <button class="tool-btn primary" id="installHintBtn">📱 홈화면 추가</button>
             </div>
           </div>
 
@@ -943,7 +1202,7 @@
               <div class="result-head">
                 <div>
                   <h2 id="resultTitle">전체 용어</h2>
-                  <p id="resultSub">원문 75개 용어와 보강 가이드 91개를 카드로 보여줍니다.</p>
+                  <p id="resultSub">원문 75개 용어와 보강 가이드 91개를 표·체크리스트·단계형 카드로 보여줍니다.</p>
                 </div>
                 <div class="view-toggle" aria-label="보기 방식">
                   <button id="gridBtn" class="active">grid</button>
@@ -955,7 +1214,7 @@
           </main>
 
           <footer class="footer">
-            <b>준비 완료</b> · 원문 75개 용어 보존 · 보강 가이드 91개 · 보안 용어·설정 방법과 프롬프팅 방법 추가 · VS Code 느낌의 한글 자료집 · index.html 더블클릭 실행 가능
+            <b>준비 완료</b> · 원문 75개 용어 보존 · 보강 가이드 91개 · 보안 용어·설정 방법과 프롬프팅 방법 추가 · 비교표·체크리스트·단계형 레이아웃 적용 · VS Code 느낌의 한글 자료집
           </footer>
         </div>
       </div>
@@ -996,7 +1255,7 @@
       '적합한 경우','비교','특징','대안','대표 프레임워크','연결 예시','연결 가능한 서버','툴 예시',
       '구조','역할','활용','예시 워크플로우','주요 기법','전략','GAS 배포 순서','주소 & 설정',
       '비용 비교','교사 추천 무료 호스팅','핵심','핵심 명령어','주요 기능','머지 / 풀 리퀘스트',
-      '마크다운 문법','기본 내용','실제로 이럴 때 씁니다','실제로 이럴 때 마주칩니다','한눈에 보기','유치원 선생님 예시','필수 준비물','선택 준비물','처음 추천 조합','처음 할 일','초보자 기준 설명','추천 방식','중요한 습관','프롬프트 예시','추천 폴더 구조','왜 중요한가','나쁜 시작','좋은 시작','확장 순서 예시','기본 원칙','안전한 선택','해결 순서','이럴 때 추천','한 줄 요약','기준표','현실적인 조합','분업 예시','반복 흐름','확인할 것','쉽게 말하면','이럴 때 사용','구글 시트와 차이','추천 상황','입문자 판단 기준','GAS가 좋은 경우','Firebase가 좋은 경우','한 줄 선택','빠른 선택','질문 3개','추천 구조','확장 기능','특수교육 활용','교육 포인트','접근성','복사해서 쓰기','함께 주면 좋은 정보','추가 요청','반드시 포함','체크 포인트','확인 순서','보는 방법','자주 나오는 의미','좋은 요청','초보자 방식','조금 익숙해지면'
+      '마크다운 문법','기본 내용','실제로 이럴 때 씁니다','실제로 이럴 때 마주칩니다','한눈에 보기','유치원 선생님 예시','필수 준비물','선택 준비물','처음 추천 조합','처음 할 일','초보자 기준 설명','추천 방식','중요한 습관','프롬프트 예시','추천 폴더 구조','왜 중요한가','나쁜 시작','좋은 시작','확장 순서 예시','기본 원칙','안전한 선택','해결 순서','이럴 때 추천','한 줄 요약','기준표','현실적인 조합','분업 예시','반복 흐름','확인할 것','쉽게 말하면','이럴 때 사용','구글 시트와 차이','추천 상황','입문자 판단 기준','GAS가 좋은 경우','Firebase가 좋은 경우','한 줄 선택','빠른 선택','질문 3개','추천 구조','확장 기능','특수교육 활용','교육 포인트','접근성','복사해서 쓰기','함께 주면 좋은 정보','추가 요청','반드시 포함','체크 포인트','확인 순서','보는 방법','자주 나오는 의미','좋은 요청','초보자 방식','조금 익숙해지면','확인표','설정 흐름','보안 규칙 예시','위험한 예','수업 전달 문장','영상 메모','구성','포함할 내용','나쁜 예','좋은 예','효과','복사 템플릿','언제 쓰나','사용법','기본 개념'
     ]);
 
     const state = {
@@ -1097,19 +1356,83 @@
         : `${list.length}개의 카드 · ${detail}`;
     }
 
+    function termLayout(t) {
+      const text = `${t.ko} ${t.en} ${t.tag} ${t.raw.join(' ')}`;
+      if (t.category === '09' || t.category === '10' || /비교|선택표|기준표|빠른 표|vs|차이/.test(text)) return 'compare';
+      if (/체크리스트|확인표|점검|확인할 것|배포 전|보안 설정 확인표/.test(text)) return 'check';
+      if (/단계|순서|흐름|루틴/.test(t.tag) || t.raw.some(x => /^\d+단계|^[①②③④⑤⑥⑦⑧⑨]/.test(x))) return 'step';
+      if (t.category === '12' || /프롬프트|템플릿|복사해서 쓰기|복사 템플릿/.test(text)) return 'prompt';
+      return 'normal';
+    }
+
+    function layoutBadge(layout) {
+      if (layout === 'compare') return '표로 보기';
+      if (layout === 'check') return '체크리스트';
+      if (layout === 'step') return '단계형';
+      if (layout === 'prompt') return '프롬프트';
+      return '용어 카드';
+    }
+
+    function colonRows(items, limit = 4) {
+      return items
+        .map(item => {
+          const idx = item.indexOf(':');
+          if (idx < 1) return null;
+          return [item.slice(0, idx).trim(), item.slice(idx + 1).trim()];
+        })
+        .filter(Boolean)
+        .slice(0, limit);
+    }
+
+    function sectionRows(t, limit = 4) {
+      const sections = splitSections(t.raw);
+      const rows = [];
+      sections.forEach(sec => {
+        if (rows.length >= limit) return;
+        const joined = sec.items.slice(0, 3).join(' · ');
+        if (joined) rows.push([sec.title, joined]);
+      });
+      return rows.slice(0, limit);
+    }
+
+    function cardPreview(t, layout) {
+      if (layout === 'compare') {
+        let rows = colonRows(t.raw, 4);
+        if (!rows.length) rows = sectionRows(t, 4);
+        if (!rows.length) rows = [['핵심', t.desc]];
+        return `<div class="card-preview mini-table-wrap"><table class="mini-table"><thead><tr><th>기준</th><th>내용</th></tr></thead><tbody>${rows.map(r => `<tr><td>${escapeHtml(r[0])}</td><td>${escapeHtml(r[1])}</td></tr>`).join('')}</tbody></table></div>`;
+      }
+      if (layout === 'check') {
+        const items = t.raw.filter(x => !SECTION_TITLES.has(x) && x !== 'TIP' && x !== '// 관련 용어').slice(0, 4);
+        return `<div class="card-preview"><ul class="check-list">${items.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>`;
+      }
+      if (layout === 'step') {
+        const items = t.raw.filter(x => /^\d+단계|^[①②③④⑤⑥⑦⑧⑨]/.test(x)).slice(0, 5);
+        const fallback = items.length ? items : t.raw.filter(x => !SECTION_TITLES.has(x)).slice(0, 4);
+        return `<div class="card-preview"><ol class="step-list">${fallback.map(item => `<li>${escapeHtml(item.replace(/^[①②③④⑤⑥⑦⑧⑨]\s*/, '').replace(/^\d+단계:\s*/, ''))}</li>`).join('')}</ol></div>`;
+      }
+      if (layout === 'prompt') {
+        const prompt = t.raw.find(x => /“|\[|프롬프트|템플릿/.test(x) && x.length > 12) || t.raw.find(x => x.length > 20) || t.desc;
+        return `<div class="card-preview prompt-block">${escapeHtml(prompt)}</div>`;
+      }
+      return `<p class="desc">${highlight(t.desc, normalize(state.query))}</p>`;
+    }
+
     function cardTemplate(t) {
       const q = normalize(state.query);
       const bookmarked = state.bookmarks.has(t.id);
+      const layout = termLayout(t);
       return `
-        <article class="term-card">
+        <article class="term-card ${layout}-card">
           <div class="term-meta">
             <span class="code">${t.categoryEmoji} ${escapeHtml(t.code)}</span>
             <span class="tag" title="${escapeHtml(t.tag)}">${escapeHtml(t.tag)}</span>
+            <span class="format-badge">${layoutBadge(layout)}</span>
             <button class="bookmark ${bookmarked ? 'on' : ''}" data-bookmark="${t.id}" title="즐겨찾기">${bookmarked ? '★' : '☆'}</button>
           </div>
           <h3>${highlight(t.ko, q)}</h3>
           <p class="en">${highlight(t.en, q)}</p>
-          <p class="desc">${highlight(t.desc, q)}</p>
+          ${cardPreview(t, layout)}
           <div class="card-actions">
             <span class="mini-cat">${escapeHtml(t.categoryKo)}</span>
             <button class="detail-btn" data-open="${t.id}">자세히 보기</button>
@@ -1174,6 +1497,65 @@
       return '📌';
     }
 
+    function isTableSection(section) {
+      const title = section.title || '';
+      const hasColonRows = colonRows(section.items, 20).length >= 2;
+      return /표|비교|기준|선택|구분|차이|요금|무료|유료|GAS가 좋은 경우|Firebase가 좋은 경우/.test(title) || hasColonRows;
+    }
+
+    function isChecklistSection(section) {
+      const title = section.title || '';
+      return /체크|확인|주의|보안|원칙|금지|필수|선택 준비물|확인표/.test(title) && !isTableSection(section);
+    }
+
+    function isStepSection(section) {
+      return section.items.some(item => /^\d+단계|^[①②③④⑤⑥⑦⑧⑨]/.test(item)) || /순서|흐름|루틴|설정 흐름|설치/.test(section.title || '');
+    }
+
+    function isPromptSection(section) {
+      return /프롬프트|복사|템플릿|좋은 요청/.test(section.title || '') || section.items.some(item => item.includes('“') && item.includes('”'));
+    }
+
+    function renderTableSection(section) {
+      let rows = colonRows(section.items, 30);
+      if (!rows.length) rows = section.items.map((item, idx) => [`${idx + 1}`, item]);
+      return `
+        <section class="section table-section">
+          <h4>${sectionIcon(section)} ${escapeHtml(section.title)}</h4>
+          <div class="detail-table-wrap"><table class="detail-table"><thead><tr><th>기준</th><th>내용</th></tr></thead><tbody>
+            ${rows.map(r => `<tr><td>${escapeHtml(r[0])}</td><td>${escapeHtml(r[1])}</td></tr>`).join('')}
+          </tbody></table></div>
+        </section>
+      `;
+    }
+
+    function renderChecklistSection(section) {
+      return `
+        <section class="section check-section">
+          <h4>${sectionIcon(section)} ${escapeHtml(section.title)}</h4>
+          <ul class="check-list">${section.items.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+        </section>
+      `;
+    }
+
+    function renderStepSection(section) {
+      return `
+        <section class="section step-section">
+          <h4>${sectionIcon(section)} ${escapeHtml(section.title)}</h4>
+          <ol class="step-list">${section.items.map(item => `<li>${escapeHtml(item.replace(/^[①②③④⑤⑥⑦⑧⑨]\s*/, '').replace(/^\d+단계:\s*/, ''))}</li>`).join('')}</ol>
+        </section>
+      `;
+    }
+
+    function renderPromptSection(section) {
+      return `
+        <section class="section prompt-section">
+          <h4>${sectionIcon(section)} ${escapeHtml(section.title)}</h4>
+          <div class="prompt-block">${section.items.map(item => escapeHtml(item)).join('\n\n')}</div>
+        </section>
+      `;
+    }
+
     function renderSection(section) {
       if (section.type === 'related') {
         return `
@@ -1189,10 +1571,14 @@
           </section>
         `;
       }
+      if (isTableSection(section)) return renderTableSection(section);
+      if (isStepSection(section)) return renderStepSection(section);
+      if (isChecklistSection(section)) return renderChecklistSection(section);
+      if (isPromptSection(section)) return renderPromptSection(section);
       return `
         <section class="section ${section.type === 'tip' ? 'tip' : ''}">
           <h4>${sectionIcon(section)} ${escapeHtml(section.title)}</h4>
-          <ul>${section.items.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+          <ul class="preview-lines">${section.items.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
         </section>
       `;
     }
@@ -1313,9 +1699,6 @@
       localStorage.setItem('vcg-view', state.view);
       render();
     });
-    $('#installHintBtn').addEventListener('click', () => {
-      toast('PC는 index.html 더블클릭, 스마트폰은 배포 후 홈 화면에 추가하세요.');
-    });
     $('#closeBtn').addEventListener('click', closeDrawer);
     $('#scrim').addEventListener('click', closeDrawer);
     document.addEventListener('keydown', e => {
@@ -1331,10 +1714,6 @@
     $('#themeBtn').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
     render();
-
-    if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-      navigator.serviceWorker.register('sw.js').catch(() => {});
-    }
   </script>
 </body>
 </html>
