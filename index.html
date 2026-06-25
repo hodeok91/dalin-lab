@@ -3,150 +3,1403 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>달인 연구소</title>
+  <meta name="theme-color" content="#1E1E1E">
+  <meta name="description" content="달인 연구소 - 교육용 웹앱, 프로그램, 수업자료를 모아두는 달인시리즈 아카이브">
+  <title>달인 연구소 | Dalin Lab</title>
+
   <style>
+    :root {
+      --bg: #1e1e1e;
+      --titlebar: #3c3c3c;
+      --activity: #333333;
+      --sidebar: #252526;
+      --editor: #1e1e1e;
+      --panel: #252526;
+      --panel-soft: #2d2d30;
+      --line: #3c3c3c;
+      --line-soft: #2a2a2a;
+      --ink: #d4d4d4;
+      --muted: #858585;
+      --primary: #569cd6;
+      --primary-strong: #007acc;
+      --green: #6a9955;
+      --yellow: #dcdcaa;
+      --orange: #ce9178;
+      --purple: #c586c0;
+      --danger: #f44747;
+      --shadow: 0 24px 70px rgba(0,0,0,.45);
+      --mono: "Cascadia Code", "Fira Code", "Consolas", "SFMono-Regular", monospace;
+      --font: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
     body {
       margin: 0;
-      font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-      background: #f5f7fb;
-      color: #1f2937;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(86,156,214,.18), transparent 32rem),
+        radial-gradient(circle at bottom right, rgba(197,134,192,.12), transparent 30rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      overflow-x: hidden;
     }
 
-    header {
-      background: linear-gradient(135deg, #2563eb, #7c3aed);
-      color: white;
-      padding: 70px 24px;
-      text-align: center;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 48px;
+    button,
+    input,
+    textarea {
+      font: inherit;
     }
 
-    header p {
-      margin-top: 16px;
-      font-size: 20px;
-      line-height: 1.6;
+    button {
+      cursor: pointer;
     }
 
-    main {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-
-    .section-title {
-      font-size: 28px;
-      margin-bottom: 16px;
-    }
-
-    .intro {
-      background: white;
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      line-height: 1.8;
-      font-size: 18px;
-    }
-
-    .cards {
+    .shell {
+      width: min(1440px, calc(100% - 28px));
+      min-height: calc(100vh - 28px);
+      margin: 14px auto;
+      border: 1px solid #111;
+      background: var(--editor);
+      box-shadow: var(--shadow);
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-      margin-top: 24px;
+      grid-template-rows: 34px 1fr 24px;
+    }
+
+    .titlebar {
+      height: 34px;
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      padding: 0 10px 0 12px;
+      background: var(--titlebar);
+      border-bottom: 1px solid #1b1b1b;
+      color: #cccccc;
+      font-family: var(--mono);
+      font-size: 12px;
+      user-select: none;
+    }
+
+    .traffic {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .traffic span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .red { background: #ff5f57; }
+    .yellow-dot { background: #ffbd2e; }
+    .green-dot { background: #28c840; }
+
+    .title {
+      justify-self: center;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .title .dot {
+      color: var(--primary);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .top-actions a,
+    .top-actions button {
+      border: 1px solid #555;
+      background: #2d2d30;
+      color: #d4d4d4;
+      border-radius: 4px;
+      min-height: 22px;
+      padding: 2px 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .top-actions a:hover,
+    .top-actions button:hover {
+      background: #37373d;
+      border-color: #707070;
+    }
+
+    .workbench {
+      display: grid;
+      grid-template-columns: 52px 280px 1fr;
+      min-height: 0;
+    }
+
+    .activity {
+      background: var(--activity);
+      border-right: 1px solid #252526;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0;
+      gap: 8px;
+    }
+
+    .activity a {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: #c5c5c5;
+      border-left: 2px solid transparent;
+      font-size: 21px;
+      opacity: .82;
+    }
+
+    .activity a.active,
+    .activity a:hover {
+      color: white;
+      border-left-color: white;
+      opacity: 1;
+      background: rgba(255,255,255,.04);
+    }
+
+    .activity-spacer {
+      flex: 1;
+    }
+
+    .explorer {
+      background: var(--sidebar);
+      border-right: 1px solid var(--line-soft);
+      min-width: 0;
+      overflow: auto;
+    }
+
+    .explorer-head {
+      padding: 14px 14px 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 800;
+      color: #bbbbbb;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .tree {
+      padding: 0 8px 16px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .tree-title {
+      margin-top: 10px;
+      padding: 8px 8px 4px;
+      color: #cccccc;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .tree button,
+    .tree a {
+      width: 100%;
+      border: 1px solid transparent;
+      background: transparent;
+      color: #cccccc;
+      border-radius: 4px;
+      padding: 8px 9px;
+      display: grid;
+      grid-template-columns: 24px 1fr auto;
+      gap: 8px;
+      align-items: center;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .tree button:hover,
+    .tree a:hover,
+    .tree button.active {
+      background: #37373d;
+      color: white;
+      border-color: #454545;
+    }
+
+    .badge {
+      min-width: 24px;
+      height: 20px;
+      padding: 0 7px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: #1e1e1e;
+      color: #9cdcfe;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .editor {
+      min-width: 0;
+      display: grid;
+      grid-template-rows: 36px auto 1fr;
+      background: var(--editor);
+    }
+
+    .tabs {
+      height: 36px;
+      display: flex;
+      align-items: stretch;
+      background: #252526;
+      border-bottom: 1px solid #1b1b1b;
+      overflow-x: auto;
+    }
+
+    .tab {
+      min-width: 180px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--editor);
+      color: #d4d4d4;
+      border-right: 1px solid #1b1b1b;
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    .tab.muted {
+      background: #2d2d30;
+      color: #aaaaaa;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 0;
+      border-bottom: 1px solid var(--line-soft);
+      background: #1e1e1e;
+    }
+
+    .code-hero {
+      padding: 24px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .code-line {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      font-family: var(--mono);
+      font-size: clamp(13px, 1.35vw, 17px);
+      line-height: 1.85;
+      white-space: pre;
+    }
+
+    .ln {
+      text-align: right;
+      padding-right: 18px;
+      color: #858585;
+      user-select: none;
+    }
+
+    .code {
+      color: #d4d4d4;
+      overflow-x: auto;
+      padding-right: 16px;
+    }
+
+    .blue { color: #569cd6; }
+    .sky { color: #9cdcfe; }
+    .orange { color: #ce9178; }
+    .green { color: #6a9955; }
+    .purple { color: #c586c0; }
+    .yellow { color: #dcdcaa; }
+
+    .hero-side {
+      border-left: 1px solid var(--line-soft);
+      background: #202020;
+      padding: 18px;
+      display: grid;
+      align-content: center;
+      gap: 10px;
+    }
+
+    .stat {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 10px;
+      align-items: center;
+      padding: 12px;
+      background: #252526;
+      border: 1px solid #333333;
+      border-radius: 6px;
+      font-family: var(--mono);
+    }
+
+    .stat b {
+      color: #4fc1ff;
+      font-size: 20px;
+    }
+
+    .stat span {
+      color: #aaaaaa;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .content {
+      min-width: 0;
+      overflow: auto;
+      padding: 16px;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      padding: 10px;
+      margin-bottom: 14px;
+      border: 1px solid #3c3c3c;
+      background: rgba(37,37,38,.96);
+      border-radius: 6px;
+      backdrop-filter: blur(10px);
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-wrap span {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #858585;
+      pointer-events: none;
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    #search {
+      width: 100%;
+      border: 1px solid #3c3c3c;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      border-radius: 4px;
+      padding: 11px 13px 11px 42px;
+      outline: none;
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    #search:focus {
+      border-color: var(--primary-strong);
+      box-shadow: 0 0 0 1px var(--primary-strong);
+    }
+
+    .toolbar .small-btn {
+      border: 1px solid #3c3c3c;
+      background: #2d2d30;
+      color: #d4d4d4;
+      border-radius: 4px;
+      padding: 0 12px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .section {
+      margin-bottom: 26px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--line-soft);
+      padding-bottom: 10px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      color: var(--yellow);
+      font-family: var(--mono);
+      font-size: clamp(20px, 2vw, 28px);
+      letter-spacing: -.04em;
+    }
+
+    .section-head h2::after {
+      content: " = [];";
+      color: #d4d4d4;
+      font-weight: 400;
+    }
+
+    .section-head p {
+      margin: 4px 0 0;
+      color: #858585;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
     }
 
     .card {
-      background: white;
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      min-height: 220px;
+      overflow: hidden;
+      border: 1px solid #3c3c3c;
+      background: #252526;
+      border-radius: 6px;
+      padding: 16px;
+      display: grid;
+      align-content: start;
+      gap: 10px;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--primary-strong);
+      opacity: .8;
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+      border-color: var(--primary-strong);
+      background: #2a2d2e;
     }
 
-    .card .emoji {
-      font-size: 38px;
-      margin-bottom: 12px;
+    .card.disabled {
+      opacity: .7;
+    }
+
+    .card.disabled:hover {
+      transform: none;
+      border-color: #3c3c3c;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #3c3c3c;
+      background: #1e1e1e;
+      border-radius: 4px;
+      padding: 6px 8px;
+      color: #9cdcfe;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .status {
+      border: 1px solid #3c3c3c;
+      background: #1e1e1e;
+      border-radius: 4px;
+      padding: 6px 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--orange);
+    }
+
+    .status.live {
+      color: #6a9955;
     }
 
     .card h3 {
-      margin: 0 0 10px;
-      font-size: 22px;
+      margin: 4px 0 0;
+      color: var(--yellow);
+      font-size: 24px;
+      letter-spacing: -.04em;
+      line-height: 1.18;
     }
 
     .card p {
       margin: 0;
-      color: #6b7280;
-      line-height: 1.6;
+      color: #d4d4d4;
+      line-height: 1.65;
+      word-break: keep-all;
+      font-size: 14px;
     }
 
-    footer {
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    .action {
+      border: 1px solid #007acc;
+      background: #0e639c;
+      color: white;
+      border-radius: 4px;
+      padding: 8px 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .action.secondary {
+      border-color: #3c3c3c;
+      background: #1e1e1e;
+      color: #d4d4d4;
+    }
+
+    .action:hover {
+      filter: brightness(1.1);
+    }
+
+    .link-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 14px;
+      border: 1px solid #3c3c3c;
+      background: #252526;
+      border-radius: 6px;
+    }
+
+    .link-strip a,
+    .link-strip button {
+      border: 1px solid #3c3c3c;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      border-radius: 4px;
+      padding: 9px 12px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .link-strip a:hover,
+    .link-strip button:hover {
+      border-color: #007acc;
+      color: white;
+    }
+
+    .terminal {
+      border: 1px solid #3c3c3c;
+      background: #0f0f0f;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .terminal-head {
+      height: 34px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 12px;
+      background: #252526;
+      border-bottom: 1px solid #111;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: #cccccc;
+    }
+
+    .terminal-body {
+      padding: 14px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.7;
+      color: #d4d4d4;
+      white-space: pre-wrap;
+    }
+
+    .terminal-body .prompt {
+      color: #6a9955;
+    }
+
+    .terminal-body .command {
+      color: #9cdcfe;
+    }
+
+    .terminal-body .comment {
+      color: #858585;
+    }
+
+    .notice {
+      border: 1px solid #3c3c3c;
+      border-left: 3px solid #d7ba7d;
+      background: #252526;
+      border-radius: 6px;
+      padding: 14px;
+      line-height: 1.7;
+      color: #d4d4d4;
+      word-break: keep-all;
+    }
+
+    .notice b {
+      color: #dcdcaa;
+    }
+
+    .chat-panel {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 12px;
+    }
+
+    .faq-list {
+      border: 1px solid #3c3c3c;
+      background: #252526;
+      border-radius: 6px;
+      padding: 10px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .faq-list button {
+      border: 1px solid transparent;
+      background: transparent;
+      color: #cccccc;
+      border-radius: 4px;
+      padding: 9px;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .faq-list button:hover,
+    .faq-list button.active {
+      background: #37373d;
+      color: white;
+      border-color: #454545;
+    }
+
+    .answer {
+      border: 1px solid #3c3c3c;
+      background: #252526;
+      border-radius: 6px;
+      padding: 16px;
+      min-height: 180px;
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+
+    .answer h3 {
+      margin: 0 0 8px;
+      color: #dcdcaa;
+      font-family: var(--mono);
+    }
+
+    .answer p {
+      margin: 0 0 12px;
+    }
+
+    .empty {
+      display: none;
+      border: 1px dashed #3c3c3c;
+      background: #252526;
+      color: #858585;
+      padding: 38px;
+      border-radius: 6px;
       text-align: center;
-      padding: 30px 20px;
-      color: #6b7280;
+    }
+
+    .webring {
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      margin: 32px 0 12px;
+      color: #cccccc;
+      font-family: var(--mono);
+      text-align: center;
+    }
+
+    .webring .zip {
+      color: #dcdcaa;
+      font-size: 15px;
+    }
+
+    .webring .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      color: #9cdcfe;
+    }
+
+    .webring .links a {
+      color: #9cdcfe;
+    }
+
+    .webring .links a:hover {
+      color: white;
+    }
+
+    .statusbar {
+      height: 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 10px;
+      background: #007acc;
+      color: white;
+      font-family: var(--mono);
+      font-size: 11px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .statusbar .right {
+      margin-left: auto;
+      display: flex;
+      gap: 14px;
+    }
+
+    .hide {
+      display: none !important;
+    }
+
+    @media (max-width: 1100px) {
+      .workbench {
+        grid-template-columns: 52px 1fr;
+      }
+
+      .explorer {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-side {
+        display: none;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .chat-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .titlebar {
+        grid-template-columns: 72px 1fr auto;
+      }
+
+      .traffic {
+        gap: 5px;
+      }
+
+      .traffic span {
+        width: 10px;
+        height: 10px;
+      }
+
+      .top-actions .label {
+        display: none;
+      }
+
+      .workbench {
+        grid-template-columns: 42px 1fr;
+      }
+
+      .activity a {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+      }
+
+      .code-line {
+        grid-template-columns: 42px 1fr;
+        font-size: 12px;
+      }
+
+      .ln {
+        padding-right: 12px;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: auto;
+      }
+
+      .statusbar .right,
+      .statusbar .hide-sm {
+        display: none;
+      }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1>달인 연구소</h1>
-    <p>
-      수업을 더 쉽고 재미있게 만드는<br>
-      교육용 웹앱과 달인시리즈 자료실
-    </p>
-  </header>
-
-  <main>
-    <section class="intro">
-      <h2 class="section-title">달인 연구소란?</h2>
-      <p>
-        달인 연구소는 교사와 학생이 바로 사용할 수 있는 교육용 도구를 만들고 공유하는 공간입니다.
-        앞으로 바이브코딩 달인, 스마트팜 달인, 감정카드 달인, 평가도구 달인 등 다양한 달인시리즈를 이곳에 모아둘 예정입니다.
-      </p>
-    </section>
-
-    <section style="margin-top: 40px;">
-      <h2 class="section-title">달인시리즈</h2>
-
-      <div class="cards">
-        <a class="card" href="apps/vibe-glossary/">
-          <div class="emoji">📘</div>
-          <h3>바이브코딩 용어사전</h3>
-          <p>AI와 함께 앱을 만들 때 필요한 용어를 쉽게 찾아보는 한글 사전입니다.</p>
-        </a>
-
-        <a class="card" href="#">
-          <div class="emoji">🌱</div>
-          <h3>스마트팜 달인</h3>
-          <p>수경재배와 센서 원리를 배우는 교육용 웹앱을 준비 중입니다.</p>
-        </a>
-
-        <a class="card" href="#">
-          <div class="emoji">😊</div>
-          <h3>감정카드 달인</h3>
-          <p>학생의 감정 표현과 의사소통을 돕는 자료를 준비 중입니다.</p>
-        </a>
-
-        <a class="card" href="#">
-          <div class="emoji">🧩</div>
-          <h3>평가도구 달인</h3>
-          <p>성취기준과 교육활동을 연결하는 평가 도구를 준비 중입니다.</p>
-        </a>
+  <div class="shell">
+    <header class="titlebar">
+      <div class="traffic" aria-hidden="true">
+        <span class="red"></span>
+        <span class="yellow-dot"></span>
+        <span class="green-dot"></span>
       </div>
-    </section>
-  </main>
 
-  <footer>
-    달인 연구소 · Dalin Lab
-  </footer>
+      <div class="title">
+        <span class="dot">●</span>
+        dalin-lab.code-workspace
+      </div>
+
+      <div class="top-actions">
+        <a href="https://github.com/hodeok91/dalin-lab" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:hodeok91@gmail.com?subject=%5B%EB%8B%AC%EC%9D%B8%20%EC%97%B0%EA%B5%AC%EC%86%8C%5D%20%EB%AC%B8%EC%9D%98%20%EB%B0%8F%20%EA%B1%B4%EC%9D%98">Email</a>
+      </div>
+    </header>
+
+    <div class="workbench">
+      <nav class="activity" aria-label="주요 메뉴">
+        <a class="active" href="#home" title="Explorer">🧩</a>
+        <a href="#apps" title="Apps">🚀</a>
+        <a href="#downloads" title="Downloads">📦</a>
+        <a href="#videos" title="Videos">🎬</a>
+        <a href="#support" title="Support">💬</a>
+        <div class="activity-spacer"></div>
+        <a href="#updates" title="Updates">⚙️</a>
+      </nav>
+
+      <aside class="explorer">
+        <div class="explorer-head">Explorer</div>
+
+        <div class="tree">
+          <div class="tree-title">DALIN-LAB</div>
+          <button class="filter active" data-filter="all">
+            <span>📁</span><span>전체 보기</span><span class="badge">ALL</span>
+          </button>
+          <button class="filter" data-filter="webapp">
+            <span>🌐</span><span>웹앱</span><span class="badge">WEB</span>
+          </button>
+          <button class="filter" data-filter="program">
+            <span>💻</span><span>프로그램</span><span class="badge">EXE</span>
+          </button>
+          <button class="filter" data-filter="android">
+            <span>📱</span><span>안드로이드</span><span class="badge">APK</span>
+          </button>
+          <button class="filter" data-filter="material">
+            <span>📚</span><span>수업자료</span><span class="badge">DOC</span>
+          </button>
+          <button class="filter" data-filter="video">
+            <span>🎬</span><span>영상자료</span><span class="badge">VID</span>
+          </button>
+
+          <div class="tree-title">QUICK LINKS</div>
+          <a href="apps/vibe-glossary/">
+            <span>📘</span><span>vibe-glossary</span><span></span>
+          </a>
+          <a href="#support">
+            <span>💬</span><span>support-bot</span><span></span>
+          </a>
+          <a href="#install">
+            <span>🛠️</span><span>install-guide</span><span></span>
+          </a>
+          <a href="https://github.com/hodeok91/dalin-lab/releases" target="_blank" rel="noopener">
+            <span>📦</span><span>releases</span><span></span>
+          </a>
+        </div>
+      </aside>
+
+      <main class="editor">
+        <div class="tabs">
+          <div class="tab"><span class="blue">문서</span> README.md</div>
+          <div class="tab muted"><span class="sky">웹앱</span> apps.json</div>
+          <div class="tab muted"><span class="green">문의</span> support.md</div>
+          <div class="tab muted"><span class="orange">배포</span> releases.log</div>
+        </div>
+
+        <section class="hero" id="home">
+          <div class="code-hero">
+            <div class="code-line">
+              <span class="ln">1</span>
+              <span class="code"><span class="green"># 달인 연구소는 교육용 도구를 만들고 공유하는 코딩형 자료실입니다.</span></span>
+            </div>
+            <div class="code-line">
+              <span class="ln">2</span>
+              <span class="code"><span class="blue">const</span> <span class="sky">labName</span> = <span class="orange">"달인 연구소"</span>;</span>
+            </div>
+            <div class="code-line">
+              <span class="ln">3</span>
+              <span class="code"><span class="blue">const</span> <span class="sky">series</span> = [<span class="orange">"바이브코딩 달인"</span>, <span class="orange">"스마트팜 달인"</span>, <span class="orange">"감정카드 달인"</span>, <span class="orange">"평가도구 달인"</span>];</span>
+            </div>
+            <div class="code-line">
+              <span class="ln">4</span>
+              <span class="code"><span class="blue">function</span> <span class="yellow">makeClassroomBetter</span>() {</span>
+            </div>
+            <div class="code-line">
+              <span class="ln">5</span>
+              <span class="code">  <span class="purple">return</span> <span class="orange">"수업을 더 쉽고 재미있게 만드는 도구"</span>;</span>
+            </div>
+            <div class="code-line">
+              <span class="ln">6</span>
+              <span class="code">}</span>
+            </div>
+            <div class="code-line">
+              <span class="ln">7</span>
+              <span class="code"><span class="green">// 웹앱 · 설치파일 · 영상자료 · 사용설명서 · 문의/건의까지 한곳에 정리합니다.</span></span>
+            </div>
+          </div>
+
+          <aside class="hero-side">
+            <div class="stat"><b>01</b><span>현재 공개된 웹앱<br>바이브코딩 용어사전</span></div>
+            <div class="stat"><b>04</b><span>준비 중인 달인시리즈<br>웹앱·프로그램·자료</span></div>
+            <div class="stat"><b>∞</b><span>앞으로 계속 추가될<br>교육용 프로젝트</span></div>
+          </aside>
+        </section>
+
+        <div class="content">
+          <div class="toolbar">
+            <label class="search-wrap">
+              <span>⌘K</span>
+              <input id="search" type="search" placeholder="검색... 예: 바이브코딩, 스마트팜, apk, 설치방법, 영상자료">
+            </label>
+            <button class="small-btn" id="resetBtn">초기화</button>
+          </div>
+
+          <section class="section" id="apps">
+            <div class="section-head">
+              <div>
+                <h2>projects</h2>
+                <p>달인시리즈 웹앱과 프로그램을 카테고리별로 정리합니다.</p>
+              </div>
+            </div>
+
+            <div class="grid" id="projectGrid">
+              <article class="card project-card" data-category="webapp material" data-keywords="바이브코딩 용어사전 AI 프롬프트 보안 vscode 웹앱">
+                <div class="card-meta">
+                  <span class="chip">📘 WEBAPP</span>
+                  <span class="status live">LIVE</span>
+                </div>
+                <h3>바이브코딩 용어사전</h3>
+                <p>AI와 함께 앱을 만들 때 필요한 용어, 프롬프팅, 보안 개념을 쉽게 찾아볼 수 있는 한글 사전입니다.</p>
+                <div class="card-actions">
+                  <a class="action" href="apps/vibe-glossary/">실행하기</a>
+                  <a class="action secondary" href="#install">사용방법</a>
+                </div>
+              </article>
+
+              <article class="card project-card" data-category="webapp program android" data-keywords="스마트팜 수경재배 센서 블록코딩 아두이노 웹앱 exe apk">
+                <div class="card-meta">
+                  <span class="chip">🌱 WEBAPP</span>
+                  <span class="status">READY</span>
+                </div>
+                <h3>스마트팜 달인</h3>
+                <p>수경재배, 수분 센서, 펌프 제어를 블록코딩 방식으로 배울 수 있는 교육용 도구를 준비 중입니다.</p>
+                <div class="card-actions">
+                  <a class="action secondary" href="#">준비 중</a>
+                  <a class="action secondary" href="#videos">영상 자리</a>
+                </div>
+              </article>
+
+              <article class="card project-card" data-category="webapp material" data-keywords="감정카드 의사소통 특수교육 감정표현 자료 웹앱">
+                <div class="card-meta">
+                  <span class="chip">😊 MATERIAL</span>
+                  <span class="status">READY</span>
+                </div>
+                <h3>감정카드 달인</h3>
+                <p>학생의 감정 표현과 의사소통을 돕는 감정카드 자료와 제작 도구를 정리할 공간입니다.</p>
+                <div class="card-actions">
+                  <a class="action secondary" href="#">준비 중</a>
+                  <a class="action secondary" href="#support">자료 요청</a>
+                </div>
+              </article>
+
+              <article class="card project-card" data-category="webapp material" data-keywords="평가도구 성취기준 교육활동 진단평가 루브릭 웹앱">
+                <div class="card-meta">
+                  <span class="chip">🧩 WEBAPP</span>
+                  <span class="status">READY</span>
+                </div>
+                <h3>평가도구 달인</h3>
+                <p>성취기준, 교육활동, 평가도구를 연결하여 수업 평가를 설계하는 도구를 준비 중입니다.</p>
+                <div class="card-actions">
+                  <a class="action secondary" href="#">준비 중</a>
+                  <a class="action secondary" href="#updates">개발 기록</a>
+                </div>
+              </article>
+
+              <article class="card project-card" data-category="program android" data-keywords="다운로드 exe apk 설치파일 윈도우 안드로이드">
+                <div class="card-meta">
+                  <span class="chip">📦 DOWNLOAD</span>
+                  <span class="status">EMPTY</span>
+                </div>
+                <h3>설치파일 자료실</h3>
+                <p>직접 만든 Windows exe, Android apk, zip 파일을 버전별로 배포할 공간입니다.</p>
+                <div class="card-actions">
+                  <a class="action secondary" href="https://github.com/hodeok91/dalin-lab/releases" target="_blank" rel="noopener">Releases</a>
+                  <a class="action secondary" href="#downloads">안내 보기</a>
+                </div>
+              </article>
+
+              <article class="card project-card" data-category="video material" data-keywords="영상자료 설명영상 사용법 수업영상 유튜브 튜토리얼">
+                <div class="card-meta">
+                  <span class="chip">🎬 VIDEO</span>
+                  <span class="status">READY</span>
+                </div>
+                <h3>영상자료 보관소</h3>
+                <p>프로그램 설명 영상, 수업 적용 영상, 설치 안내 영상을 모아둘 공간입니다.</p>
+                <div class="card-actions">
+                  <a class="action secondary" href="#videos">영상 목록</a>
+                  <a class="action secondary" href="#support">영상 제안</a>
+                </div>
+              </article>
+            </div>
+
+            <div class="empty" id="emptyMessage">
+              검색 결과가 없습니다. 다른 키워드로 검색해보세요.
+            </div>
+          </section>
+
+          <section class="section" id="links">
+            <div class="section-head">
+              <div>
+                <h2>quickLinks</h2>
+                <p>자주 쓰는 기능을 빠르게 연결합니다.</p>
+              </div>
+            </div>
+
+            <div class="link-strip">
+              <a href="apps/vibe-glossary/">바이브코딩 용어사전</a>
+              <a href="https://github.com/hodeok91/dalin-lab" target="_blank" rel="noopener">GitHub 저장소</a>
+              <a href="https://github.com/hodeok91/dalin-lab/releases" target="_blank" rel="noopener">다운로드 Releases</a>
+              <a href="mailto:hodeok91@gmail.com?subject=%5B%EB%8B%AC%EC%9D%B8%20%EC%97%B0%EA%B5%AC%EC%86%8C%5D%20%EA%B1%B4%EC%9D%98%EC%82%AC%ED%95%AD">이메일 문의</a>
+              <a href="https://github.com/hodeok91/dalin-lab/issues/new" target="_blank" rel="noopener">건의사항 등록</a>
+              <button type="button" data-faq="install">설치방법</button>
+              <button type="button" data-faq="bug">오류 신고</button>
+            </div>
+          </section>
+
+          <section class="section" id="downloads">
+            <div class="section-head">
+              <div>
+                <h2>downloads</h2>
+                <p>exe, apk, zip 파일은 GitHub Releases에서 버전별로 관리합니다.</p>
+              </div>
+            </div>
+
+            <div class="notice">
+              <b>다운로드 운영 원칙</b><br>
+              웹에서 바로 실행되는 HTML/CSS/JS 웹앱은 <b>apps 폴더</b>에 올리고,
+              Windows용 exe, Android용 apk, zip, PDF 설명서는 <b>GitHub Releases</b>에 올립니다.
+              이렇게 나누면 홈페이지는 가볍게 유지되고, 설치파일은 버전별로 안전하게 관리할 수 있습니다.
+            </div>
+          </section>
+
+          <section class="section" id="install">
+            <div class="section-head">
+              <div>
+                <h2>installGuide</h2>
+                <p>설치와 실행 방법을 안내할 자리입니다.</p>
+              </div>
+            </div>
+
+            <div class="terminal">
+              <div class="terminal-head">TERMINAL · 설치방법 예시</div>
+              <div class="terminal-body"><span class="prompt">$</span> <span class="command">open dalin-lab/releases</span>
+<span class="comment"># 1. 필요한 버전의 exe 또는 apk를 다운로드합니다.</span>
+<span class="comment"># 2. 학교 PC에서는 보안 정책 때문에 실행이 제한될 수 있습니다.</span>
+<span class="comment"># 3. Android apk는 알 수 없는 앱 설치 허용이 필요할 수 있습니다.</span>
+<span class="comment"># 4. 개인정보가 들어가는 앱은 사용 전 안내문을 확인합니다.</span></div>
+            </div>
+          </section>
+
+          <section class="section" id="videos">
+            <div class="section-head">
+              <div>
+                <h2>videos</h2>
+                <p>설명 영상, 수업 적용 영상, 설치 영상을 연결할 공간입니다.</p>
+              </div>
+            </div>
+
+            <div class="grid">
+              <article class="card">
+                <div class="card-meta">
+                  <span class="chip">🎬 GUIDE</span>
+                  <span class="status">READY</span>
+                </div>
+                <h3>바이브코딩 용어사전 사용법</h3>
+                <p>용어 검색, 카테고리 탐색, 즐겨찾기 기능을 설명하는 영상을 연결할 자리입니다.</p>
+                <div class="card-actions">
+                  <a class="action secondary" href="#">영상 준비 중</a>
+                </div>
+              </article>
+
+              <article class="card">
+                <div class="card-meta">
+                  <span class="chip">🎬 CLASS</span>
+                  <span class="status">READY</span>
+                </div>
+                <h3>수업 적용 사례</h3>
+                <p>달인시리즈를 실제 수업에서 어떻게 활용했는지 정리하는 공간입니다.</p>
+                <div class="card-actions">
+                  <a class="action secondary" href="#">사례 준비 중</a>
+                </div>
+              </article>
+
+              <article class="card">
+                <div class="card-meta">
+                  <span class="chip">🎬 INSTALL</span>
+                  <span class="status">READY</span>
+                </div>
+                <h3>설치 안내 영상</h3>
+                <p>exe, apk 설치 과정에서 자주 막히는 부분을 설명하는 영상을 연결합니다.</p>
+                <div class="card-actions">
+                  <a class="action secondary" href="#">영상 준비 중</a>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="section" id="support">
+            <div class="section-head">
+              <div>
+                <h2>supportBot</h2>
+                <p>지금은 FAQ형 도움말 봇으로 시작하고, 나중에 실제 챗봇으로 확장할 수 있습니다.</p>
+              </div>
+            </div>
+
+            <div class="chat-panel">
+              <div class="faq-list">
+                <button class="faq active" data-faq="start">처음 무엇을 보면 되나요?</button>
+                <button class="faq" data-faq="install">설치파일은 어디서 받나요?</button>
+                <button class="faq" data-faq="bug">오류나 건의사항은 어떻게 보내나요?</button>
+                <button class="faq" data-faq="request">새 기능을 요청하고 싶어요.</button>
+                <button class="faq" data-faq="privacy">학생 정보가 들어가도 되나요?</button>
+              </div>
+
+              <div class="answer" id="answerBox">
+                <h3>처음 무엇을 보면 되나요?</h3>
+                <p>처음 방문했다면 먼저 <b>바이브코딩 용어사전</b>을 열어보세요. 이후 스마트팜 달인, 감정카드 달인, 평가도구 달인 등 달인시리즈가 차례대로 추가될 예정입니다.</p>
+                <p><a class="action" href="apps/vibe-glossary/">바이브코딩 용어사전 열기</a></p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="updates">
+            <div class="section-head">
+              <div>
+                <h2>updates</h2>
+                <p>달인 연구소의 변경사항을 기록합니다.</p>
+              </div>
+            </div>
+
+            <div class="terminal">
+              <div class="terminal-head">CHANGELOG.md</div>
+              <div class="terminal-body"><span class="prompt">2026-06</span> <span class="command">달인 연구소 GitHub Pages 공개</span>
+<span class="comment">- 메인 홈페이지 생성</span>
+<span class="comment">- VS Code 스타일 뼈대 구성</span>
+<span class="comment">- 바이브코딩 용어사전 연결 준비</span>
+
+<span class="prompt">NEXT</span> <span class="command">업로드 예정</span>
+<span class="comment">- 스마트팜 달인 웹앱</span>
+<span class="comment">- exe/apk 다운로드 페이지</span>
+<span class="comment">- 설명 영상 자료실</span>
+<span class="comment">- 문의/건의 챗봇 고도화</span></div>
+            </div>
+          </section>
+
+          <div class="webring">
+            <div class="zip">★彡 dalin-lab.zip 彡★</div>
+            <div class="links">
+              <a href="#apps">Projects</a>
+              <span>|</span>
+              <a href="#downloads">Downloads</a>
+              <span>|</span>
+              <a href="#support">A/S 도움말</a>
+              <span>|</span>
+              <a href="#install">설치방법</a>
+            </div>
+            <div class="links">
+              <a href="#updates">◀ PREV</a>
+              <span>★ DALIN SERIES WEBRING ★</span>
+              <a href="#apps">NEXT ▶</a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="statusbar">
+      <span>main</span>
+      <span>UTF-8</span>
+      <span class="hide-sm">Dalin Lab</span>
+      <span class="right">
+        <span>GitHub Pages</span>
+        <span>VSCode Dark</span>
+        <span>교육용 웹앱 아카이브</span>
+      </span>
+    </footer>
+  </div>
+
+  <script>
+    const filterButtons = document.querySelectorAll(".filter");
+    const cards = document.querySelectorAll(".project-card");
+    const search = document.querySelector("#search");
+    const resetBtn = document.querySelector("#resetBtn");
+    const emptyMessage = document.querySelector("#emptyMessage");
+
+    let currentFilter = "all";
+
+    function applyFilter() {
+      const keyword = search.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const category = card.dataset.category || "";
+        const keywords = card.dataset.keywords || "";
+        const text = card.innerText.toLowerCase() + " " + keywords.toLowerCase();
+
+        const categoryMatched = currentFilter === "all" || category.includes(currentFilter);
+        const keywordMatched = !keyword || text.includes(keyword);
+
+        if (categoryMatched && keywordMatched) {
+          card.classList.remove("hide");
+          visibleCount++;
+        } else {
+          card.classList.add("hide");
+        }
+      });
+
+      emptyMessage.style.display = visibleCount === 0 ? "block" : "none";
+    }
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        currentFilter = button.dataset.filter;
+        applyFilter();
+      });
+    });
+
+    search.addEventListener("input", applyFilter);
+
+    resetBtn.addEventListener("click", () => {
+      search.value = "";
+      currentFilter = "all";
+      filterButtons.forEach(btn => btn.classList.remove("active"));
+      document.querySelector('.filter[data-filter="all"]').classList.add("active");
+      applyFilter();
+      search.focus();
+    });
+
+    const answers = {
+      start: {
+        title: "처음 무엇을 보면 되나요?",
+        body: `
+          <p>처음 방문했다면 먼저 <b>바이브코딩 용어사전</b>을 열어보세요. 이후 스마트팜 달인, 감정카드 달인, 평가도구 달인 등 달인시리즈가 차례대로 추가될 예정입니다.</p>
+          <p><a class="action" href="apps/vibe-glossary/">바이브코딩 용어사전 열기</a></p>
+        `
+      },
+      install: {
+        title: "설치파일은 어디서 받나요?",
+        body: `
+          <p>exe, apk, zip 파일은 <b>GitHub Releases</b>에 버전별로 올릴 예정입니다. 현재는 다운로드 공간만 준비되어 있습니다.</p>
+          <p><a class="action" href="https://github.com/hodeok91/dalin-lab/releases" target="_blank" rel="noopener">Releases 열기</a></p>
+        `
+      },
+      bug: {
+        title: "오류나 건의사항은 어떻게 보내나요?",
+        body: `
+          <p>오류 화면, 사용한 기기, 어떤 버튼을 눌렀는지, 기대한 결과를 함께 보내주면 수정하기 쉽습니다.</p>
+          <p>
+            <a class="action" href="mailto:hodeok91@gmail.com?subject=%5B%EB%8B%AC%EC%9D%B8%20%EC%97%B0%EA%B5%AC%EC%86%8C%5D%20%EC%98%A4%EB%A5%98%20%EC%8B%A0%EA%B3%A0">이메일로 오류 보내기</a>
+            <a class="action secondary" href="https://github.com/hodeok91/dalin-lab/issues/new" target="_blank" rel="noopener">GitHub Issue 등록</a>
+          </p>
+        `
+      },
+      request: {
+        title: "새 기능을 요청하고 싶어요.",
+        body: `
+          <p>어떤 학생이 사용할지, 어떤 상황에서 필요한지, 꼭 필요한 기능 1~3가지를 적어서 보내주세요. 달인시리즈에 반영할 수 있습니다.</p>
+          <p><a class="action" href="mailto:hodeok91@gmail.com?subject=%5B%EB%8B%AC%EC%9D%B8%20%EC%97%B0%EA%B5%AC%EC%86%8C%5D%20%EA%B8%B0%EB%8A%A5%20%EA%B1%B4%EC%9D%98">기능 건의 보내기</a></p>
+        `
+      },
+      privacy: {
+        title: "학생 정보가 들어가도 되나요?",
+        body: `
+          <p>공개 웹페이지에는 학생 이름, 사진, 생년월일, 상담 내용, 평가 기록 같은 개인정보를 넣지 않는 것이 원칙입니다.</p>
+          <p>예시는 반드시 가짜 이름과 샘플 데이터로 구성하고, 실제 학생 정보가 필요한 도구는 권한 설정과 보안 규칙을 따로 설계해야 합니다.</p>
+        `
+      }
+    };
+
+    const faqButtons = document.querySelectorAll(".faq, [data-faq]");
+    const answerBox = document.querySelector("#answerBox");
+
+    faqButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const key = button.dataset.faq;
+        if (!answers[key]) return;
+
+        document.querySelectorAll(".faq").forEach(btn => btn.classList.remove("active"));
+        document.querySelectorAll(`.faq[data-faq="${key}"]`).forEach(btn => btn.classList.add("active"));
+
+        answerBox.innerHTML = `
+          <h3>${answers[key].title}</h3>
+          ${answers[key].body}
+        `;
+
+        document.querySelector("#support").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  </script>
 </body>
 </html>
