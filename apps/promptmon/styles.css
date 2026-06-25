@@ -7,11 +7,8 @@
   --dark: #17172a;
   --border: #28243c;
   --paper: #fffdf2;
-  --paper2: #f5efd5;
   --yellow: #ffdf32;
-  --blue: #2457a8;
   --red: #ef476f;
-  --green: #42c765;
   --shadow: rgba(0, 0, 0, 0.28);
 }
 
@@ -24,6 +21,12 @@ body {
   overflow: hidden;
   color: var(--ink);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overscroll-behavior: none;
+}
+
+body {
+  display: grid;
+  place-items: center;
 }
 
 button,
@@ -39,11 +42,26 @@ button {
   position: relative;
   width: min(100vw, calc(100vh * 1.5));
   aspect-ratio: 3 / 2;
-  margin: auto;
   background: #111;
   overflow: hidden;
   image-rendering: pixelated;
   box-shadow: 0 0 0 8px #030307, 0 0 80px rgba(0, 0, 0, 0.8);
+}
+
+.is-mobile .game-frame {
+  width: 100vw;
+  height: 100dvh;
+  aspect-ratio: auto;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  box-shadow: none;
+}
+
+@supports (height: 100svh) {
+  .is-mobile .game-frame {
+    height: 100svh;
+  }
 }
 
 .screen {
@@ -72,8 +90,7 @@ button {
 .title-scene {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(#8bd8ff 0 52%, #72c560 52% 100%);
+  background: linear-gradient(#8bd8ff 0 52%, #72c560 52% 100%);
   overflow: hidden;
 }
 
@@ -164,10 +181,7 @@ button {
   margin: 8px 0 0;
   font-weight: 900;
   color: white;
-  text-shadow:
-    3px 3px 0 #111,
-    -1px 1px 0 #111,
-    1px -1px 0 #111;
+  text-shadow: 3px 3px 0 #111, -1px 1px 0 #111, 1px -1px 0 #111;
   line-height: 1.45;
   font-size: clamp(17px, 2.3vw, 28px);
 }
@@ -270,23 +284,37 @@ button {
 .map-stage {
   position: absolute;
   inset: 0;
-  background: #7cc764;
+  background: #050510;
   overflow: hidden;
+  touch-action: none;
+}
+
+.map-camera {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.map-image,
+.fallback-tile-map {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .map-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
   object-fit: cover;
   image-rendering: pixelated;
   z-index: 1;
 }
 
 .fallback-tile-map {
-  position: absolute;
-  inset: 0;
   z-index: 0;
   display: grid;
   grid-template-columns: repeat(30, 1fr);
@@ -424,9 +452,9 @@ button {
 .player {
   position: absolute;
   z-index: 10;
-  width: 52px;
-  height: 72px;
-  transform: translate(-50%, -82%);
+  width: 34px;
+  height: 46px;
+  transform: translate(-50%, -84%);
   pointer-events: none;
 }
 
@@ -450,6 +478,7 @@ button {
   box-shadow: 0 7px 0 var(--shadow);
   font-weight: 900;
   font-size: clamp(16px, 2.2vw, 25px);
+  pointer-events: none;
 }
 
 .map-dialog {
@@ -488,34 +517,84 @@ button {
   10%, 30%, 50%, 100% { opacity: 0; }
 }
 
-.mobile-dpad {
+/* 모바일 조작 */
+
+.mobile-controls {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: auto;
+  user-select: none;
+  -webkit-user-select: none;
   display: none;
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  z-index: 40;
+  align-items: center;
+  gap: 12px;
+}
+
+.is-mobile .mobile-controls {
+  display: flex !important;
+}
+
+.is-mobile.is-portrait .mobile-controls {
+  left: 50%;
+  right: auto;
+  bottom: calc(env(safe-area-inset-bottom) + 86px);
+  transform: translateX(-50%);
+}
+
+.is-mobile.is-landscape .mobile-controls {
+  right: calc(env(safe-area-inset-right) + 18px);
+  bottom: calc(env(safe-area-inset-bottom) + 34px);
+  left: auto;
+  transform: none;
+}
+
+.mobile-dpad {
+  display: grid;
+  gap: 7px;
   text-align: center;
 }
 
 .mobile-dpad div {
   display: flex;
-  gap: 6px;
+  gap: 7px;
 }
 
 .mobile-dpad button {
-  width: 54px;
-  height: 54px;
+  width: clamp(56px, 15vw, 74px);
+  height: clamp(56px, 15vw, 74px);
+  border: 5px solid var(--border);
+  background: rgba(255,255,255,0.92);
+  border-radius: 12px;
+  font-weight: 1000;
+  font-size: clamp(20px, 5vw, 30px);
+  box-shadow: 0 6px 0 rgba(0,0,0,0.28);
+  touch-action: none;
+}
+
+.mobile-dpad button:active {
+  transform: translateY(3px);
+  box-shadow: 0 3px 0 rgba(0,0,0,0.28);
+}
+
+.mobile-info {
+  background: rgba(255,255,255,0.92);
   border: 4px solid var(--border);
-  background: rgba(255,255,255,0.9);
-  border-radius: 8px;
+  border-radius: 999px;
+  padding: 10px 14px;
   font-weight: 900;
+  font-size: 14px;
+  box-shadow: 0 5px 0 rgba(0,0,0,0.22);
+}
+
+.is-mobile.is-landscape .mobile-info {
+  display: none;
 }
 
 /* 배틀 */
 
 .battle-scene {
   position: absolute;
-  inset: 0 0 43% 0;
+  inset: 0 0 45% 0;
   background: linear-gradient(#9fe2ff 0 55%, #7ecf6c 55% 100%);
   overflow: hidden;
 }
@@ -632,11 +711,13 @@ button {
   filter: drop-shadow(0 16px 0 rgba(0,0,0,0.18));
 }
 
-.enemy-pokemon.hit-shake {
+.enemy-pokemon.hit-shake,
+.enemy-fallback.hit-shake {
   animation: enemyHitShake 0.34s ease both;
 }
 
-.player-pokemon.attack-motion {
+.player-pokemon.attack-motion,
+.player-fallback.attack-motion {
   animation: playerAttackMotion 0.34s ease both;
 }
 
@@ -684,11 +765,11 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 43%;
+  height: 45%;
   background: #1c1b2c;
   border-top: 6px solid #111;
   display: grid;
-  grid-template-columns: 42% 58%;
+  grid-template-columns: 40% 60%;
   gap: 12px;
   padding: 12px;
 }
@@ -708,6 +789,7 @@ button {
 
 .battle-command {
   overflow-y: auto;
+  padding-right: 12px;
   overscroll-behavior: contain;
 }
 
@@ -750,7 +832,7 @@ button {
 }
 
 .choice-btn {
-  min-height: 58px;
+  min-height: 64px;
   height: auto;
   padding: 9px 10px;
   border: 3px solid #cfc7b2;
@@ -759,11 +841,12 @@ button {
   text-align: left;
   color: var(--ink);
   font-weight: 900;
-  line-height: 1.28;
-  font-size: clamp(11px, 1.25vw, 16px);
+  line-height: 1.32;
+  font-size: clamp(11px, 1.18vw, 15px);
   overflow: visible;
   white-space: normal;
   word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 .choice-btn.selected {
@@ -775,6 +858,16 @@ button {
   content: "▶ ";
 }
 
+.choice-btn.run-away {
+  background: #ffe1e1;
+  border-color: #ff9f9f;
+}
+
+.choice-btn.run-away.selected {
+  background: #ffcaca;
+  border-color: #dd3b3b;
+}
+
 .key-hint {
   margin-top: 7px;
   color: #6b6578;
@@ -782,7 +875,7 @@ button {
   font-size: clamp(10px, 1.4vw, 14px);
 }
 
-/* 결과 */
+/* 결과 / 실험 / 도감 */
 
 .result-scene {
   position: absolute;
@@ -1010,8 +1103,6 @@ th {
   gap: 8px;
 }
 
-/* 복사 팝업 */
-
 .copy-modal {
   position: absolute;
   inset: 0;
@@ -1058,212 +1149,93 @@ th {
   transform: translateX(-50%) translateY(0);
 }
 
-@media (max-width: 720px) {
-  .game-frame {
-    width: 100vw;
-    height: 100vh;
-    aspect-ratio: auto;
-  }
+/* 모바일 세부 */
 
-  .logo-img {
-    width: 94%;
-    max-height: 130px;
-  }
-
-  .title-logo-wrap {
-    top: 45px;
-  }
-
-  .title-pokemon-row {
-    top: 280px;
-    gap: 8px;
-  }
-
-  .title-pokemon-row img {
-    width: 90px;
-    height: 90px;
-  }
-
-  .title-pokemon-row img:nth-child(2) {
-    width: 120px;
-    height: 120px;
-  }
-
-  .title-menu {
-    grid-template-columns: 1fr;
-    bottom: 20px;
-  }
-
-  .mobile-dpad {
-    display: block;
-  }
-
-  .battle-scene {
-    bottom: 50%;
-  }
-
-  .battle-bottom {
-    height: 50%;
-    grid-template-columns: 1fr;
-    overflow: auto;
-  }
-
-  .choice-list {
-    grid-template-columns: 1fr;
-  }
-
-  .status-box {
-    min-width: 0;
-    width: 45%;
-    padding: 8px;
-  }
-
-  .enemy-pokemon,
-  .player-pokemon {
-    width: 130px;
-    height: 130px;
-  }
-
-  .enemy-pokemon {
-    top: 24%;
-    right: 8%;
-  }
-
-  .player-pokemon {
-    left: 8%;
-    bottom: 12%;
-  }
-
-  .breakdown-area,
-  .result-score-row,
-  .result-menu,
-  .experiment-grid {
-    grid-template-columns: 1fr;
-  }
+.is-mobile .place-name {
+  top: calc(env(safe-area-inset-top) + 14px);
+  left: 14px;
+  padding: 10px 14px;
+  max-width: calc(100% - 28px);
+  font-size: clamp(16px, 5vw, 26px);
 }
 
-
-/* ===== 이동/전투 UI 재수정 패치 ===== */
-
-/* 캐릭터가 맵 위에서 너무 크지 않게 조정 */
-.player {
-  width: 42px;
-  height: 56px;
-  transform: translate(-50%, -84%);
+.is-mobile.is-portrait .title-logo-wrap {
+  top: 48px;
 }
 
-.player img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.is-mobile.is-portrait .logo-img {
+  width: 94%;
+  max-height: 130px;
 }
 
-/* 전투 선택창: 텍스트가 절대 잘리지 않도록 세로 스크롤과 넉넉한 높이 */
-.battle-scene {
-  inset: 0 0 45% 0;
+.is-mobile.is-portrait .title-pokemon-row {
+  top: 280px;
+  gap: 8px;
 }
 
-.battle-bottom {
-  height: 45%;
-  grid-template-columns: 40% 60%;
+.is-mobile.is-portrait .title-pokemon-row img {
+  width: 90px;
+  height: 90px;
 }
 
-.battle-command {
-  overflow-y: auto;
-  padding-right: 12px;
+.is-mobile.is-portrait .title-pokemon-row img:nth-child(2) {
+  width: 120px;
+  height: 120px;
 }
 
-.choice-list {
-  grid-template-columns: 1fr 1fr;
-  align-items: stretch;
+.is-mobile.is-portrait .title-menu {
+  grid-template-columns: 1fr;
+  bottom: 20px;
 }
 
-.choice-btn {
-  min-height: 64px;
-  height: auto;
-  overflow: visible;
-  white-space: normal;
-  word-break: keep-all;
-  overflow-wrap: anywhere;
-  line-height: 1.32;
-  font-size: clamp(11px, 1.18vw, 15px);
+.is-mobile.is-portrait .battle-scene {
+  bottom: 52%;
 }
 
-.choice-btn.run-away {
-  background: #ffe1e1;
-  border-color: #ff9f9f;
+.is-mobile.is-portrait .battle-bottom {
+  height: 52%;
+  grid-template-columns: 1fr;
+  overflow: auto;
 }
 
-.choice-btn.run-away.selected {
-  background: #ffcaca;
-  border-color: #dd3b3b;
+.is-mobile.is-portrait .choice-list {
+  grid-template-columns: 1fr;
 }
 
-/* 포켓몬 모션 */
-.enemy-pokemon.hit-shake,
-.enemy-fallback.hit-shake {
-  animation: enemyHitShake 0.34s ease both;
+.is-mobile .status-box {
+  min-width: 0;
+  width: 45%;
+  padding: 8px;
 }
 
-.player-pokemon.attack-motion,
-.player-fallback.attack-motion {
-  animation: playerAttackMotion 0.34s ease both;
+.is-mobile .enemy-pokemon,
+.is-mobile .player-pokemon {
+  width: 130px;
+  height: 130px;
 }
 
-@keyframes playerAttackMotion {
-  0% { transform: scale(1.12) translate(0, 0); }
-  45% { transform: scale(1.12) translate(34px, -18px); }
-  100% { transform: scale(1.12) translate(0, 0); }
+.is-mobile .enemy-pokemon {
+  top: 24%;
+  right: 8%;
 }
 
-@keyframes enemyHitShake {
-  0% { transform: scale(1.12) translateX(0); filter: brightness(1.7) drop-shadow(0 16px 0 rgba(0,0,0,0.18)); }
-  20% { transform: scale(1.12) translateX(-12px); }
-  40% { transform: scale(1.12) translateX(12px); }
-  60% { transform: scale(1.12) translateX(-8px); }
-  100% { transform: scale(1.12) translateX(0); filter: brightness(1) drop-shadow(0 16px 0 rgba(0,0,0,0.18)); }
+.is-mobile .player-pokemon {
+  left: 8%;
+  bottom: 12%;
 }
 
-@media (max-width: 720px) {
-  .player {
-    width: 36px;
-    height: 48px;
-  }
-
-  .battle-scene {
-    bottom: 52%;
-  }
-
-  .battle-bottom {
-    height: 52%;
-    grid-template-columns: 1fr;
-  }
-
-  .choice-list {
-    grid-template-columns: 1fr;
-  }
+.is-mobile .breakdown-area,
+.is-mobile .result-score-row,
+.is-mobile .result-menu,
+.is-mobile .experiment-grid {
+  grid-template-columns: 1fr;
 }
 
-
-/* ===== 부드러운 이동 / 작은 캐릭터 / 충돌 보정 패치 ===== */
-.player {
-  width: 34px !important;
-  height: 46px !important;
-  transform: translate(-50%, -82%);
-  transition: none !important;
-}
-
-.player img {
-  image-rendering: pixelated;
-}
-
-.place-name {
-  pointer-events: none;
-}
-
-@media (max-width: 720px) {
-  .player {
-    width: 30px !important;
-    height: 40px !important;
-  }
+/* 배틀/결과 화면에서는 모바일 이동 버튼 숨김 */
+.is-mobile:has(#battleScreen.active) .mobile-controls,
+.is-mobile:has(#resultScreen.active) .mobile-controls,
+.is-mobile:has(#experimentScreen.active) .mobile-controls,
+.is-mobile:has(#dexScreen.active) .mobile-controls,
+.is-mobile:has(#titleScreen.active) .mobile-controls {
+  display: none !important;
 }
