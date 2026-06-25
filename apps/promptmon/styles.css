@@ -2037,3 +2037,67 @@ th {
 .is-mobile.is-landscape.in-battle .key-hint {
   display: none !important;
 }
+
+
+/* ===== v8 하드픽스: 모바일 가로 배틀 강제 분할 + 방향키 표시 안정화 ===== */
+
+/* 미디어쿼리만으로도 모바일 조작키가 보이게 보조 */
+@media (hover: none), (pointer: coarse), (max-width: 900px) {
+  html.in-map .mobile-controls,
+  html.touch-device.in-map .mobile-controls,
+  html.is-mobile.in-map .mobile-controls {
+    display: flex !important;
+  }
+}
+
+/* 방향키 십자 구조 최종 고정 */
+.mobile-dpad {
+  grid-template-columns: 50px 50px 50px !important;
+  grid-template-rows: 50px 50px !important;
+}
+
+.mobile-dpad > button[data-move="up"] {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+}
+
+.mobile-dpad > div {
+  grid-column: 1 / 4 !important;
+  grid-row: 2 !important;
+  display: grid !important;
+  grid-template-columns: 50px 50px 50px !important;
+  gap: 6px !important;
+}
+
+.mobile-dpad button[data-move="left"] { grid-column: 1 !important; }
+.mobile-dpad button[data-move="down"] { grid-column: 2 !important; }
+.mobile-dpad button[data-move="right"] { grid-column: 3 !important; }
+
+/* 가로모드 전투 CSS 백업: JS 인라인 적용 전에도 분할되게 */
+@media (orientation: landscape) and (max-height: 700px) {
+  html.in-battle .battle-scene {
+    inset: 0 40% 0 0 !important;
+    width: 60% !important;
+    height: 100% !important;
+  }
+
+  html.in-battle .battle-bottom {
+    left: 60% !important;
+    right: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 40% !important;
+    height: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 110px 1fr !important;
+    border-top: 0 !important;
+    border-left: 6px solid #111 !important;
+    padding: 8px !important;
+    gap: 8px !important;
+  }
+
+  html.in-battle .choice-list {
+    grid-template-columns: 1fr !important;
+  }
+}
