@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
   <title>달인 연구소: 프롬프트몬</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
@@ -49,12 +49,14 @@
     <!-- 2. 맵 화면 -->
     <section id="mapScreen" class="screen">
       <div id="mapStage" class="map-stage">
-        <img id="mapImage" class="map-image" src="./images/map.png" alt="게임 맵" />
+        <div id="mapCamera" class="map-camera">
+          <img id="mapImage" class="map-image" src="./images/map.png" alt="게임 맵" />
 
-        <div id="fallbackTileMap" class="fallback-tile-map"></div>
+          <div id="fallbackTileMap" class="fallback-tile-map"></div>
 
-        <div id="player" class="player">
-          <img id="playerSprite" src="./assets/trainer-down.png" alt="플레이어" />
+          <div id="player" class="player">
+            <img id="playerSprite" src="./assets/trainer-down.png" alt="플레이어" />
+          </div>
         </div>
 
         <div id="placeName" class="place-name">프롬프트 연구 마을</div>
@@ -66,13 +68,16 @@
 
         <div id="flashEffect" class="flash-effect hidden"></div>
 
-        <div class="mobile-dpad">
-          <button data-move="up" type="button">▲</button>
-          <div>
-            <button data-move="left" type="button">◀</button>
-            <button data-move="down" type="button">▼</button>
-            <button data-move="right" type="button">▶</button>
+        <div class="mobile-controls" aria-label="모바일 조작 버튼">
+          <div class="mobile-dpad">
+            <button data-move="up" type="button" aria-label="위로 이동">▲</button>
+            <div>
+              <button data-move="left" type="button" aria-label="왼쪽 이동">◀</button>
+              <button data-move="down" type="button" aria-label="아래로 이동">▼</button>
+              <button data-move="right" type="button" aria-label="오른쪽 이동">▶</button>
+            </div>
           </div>
+          <div class="mobile-info">풀숲에서 배틀</div>
         </div>
       </div>
     </section>
