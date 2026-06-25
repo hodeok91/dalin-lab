@@ -2,41 +2,1531 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>법제처 API 테스트</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>장특법 암기 연구소</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #687084;
+      --line: #e6e9f2;
+      --primary: #5b6ee1;
+      --primary-dark: #3747b3;
+      --primary-soft: #eef0ff;
+      --accent: #ffb84d;
+      --good: #1d9a6c;
+      --bad: #d84b4b;
+      --warn: #b97900;
+      --shadow: 0 14px 35px rgba(24, 32, 52, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #eef0ff 0, transparent 34%), var(--bg);
+      color: var(--text);
+    }
+
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 14px;
+      background: var(--primary);
+      color: white;
+      cursor: pointer;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      font-weight: 700;
+    }
+
+    button:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(91,110,225,.18); }
+    button:active { transform: translateY(0); box-shadow: none; }
+    button.secondary { background: #eef0f6; color: #2c344a; }
+    button.ghost { background: transparent; color: var(--primary-dark); border: 1px solid var(--line); }
+    button.good { background: var(--good); }
+    button.bad { background: var(--bad); }
+    button.warn { background: #f1a51c; }
+    button.small { padding: 7px 10px; border-radius: 10px; font-size: 13px; }
+    button:disabled { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 18px;
+      padding: 18px;
+    }
+
+    .sidebar, .main, .card, .modal-box {
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(230,233,242,.9);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .sidebar {
+      padding: 16px;
+      position: sticky;
+      top: 18px;
+      align-self: start;
+      max-height: calc(100vh - 36px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary), #9d6cf2);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      font-weight: 900;
+      box-shadow: 0 12px 24px rgba(91,110,225,.22);
+      flex: 0 0 auto;
+    }
+
+    h1 { margin: 0; font-size: 20px; letter-spacing: -.5px; }
+    .subtitle { color: var(--muted); font-size: 13px; margin-top: 3px; }
+
+    .status {
+      background: #f8f9fd;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .status strong { color: var(--text); }
+
+    .toolbar { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .toolbar.single { grid-template-columns: 1fr; }
+
+    .search-box {
+      display: grid;
+      gap: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      border-radius: 12px;
+      padding: 11px 12px;
+      outline: none;
+    }
+
+    textarea { min-height: 140px; resize: vertical; line-height: 1.55; }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #a8b0ff;
+      box-shadow: 0 0 0 4px rgba(91,110,225,.10);
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      background: #f0f2f8;
+      padding: 5px;
+      border-radius: 14px;
+    }
+
+    .tab {
+      padding: 9px 7px;
+      border-radius: 11px;
+      text-align: center;
+      font-size: 13px;
+      color: #4c556a;
+      cursor: pointer;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    .tab.active {
+      background: #fff;
+      color: var(--primary-dark);
+      box-shadow: 0 4px 12px rgba(24,32,52,.08);
+    }
+
+    .article-list {
+      overflow: auto;
+      padding-right: 4px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .article-item {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 14px;
+      padding: 11px 12px;
+      cursor: pointer;
+      transition: border .12s ease, background .12s ease, transform .12s ease;
+    }
+
+    .article-item:hover { transform: translateY(-1px); border-color: #cdd3ff; }
+    .article-item.active { background: var(--primary-soft); border-color: #b9c1ff; }
+
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #eef0f6;
+      color: #586074;
+      font-size: 12px;
+      white-space: nowrap;
+      font-weight: 800;
+    }
+
+    .badge.act { background: #eef0ff; color: #4251c6; }
+    .badge.decree { background: #eaf8f2; color: #1c7e5c; }
+    .badge.rule { background: #fff4df; color: #9b6500; }
+    .badge.read { background: #e7f8f1; color: var(--good); }
+    .badge.favorite { background: #fff1ce; color: #a66d00; }
+
+    .item-sub { margin-top: 6px; color: var(--muted); font-size: 12px; line-height: 1.4; }
+
+    .main {
+      min-width: 0;
+      padding: 20px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .topbar h2 {
+      margin: 0;
+      font-size: 25px;
+      letter-spacing: -.7px;
+    }
+
+    .meta {
+      color: var(--muted);
+      margin-top: 5px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+    }
+
+    .card { padding: 16px; box-shadow: none; }
+    .card h3 { margin: 0 0 12px; font-size: 17px; }
+
+    .article-text {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      padding: 18px;
+      line-height: 1.9;
+      font-size: 18px;
+      max-height: 52vh;
+      overflow: auto;
+      white-space: pre-wrap;
+    }
+
+    .chunk {
+      display: inline;
+      padding: 2px 3px;
+      border-radius: 7px;
+      transition: background .14s ease, color .14s ease, box-shadow .14s ease;
+    }
+
+    .chunk.active {
+      background: linear-gradient(180deg, transparent 40%, rgba(255,184,77,.72) 40%);
+      color: #111827;
+      box-shadow: 0 0 0 2px rgba(255,184,77,.18);
+      font-weight: 900;
+    }
+
+    .chunk.done {
+      background: rgba(91,110,225,.09);
+      color: #2d3978;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .range-row {
+      display: grid;
+      grid-template-columns: 70px 1fr 44px;
+      gap: 8px;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin: 8px 0;
+    }
+
+    input[type="range"] { padding: 0; }
+
+    .progress-wrap {
+      height: 12px;
+      border-radius: 999px;
+      background: #eef0f6;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), #9d6cf2);
+      transition: width .25s ease;
+    }
+
+    .quiz-box {
+      display: grid;
+      gap: 12px;
+    }
+
+    .question {
+      border-radius: 16px;
+      background: #f8f9fd;
+      border: 1px solid var(--line);
+      padding: 14px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    .blank {
+      display: inline-block;
+      min-width: 96px;
+      padding: 0 8px;
+      border-bottom: 3px solid var(--primary);
+      color: transparent;
+      background: rgba(91,110,225,.10);
+      border-radius: 7px 7px 0 0;
+    }
+
+    .options {
+      display: grid;
+      gap: 8px;
+    }
+
+    .option {
+      text-align: left;
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--line);
+      font-weight: 700;
+    }
+
+    .feedback {
+      min-height: 28px;
+      line-height: 1.55;
+      font-weight: 800;
+    }
+
+    .feedback.good { color: var(--good); }
+    .feedback.bad { color: var(--bad); }
+
+    .study-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .stat {
+      background: #f8f9fd;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .stat b { display: block; font-size: 22px; margin-bottom: 2px; }
+    .stat span { color: var(--muted); font-size: 12px; }
+
+    .recite-target {
+      border: 1px dashed #b9c1ff;
+      background: var(--primary-soft);
+      color: #2c3aa0;
+      border-radius: 14px;
+      padding: 13px;
+      line-height: 1.65;
+      font-weight: 750;
+    }
+
+    .compare-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .kw {
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #eef0f6;
+      font-size: 12px;
+      color: #4e566b;
+      font-weight: 800;
+    }
+
+    .kw.ok { background: #e3f7ef; color: var(--good); }
+    .kw.miss { background: #ffe7e7; color: var(--bad); }
+
+    .empty {
+      border: 2px dashed #d8ddea;
+      border-radius: 18px;
+      padding: 34px;
+      text-align: center;
+      color: var(--muted);
+      background: rgba(255,255,255,.55);
+      line-height: 1.65;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, .42);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 50;
+    }
+
+    .modal.open { display: flex; }
+    .modal-box { width: min(780px, 100%); padding: 18px; max-height: 90vh; overflow: auto; }
+    .modal-head { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 12px; }
+    .modal-head h3 { margin: 0; }
+
+    .link-list { display: grid; gap: 8px; }
+    .api-link { display: block; word-break: break-all; color: var(--primary-dark); background: #f8f9fd; border: 1px solid var(--line); border-radius: 12px; padding: 10px; }
+
+    .notice {
+      background: #fff8e8;
+      border: 1px solid #ffe1a2;
+      color: #765000;
+      padding: 12px;
+      border-radius: 14px;
+      line-height: 1.55;
+      font-size: 13px;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 1060px) {
+      .app { grid-template-columns: 1fr; }
+      .sidebar { position: relative; top: 0; max-height: none; }
+      .article-list { max-height: 420px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .app { padding: 10px; }
+      .main, .sidebar { padding: 13px; }
+      .topbar { flex-direction: column; }
+      .study-stats { grid-template-columns: repeat(2, 1fr); }
+      .toolbar { grid-template-columns: 1fr; }
+      .article-text { font-size: 16px; max-height: none; }
+      .tabs { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
 </head>
 <body>
-  <h1>법제처 API 테스트</h1>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">法</div>
+        <div>
+          <h1>장특법 암기 연구소</h1>
+          <div class="subtitle">TTS · 하이라이트 · 퀴즈 · 말하기 인출</div>
+        </div>
+      </div>
 
-  <p>
-    아래 버튼은 등록한 도메인(hodeok91.github.io)의 페이지에서
-    법제처 API 주소로 이동합니다.
-  </p>
+      <div class="status" id="statusBox">
+        <strong>상태:</strong> 데이터를 불러오기 전입니다.<br />
+        GitHub Pages 도메인에서 실행한 뒤 <b>법령 가져오기</b>를 눌러주세요.
+      </div>
 
-  <p>
-    <a
-      href="https://www.law.go.kr/DRF/lawSearch.do?OC=hodeok91specialedu&target=eflaw&type=JSON&search=1&display=10&query=%EC%9E%A5%EC%95%A0%EC%9D%B8%EB%93%B1%EC%97%90%EB%8C%80%ED%95%9C%ED%8A%B9%EC%88%98%EA%B5%90%EC%9C%A1%EB%B2%95"
-      target="_blank"
-    >
-      장특법 검색
-    </a>
-  </p>
+      <div class="toolbar">
+        <button id="loadBtn">법령 가져오기</button>
+        <button class="secondary" id="apiLinksBtn">API 링크</button>
+        <button class="secondary" id="importBtn">JSON 붙여넣기</button>
+        <button class="ghost" id="exportBtn">내보내기</button>
+      </div>
 
-  <p>
-    <a
-      href="https://www.law.go.kr/DRF/lawSearch.do?OC=hodeok91specialedu&target=eflaw&type=JSON&search=1&display=10&query=%EC%9E%A5%EC%95%A0%EC%9D%B8%EB%93%B1%EC%97%90%EB%8C%80%ED%95%9C%ED%8A%B9%EC%88%98%EA%B5%90%EC%9C%A1%EB%B2%95%EC%8B%9C%ED%96%89%EB%A0%B9"
-      target="_blank"
-    >
-      시행령 검색
-    </a>
-  </p>
+      <div class="search-box">
+        <input id="searchInput" type="search" placeholder="조문, 단어, 시행령, 제15조 검색" />
+        <select id="modeSelect" title="목록 정렬 방식">
+          <option value="all">전체 조문</option>
+          <option value="favorites">즐겨찾기</option>
+          <option value="unread">아직 안 읽은 조문</option>
+          <option value="wrong">많이 틀린 조문</option>
+        </select>
+      </div>
 
-  <p>
-    <a
-      href="https://www.law.go.kr/DRF/lawSearch.do?OC=hodeok91specialedu&target=eflaw&type=JSON&search=1&display=10&query=%EC%9E%A5%EC%95%A0%EC%9D%B8%EB%93%B1%EC%97%90%EB%8C%80%ED%95%9C%ED%8A%B9%EC%88%98%EA%B5%90%EC%9C%A1%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99"
-      target="_blank"
-    >
-      시행규칙 검색
-    </a>
-  </p>
+      <div class="tabs" id="lawTabs">
+        <div class="tab active" data-filter="all">전체</div>
+        <div class="tab" data-filter="act">법</div>
+        <div class="tab" data-filter="decree">시행령</div>
+        <div class="tab" data-filter="rule">시행규칙</div>
+      </div>
+
+      <div class="study-stats">
+        <div class="stat"><b id="statTotal">0</b><span>조문</span></div>
+        <div class="stat"><b id="statRead">0</b><span>읽음</span></div>
+        <div class="stat"><b id="statFav">0</b><span>즐겨찾기</span></div>
+        <div class="stat"><b id="statQuiz">0</b><span>퀴즈 정답</span></div>
+      </div>
+
+      <div class="article-list" id="articleList"></div>
+    </aside>
+
+    <main class="main">
+      <section id="emptyState" class="empty">
+        <h2>장특법 암기 앱 준비 완료</h2>
+        <p>
+          먼저 <b>법령 가져오기</b>를 눌러 장특법, 시행령, 시행규칙 본문을 불러오세요.<br />
+          만약 브라우저 보안 정책 때문에 직접 가져오기가 막히면 <b>API 링크</b>에서 JSON을 열어 복사한 뒤 <b>JSON 붙여넣기</b>로 넣으면 됩니다.
+        </p>
+      </section>
+
+      <section id="studyView" class="hidden">
+        <div class="topbar">
+          <div>
+            <h2 id="articleTitle">조문 제목</h2>
+            <div class="meta" id="articleMeta">법령 정보</div>
+          </div>
+          <div class="controls">
+            <button class="secondary" id="prevBtn">이전</button>
+            <button class="secondary" id="nextBtn">다음</button>
+            <button class="warn" id="favoriteBtn">☆ 즐겨찾기</button>
+            <button class="good" id="readBtn">읽음 체크</button>
+          </div>
+        </div>
+
+        <div class="study-stats">
+          <div class="stat"><b id="currentReadState">-</b><span>읽음 상태</span></div>
+          <div class="stat"><b id="currentWrong">0</b><span>오답 수</span></div>
+          <div class="stat"><b id="currentScore">0%</b><span>인출 점수</span></div>
+          <div class="stat"><b id="currentChunks">0</b><span>읽기 단위</span></div>
+        </div>
+
+        <div class="grid">
+          <section class="card">
+            <h3>조문 읽기</h3>
+            <div class="article-text" id="articleText"></div>
+          </section>
+
+          <section class="card">
+            <h3>소리내어 읽기 · 노래방 하이라이트</h3>
+            <div class="controls">
+              <button id="speakBtn">▶ 읽기</button>
+              <button class="secondary" id="pauseBtn">⏸ 일시정지</button>
+              <button class="secondary" id="stopBtn">■ 정지</button>
+            </div>
+            <div class="range-row">
+              <span>속도</span>
+              <input id="rateInput" type="range" min="0.6" max="1.3" value="0.9" step="0.05" />
+              <b id="rateValue">0.9</b>
+            </div>
+            <div class="range-row">
+              <span>높낮이</span>
+              <input id="pitchInput" type="range" min="0.7" max="1.3" value="1" step="0.05" />
+              <b id="pitchValue">1.0</b>
+            </div>
+            <select id="voiceSelect" title="음성 선택"></select>
+            <div class="progress-wrap" aria-label="읽기 진행률"><div class="progress-bar" id="ttsProgress"></div></div>
+            <p class="meta" id="ttsHint">문장 단위로 읽으면서 현재 읽는 문장을 노란색으로 표시합니다.</p>
+          </section>
+        </div>
+
+        <div class="grid">
+          <section class="card quiz-box">
+            <h3>퀴즈 암기</h3>
+            <div class="controls">
+              <button id="blankQuizBtn">빈칸</button>
+              <button class="secondary" id="oxQuizBtn">OX</button>
+              <button class="secondary" id="numQuizBtn">조문번호</button>
+              <button class="ghost" id="randomQuizBtn">랜덤</button>
+            </div>
+            <div class="question" id="quizQuestion">퀴즈 버튼을 누르면 문제가 생성됩니다.</div>
+            <div id="quizAnswerArea"></div>
+            <div class="feedback" id="quizFeedback"></div>
+          </section>
+
+          <section class="card">
+            <h3>듣고 말하기 인출(STT)</h3>
+            <div class="recite-target" id="reciteTarget">현재 조문의 핵심어를 기억해서 말해보세요.</div>
+            <div class="controls" style="margin-top:10px">
+              <button id="listenBtn">🎙 말하기 시작</button>
+              <button class="secondary" id="listenStopBtn">중지</button>
+              <button class="ghost" id="compareBtn">직접 비교</button>
+            </div>
+            <textarea id="transcriptBox" placeholder="음성 인식 결과가 여기에 표시됩니다. STT가 안 되면 직접 입력해도 됩니다."></textarea>
+            <div class="progress-wrap"><div class="progress-bar" id="reciteProgress"></div></div>
+            <div class="feedback" id="reciteFeedback"></div>
+            <div class="compare-list" id="keywordCompare"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="importModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3>법령 JSON 붙여넣기</h3>
+        <button class="secondary small" data-close="importModal">닫기</button>
+      </div>
+      <div class="notice">
+        <b>본문 JSON</b>을 붙여넣어야 조문을 만들 수 있습니다. 검색결과 JSON은 법령 목록만 있어서 조문 카드가 생성되지 않습니다.
+      </div>
+      <p class="meta">아래 API 링크에서 장특법/시행령/시행규칙 본문 JSON을 열고 전체 복사한 뒤 여기에 붙여넣으세요.</p>
+      <select id="manualLawType">
+        <option value="auto">자동 판별</option>
+        <option value="act">장특법</option>
+        <option value="decree">시행령</option>
+        <option value="rule">시행규칙</option>
+      </select>
+      <textarea id="jsonPaste" placeholder="여기에 lawService.do 본문 JSON을 붙여넣기"></textarea>
+      <div class="controls">
+        <button id="parseJsonBtn">붙여넣은 JSON 반영</button>
+        <button class="secondary" id="clearJsonBtn">입력 지우기</button>
+        <input id="fileInput" type="file" accept=".json,.txt,application/json,text/plain" />
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="apiLinksModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3>API 본문 JSON 링크</h3>
+        <button class="secondary small" data-close="apiLinksModal">닫기</button>
+      </div>
+      <div class="notice">
+        이 페이지가 <b>https://hodeok91.github.io</b>에서 열려 있을 때 링크가 정상 작동합니다. 주소창에서 law.go.kr 주소를 직접 입력하면 사용자 검증 실패가 날 수 있습니다.
+      </div>
+      <div class="link-list" id="apiLinkList"></div>
+    </div>
+  </div>
+
+  <script>
+    const OC = localStorage.getItem('lawAppOC') || 'hodeok91specialedu';
+    const LAW_SOURCES = [
+      {
+        key: 'act',
+        label: '장특법',
+        name: '장애인 등에 대한 특수교육법',
+        lawId: '010449',
+        mst: '276191',
+        efYd: '20251001',
+        kind: '법률'
+      },
+      {
+        key: 'decree',
+        label: '시행령',
+        name: '장애인 등에 대한 특수교육법 시행령',
+        lawId: '010753',
+        mst: '284839',
+        efYd: '20260324',
+        kind: '대통령령'
+      },
+      {
+        key: 'rule',
+        label: '시행규칙',
+        name: '장애인 등에 대한 특수교육법 시행규칙',
+        lawId: '010772',
+        mst: '272431',
+        efYd: '20250621',
+        kind: '교육부령'
+      }
+    ];
+
+    const KEY_TERMS = [
+      '특수교육', '특수교육대상자', '특수교육교원', '특수교육기관', '특수학급', '특수학교',
+      '통합교육', '개별화교육', '개별화교육지원팀', '순회교육', '진로 및 직업교육', '전공과',
+      '특수교육 관련서비스', '치료지원', '보조공학기기', '학습보조기기', '통학지원', '정보접근지원',
+      '보호자', '교육장', '교육감', '교육부장관', '국가', '지방자치단체', '유치원', '초등학교',
+      '중학교', '고등학교', '전공과', '전담기구', '진단·평가', '선정·배치', '심사청구', '차별',
+      '무상교육', '의무교육', '장애영아', '장애유아', '장애학생', '교육과정', '지원인력',
+      '시각장애', '청각장애', '지적장애', '지체장애', '정서·행동장애', '자폐성장애',
+      '의사소통장애', '학습장애', '건강장애', '발달지체'
+    ];
+
+    const $ = (id) => document.getElementById(id);
+    const state = {
+      raw: {},
+      articles: [],
+      filtered: [],
+      selectedId: null,
+      lawFilter: 'all',
+      quiz: null,
+      tts: { speaking: false, paused: false, chunkIndex: -1, queue: [] },
+      progress: loadProgress(),
+      voices: [],
+      recognition: null,
+      recognizing: false
+    };
+
+    function apiUrl(source, type = 'JSON') {
+      return `https://www.law.go.kr/DRF/lawService.do?OC=${encodeURIComponent(OC)}&target=eflaw&type=${type}&MST=${source.mst}&efYd=${source.efYd}`;
+    }
+
+    function loadProgress() {
+      try {
+        return JSON.parse(localStorage.getItem('specialLawStudyProgress') || '{}');
+      } catch {
+        return {};
+      }
+    }
+
+    function saveProgress() {
+      localStorage.setItem('specialLawStudyProgress', JSON.stringify(state.progress));
+    }
+
+    function setStatus(message, tone = 'normal') {
+      const box = $('statusBox');
+      const color = tone === 'good' ? 'var(--good)' : tone === 'bad' ? 'var(--bad)' : tone === 'warn' ? 'var(--warn)' : 'var(--muted)';
+      box.innerHTML = message;
+      box.style.color = color;
+    }
+
+    function normalizeArray(value) {
+      if (!value) return [];
+      return Array.isArray(value) ? value : [value];
+    }
+
+    function stripTags(text) {
+      return String(text || '')
+        .replace(/<br\s*\/?>/gi, '\n')
+        .replace(/<[^>]*>/g, '')
+        .replace(/&nbsp;/g, ' ')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&')
+        .replace(/\r/g, '')
+        .replace(/[ \t]+/g, ' ')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim();
+    }
+
+    function findLawRoot(json) {
+      return json?.법령 || json?.Law || json?.law || json;
+    }
+
+    function findBasicInfo(root) {
+      return root?.기본정보 || root?.법령기본정보 || root?.LawInfo || {};
+    }
+
+    function getLawNameFromJson(json) {
+      const root = findLawRoot(json);
+      const info = findBasicInfo(root);
+      return info?.법령명_한글 || info?.법령명한글 || info?.법령명 || info?.법령명약칭 || '';
+    }
+
+    function guessLawType(json, fallback = 'auto') {
+      if (fallback && fallback !== 'auto') return fallback;
+      const name = getLawNameFromJson(json);
+      if (name.includes('시행규칙')) return 'rule';
+      if (name.includes('시행령')) return 'decree';
+      return 'act';
+    }
+
+    function getArticleUnits(root) {
+      const candidates = [
+        root?.조문?.조문단위,
+        root?.조문단위,
+        root?.조문,
+        root?.lawBody?.articles,
+        root?.articles
+      ];
+      for (const c of candidates) {
+        const arr = normalizeArray(c);
+        if (arr.length && typeof arr[0] === 'object') return arr;
+      }
+      const found = [];
+      (function walk(node) {
+        if (!node || typeof node !== 'object') return;
+        if (Array.isArray(node)) {
+          node.forEach(walk);
+          return;
+        }
+        if ('조문번호' in node || '조문내용' in node || '조문제목' in node) found.push(node);
+        Object.values(node).forEach(walk);
+      })(root);
+      return found;
+    }
+
+    function collectItemText(item) {
+      const parts = [];
+      const main = stripTags(item?.조문내용 || item?.내용 || item?.text || '');
+      if (main) parts.push(main);
+      for (const hang of normalizeArray(item?.항)) {
+        const ht = stripTags(hang?.항내용 || hang?.내용 || '');
+        if (ht && !parts.includes(ht)) parts.push(ht);
+        for (const ho of normalizeArray(hang?.호)) {
+          const hot = stripTags(ho?.호내용 || ho?.내용 || '');
+          if (hot) parts.push(hot);
+          for (const mok of normalizeArray(ho?.목)) {
+            const mt = stripTags(mok?.목내용 || mok?.내용 || '');
+            if (mt) parts.push(mt);
+          }
+        }
+      }
+      return parts.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+    }
+
+    function parseLawJson(json, lawTypeOverride = 'auto') {
+      const root = findLawRoot(json);
+      const info = findBasicInfo(root);
+      const type = guessLawType(json, lawTypeOverride);
+      const source = LAW_SOURCES.find(s => s.key === type) || LAW_SOURCES[0];
+      const units = getArticleUnits(root);
+      const parsed = [];
+
+      for (const unit of units) {
+        const articleNoRaw = String(unit?.조문번호 || unit?.articleNo || '').padStart(0, '');
+        const articleTitle = stripTags(unit?.조문제목 || unit?.articleTitle || '');
+        const articleText = collectItemText(unit);
+        const articleType = unit?.조문여부 || '';
+        if (!articleText && !articleTitle) continue;
+        if (articleType && articleType !== '조문') continue;
+
+        const noText = articleNoRaw ? `제${Number(articleNoRaw)}조` : extractArticleNo(articleText) || '조문';
+        const id = `${source.key}-${articleNoRaw || noText}-${articleTitle}`.replace(/\s+/g, '-');
+
+        parsed.push({
+          id,
+          lawKey: source.key,
+          lawLabel: source.label,
+          lawName: source.name,
+          lawKind: source.kind,
+          mst: source.mst,
+          efYd: source.efYd,
+          articleNo: noText,
+          articleNoValue: Number(articleNoRaw) || 0,
+          title: articleTitle || '제목 없음',
+          text: articleText,
+          keywords: extractKeywords(articleText + ' ' + articleTitle),
+          raw: unit
+        });
+      }
+
+      return parsed.sort((a, b) => a.articleNoValue - b.articleNoValue);
+    }
+
+    function extractArticleNo(text) {
+      const m = String(text || '').match(/제\s*([0-9]+)\s*조(?:의\s*([0-9]+))?/);
+      if (!m) return '';
+      return m[2] ? `제${m[1]}조의${m[2]}` : `제${m[1]}조`;
+    }
+
+    function extractKeywords(text) {
+      const t = stripTags(text);
+      const set = new Set();
+      for (const term of KEY_TERMS) {
+        if (t.includes(term)) set.add(term);
+      }
+      const quoted = [...t.matchAll(/[「“"]([^」”"]{2,30})[」”"]/g)].map(m => m[1]);
+      quoted.forEach(q => { if (q.length >= 2 && q.length <= 30) set.add(q); });
+      const titleLike = [...t.matchAll(/([가-힣A-Za-z0-9·ㆍ]{3,16})(?:이란|란|은|는)/g)].map(m => m[1]);
+      titleLike.slice(0, 8).forEach(w => set.add(w));
+      return [...set].slice(0, 14);
+    }
+
+    function splitChunks(text) {
+      const cleaned = stripTags(text);
+      const paragraphs = cleaned.split(/\n+/).map(p => p.trim()).filter(Boolean);
+      const chunks = [];
+      for (const p of paragraphs) {
+        const sentences = p
+          .replace(/([.다]\s*)(?=제\d|[①-⑳]|\d+\.|[가-힣])/g, '$1|')
+          .replace(/([.;:])\s+/g, '$1|')
+          .split('|')
+          .map(s => s.trim())
+          .filter(Boolean);
+        if (sentences.length) chunks.push(...sentences);
+        else chunks.push(p);
+      }
+      return chunks.length ? chunks : [cleaned];
+    }
+
+    async function loadAllLaws() {
+      setStatus('<strong>상태:</strong> 법령 본문 JSON을 가져오는 중입니다...', 'normal');
+      const all = [];
+      const failed = [];
+
+      for (const source of LAW_SOURCES) {
+        try {
+          const res = await fetch(apiUrl(source), { method: 'GET', mode: 'cors' });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const text = await res.text();
+          const json = JSON.parse(text);
+          if (json?.result && json?.msg) throw new Error(json.msg);
+          state.raw[source.key] = json;
+          const parsed = parseLawJson(json, source.key);
+          if (!parsed.length) throw new Error('조문을 찾지 못했습니다.');
+          all.push(...parsed);
+        } catch (err) {
+          console.warn(source.label, err);
+          failed.push(`${source.label}: ${err.message}`);
+        }
+      }
+
+      if (all.length) {
+        mergeArticles(all);
+        localStorage.setItem('specialLawCachedArticles', JSON.stringify({ savedAt: new Date().toISOString(), articles: state.articles }));
+        setStatus(`<strong>상태:</strong> ${all.length}개 조문을 불러왔습니다.${failed.length ? '<br><b>일부 실패:</b> ' + failed.join(' / ') : ''}`, failed.length ? 'warn' : 'good');
+      } else {
+        const cached = loadCachedArticles();
+        if (cached) {
+          setStatus('<strong>상태:</strong> API 직접 가져오기는 실패했지만, 저장된 캐시 데이터를 불러왔습니다.<br>새 데이터가 필요하면 API 링크에서 JSON을 붙여넣으세요.', 'warn');
+        } else {
+          setStatus('<strong>상태:</strong> API 직접 가져오기에 실패했습니다.<br>브라우저 CORS 또는 도메인 검증 문제일 수 있습니다. <b>API 링크</b>에서 JSON을 열어 붙여넣기로 가져오세요.', 'bad');
+          showModal('apiLinksModal');
+        }
+      }
+    }
+
+    function loadCachedArticles() {
+      try {
+        const cache = JSON.parse(localStorage.getItem('specialLawCachedArticles') || 'null');
+        if (cache?.articles?.length) {
+          state.articles = cache.articles;
+          selectFirstIfNeeded();
+          renderAll();
+          return true;
+        }
+      } catch {}
+      return false;
+    }
+
+    function mergeArticles(newArticles) {
+      const byId = new Map(state.articles.map(a => [a.id, a]));
+      for (const a of newArticles) byId.set(a.id, a);
+      state.articles = [...byId.values()].sort((a, b) => {
+        const lawOrder = { act: 1, decree: 2, rule: 3 };
+        return lawOrder[a.lawKey] - lawOrder[b.lawKey] || a.articleNoValue - b.articleNoValue;
+      });
+      selectFirstIfNeeded();
+      renderAll();
+    }
+
+    function selectFirstIfNeeded() {
+      if (!state.selectedId && state.articles.length) state.selectedId = state.articles[0].id;
+      if (state.selectedId && !state.articles.find(a => a.id === state.selectedId) && state.articles.length) {
+        state.selectedId = state.articles[0].id;
+      }
+    }
+
+    function getCurrentArticle() {
+      return state.articles.find(a => a.id === state.selectedId) || null;
+    }
+
+    function articleProgress(id) {
+      if (!state.progress[id]) state.progress[id] = { read: false, favorite: false, correct: 0, wrong: 0, reciteScore: 0 };
+      return state.progress[id];
+    }
+
+    function renderAll() {
+      renderStats();
+      renderList();
+      renderArticle();
+    }
+
+    function renderStats() {
+      $('statTotal').textContent = state.articles.length;
+      $('statRead').textContent = state.articles.filter(a => articleProgress(a.id).read).length;
+      $('statFav').textContent = state.articles.filter(a => articleProgress(a.id).favorite).length;
+      $('statQuiz').textContent = state.articles.reduce((sum, a) => sum + (articleProgress(a.id).correct || 0), 0);
+    }
+
+    function getFilteredArticles() {
+      const q = $('searchInput').value.trim().toLowerCase();
+      const mode = $('modeSelect').value;
+      let list = [...state.articles];
+
+      if (state.lawFilter !== 'all') list = list.filter(a => a.lawKey === state.lawFilter);
+      if (mode === 'favorites') list = list.filter(a => articleProgress(a.id).favorite);
+      if (mode === 'unread') list = list.filter(a => !articleProgress(a.id).read);
+      if (mode === 'wrong') list = list.filter(a => (articleProgress(a.id).wrong || 0) > 0).sort((a,b) => articleProgress(b.id).wrong - articleProgress(a.id).wrong);
+      if (q) {
+        list = list.filter(a => [a.lawName, a.lawLabel, a.articleNo, a.title, a.text, ...(a.keywords || [])].join(' ').toLowerCase().includes(q));
+      }
+      state.filtered = list;
+      return list;
+    }
+
+    function renderList() {
+      const list = getFilteredArticles();
+      const box = $('articleList');
+      box.innerHTML = '';
+      if (!list.length) {
+        box.innerHTML = '<div class="empty">검색 결과가 없습니다.</div>';
+        return;
+      }
+      for (const a of list) {
+        const p = articleProgress(a.id);
+        const div = document.createElement('div');
+        div.className = 'article-item' + (a.id === state.selectedId ? ' active' : '');
+        div.innerHTML = `
+          <div class="item-top">
+            <span>${escapeHtml(a.articleNo)} ${escapeHtml(a.title)}</span>
+            <span class="badge ${a.lawKey}">${escapeHtml(a.lawLabel)}</span>
+          </div>
+          <div class="item-sub">
+            ${p.favorite ? '<span class="badge favorite">★</span> ' : ''}${p.read ? '<span class="badge read">읽음</span> ' : ''}
+            ${escapeHtml(a.text.slice(0, 70))}${a.text.length > 70 ? '…' : ''}
+          </div>`;
+        div.addEventListener('click', () => {
+          stopSpeaking();
+          state.selectedId = a.id;
+          $('transcriptBox').value = '';
+          $('quizFeedback').textContent = '';
+          $('reciteFeedback').textContent = '';
+          renderAll();
+        });
+        box.appendChild(div);
+      }
+    }
+
+    function renderArticle() {
+      const article = getCurrentArticle();
+      if (!article) {
+        $('emptyState').classList.remove('hidden');
+        $('studyView').classList.add('hidden');
+        return;
+      }
+      $('emptyState').classList.add('hidden');
+      $('studyView').classList.remove('hidden');
+      const p = articleProgress(article.id);
+      const chunks = splitChunks(article.text);
+      $('articleTitle').textContent = `${article.articleNo} ${article.title}`;
+      $('articleMeta').textContent = `${article.lawName} · ${article.lawKind} · 시행일 ${formatDate(article.efYd)} · 핵심어 ${article.keywords.length}개`;
+      $('currentReadState').textContent = p.read ? '완료' : '미완료';
+      $('currentWrong').textContent = p.wrong || 0;
+      $('currentScore').textContent = `${Math.round(p.reciteScore || 0)}%`;
+      $('currentChunks').textContent = chunks.length;
+      $('favoriteBtn').textContent = p.favorite ? '★ 즐겨찾기' : '☆ 즐겨찾기';
+      $('readBtn').textContent = p.read ? '읽음 취소' : '읽음 체크';
+      $('reciteTarget').textContent = `${article.articleNo} ${article.title}의 핵심어를 떠올리며 말해보세요: ${article.keywords.slice(0, 8).join(', ') || '본문 전체'}`;
+
+      const html = chunks.map((chunk, i) => `<span class="chunk" data-chunk="${i}">${escapeHtml(chunk)}</span>`).join('\n\n');
+      $('articleText').innerHTML = html;
+      setTtsProgress(0);
+    }
+
+    function escapeHtml(value) {
+      return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function formatDate(yyyymmdd) {
+      const s = String(yyyymmdd || '');
+      if (s.length !== 8) return s;
+      return `${s.slice(0,4)}.${s.slice(4,6)}.${s.slice(6,8)}`;
+    }
+
+    function populateVoices() {
+      const voices = speechSynthesis.getVoices();
+      state.voices = voices;
+      const select = $('voiceSelect');
+      select.innerHTML = '';
+      const ko = voices.filter(v => /ko|Korean|한국/i.test(v.lang + ' ' + v.name));
+      const rest = voices.filter(v => !ko.includes(v));
+      [...ko, ...rest].forEach((voice, index) => {
+        const opt = document.createElement('option');
+        opt.value = voice.name;
+        opt.textContent = `${voice.name} (${voice.lang})`;
+        select.appendChild(opt);
+        if (ko.length && index === 0) select.value = voice.name;
+      });
+      if (!voices.length) {
+        const opt = document.createElement('option');
+        opt.value = '';
+        opt.textContent = '사용 가능한 음성을 불러오는 중';
+        select.appendChild(opt);
+      }
+    }
+
+    function speakCurrentArticle() {
+      const article = getCurrentArticle();
+      if (!article) return;
+      stopSpeaking(false);
+      const chunks = splitChunks(article.text);
+      state.tts.queue = chunks;
+      state.tts.speaking = true;
+      state.tts.paused = false;
+      state.tts.chunkIndex = -1;
+      speakNextChunk();
+    }
+
+    function speakNextChunk() {
+      const nextIndex = state.tts.chunkIndex + 1;
+      if (!state.tts.speaking || nextIndex >= state.tts.queue.length) {
+        finishSpeaking();
+        return;
+      }
+      state.tts.chunkIndex = nextIndex;
+      highlightChunk(nextIndex);
+      setTtsProgress((nextIndex / Math.max(1, state.tts.queue.length)) * 100);
+
+      const utter = new SpeechSynthesisUtterance(state.tts.queue[nextIndex]);
+      utter.lang = 'ko-KR';
+      utter.rate = Number($('rateInput').value || 0.9);
+      utter.pitch = Number($('pitchInput').value || 1);
+      const selectedVoice = state.voices.find(v => v.name === $('voiceSelect').value);
+      if (selectedVoice) utter.voice = selectedVoice;
+      utter.onend = () => speakNextChunk();
+      utter.onerror = () => speakNextChunk();
+      speechSynthesis.speak(utter);
+    }
+
+    function pauseSpeaking() {
+      if (!state.tts.speaking) return;
+      if (speechSynthesis.paused) {
+        speechSynthesis.resume();
+        state.tts.paused = false;
+        $('pauseBtn').textContent = '⏸ 일시정지';
+      } else {
+        speechSynthesis.pause();
+        state.tts.paused = true;
+        $('pauseBtn').textContent = '▶ 계속';
+      }
+    }
+
+    function stopSpeaking(reset = true) {
+      speechSynthesis.cancel();
+      state.tts.speaking = false;
+      state.tts.paused = false;
+      state.tts.chunkIndex = -1;
+      $('pauseBtn').textContent = '⏸ 일시정지';
+      if (reset) {
+        clearChunkHighlights();
+        setTtsProgress(0);
+      }
+    }
+
+    function finishSpeaking() {
+      const article = getCurrentArticle();
+      if (article) {
+        articleProgress(article.id).read = true;
+        saveProgress();
+      }
+      clearChunkHighlights(true);
+      setTtsProgress(100);
+      state.tts.speaking = false;
+      renderStats();
+      renderList();
+      renderArticleStateOnly();
+    }
+
+    function renderArticleStateOnly() {
+      const a = getCurrentArticle();
+      if (!a) return;
+      const p = articleProgress(a.id);
+      $('currentReadState').textContent = p.read ? '완료' : '미완료';
+      $('currentWrong').textContent = p.wrong || 0;
+      $('currentScore').textContent = `${Math.round(p.reciteScore || 0)}%`;
+      $('favoriteBtn').textContent = p.favorite ? '★ 즐겨찾기' : '☆ 즐겨찾기';
+      $('readBtn').textContent = p.read ? '읽음 취소' : '읽음 체크';
+    }
+
+    function highlightChunk(index) {
+      document.querySelectorAll('.chunk').forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+        if (i < index) el.classList.add('done');
+      });
+      const active = document.querySelector(`.chunk[data-chunk="${index}"]`);
+      active?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+
+    function clearChunkHighlights(markDone = false) {
+      document.querySelectorAll('.chunk').forEach(el => {
+        el.classList.remove('active');
+        if (!markDone) el.classList.remove('done');
+      });
+    }
+
+    function setTtsProgress(value) {
+      $('ttsProgress').style.width = `${Math.max(0, Math.min(100, value))}%`;
+    }
+
+    function randomArticle() {
+      const list = state.filtered.length ? state.filtered : state.articles;
+      return list[Math.floor(Math.random() * list.length)] || getCurrentArticle();
+    }
+
+    function makeBlankQuiz() {
+      const a = randomArticle();
+      if (!a) return;
+      const keyword = chooseKeyword(a);
+      const base = firstGoodSentence(a.text, keyword) || a.text.slice(0, 180);
+      const questionText = keyword ? base.replace(keyword, `<span class="blank">${escapeHtml(keyword)}</span>`) : base;
+      state.quiz = { type: 'blank', articleId: a.id, answer: keyword };
+      $('quizQuestion').innerHTML = `<b>${escapeHtml(a.lawLabel)} ${escapeHtml(a.articleNo)} ${escapeHtml(a.title)}</b>\n\n${questionText}`;
+      $('quizAnswerArea').innerHTML = `<input id="blankAnswer" placeholder="빈칸 정답 입력" /><div class="controls" style="margin-top:8px"><button id="checkBlankBtn">정답 확인</button><button class="secondary" id="showAnswerBtn">정답 보기</button></div>`;
+      $('quizFeedback').textContent = '';
+      $('checkBlankBtn').onclick = () => checkBlankAnswer();
+      $('showAnswerBtn').onclick = () => showQuizAnswer();
+      $('blankAnswer').focus();
+    }
+
+    function chooseKeyword(article) {
+      return (article.keywords || []).sort((a, b) => b.length - a.length)[0] || '';
+    }
+
+    function firstGoodSentence(text, keyword) {
+      const chunks = splitChunks(text);
+      if (keyword) return chunks.find(c => c.includes(keyword));
+      return chunks.find(c => c.length > 30) || chunks[0];
+    }
+
+    function checkBlankAnswer() {
+      const input = normalizeText($('blankAnswer').value);
+      const answer = normalizeText(state.quiz?.answer || '');
+      const article = state.articles.find(a => a.id === state.quiz.articleId);
+      const ok = input && (input === answer || answer.includes(input) || input.includes(answer));
+      markQuizResult(article, ok);
+      $('quizFeedback').className = 'feedback ' + (ok ? 'good' : 'bad');
+      $('quizFeedback').textContent = ok ? '정답입니다. 핵심어를 잘 인출했어요.' : `아쉬워요. 정답은 “${state.quiz.answer}”입니다.`;
+    }
+
+    function makeOxQuiz() {
+      const a = randomArticle();
+      if (!a) return;
+      const keyword = chooseKeyword(a);
+      const sentence = firstGoodSentence(a.text, keyword) || a.text.slice(0, 160);
+      const makeFalse = Math.random() > 0.5 && keyword;
+      let shown = sentence;
+      let answer = true;
+      if (makeFalse) {
+        const replacement = KEY_TERMS.find(t => t !== keyword && !sentence.includes(t)) || '일반교육';
+        shown = sentence.replace(keyword, replacement);
+        answer = false;
+      }
+      state.quiz = { type: 'ox', articleId: a.id, answer };
+      $('quizQuestion').textContent = `${a.lawLabel} ${a.articleNo} ${a.title}\n\n${shown}\n\n위 내용은 원문과 일치할까요?`;
+      $('quizAnswerArea').innerHTML = `<div class="controls"><button class="good" id="oxTrueBtn">O 맞다</button><button class="bad" id="oxFalseBtn">X 아니다</button></div>`;
+      $('quizFeedback').textContent = '';
+      $('oxTrueBtn').onclick = () => checkOx(true);
+      $('oxFalseBtn').onclick = () => checkOx(false);
+    }
+
+    function checkOx(value) {
+      const a = state.articles.find(x => x.id === state.quiz.articleId);
+      const ok = value === state.quiz.answer;
+      markQuizResult(a, ok);
+      $('quizFeedback').className = 'feedback ' + (ok ? 'good' : 'bad');
+      $('quizFeedback').textContent = ok ? '정답입니다.' : '오답입니다. 원문을 다시 읽고 하이라이트 읽기로 확인해보세요.';
+    }
+
+    function makeArticleNoQuiz() {
+      const a = randomArticle();
+      if (!a) return;
+      const pool = state.articles.filter(x => x.lawKey === a.lawKey && x.id !== a.id);
+      const options = shuffle([a.articleNo, ...shuffle(pool).slice(0, 3).map(x => x.articleNo)]).slice(0, 4);
+      state.quiz = { type: 'num', articleId: a.id, answer: a.articleNo };
+      $('quizQuestion').textContent = `다음 조문 제목과 일부 내용에 해당하는 조문 번호는?\n\n${a.lawLabel} · ${a.title}\n${a.text.slice(0, 130)}…`;
+      $('quizAnswerArea').innerHTML = `<div class="options">${options.map(o => `<button class="option" data-answer="${escapeHtml(o)}">${escapeHtml(o)}</button>`).join('')}</div>`;
+      $('quizFeedback').textContent = '';
+      document.querySelectorAll('.option').forEach(btn => btn.onclick = () => checkNum(btn.dataset.answer));
+    }
+
+    function checkNum(value) {
+      const a = state.articles.find(x => x.id === state.quiz.articleId);
+      const ok = value === state.quiz.answer;
+      markQuizResult(a, ok);
+      $('quizFeedback').className = 'feedback ' + (ok ? 'good' : 'bad');
+      $('quizFeedback').textContent = ok ? '정답입니다. 조문 위치 감각이 잡히고 있어요.' : `오답입니다. 정답은 ${state.quiz.answer}입니다.`;
+    }
+
+    function showQuizAnswer() {
+      if (!state.quiz) return;
+      $('quizFeedback').className = 'feedback';
+      $('quizFeedback').textContent = `정답: ${state.quiz.answer}`;
+    }
+
+    function markQuizResult(article, ok) {
+      if (!article) return;
+      const p = articleProgress(article.id);
+      if (ok) p.correct = (p.correct || 0) + 1;
+      else p.wrong = (p.wrong || 0) + 1;
+      saveProgress();
+      renderStats();
+      renderArticleStateOnly();
+      renderList();
+    }
+
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function normalizeText(text) {
+      return String(text || '').toLowerCase().replace(/[\s\n\r\t.,;:!?"'“”‘’()\[\]{}<>「」·ㆍ]/g, '');
+    }
+
+    function setupSpeechRecognition() {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SR) {
+        $('listenBtn').disabled = true;
+        $('listenBtn').textContent = 'STT 미지원';
+        $('reciteFeedback').className = 'feedback bad';
+        $('reciteFeedback').textContent = '현재 브라우저는 음성 인식을 지원하지 않습니다. 직접 입력 후 비교 기능을 사용하세요.';
+        return;
+      }
+      const rec = new SR();
+      rec.lang = 'ko-KR';
+      rec.interimResults = true;
+      rec.continuous = true;
+      rec.onresult = (event) => {
+        let finalText = '';
+        let interim = '';
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const txt = event.results[i][0].transcript;
+          if (event.results[i].isFinal) finalText += txt + ' ';
+          else interim += txt + ' ';
+        }
+        const previous = $('transcriptBox').value.replace(/\n\[인식 중\].*$/s, '').trim();
+        $('transcriptBox').value = [previous, finalText].filter(Boolean).join(' ') + (interim ? `\n[인식 중] ${interim}` : '');
+      };
+      rec.onerror = (e) => {
+        state.recognizing = false;
+        $('listenBtn').textContent = '🎙 말하기 시작';
+        $('reciteFeedback').className = 'feedback bad';
+        $('reciteFeedback').textContent = `음성 인식 오류: ${e.error || '알 수 없음'}. 직접 입력 후 비교할 수 있습니다.`;
+      };
+      rec.onend = () => {
+        state.recognizing = false;
+        $('listenBtn').textContent = '🎙 말하기 시작';
+      };
+      state.recognition = rec;
+    }
+
+    function startListening() {
+      if (!state.recognition || state.recognizing) return;
+      $('transcriptBox').value = '';
+      $('reciteFeedback').textContent = '';
+      $('keywordCompare').innerHTML = '';
+      state.recognizing = true;
+      $('listenBtn').textContent = '듣는 중...';
+      state.recognition.start();
+    }
+
+    function stopListening() {
+      if (!state.recognition || !state.recognizing) return;
+      state.recognition.stop();
+      state.recognizing = false;
+      $('listenBtn').textContent = '🎙 말하기 시작';
+      setTimeout(compareRecitation, 300);
+    }
+
+    function compareRecitation() {
+      const a = getCurrentArticle();
+      if (!a) return;
+      const spoken = $('transcriptBox').value.replace(/\[인식 중\].*$/s, '');
+      const spokenNorm = normalizeText(spoken);
+      const targetNorm = normalizeText(a.text);
+      const keywords = a.keywords.length ? a.keywords : extractKeywords(a.text).slice(0, 10);
+      const matched = keywords.filter(k => spokenNorm.includes(normalizeText(k)));
+      const miss = keywords.filter(k => !spokenNorm.includes(normalizeText(k)));
+      const keywordScore = keywords.length ? matched.length / keywords.length : 0;
+      const lengthScore = Math.min(1, spokenNorm.length / Math.max(80, targetNorm.length * 0.25));
+      const score = Math.round((keywordScore * 0.75 + lengthScore * 0.25) * 100);
+
+      const p = articleProgress(a.id);
+      p.reciteScore = Math.max(p.reciteScore || 0, score);
+      saveProgress();
+      $('reciteProgress').style.width = `${score}%`;
+      $('reciteFeedback').className = 'feedback ' + (score >= 70 ? 'good' : 'bad');
+      $('reciteFeedback').textContent = score >= 70 ? `인출 점수 ${score}%! 핵심어가 잘 나왔습니다.` : `인출 점수 ${score}%. 빠진 핵심어를 다시 보고 말해보세요.`;
+      $('keywordCompare').innerHTML = [
+        ...matched.map(k => `<span class="kw ok">${escapeHtml(k)}</span>`),
+        ...miss.map(k => `<span class="kw miss">${escapeHtml(k)}</span>`)
+      ].join('');
+      renderArticleStateOnly();
+    }
+
+    function showModal(id) {
+      $(id).classList.add('open');
+    }
+
+    function hideModal(id) {
+      $(id).classList.remove('open');
+    }
+
+    function renderApiLinks() {
+      const box = $('apiLinkList');
+      box.innerHTML = LAW_SOURCES.map(s => {
+        const url = apiUrl(s, 'JSON');
+        return `<div><b>${escapeHtml(s.label)} 본문 JSON</b><a class="api-link" href="${url}" target="_blank">${url}</a></div>`;
+      }).join('');
+    }
+
+    function parseManualJson() {
+      const raw = $('jsonPaste').value.trim();
+      if (!raw) return;
+      try {
+        const json = JSON.parse(raw);
+        const type = $('manualLawType').value;
+        const parsed = parseLawJson(json, type);
+        if (!parsed.length) throw new Error('조문을 찾지 못했습니다. lawService.do 본문 JSON인지 확인하세요.');
+        mergeArticles(parsed);
+        localStorage.setItem('specialLawCachedArticles', JSON.stringify({ savedAt: new Date().toISOString(), articles: state.articles }));
+        setStatus(`<strong>상태:</strong> 붙여넣은 JSON에서 ${parsed.length}개 조문을 반영했습니다.`, 'good');
+        $('jsonPaste').value = '';
+        hideModal('importModal');
+      } catch (err) {
+        alert('JSON 반영 실패: ' + err.message);
+      }
+    }
+
+    function exportData() {
+      const payload = {
+        exportedAt: new Date().toISOString(),
+        sources: LAW_SOURCES,
+        articles: state.articles,
+        progress: state.progress
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'special-education-law-study-data.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function goArticle(offset) {
+      const list = state.filtered.length ? state.filtered : getFilteredArticles();
+      const index = list.findIndex(a => a.id === state.selectedId);
+      if (index < 0) return;
+      const next = list[index + offset];
+      if (!next) return;
+      stopSpeaking();
+      state.selectedId = next.id;
+      renderAll();
+    }
+
+    function initEvents() {
+      $('loadBtn').onclick = loadAllLaws;
+      $('apiLinksBtn').onclick = () => { renderApiLinks(); showModal('apiLinksModal'); };
+      $('importBtn').onclick = () => showModal('importModal');
+      $('exportBtn').onclick = exportData;
+      $('parseJsonBtn').onclick = parseManualJson;
+      $('clearJsonBtn').onclick = () => $('jsonPaste').value = '';
+      $('fileInput').onchange = async (event) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        $('jsonPaste').value = await file.text();
+      };
+      document.querySelectorAll('[data-close]').forEach(btn => btn.onclick = () => hideModal(btn.dataset.close));
+      document.querySelectorAll('.modal').forEach(modal => modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); }));
+
+      $('searchInput').oninput = renderAll;
+      $('modeSelect').onchange = renderAll;
+      document.querySelectorAll('.tab').forEach(tab => tab.onclick = () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        state.lawFilter = tab.dataset.filter;
+        renderAll();
+      });
+
+      $('prevBtn').onclick = () => goArticle(-1);
+      $('nextBtn').onclick = () => goArticle(1);
+      $('favoriteBtn').onclick = () => {
+        const a = getCurrentArticle();
+        if (!a) return;
+        const p = articleProgress(a.id);
+        p.favorite = !p.favorite;
+        saveProgress();
+        renderAll();
+      };
+      $('readBtn').onclick = () => {
+        const a = getCurrentArticle();
+        if (!a) return;
+        const p = articleProgress(a.id);
+        p.read = !p.read;
+        saveProgress();
+        renderAll();
+      };
+
+      $('speakBtn').onclick = speakCurrentArticle;
+      $('pauseBtn').onclick = pauseSpeaking;
+      $('stopBtn').onclick = () => stopSpeaking();
+      $('rateInput').oninput = () => $('rateValue').textContent = Number($('rateInput').value).toFixed(2).replace(/0$/, '');
+      $('pitchInput').oninput = () => $('pitchValue').textContent = Number($('pitchInput').value).toFixed(2).replace(/0$/, '');
+      speechSynthesis.onvoiceschanged = populateVoices;
+
+      $('blankQuizBtn').onclick = makeBlankQuiz;
+      $('oxQuizBtn').onclick = makeOxQuiz;
+      $('numQuizBtn').onclick = makeArticleNoQuiz;
+      $('randomQuizBtn').onclick = () => [makeBlankQuiz, makeOxQuiz, makeArticleNoQuiz][Math.floor(Math.random() * 3)]();
+
+      $('listenBtn').onclick = startListening;
+      $('listenStopBtn').onclick = stopListening;
+      $('compareBtn').onclick = compareRecitation;
+    }
+
+    function boot() {
+      initEvents();
+      populateVoices();
+      setupSpeechRecognition();
+      renderApiLinks();
+      const cached = loadCachedArticles();
+      if (!cached) renderAll();
+      else setStatus(`<strong>상태:</strong> 저장된 조문 ${state.articles.length}개를 불러왔습니다. 최신 개정 확인은 법령 가져오기를 눌러주세요.`, 'good');
+    }
+
+    boot();
+  </script>
 </body>
 </html>
