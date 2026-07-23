@@ -1,0 +1,27 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[dev]
+  publish = "."
+  functions = "netlify/functions"
+  port = 8888
+  autoLaunch = true
+
+[[redirects]]
+  from = "/api/schools"
+  to = "/.netlify/functions/schools"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/meals"
+  to = "/.netlify/functions/meals"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/food-image"
+  to = "/.netlify/functions/food-image"
+  status = 200
+  force = true

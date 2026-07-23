@@ -1,0 +1,41 @@
+정확 메뉴 이미지 폴더: assets/foods/exact/
+
+현미밥 -> brown-rice.png 또는 .jpg/.jpeg/.webp/.svg
+잡곡밥 -> mixed-rice.png 또는 .jpg/.jpeg/.webp/.svg
+미역국 -> seaweed-soup.png 또는 .jpg/.jpeg/.webp/.svg
+된장국 -> soybean-paste-soup.png 또는 .jpg/.jpeg/.webp/.svg
+배추김치 -> kimchi.png 또는 .jpg/.jpeg/.webp/.svg
+깍두기 -> kkakdugi.png 또는 .jpg/.jpeg/.webp/.svg
+우유 -> milk.png 또는 .jpg/.jpeg/.webp/.svg
+구운김 -> roasted-seaweed.png 또는 .jpg/.jpeg/.webp/.svg
+계란후라이 -> fried-egg.png 또는 .jpg/.jpeg/.webp/.svg
+돈가스 -> pork-cutlet.png 또는 .jpg/.jpeg/.webp/.svg
+불고기 -> bulgogi.png 또는 .jpg/.jpeg/.webp/.svg
+닭갈비 -> dakgalbi.png 또는 .jpg/.jpeg/.webp/.svg
+스파게티 -> spaghetti.png 또는 .jpg/.jpeg/.webp/.svg
+카레 -> curry.png 또는 .jpg/.jpeg/.webp/.svg
+치킨샐러드 -> chicken-salad.png 또는 .jpg/.jpeg/.webp/.svg
+
+분류 대표 이미지 폴더: assets/foods/categories/
+
+밥 -> rice.png 또는 .jpg/.jpeg/.webp/.svg
+국 -> soup.png 또는 .jpg/.jpeg/.webp/.svg
+찌개 -> stew.png 또는 .jpg/.jpeg/.webp/.svg
+면 -> noodle.png 또는 .jpg/.jpeg/.webp/.svg
+빵 -> bread.png 또는 .jpg/.jpeg/.webp/.svg
+고기 -> meat.png 또는 .jpg/.jpeg/.webp/.svg
+닭고기 -> chicken.png 또는 .jpg/.jpeg/.webp/.svg
+생선 -> fish.png 또는 .jpg/.jpeg/.webp/.svg
+계란 -> egg.png 또는 .jpg/.jpeg/.webp/.svg
+김치 -> kimchi.png 또는 .jpg/.jpeg/.webp/.svg
+나물 -> namul.png 또는 .jpg/.jpeg/.webp/.svg
+샐러드 -> salad.png 또는 .jpg/.jpeg/.webp/.svg
+튀김 -> fried.png 또는 .jpg/.jpeg/.webp/.svg
+조림 -> braised.png 또는 .jpg/.jpeg/.webp/.svg
+볶음 -> stir-fried.png 또는 .jpg/.jpeg/.webp/.svg
+과일 -> fruit.png 또는 .jpg/.jpeg/.webp/.svg
+우유 -> milk.png 또는 .jpg/.jpeg/.webp/.svg
+음료 -> drink.png 또는 .jpg/.jpeg/.webp/.svg
+떡 -> rice-cake.png 또는 .jpg/.jpeg/.webp/.svg
+후식 -> dessert.png 또는 .jpg/.jpeg/.webp/.svg
+음식 -> default-food.png 또는 .jpg/.jpeg/.webp/.svg

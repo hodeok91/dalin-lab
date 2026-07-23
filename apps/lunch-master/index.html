@@ -1,1 +1,259 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#155eef">
+  <title>급식의 달인 | 오늘 급식 한글쓰기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="header-top">
+    <div class="brand">
+      <span class="brand-icon">🍱</span>
+      <div>
+        <strong id="schoolName">우리학교</strong>
+        <p>급식의 달인</p>
+      </div>
+    </div>
+    <button id="changeSchoolBtn" class="white-button">🏫 다른 학교 검색</button>
+  </div>
 
+  <div class="date-controller">
+    <button id="prevDate" aria-label="이전 날짜">‹</button>
+    <div class="date-picker-wrap">
+      <button id="dateText" class="date-display" type="button" aria-label="날짜 선택 달력 열기"></button>
+      <div id="calendarPopover" class="calendar-popover hidden" role="dialog" aria-label="급식 날짜 선택">
+        <div class="calendar-head">
+          <button id="calendarPrevMonth" type="button" aria-label="이전 달">‹</button>
+          <strong id="calendarMonthText"></strong>
+          <button id="calendarNextMonth" type="button" aria-label="다음 달">›</button>
+        </div>
+        <div class="calendar-weekdays">
+          <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+        </div>
+        <div id="calendarGrid" class="calendar-grid"></div>
+        <button id="calendarTodayBtn" class="calendar-today-btn" type="button">오늘 날짜로 이동</button>
+      </div>
+    </div>
+    <button id="nextDate" aria-label="다음 날짜">›</button>
+  </div>
+  <button id="todayBtn" class="ghost-button">오늘로 이동</button>
+</header>
+
+<nav class="step-nav">
+  <button data-step="meal" class="active"><span>1</span> 급식 보기</button>
+  <button data-step="tray"><span>2</span> 식판 담기</button>
+  <button data-step="write"><span>3</span> 따라쓰기</button>
+  <button data-step="finish"><span>4</span> 완성</button>
+</nav>
+
+<main>
+  <section class="tool-panel">
+    <div class="tool-group">
+      <b>✏️ 필기 색상</b>
+      <div id="colorTools" class="tool-row">
+        <button data-color="#172033" class="color black selected" aria-label="검정"></button>
+        <button data-color="#ef4444" class="color red" aria-label="빨강"></button>
+        <button data-color="#2563eb" class="color blue" aria-label="파랑"></button>
+        <button data-color="#9333ea" class="color purple" aria-label="보라"></button>
+        <button data-color="#10b981" class="color green" aria-label="초록"></button>
+      </div>
+    </div>
+    <div class="tool-group">
+      <b>✒️ 연필심 굵기</b>
+      <div id="widthTools" class="tool-row segment">
+        <button data-width="3">가는 선</button>
+        <button data-width="6" class="selected">보통</button>
+        <button data-width="10">굵은 선</button>
+        <button data-width="15">매우 굵게</button>
+      </div>
+    </div>
+    <div class="tool-group">
+      <b>📖 공책선</b>
+      <div id="guideTools" class="tool-row segment">
+        <button data-guide="cross" class="selected">십자</button>
+        <button data-guide="line">줄공책</button>
+        <button data-guide="blank">빈 공책</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="status" role="status" aria-live="polite"></div>
+
+  <!-- 1. 급식 보기 -->
+  <section id="meal" class="step-panel active">
+    <article class="card">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">오늘은 무엇을 먹을까요?</p>
+          <h1>오늘의 급식</h1>
+          <p id="mealSummary">학교를 선택하면 오늘의 중식을 불러옵니다.</p>
+        </div>
+        <span id="calorieBadge" class="badge"></span>
+      </div>
+
+      <div class="info-banner">
+        급식 보기에서는 메뉴를 선택하지 않습니다. 오늘 제공되는 모든 메뉴를 그림과 글자로 확인합니다.
+      </div>
+
+      <div id="mealGrid" class="menu-grid"></div>
+      <p class="image-notice">
+        ※ 음식 이미지는 메뉴 이해를 돕기 위한 대표 이미지입니다. 실제 급식의 모양·재료·조리 상태와 다를 수 있으며,
+        자동 검색된 이미지는 메뉴와 정확히 일치하지 않을 수 있습니다.
+      </p>
+
+      <form id="customMenuForm" class="custom-form">
+        <div>
+          <strong>직접 연습할 단어 추가</strong>
+          <p>급식이 없거나 다른 메뉴를 추가하고 싶을 때 사용합니다.</p>
+        </div>
+        <input id="customMenuInput" maxlength="14" placeholder="예: 맛있는 스파게티">
+        <button>+ 추가</button>
+      </form>
+
+      <div class="actions">
+        <button id="goTrayBtn" class="primary">전체 메뉴로 식판 활동하기 →</button>
+      </div>
+    </article>
+  </section>
+
+  <!-- 2. 식판 담기 -->
+  <section id="tray" class="step-panel">
+    <article class="card">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">그림과 글자를 연결해요</p>
+          <h2>식판 담기</h2>
+        </div>
+        <div id="trayModeButtons" class="mode-buttons">
+          <button data-mode="match" class="selected">그림·글자 맞추기</button>
+          <button data-mode="free">자율 배식</button>
+        </div>
+      </div>
+
+      <div id="choiceSelector" class="choice-selector hidden"></div>
+
+      <div id="trayModeHelp" class="info-banner"></div>
+
+      <div class="tray-layout">
+        <section class="tray-side">
+          <div class="mini-heading">
+            <h3>큰 식판</h3>
+            <button id="resetTrayBtn" class="secondary">다시 담기</button>
+          </div>
+          <div id="dynamicTray" class="dynamic-tray"></div>
+          <button id="completeServingBtn" class="primary full-button" disabled>배식 완료</button>
+        </section>
+
+        <aside class="pantry-side">
+          <div class="mini-heading">
+            <h3>메뉴 보관함</h3>
+            <span id="pantryCount" class="badge"></span>
+          </div>
+          <div id="pantry" class="pantry-grid"></div>
+        </aside>
+      </div>
+
+      <div class="actions split">
+        <button data-go="meal" class="secondary">← 급식 보기</button>
+        <button id="goWriteBtn" class="primary">따라쓰기 →</button>
+      </div>
+    </article>
+  </section>
+
+  <!-- 3. 따라쓰기 -->
+  <section id="write" class="step-panel">
+    <article class="card">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">오늘 급식으로 한글을 써요</p>
+          <h2>따라쓰기</h2>
+        </div>
+        <div id="writingModeButtons" class="mode-buttons">
+          <button data-writing-mode="whole" class="selected">메뉴별 음절 쓰기</button>
+          <button data-writing-mode="repeat">개별 메뉴 10번 쓰기</button>
+        </div>
+      </div>
+
+      <div id="wholeWritingArea"></div>
+
+      <div id="repeatWritingArea" class="hidden">
+        <div class="repeat-settings">
+          <label>
+            메뉴 선택
+            <select id="repeatMenuSelect"></select>
+          </label>
+          <label>
+            쓰기 단계
+            <select id="repeatLevelSelect">
+              <option value="trace10">10번 모두 덧쓰기</option>
+              <option value="trace5free5" selected>5번 덧쓰기 + 5번 혼자 쓰기</option>
+              <option value="free10">10번 혼자 쓰기</option>
+            </select>
+          </label>
+          <label>
+            쓰기 칸
+            <select id="repeatLayoutSelect">
+              <option value="syllable" selected>음절 칸</option>
+            </select>
+          </label>
+        </div>
+        <div id="repeatBoard"></div>
+      </div>
+
+      <div class="actions split">
+        <button data-go="tray" class="secondary">← 식판 담기</button>
+        <button id="goFinishBtn" class="primary">활동 마치기 →</button>
+      </div>
+    </article>
+  </section>
+
+  <!-- 4. 완성 -->
+  <section id="finish" class="step-panel">
+    <article class="card finish-card">
+      <div class="finish-icon">🎉</div>
+      <p class="kicker">오늘의 활동 완료</p>
+      <h2>급식을 보고, 담고, 써 보았어요!</h2>
+      <div id="finishGrid" class="menu-grid"></div>
+      <div class="actions center">
+        <button id="speakAllBtn" class="secondary">🔊 모두 읽어주기</button>
+        <button id="restartBtn" class="primary">처음부터 다시 하기</button>
+      </div>
+    </article>
+  </section>
+</main>
+
+<div id="schoolModal" class="modal hidden">
+  <section class="modal-box">
+    <header class="modal-header">
+      <h2>🏫 내 학교는</h2>
+      <button id="closeSchoolBtn">×</button>
+    </header>
+    <form id="schoolSearchForm" class="search-form">
+      <input id="schoolSearchInput" placeholder="학교 이름 입력 (예: 갈현초, 명현학교)">
+      <button>검색</button>
+    </form>
+    <p id="schoolSearchStatus">학교 이름을 입력해 주세요.</p>
+    <div id="schoolResults"></div>
+    <footer>교육행정정보시스템(NEIS) 학교정보를 활용합니다.</footer>
+  </section>
+</div>
+
+<div id="completeModal" class="modal hidden">
+  <section class="modal-box complete-box">
+    <div class="complete-emoji">🍱</div>
+    <h2 id="completeTitle">배식 완료!</h2>
+    <p id="completeMessage"></p>
+    <div class="actions center">
+      <button id="closeCompleteBtn" class="secondary">식판 다시 보기</button>
+      <button id="completeToWriteBtn" class="primary">따라쓰기 시작</button>
+    </div>
+  </section>
+</div>
+
+<script src="food-images.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

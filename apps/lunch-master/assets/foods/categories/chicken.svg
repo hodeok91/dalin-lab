@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+<rect width="800" height="600" rx="50" fill="#eef4ff"/>
+<circle cx="400" cy="260" r="150" fill="#ffffff"/>
+<text x="400" y="315" font-size="150" text-anchor="middle">🍗</text>
+<text x="400" y="500" font-family="Arial, sans-serif" font-size="48" font-weight="700" text-anchor="middle" fill="#344765">닭고기</text>
+</svg>

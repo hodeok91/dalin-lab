@@ -1,0 +1,15 @@
+{
+  "name": "lunch-master",
+  "version": "4.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "netlify dev",
+    "test:api": "node local-api-test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "netlify-cli": "^23.0.0"
+  }
+}
