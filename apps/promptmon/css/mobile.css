@@ -1,2 +1,0 @@
-/* 모바일 전용 추가 보정은 legacy.css의 기존 반응형을 우선 사용합니다. */
-@media (max-width: 768px){.choice-btn.good-card::before,.choice-btn.bad-card::before{display:block;width:max-content;margin-bottom:4px;}}

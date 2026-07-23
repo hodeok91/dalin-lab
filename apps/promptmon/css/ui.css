@@ -1,4 +1,0 @@
-/* 대규모 업데이트 UI 보정 */
-.choice-btn.good-card::before{content:"좋은 카드";display:inline-block;margin-right:8px;padding:2px 6px;border:2px solid #111;border-radius:999px;background:#dff5c8;font-size:12px;font-weight:900;}
-.choice-btn.bad-card::before{content:"부족한 카드";display:inline-block;margin-right:8px;padding:2px 6px;border:2px solid #111;border-radius:999px;background:#ffd9c8;font-size:12px;font-weight:900;}
-.village-chip{display:inline-block;margin-left:6px;padding:2px 8px;border:2px solid #111;border-radius:999px;background:#fff6bd;font-size:12px;font-weight:900;}
