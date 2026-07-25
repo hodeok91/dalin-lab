@@ -1,39 +1,75 @@
-/* 수합의 달인 FCM 서비스 워커 */
-function decodeBase64Url(value){
-  var s=String(value||'').replace(/-/g,'+').replace(/_/g,'/');
-  while(s.length%4)s+='=';
-  var binary=atob(s),bytes=new Uint8Array(binary.length);
-  for(var i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);
-  return new TextDecoder().decode(bytes);
-}
-var raw=new URL(self.location.href).searchParams.get('cfg');
-var client={};
-try{client=JSON.parse(decodeBase64Url(raw));}catch(e){console.error('FCM config decode failed',e);}
-importScripts('https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js');
-importScripts('https://www.gstatic.com/firebasejs/10.12.5/firebase-messaging-compat.js');
-if(client.firebaseConfig){
-  firebase.initializeApp(client.firebaseConfig);
-  var messaging=firebase.messaging();
-  messaging.onBackgroundMessage(function(payload){
-    var d=payload&&payload.data?payload.data:{};
-    var title=d.title||'수합의 달인';
-    var options={
-      body:d.body||'새 알림이 있습니다.',
-      tag:d.collectionId?'dalin-'+d.collectionId:'dalin-notice',
-      renotify:true,
-      data:{link:d.link||client.webAppUrl||'./push-register.html'}
-    };
-    return self.registration.showNotification(title,options);
-  });
-}
-self.addEventListener('notificationclick',function(event){
-  event.notification.close();
-  var link=event.notification&&event.notification.data&&event.notification.data.link;
-  link=link||client.webAppUrl||'./push-register.html';
-  event.waitUntil(clients.matchAll({type:'window',includeUncontrolled:true}).then(function(list){
-    for(var i=0;i<list.length;i++){
-      if('focus' in list[i]){list[i].navigate(link);return list[i].focus();}
+/*
+ * 수합의 달인 FCM 공용 서비스 워커 V2
+ * - Firebase SDK를 서비스 워커 안에서 불러오지 않습니다.
+ * - GAS에서 보내는 FCM data payload를 표준 push 이벤트로 직접 처리합니다.
+ * - 여러 학교가 동일한 GitHub Pages 파일을 사용해도 Firebase 설정이 섞이지 않습니다.
+ */
+'use strict';
+
+self.addEventListener('install', function () {
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', function (event) {
+  event.waitUntil(self.clients.claim());
+});
+
+function readPayload_(event) {
+  if (!event.data) return {};
+  try {
+    return event.data.json() || {};
+  } catch (jsonError) {
+    try {
+      return { data: { body: event.data.text() } };
+    } catch (textError) {
+      return {};
     }
-    return clients.openWindow?clients.openWindow(link):null;
-  }));
+  }
+}
+
+self.addEventListener('push', function (event) {
+  var payload = readPayload_(event);
+  var notification = payload.notification || {};
+  var data = payload.data || payload || {};
+
+  var title = notification.title || data.title || '수합의 달인';
+  var body = notification.body || data.body || '새 알림이 있습니다.';
+  var link = data.link || notification.click_action || './push-register.html';
+  var collectionId = data.collectionId || data.collectionID || '';
+
+  var options = {
+    body: body,
+    tag: collectionId ? 'dalin-' + collectionId : 'dalin-notice',
+    renotify: true,
+    data: {
+      link: link,
+      collectionId: collectionId
+    }
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener('notificationclick', function (event) {
+  event.notification.close();
+
+  var link = './push-register.html';
+  if (event.notification && event.notification.data && event.notification.data.link) {
+    link = event.notification.data.link;
+  }
+
+  event.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (clientList) {
+      for (var i = 0; i < clientList.length; i += 1) {
+        var client = clientList[i];
+        if ('navigate' in client && 'focus' in client) {
+          return client.navigate(link).then(function () {
+            return client.focus();
+          });
+        }
+      }
+      if (self.clients.openWindow) return self.clients.openWindow(link);
+      return null;
+    })
+  );
 });
