@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#FEE500">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <title>수합의 달인 웹푸시 등록</title>
+  <style>
+    :root{--y:#FEE500;--i:#191919;--p:#FFFDF2;--l:#E6E3D6;--m:#667085;--g:#138A4B;--r:#D93025}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--p);font-family:Arial,'Noto Sans KR',sans-serif;color:var(--i);display:grid;place-items:center;padding:20px}.card{width:min(540px,100%);background:#fff;border:1px solid var(--l);border-radius:24px;padding:24px;box-shadow:0 16px 45px rgba(25,25,25,.1)}.brand{display:flex;gap:12px;align-items:center;margin-bottom:18px}.logo{width:50px;height:50px;border-radius:15px;background:var(--i);color:var(--y);display:grid;place-items:center;font-size:25px;font-weight:900}.brand h1{font-size:21px;margin:0}.brand p{margin:4px 0 0;color:var(--m);font-size:13px}.notice{background:#fff7c8;border:1px solid #ead76c;border-radius:14px;padding:13px;line-height:1.55;font-size:13px;margin-bottom:14px}.status{background:#f3f4f6;border-radius:13px;padding:14px;min-height:52px;line-height:1.55;margin-bottom:14px}.status.ok{background:#dcfce7;color:#116534;font-weight:800}.status.error{background:#ffe4e1;color:#a6261d;font-weight:800}.btn{width:100%;border:0;border-radius:13px;padding:14px;font-weight:900;background:var(--y);cursor:pointer;font-size:15px}.btn:disabled{opacity:.5;cursor:not-allowed}.sub{margin-top:10px;color:var(--m);font-size:12px;line-height:1.55}.token{display:none;margin-top:12px;width:100%;min-height:90px;border:1px solid var(--l);border-radius:10px;padding:9px;font-size:10px;word-break:break-all}
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-messaging-compat.js"></script>
+</head>
+<body>
+  <main class="card">
+    <div class="brand"><div class="logo">수</div><div><h1>수합의 달인 웹푸시 등록</h1><p>이 기기에서 미제출 알림을 받습니다.</p></div></div>
+    <div class="notice">알림에는 이름이나 개인정보를 넣지 않고, “미제출 수합이 있습니다”와 수합 제목만 표시합니다. 공용 PC에서는 등록하지 않는 것을 권장합니다.</div>
+    <div id="status" class="status">설정을 확인하고 있습니다.</div>
+    <button id="registerBtn" class="btn" type="button" disabled>알림 권한 허용하고 등록</button>
+    <div class="sub">PC·안드로이드 Chrome에서 먼저 테스트하세요. iPhone은 지원되는 버전에서 이 페이지를 홈 화면에 추가한 뒤 알림 권한을 허용해야 할 수 있습니다.</div>
+    <textarea id="tokenBox" class="token" readonly></textarea>
+  </main>
+<script>
+let clientConfig=null;
+const $=s=>document.querySelector(s);
+function setStatus(text,type){const el=$('#status');el.textContent=text;el.className='status'+(type?' '+type:'')}
+function decodeBase64Url(value){let s=String(value||'').replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const bytes=Uint8Array.from(atob(s),c=>c.charCodeAt(0));return new TextDecoder().decode(bytes)}
+function notifyOpener(payload){try{if(window.opener&&!window.opener.closed)window.opener.postMessage(payload,'*')}catch(e){console.warn(e)}}
+async function init(){try{if(!('serviceWorker' in navigator))throw new Error('이 브라우저는 서비스 워커를 지원하지 않습니다.');if(!('Notification' in window))throw new Error('이 브라우저는 알림을 지원하지 않습니다.');const raw=new URLSearchParams(location.search).get('cfg');if(!raw)throw new Error('Firebase 설정이 전달되지 않았습니다. 수합의 달인 앱에서 다시 열어주세요.');clientConfig=JSON.parse(decodeBase64Url(raw));if(!clientConfig.firebaseConfig||!clientConfig.vapidKey)throw new Error('Firebase 공개 설정이 부족합니다.');$('#registerBtn').disabled=false;setStatus('준비되었습니다. 아래 버튼을 눌러 이 기기를 등록하세요.')}catch(e){setStatus(e.message||String(e),'error');notifyOpener({type:'DALIN_FCM_TOKEN',error:e.message||String(e)})}}
+async function registerPush(){const btn=$('#registerBtn');btn.disabled=true;setStatus('알림 권한을 확인하고 있습니다.');try{const permission=await Notification.requestPermission();if(permission!=='granted')throw new Error('알림 권한이 허용되지 않았습니다. 브라우저 설정에서 알림을 허용해주세요.');const raw=new URLSearchParams(location.search).get('cfg');const sw=await navigator.serviceWorker.register('./firebase-messaging-sw.js?cfg='+encodeURIComponent(raw),{scope:'./'});await navigator.serviceWorker.ready;if(!firebase.apps.length)firebase.initializeApp(clientConfig.firebaseConfig);const messaging=firebase.messaging();const token=await messaging.getToken({vapidKey:clientConfig.vapidKey,serviceWorkerRegistration:sw});if(!token)throw new Error('FCM 등록 토큰을 발급받지 못했습니다.');localStorage.setItem('dalinFcmToken',token);$('#tokenBox').value=token;setStatus('등록 토큰을 발급했습니다. 수합의 달인 앱에 저장하는 중입니다.','ok');notifyOpener({type:'DALIN_FCM_TOKEN',token,deviceInfo:{userAgent:navigator.userAgent,platform:navigator.platform||'',language:navigator.language||'',registeredAt:new Date().toISOString()}});setTimeout(()=>setStatus('웹푸시 등록이 완료되었습니다. 이 창은 닫아도 됩니다.','ok'),800)}catch(e){setStatus(e.message||String(e),'error');notifyOpener({type:'DALIN_FCM_TOKEN',error:e.message||String(e)});btn.disabled=false}}
+$('#registerBtn').addEventListener('click',registerPush);init();
+</script>
+</body></html>

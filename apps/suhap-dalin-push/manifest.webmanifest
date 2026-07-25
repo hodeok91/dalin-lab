@@ -1,0 +1,10 @@
+{
+  "name": "수합의 달인 웹푸시",
+  "short_name": "수합 푸시",
+  "start_url": "./push-register.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFFDF2",
+  "theme_color": "#FEE500",
+  "lang": "ko-KR"
+}
