@@ -97,7 +97,7 @@ const favs = { list: () => store.get('favs', []), has: (id) => favs.list().inclu
   toggle(id) { const l = favs.list(); const i = l.indexOf(id); i < 0 ? l.push(id) : l.splice(i, 1); store.set('favs', l); renderFavs(); } };
 async function renderFavs() {
   const apps = await data.apps(); const l = favs.list().map(id => apps.find(a => a.id === id)).filter(Boolean);
-  $('#favList').innerHTML = l.length ? l.map(a => `<a href="${esc(a.url)}" data-app="${esc(a.id)}" ${isExternal(a.url) ? 'target="_blank" rel="noopener"' : ''}>${a.icon} ${esc(a.name)}</a>`).join('') : '<p class="muted small">앱 카드의 ☆을 누르면 여기에 모여요</p>';
+  $('#favList').innerHTML = l.length ? l.map(a => `<a href="${esc(launchHref(a))}" data-app="${esc(a.id)}" ${isExternal(a.url) ? 'target="_blank" rel="noopener"' : ''}>${a.icon} ${esc(a.name)}</a>`).join('') : '<p class="muted small">앱 카드의 ☆을 누르면 여기에 모여요</p>';
 }
 
 /* ---------- 시계 ---------- */
@@ -185,7 +185,9 @@ function alertBox(msg) { modal.open(`<h2 class="h-modal">알림</h2><p role="ale
 /* ---------- 앱 카드 ---------- */
 const STATUS = { live: ['실험 완료 · 사용 가능', 'st-live'], soon: ['실험 중', 'st-soon'] };
 const thumb = (a, cls = 'app-ico') => a.image ? `<img class="${cls} img" src="${esc(a.image)}" alt="" loading="lazy">` : `<div class="${cls}">${a.icon || '🧪'}</div>`;
-const launchBtn = (a, label = '실행하기') => a.status === 'live' && a.url ? `<a class="btn" href="${esc(a.url)}" data-app="${esc(a.id)}" aria-label="${esc(a.name)} ${label}" ${isExternal(a.url) ? 'target="_blank" rel="noopener"' : ''}>${label}</a>` : '<span class="btn" aria-disabled="true">실험 중<span class="sr-only"> (아직 사용할 수 없음)</span></span>';
+const runnable = (a) => a.status === 'live' && a.url && !isExternal(a.url) && a.frame !== false && !/Windows|Android|설치|확장/.test(a.type || '');
+const launchHref = (a) => runnable(a) ? '#/run/' + a.id : a.url;
+const launchBtn = (a, label = '실행하기') => runnable(a) ? `<a class="btn" href="#/run/${esc(a.id)}" data-app="${esc(a.id)}" aria-label="${esc(a.name)} ${label}">${label}</a>` : a.status === 'live' && a.url ? `<a class="btn" href="${esc(a.url)}" data-app="${esc(a.id)}" aria-label="${esc(a.name)} ${label}" ${isExternal(a.url) ? 'target="_blank" rel="noopener"' : ''}>${label}</a>` : '<span class="btn" aria-disabled="true">실험 중<span class="sr-only"> (아직 사용할 수 없음)</span></span>';
 function appCard(a, clicks = {}) {
   const [st, cls] = STATUS[a.status] || STATUS.live;
   const open = launchBtn(a, a.launchLabel || '실행하기') + `<a class="btn ghost" href="#/app/${esc(a.id)}" aria-label="${esc(a.name)} 자세히 보기">자세히</a>`;
@@ -224,6 +226,12 @@ async function pageHome() {
     </div>
   </section>
 
+  <section aria-labelledby="hAll">
+  <div class="h-sec"><h2 id="hAll">🧪 연구소의 모든 실험</h2><a href="#/apps">자세히 보기 →</a></div>
+  <div class="chips" id="hc" role="group" aria-label="실험 분류">${['전체', ...new Set(apps.map(a => a.category).filter(Boolean))].map((c, i) => `<button type="button" class="chip ${i ? '' : 'on'}" aria-pressed="${!i}" data-c="${esc(c)}">${esc(c)}</button>`).join('')}</div>
+  <ul class="tiles" id="homeTiles" aria-label="실험 목록"></ul>
+  </section>
+
   <section class="today" aria-label="오늘 정보">
     <div class="card"><div class="w-title"><span>🕘 오늘</span></div><div class="w-big mono" id="wClock">--:--:--</div>
       <div class="w-sub">${new Date().toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul', month: 'long', day: 'numeric' })} (${DAYS[new Date().getDay()]})</div></div>
@@ -252,6 +260,9 @@ async function pageHome() {
   <div class="h-sec"><h2>연구원 즐겨찾기 사이트</h2></div>
   <div class="chips">${links.map(l => `<a class="chip" href="${esc(l.url)}" target="_blank" rel="noopener">${l.icon || '🔗'} ${esc(l.name)}</a>`).join('')}</div>
   </div>`;
+  const tiles = (c) => { $('#homeTiles').innerHTML = [...apps].sort((x, y) => (y.status === 'live') - (x.status === 'live') || (clicks[y.id] || 0) - (clicks[x.id] || 0) || (y.featured ? 1 : 0) - (x.featured ? 1 : 0)).filter(a => c === '전체' || a.category === c).map(a => `<li><a class="tile${a.status === 'live' ? '' : ' soon'}" href="#/app/${esc(a.id)}">${thumb(a, 'tile-ico')}<b>${esc(a.name)}</b><span class="tile-d">${esc(a.desc)}</span><span class="tile-t">${esc(a.type || '웹앱')}${a.status === 'live' ? '' : ' · 실험 중'}</span></a></li>`).join(''); };
+  tiles('전체');
+  $('#hc').onclick = (e) => { const b = e.target.closest('[data-c]'); if (!b) return; $$('#hc .chip').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', String(x === b)); }); tiles(b.dataset.c); };
   $('#homeSearch').onsubmit = (e) => { e.preventDefault(); location.hash = '#/apps?q=' + encodeURIComponent($('#homeQ').value.trim()); };
   $('#locBtn').onclick = pickLocation; $('#schoolBtn').onclick = schoolDialog; $('#ddayBtn').onclick = ddayDialog;
   tick(); loadWeather(); loadMeal(); renderDday();
@@ -403,6 +414,23 @@ function pageAbout() {
   <div class="h-sec"><h2>바이브코딩이란?</h2></div><p>앱의 목적, 사용자, 화면, 기능, 보안 조건을 <b>말로 설명</b>하고 AI와 함께 코드를 완성하는 방식이에요. 달인 연구소의 앱 대부분이 이렇게 만들어졌어요.</p>
   <div class="h-sec"><h2>자주 묻는 질문</h2></div><div class="grid">${FAQ.map(([q, a]) => `<details class="faq"><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div></div>`;
 }
+/* ---------- 화면: 앱 실행 (연구소 안에서 열고, 언제든 돌아오기) ---------- */
+let lastHash = '#/';
+window.addEventListener('hashchange', (e) => { const o = new URL(e.oldURL).hash; if (!/^#\/run\//.test(o)) lastHash = o || '#/'; });
+async function pageRun(id) {
+  const apps = await data.apps(); const a = apps.find(x => x.id === id);
+  if (!a || !runnable(a)) return pageApp(id);
+  document.title = a.name + ' · 달인 연구소';
+  view.innerHTML = `<div class="runner" role="region" aria-label="${esc(a.name)} 실행 화면">
+    <div class="run-bar"><a class="run-back" href="${esc(lastHash)}" id="runBack">← 달인 연구소로<span class="sr-only"> 돌아가기</span></a>
+    <h1 class="run-name">${a.icon || '🧪'} ${esc(a.name)}</h1>
+    <a class="run-btn" href="${esc(a.url)}" target="_blank" rel="noopener">새 창 ↗<span class="sr-only"> (새 창에서 열기)</span></a>
+    <a class="run-btn" href="${esc(lastHash)}" aria-label="닫기">✕</a></div>
+    <iframe class="run-frame" src="${esc(a.url)}" title="${esc(a.name)}" allow="clipboard-write; fullscreen; autoplay; microphone; camera" allowfullscreen></iframe></div>`;
+  document.body.classList.add('running');
+  const off = () => { if (!/^#\/run\//.test(location.hash)) { document.body.classList.remove('running'); removeEventListener('hashchange', off); } };
+  addEventListener('hashchange', off);
+}
 function notFound() { view.innerHTML = '<div class="empty">페이지를 찾지 못했어요. <a href="#/">홈으로</a></div>'; }
 
 /* ---------- 라우터 ---------- */
@@ -424,6 +452,7 @@ async function routeInner() {
   view.scrollTop = 0; $('.content').scrollTop = 0;
   if (seg === 'post') return pagePost(decodeURIComponent(arg || ''));
   if (seg === 'app') return pageApp(decodeURIComponent(arg || ''));
+  if (seg === 'run') return pageRun(decodeURIComponent(arg || ''));
   const r = ROUTES[seg || ''] || null; if (!r) return notFound();
   setTab(r[0]); document.title = (seg ? r[0].replace(/[/.].*$/, '') + ' · ' : '') + '달인 연구소';
   await r[1](params);

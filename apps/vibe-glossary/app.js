@@ -20,13 +20,23 @@ let ext = { on: false, version: '', done: {} };
 window.addEventListener('message', (e) => {
   if (e.source !== window || e.data?.source !== 'hgm-coach') return;
   const was = ext.on; ext = { on: true, version: e.data.version, done: e.data.done || {} };
+  if (!was) { document.documentElement.classList.add('ext-on'); window.hgmPet?.say?.('🧩 코치 연결됨! 제미나이 화면에서도 만나요', 5000); }
   if (!was || /^#\/(quests|track\/[\w-]+|me)?(\?.*)?$/.test(location.hash || '#/')) route(true);
 });
 window.postMessage({ source: 'hgm-page', type: 'hello' }, location.origin);
-const coachCard = () => ext.on
-  ? `<div class="card coach on" role="status"><b>🧩 형아맨 코치 연결됨 (v${esc(ext.version)})</b><p class="small" style="margin:4px 0 0">제미나이·AI 스튜디오 화면에서 브라우저 오른쪽 위 <b>형아맨 아이콘</b>을 누르면, 형아맨이 버튼을 짚어 주고 클릭·프롬프트를 자동으로 확인해요.</p></div>`
-  : `<div class="card coach"><b>🧩 실제 화면에서 자동 확인을 받으려면 «형아맨 코치»를 설치해요</b><p class="small" style="margin:4px 0 8px">크롬·엣지 확장 프로그램이에요. 제미나이 화면 위에 설명 말풍선이 뜨고, 캔버스 켜기·프롬프트 보내기·링크 복사를 알아서 확인해요. 설치하지 않아도 아래 방법으로 직접 확인할 수 있어요.</p>
-     <div class="row">${COACH.chrome ? `<a class="btn" href="${esc(COACH.chrome)}" target="_blank" rel="noopener">크롬에 설치<span class="sr-only"> (새 창)</span></a>` : ''}${COACH.edge ? `<a class="btn" href="${esc(COACH.edge)}" target="_blank" rel="noopener">엣지에 설치<span class="sr-only"> (새 창)</span></a>` : ''}${COACH.zip ? `<a class="btn ghost" href="${esc(COACH.zip)}" target="_blank" rel="noopener">파일로 받기<span class="sr-only"> (새 창)</span></a>` : ''}<a class="btn ghost" href="#/coach">설치 방법</a></div></div>`;
+const coachCard = (ctx) => {
+  const D = window.HGM.device();
+  if (ext.on) return ctx === 'quest' ? '' : `<div class="card coach on" role="status"><b>🧩 형아맨 코치 연결됨 (v${esc(ext.version)})</b><p class="small" style="margin:4px 0 0">제미나이·AI 스튜디오를 열면 <b>화면 위에 형아맨이 겹쳐 나타나</b> 버튼을 짚어 주고, 클릭·프롬프트를 자동으로 확인해요. 브라우저 오른쪽 위 형아맨 아이콘을 누르면 퀘스트 창도 열려요.</p></div>`;
+  if (D.mobile) return ctx === 'quest' ? '' : `<div class="card coach mob"><b>📱 휴대폰 모드로 진행해요</b><p class="small" style="margin:4px 0 0">휴대폰 브라우저는 확장 프로그램을 쓸 수 없어요. 이 교실에서 형아맨의 설명을 보고 제미나이 앱에서 따라 한 뒤, 돌아와서 MISSION으로 확인하면 돼요. PC 크롬·엣지·웨일에서 열면 형아맨이 제미나이 화면 위에 직접 나타나요.</p></div>`;
+  if (!D.canExt) return `<div class="card coach"><b>🧩 크롬·엣지·웨일에서 열면 형아맨 코치를 쓸 수 있어요</b><p class="small" style="margin:4px 0 0">지금 브라우저는 형아맨 코치(확장 프로그램)를 지원하지 않아요. 직접 확인 방식으로도 모든 퀘스트를 할 수 있어요.</p></div>`;
+  const url = D.browser === 'edge' && COACH.edge ? COACH.edge : COACH.chrome;
+  const name = { chrome: '크롬', edge: '엣지', whale: '웨일' }[D.browser];
+  return `<div class="card coach need"><div class="coach-in"><img src="assets/npc/still.webp" alt="" width="84" height="84"><div>
+    <b>🧩 아직 «형아맨 코치»가 설치되지 않았어요!</b>
+    <p class="small" style="margin:4px 0 8px">설치하면 제미나이·AI 스튜디오 <b>실제 화면 위에 형아맨이 겹쳐 나타나서</b> 버튼을 짚어 주고, 클릭·프롬프트를 자동으로 확인해 줘요. 무료, 1분이면 끝나요.</p>
+    <div class="row">${url ? `<a class="btn" href="${esc(url)}" target="_blank" rel="noopener">${name}에 형아맨 코치 설치 ↗<span class="sr-only"> (새 창)</span></a>` : ''}<a class="btn ghost" href="#/coach">설치 방법 보기</a></div>
+    <p class="small muted" style="margin:6px 0 0">설치한 뒤 이 페이지를 새로고침하면 “연결됨”으로 바뀌어요.</p></div></div></div>`;
+};
 
 /* ---------- 진행 기록 (이 기기에만 저장) ---------- */
 const done = () => Object.assign({}, store.get('done', {}), ext.done);
@@ -62,42 +72,71 @@ async function copy(text, btn) {
 document.addEventListener('click', (e) => { const b = e.target.closest('[data-copy]'); if (b) copy(b.dataset.copy, b); });
 
 /* =========================================================
-   화면: 홈
+   화면: 월드맵(홈) — 게임처럼 월드를 골라요
    ========================================================= */
+const G = window.HGM;
+const DEV = G.device();
+const allLevelClears = () => window.TRACKS.reduce((a, t) => a + t.levels.filter(L => levelDone(t, L.lv)).length, 0);
+const xpNow = () => G.xpInfo(QUESTS.filter(q => isDone(q.id)).length, allLevelClears());
+const nextQuest = (t) => (t ? t.levels.flatMap(L => L.quests) : QUESTS).find(q => !isDone(q.id));
+const stageNo = (q) => { const L = q.track.levels.find(x => x.lv === q.lv); return `${q.lv}-${L.quests.indexOf(q) + 1}`; };
+const worldNo = (t) => window.TRACKS.indexOf(t) + 1;
+const stars = (t) => t.levels.map(L => levelDone(t, L.lv) ? '★' : '☆').join('');
+function drawHud() {
+  const h = $('#hud'); if (!h) return; const x = xpNow();
+  h.innerHTML = `<img src="assets/hyungaman-face.png" alt=""><span class="hud-t"><b>Lv.${x.lv}</b> <span class="hud-n">${esc(x.title)}</span><span class="hud-bar" aria-hidden="true"><i style="width:${x.pct}%"></i></span></span><span class="sr-only">, 경험치 ${x.into} / ${x.need}. 내 배지 보기</span>`;
+}
+const sfxBtn = $('#sfxBtn');
+const drawSfx = () => { if (!sfxBtn) return; const on = G.sfxOn(); sfxBtn.setAttribute('aria-pressed', String(on)); sfxBtn.querySelector('[aria-hidden]').textContent = on ? '🔊' : '🔇'; };
+if (sfxBtn) sfxBtn.onclick = () => { G.setSfx(!G.sfxOn()); drawSfx(); G.sfx('button'); announce(G.sfxOn() ? '효과음 켰어요' : '효과음 껐어요'); };
+drawSfx();
+// 연구소 안(앱 실행 화면)에서 열렸으면 위쪽 막대에 '돌아가기'가 있으니 중복 버튼을 숨겨요
+try { if (window.top !== window) document.documentElement.classList.add('framed'); } catch { document.documentElement.classList.add('framed'); }
+
+function worldCard(t) {
+  const pct = trackPct(t), n = worldNo(t);
+  return `<a class="world w-${t.id}" href="#/track/${t.id}">
+    <span class="w-no">WORLD ${n}</span><span class="w-ic" aria-hidden="true">${t.icon}</span>
+    <span class="w-name">${esc(t.tool)}</span>
+    <span class="w-app">🏁 완성할 앱: ${esc(t.app)}</span>
+    <span class="w-dev">${t.id === 'antigravity' ? '💻 PC 전용 · 설치 2개' : '📱 휴대폰 · 💻 PC'}</span>
+    <span class="w-stars" aria-label="단계 별 ${t.levels.filter(L => levelDone(t, L.lv)).length}개 / 3개">${stars(t)}</span>
+    <span class="w-bar" aria-hidden="true"><i style="width:${pct}%"></i></span>
+    <span class="w-go">${pct === 100 ? '👑 정복 완료' : pct ? `이어서 하기 ▶ <small>${pct}%</small>` : '입장하기 ▶'}</span></a>`;
+}
 function pageHome() {
-  const tr = window.TRACKS;
+  const x = xpNow(), nq = nextQuest(), started = QUESTS.some(q => isDone(q.id));
   main.innerHTML = `
-  <section class="hero">
-    <div>
-      <p class="bubble">안녕하세요! 저는 형아맨이에요 ⚡</p>
-      <h1>코딩 몰라도 괜찮아요.<br><b>말로</b> 앱을 만들어요.</h1>
-      <p class="lead">설치도, 회원가입도 없이 구글 계정 하나로 시작해요. 퀘스트를 하나씩 깨다 보면 "어? 나도 되네!" 하게 될 거예요.</p>
-      <div class="row"><a class="btn big" href="#/diag">🧭 1분 진단으로 시작하기</a><a class="btn ghost big" href="#/quests">⚔️ 퀘스트 보기</a></div>
-    </div>
-    <div class="hero-img"><img src="assets/hyungaman.png" alt="형아맨: 갈색 머리에 하얀 옷, 파란 장갑과 장화를 신은 웃는 소년 영웅"></div>
+  <section class="wm-head">
+    <div class="wm-title"><span class="kicker">VIBE CODING ADVENTURE</span><h1>형아맨의 바이브코딩 모험</h1>
+      <p>코딩을 몰라도 <b>말</b>로 앱을 만들어요. 월드를 골라 스테이지를 하나씩 깨 보세요!</p></div>
+    <div id="homeTalk"></div>
   </section>
-  <div style="margin-top:16px">${coachCard()}</div>
-  <div class="how" aria-label="배우는 방법">
-    <div><b>⚔️ 퀘스트로 실습</b>형아맨이 알려 주는 순서대로 따라 하며 실제 앱을 하나씩 완성해요.</div>
-    <div><b>📖 용어사전으로 이론</b>모르는 말은 버튼으로 체험하고, <b>진짜 코드를 직접 고쳐 보며</b> 화면이 어떻게 바뀌는지 눈으로 확인해요.</div>
-    <div><b>🪄 프롬프트 공식</b>칸만 채우면 AI에게 보낼 문장이 완성돼요. 복사해서 붙여 넣기만!</div>
-  </div>
-  <h2 class="sec">도구 3개 × 3단계, 도구마다 앱 하나 완성</h2>
-  <div class="grid g3">${tr.map(t => `
-    <article class="card track">
-      <div class="row"><span class="ic" aria-hidden="true">${t.icon}</span><div><h3>${esc(t.tool)}</h3><span class="muted small">${esc(t.device)}</span></div></div>
-      <p class="app">만드는 앱: ${esc(t.app)}</p>
-      <p class="muted small" style="margin:0">${esc(t.why)}</p>
-      <div class="lvrow">${t.levels.map(L => `<a class="lvbox lv${L.lv}" href="#/track/${t.id}?lv=${L.lv}">${LV[L.lv][1]}<small>${levelDone(t, L.lv) ? '✅ 완료' : L.quests.length + '개 퀘스트'}</small></a>`).join('')}</div>
-      <div class="bar" role="img" aria-label="진행 ${trackPct(t)}%"><i style="width:${trackPct(t)}%"></i></div>
-      <a class="btn" href="#/track/${t.id}">${trackPct(t) ? '이어서 하기' : '시작하기'}</a>
-    </article>`).join('')}</div>
-  <h2 class="sec">왜 제미나이로 시작해요?</h2>
-  <div class="grid g3">
-    <div class="card"><b>💸 무료예요</b><p class="muted small" style="margin:4px 0 0">제미나이·AI 스튜디오·안티그래비티 모두 구글 계정으로 무료로 쓸 수 있어요. (사용량 한도는 있어요)</p></div>
-    <div class="card"><b>📱 이미 계정이 있어요</b><p class="muted small" style="margin:4px 0 0">안드로이드폰을 쓰면 구글 계정이 이미 있어요. 새로 가입할 필요가 없어요.</p></div>
-    <div class="card"><b>🇰🇷 한국어로 말해요</b><p class="muted small" style="margin:4px 0 0">"우리 반 발표 순서 뽑기 앱 만들어줘"처럼 평소 말투로 부탁하면 돼요.</p></div>
-  </div>`;
+  ${coachCard('home')}
+  <h2 class="sec">🗺️ 월드를 골라요</h2>
+  <div class="worlds">${window.TRACKS.map(worldCard).join('')}</div>
+  <h2 class="sec">🎒 모험 가방</h2>
+  <ul class="bag">
+    <li><a href="#/diag"><span aria-hidden="true">🧭</span><b>1분 진단</b><small>어디서 시작할지 추천</small></a></li>
+    <li><a href="#/dict"><span aria-hidden="true">📖</span><b>용어사전</b><small>모르는 말은 눌러서 체험</small></a></li>
+    <li><a href="#/prompt"><span aria-hidden="true">🪄</span><b>프롬프트 공식</b><small>AI에게 거는 주문서</small></a></li>
+    <li><a href="#/play?k=html"><span aria-hidden="true">🧪</span><b>코드 놀이터</b><small>진짜 코드를 고쳐 보기</small></a></li>
+    <li><a href="#/me"><span aria-hidden="true">🏅</span><b>내 배지</b><small>Lv.${x.lv} · 합격증</small></a></li>
+    <li><a href="#/coach"><span aria-hidden="true">🧩</span><b>형아맨 코치</b><small>${ext.on ? '연결됨 ✔' : '실제 화면 도우미'}</small></a></li>
+  </ul>
+  <details class="card why"><summary><b>왜 제미나이로 시작해요?</b></summary>
+    <ul><li><b>💸 무료예요</b> — 제미나이·AI 스튜디오·안티그래비티 모두 구글 계정으로 무료로 쓸 수 있어요. (사용량 한도는 있어요)</li>
+    <li><b>📱 이미 계정이 있어요</b> — 안드로이드폰을 쓰면 구글 계정이 이미 있어요.</li>
+    <li><b>🇰🇷 한국어로 말해요</b> — "우리 반 발표 순서 뽑기 앱 만들어줘"처럼 평소 말투로 부탁하면 돼요.</li></ul></details>`;
+  const lines = started && nq
+    ? [{ t: `다시 왔군요, 모험가님! 지금은 Lv.${x.lv} ${x.title}예요.`, pose: 'clap' },
+       { t: `다음 스테이지는 WORLD ${worldNo(nq.track)}의 ${stageNo(nq)} «${nq.title}»이에요. 바로 이어서 가 볼까요?`, pose: 'point_right' }]
+    : !nq ? [{ t: '모든 월드를 정복했어요! 진짜 바이브 마스터예요 👑', pose: 'clap' }, { t: '내 배지에서 합격증을 인쇄해 보세요.', pose: 'talk_open' }]
+    : [{ t: '어서 와요, 모험가님! 저는 바이브코딩 코치 형아맨이에요 ⚡', pose: 'talk_open' },
+       { t: '여기서는 코딩을 몰라도 "말"로 앱을 만들어요. 3개의 월드에서 앱을 하나씩 완성하는 모험이에요.', pose: 'point_right' },
+       { t: '무엇부터 할지 모르겠다면 모험 가방의 🧭 1분 진단을 먼저 해 보세요. 휴대폰이라면 WORLD 1부터 바로 시작해도 좋아요!', pose: 'encourage' }];
+  G.talk($('#homeTalk'), lines, { compact: true, endLabel: started && nq ? '이어서 하기 ▶' : !nq ? '내 배지 보기 ▶' : '모험 시작! ▶',
+    onEnd: () => { location.hash = started && nq ? '#/q/' + nq.id : !nq ? '#/me' : '#/track/canvas'; } });
 }
 
 /* ---------- 1분 진단 ---------- */
@@ -122,39 +161,69 @@ function pageDiag() {
   };
 }
 
-/* ---------- 퀘스트 목록 ---------- */
+/* ---------- 퀘스트(월드 고르기) ---------- */
 function pageQuests() {
-  main.innerHTML = `<h1>⚔️ 퀘스트</h1><p class="muted">도구를 고르고 초급부터 차례로 깨 보세요. 기록은 이 기기에만 저장돼요 (로그인 없음).</p>
-  ${window.TRACKS.map(t => `<h2 class="sec">${t.icon} ${esc(t.tool)} <span class="muted small">· ${esc(t.app)}</span></h2>${levelList(t)}`).join('')}`;
+  main.innerHTML = `<h1>⚔️ 월드 고르기</h1><p class="muted">도구 하나가 월드 하나예요. 월드마다 초급·중급·고급 구역을 지나 앱 하나를 완성해요. 기록은 이 기기에만 저장돼요 (로그인 없음).</p>
+  <div class="worlds" style="margin-top:14px">${window.TRACKS.map(worldCard).join('')}</div>
+  ${window.TRACKS.map(t => `<h2 class="sec">WORLD ${worldNo(t)} · ${t.icon} ${esc(t.tool)}</h2>${zones(t)}`).join('')}`;
 }
-function levelList(t, only) {
-  return t.levels.filter(L => !only || L.lv === only).map(L => `
-    <section class="card" style="margin-bottom:12px" aria-labelledby="lv-${t.id}-${L.lv}">
-      <h2 class="lvh" id="lv-${t.id}-${L.lv}">${lvBadge(L.lv)} ${esc(L.goal)}</h2>
-      <ol class="qlist">${L.quests.map((q, i) => `<li class="${isDone(q.id) ? 'done' : ''}"><a href="#/q/${q.id}"><span class="qno" aria-hidden="true">${isDone(q.id) ? '✓' : i + 1}</span><span>${esc(q.title)}${isDone(q.id) ? '<span class="sr-only"> (완료)</span>' : ''}</span></a></li>`).join('')}</ol>
+function zones(t, hl = 'h3') {
+  const nq = nextQuest(t);
+  return t.levels.map(L => `
+    <section class="zone lvz${L.lv}" aria-labelledby="lv-${t.id}-${L.lv}">
+      <${hl} class="zone-h" id="lv-${t.id}-${L.lv}"><span class="zone-k">ZONE ${L.lv}</span> ${lvBadge(L.lv)} ${esc(L.goal)} ${levelDone(t, L.lv) ? '<span class="zone-clear">CLEAR ★</span>' : ''}</${hl}>
+      <ol class="stages">${L.quests.map((q, i) => { const d = isDone(q.id), nx = q === nq; return `<li><a class="stage ${d ? 's-done' : nx ? 's-next' : ''}" href="#/q/${q.id}"${nx ? ' aria-current="step"' : ''}>
+        <span class="s-no">${L.lv}-${i + 1}</span><span class="s-ic" aria-hidden="true">${d ? '★' : nx ? '▶' : '⚔️'}</span><span class="s-t">${esc(q.title)}</span>${d ? '<span class="sr-only"> (완료)</span>' : nx ? '<span class="s-now">NOW</span><span class="sr-only"> (다음 차례)</span>' : ''}</a></li>`; }).join('')}</ol>
     </section>`).join('');
+}
+const levelList = zones;
+/* 안티그래비티: 설치 2개 안내 */
+function antiSetup() {
+  const C = window.COACH_LINKS || {};
+  return `<section class="card setup" aria-labelledby="setupH"><h2 id="setupH">🧰 준비물: 프로그램 2개를 설치해요</h2>
+  <p>안티그래비티는 인터넷 창이 아니라 <b>윈도우 프로그램</b>이에요. 그래서 형아맨도 <b>바탕화면 위에 겹쳐서</b> 도와주는 데스크톱 도우미로 함께해요.</p>
+  <ol class="setup-steps">
+    <li><b>① 안티그래비티 설치</b><span>구글 공식 사이트에서 윈도우용을 받아 설치해요.</span><a class="btn ghost" href="https://antigravity.google/download" target="_blank" rel="noopener">안티그래비티 받기 ↗<span class="sr-only"> (새 창)</span></a></li>
+    <li><b>② 형아맨 데스크톱 도우미 받기</b><span>설치 없이 바로 실행되는 프로그램(.exe)이에요. 파란 경고창이 뜨면 <b>[추가 정보] → [실행]</b>을 눌러요.</span>${C.desktop ? `<a class="btn ghost" href="${esc(C.desktop)}" target="_blank" rel="noopener">형아맨 도우미 받기 ↗<span class="sr-only"> (새 창)</span></a>` : ''}</li>
+    <li><b>③ 형아맨을 먼저 켜요</b><span>형아맨이 바탕화면에 나타나면, 안티그래비티와 연결하는 도우미를 알아서 설치해요.</span></li>
+    <li><b>④ 그다음 안티그래비티를 켜요</b><span>프로젝트에서 대화를 시작하면 형아맨이 화면 위에서 퀘스트를 안내하고, 파일 수정·실행·테스트를 알아서 확인해요.</span></li>
+  </ol>
+  <p class="small muted" style="margin:8px 0 0">학교 PC에서 설치가 막히면 정보 담당 선생님께 “안티그래비티와 형아맨 도우미 실행 허용”을 요청하세요. 설치가 어려우면 이 페이지의 퀴즈·체크로도 진행할 수 있어요.</p></section>`;
 }
 function pageTrack(id, params) {
   const t = window.TRACKS.find(x => x.id === id); if (!t) return notFound();
-  const lv = +params.get('lv') || 0;
-  main.innerHTML = `<div class="crumb"><a href="#/quests">퀘스트</a> › ${esc(t.tool)}</div>
-  <h1>${t.icon} ${esc(t.tool)}</h1><p><b>만드는 앱: ${esc(t.app)}</b> · <span class="muted">${esc(t.device)}</span></p><p class="muted">${esc(t.why)}</p>
-  ${t.id !== 'antigravity' ? coachCard() : ''}<div class="row" style="margin:10px 0 16px"><a class="btn ghost" href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.tool)} 열기 ↗<span class="sr-only"> (새 창)</span></a>${id === 'antigravity' ? '<a class="btn ghost" href="#/anti">🔤 화면 번역표</a>' : ''}</div>
-  ${levelList(t)}`;
+  const lv = +params.get('lv') || 0, nq = nextQuest(t), pct = trackPct(t);
+  main.innerHTML = `<div class="crumb"><a href="#/">월드맵</a> › WORLD ${worldNo(t)}</div>
+  <section class="world-head w-${t.id}"><span class="w-no">WORLD ${worldNo(t)}</span>
+    <h1><span aria-hidden="true">${t.icon}</span> ${esc(t.tool)}</h1>
+    <p>🏁 완성할 앱: <b>${esc(t.app)}</b> · ${esc(t.device)}</p>
+    <div class="w-bar" role="img" aria-label="월드 진행 ${pct}%"><i style="width:${pct}%"></i></div>
+    <div class="row" style="margin-top:10px"><a class="btn ghost" href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.tool)} 열기 ↗<span class="sr-only"> (새 창)</span></a>${id === 'antigravity' ? '<a class="btn ghost" href="#/anti">🔤 화면 번역표</a>' : ''}</div></section>
+  <div id="wTalk"></div>
+  ${id === 'antigravity' ? antiSetup() : coachCard('track')}
+  ${zones(t, 'h2')}`;
+  const lines = [{ t: t.why, pose: 'talk_open' },
+    id === 'antigravity' ? { t: '이 월드는 PC에서만 할 수 있어요. 아래 준비물 2개를 먼저 설치해 주세요!', pose: 'point_right' }
+      : DEV.mobile ? { t: '휴대폰이면 여기서 퀘스트를 읽고, 제미나이 앱에서 따라 한 다음 돌아와 확인하면 돼요.', pose: 'point_right' }
+      : ext.on ? { t: '형아맨 코치가 연결돼 있어요! 실제 화면에서 하면 제가 옆에서 버튼을 짚어 주고 알아서 확인할게요.', pose: 'clap' }
+      : { t: 'PC라면 «형아맨 코치»를 설치해 보세요. 제미나이 화면 위에 제가 나타나서 도와줄 수 있어요.', pose: 'point_right' },
+    nq ? { t: `다음 스테이지는 ${stageNo(nq)} «${nq.title}»이에요. 출발!`, pose: 'encourage' } : { t: '이 월드는 모두 정복했어요! 다른 월드에도 도전해 볼까요?', pose: 'clap' }];
+  G.talk($('#wTalk'), lines, { compact: true, endLabel: nq ? `${stageNo(nq)} 시작 ▶` : '월드맵으로 ▶', onEnd: () => { location.hash = nq ? '#/q/' + nq.id : '#/'; } });
   if (lv) { const el = $(`#lv-${id}-${lv}`); if (el) setTimeout(() => el.scrollIntoView({ block: 'start' }), 50); }
 }
 
-/* ---------- 퀘스트 한 개 ---------- */
+/* ---------- 스테이지(퀘스트 한 개) ---------- */
 const norm = (s) => String(s || '').toLowerCase();
 function grade(text, groups) {
   const t = norm(text), t2 = t.replace(/\s+/g, '');
   return groups.map(g => ({ name: g.name, hit: g.any.some(w => t.includes(norm(w)) || t2.includes(norm(w).replace(/\s+/g, ''))) }));
 }
+const CIRC = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧'];
 function pageQuest(id) {
   const q = QMAP[id]; if (!q) return notFound();
-  const t = q.track, L = t.levels.find(x => x.lv === q.lv), idx = QUESTS.indexOf(q);
+  const t = q.track, idx = QUESTS.indexOf(q);
   const prev = QUESTS[idx - 1], next = QUESTS[idx + 1];
-  const c = q.check;
+  const c = q.check, sno = stageNo(q), wasDone = isDone(q.id);
   let checkHtml = '';
   if (c.type === 'open') checkHtml = `<p>버튼을 눌러 새 창에서 열고, 열린 것을 확인한 뒤 돌아와 주세요.</p><div class="row"><a class="btn" id="openBtn" href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.label)} ↗<span class="sr-only"> (새 창)</span></a></div>
       <label class="ck" id="openConfirm" hidden><input type="checkbox" id="openOk"> ${esc(c.after || '열었어요! 로그인된 화면이 보여요')}</label>`;
@@ -165,26 +234,50 @@ function pageQuest(id) {
   if (c.type === 'link') checkHtml = `<label class="lb" for="lIn">복사한 공유 링크를 붙여 넣어 주세요</label><input type="text" id="lIn" inputmode="url" placeholder="${esc(c.example)}"><button class="btn" id="linkBtn" type="button" style="margin-top:8px">링크 확인</button>`;
   if (c.type === 'quiz') checkHtml = c.qs.map((x, i) => `<fieldset class="card" style="margin:0 0 8px"><legend><b>${i + 1}. ${esc(x.q)}</b></legend>${x.o.map((o, j) => `<label class="ck"><input type="radio" name="qz${i}" value="${j}"> ${esc(o)}</label>`).join('')}</fieldset>`).join('') + '<button class="btn" id="quizBtn" type="button">정답 확인</button>';
 
-  main.innerHTML = `<div class="crumb"><a href="#/track/${t.id}">${t.icon} ${esc(t.tool)}</a> › ${lvBadge(q.lv)}</div>
-  <div class="quest-head"><img src="assets/hyungaman${idx % 2 ? '-side' : ''}.png" alt=""><div class="say"><span class="small muted">퀘스트 ${q.id.toUpperCase()} · ${esc(t.app)}</span><h1>${esc(q.title)}</h1></div></div>
-  <h2 class="sec" style="margin-top:22px">이렇게 해요</h2>
-  <ol class="steps">${q.do.map(s => `<li>${esc(s)}</li>`).join('')}</ol>
-  ${q.pdf ? '<p style="margin-top:12px"><a class="btn ghost" href="assets/practice-fieldtrip.pdf" download>📄 연습용 계획서 PDF 내려받기</a> <span class="small muted">가상의 학생·연락처만 들어 있어요</span></p>' : ''}
-  ${q.hint ? `<p class="hint" style="margin-top:12px">💡 ${esc(q.hint)}</p>` : ''}
-  ${q.copy ? `<h2 class="sec">막히면 이 문장을 복사해요</h2><div class="copybox">${esc(q.copy)}</div><div class="row" style="margin-top:8px"><button class="btn ghost" type="button" data-copy="${esc(q.copy)}">📋 복사하기</button><a class="btn ghost" href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.tool)} 열기 ↗<span class="sr-only"> (새 창)</span></a></div>` : ''}
-  ${t.id !== 'antigravity' ? `<h2 class="sec">확인하기</h2>${ext.on ? '<p class="hint">🧩 형아맨 코치가 연결돼 있어요. 실제 화면에서 하면 자동으로 완료돼요. 아래는 직접 확인하는 방법이에요.</p>' : ''}` : '<h2 class="sec">확인하기</h2>'}
-  <div class="check-area">${isDone(q.id) ? '<p class="result ok">✅ 이미 깬 퀘스트예요. 다시 연습해도 좋아요!</p>' : ''}${checkHtml}<div id="res" aria-live="polite"></div></div>
-  ${(q.terms || []).length ? `<h2 class="sec">이 퀘스트에 나오는 말</h2><div class="row">${q.terms.filter(x => TERM[x]).map(x => `<a class="chip" href="#/t/${x}">${esc(TERM[x].ko)}</a>`).join('')}</div>` : ''}
-  <nav class="qnav" aria-label="퀘스트 이동">${prev ? `<a class="btn ghost" href="#/q/${prev.id}">← 이전</a>` : '<span></span>'}${next ? `<a class="btn ghost" href="#/q/${next.id}">다음 →</a>` : '<a class="btn ghost" href="#/me">내 배지 보기 →</a>'}</nav>`;
+  const autoNote = t.id === 'antigravity'
+    ? '<p class="hint">🖥️ 형아맨 데스크톱 도우미를 켜 두면 안티그래비티 화면 위에서 이 퀘스트를 안내하고 자동으로 확인해요. 도우미가 없으면 아래에서 직접 확인해요.</p>'
+    : ext.on && q.auto ? `<p class="hint ok">🧩 형아맨 코치 연결됨 — <b>${esc(t.tool)}</b> 화면에서 하면 제가 버튼을 짚어 주고 <b>자동으로 완료</b>해 줄게요. 아래는 직접 확인하는 방법이에요.</p><div class="row" style="margin-bottom:10px"><a class="btn" id="goLive" href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.tool)}에서 바로 하기 ↗<span class="sr-only"> (새 창)</span></a></div>`
+    : DEV.canExt && q.auto ? coachCard('quest') : '';
 
+  main.innerHTML = `<div class="crumb"><a href="#/">월드맵</a> › <a href="#/track/${t.id}">WORLD ${worldNo(t)} ${t.icon} ${esc(t.tool)}</a> › STAGE ${sno}</div>
+  <header class="stage-head"><span class="kicker">STAGE ${sno} · ${lvBadge(q.lv)} ${wasDone ? '<span class="zone-clear">CLEAR ★</span>' : ''}</span><h1>${esc(q.title)}</h1><p class="muted small" style="margin:0">🏁 ${esc(t.app)} 만들기</p></header>
+  <div id="qTalk"></div>
+  <details class="card notebook"><summary><b>📜 퀘스트 수첩</b> <span class="muted small">— 할 일 한눈에 보기</span></summary>
+    <ol class="steps">${q.do.map(s => `<li>${esc(s)}</li>`).join('')}</ol>
+    ${q.hint ? `<p class="hint" style="margin-top:12px">💡 ${esc(q.hint)}</p>` : ''}</details>
+  ${q.pdf ? '<p style="margin-top:12px"><a class="btn ghost" href="assets/practice-fieldtrip.pdf" download>📄 연습용 계획서 PDF 내려받기</a> <span class="small muted">가상의 학생·연락처만 들어 있어요</span></p>' : ''}
+  ${q.copy ? `<section class="card scroll-item"><h2 class="sec" style="margin-top:0">🪄 막히면 이 주문을 복사해요</h2><div class="copybox">${esc(q.copy)}</div><div class="row" style="margin-top:8px"><button class="btn ghost" type="button" data-copy="${esc(q.copy)}">📋 복사하기</button><a class="btn ghost" href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.tool)} 열기 ↗<span class="sr-only"> (새 창)</span></a></div></section>` : ''}
+  <section class="mission" aria-labelledby="mH"><h2 id="mH"><span class="kicker">MISSION</span> 확인하기</h2>
+  ${autoNote}
+  <div class="check-area">${wasDone ? '<p class="result ok">✅ 이미 깬 스테이지예요. 다시 연습해도 좋아요!</p>' : ''}${checkHtml}<div id="res" aria-live="polite"></div></div></section>
+  ${(q.terms || []).length ? `<h2 class="sec">🎁 이 스테이지의 보상: 용어 카드</h2><div class="row">${q.terms.filter(x => TERM[x]).map(x => `<a class="chip loot${wasDone ? ' got' : ''}" href="#/t/${x}">${wasDone ? '🃏' : '🔒'} ${esc(TERM[x].ko)}</a>`).join('')}</div>` : ''}
+  <nav class="qnav" aria-label="스테이지 이동">${prev ? `<a class="btn ghost" href="#/q/${prev.id}">← 이전 스테이지</a>` : '<span></span>'}${next ? `<a class="btn ghost" href="#/q/${next.id}">다음 스테이지 →</a>` : '<a class="btn ghost" href="#/me">내 배지 보기 →</a>'}</nav>`;
+
+  const lines = [{ t: `STAGE ${sno} «${q.title}» 스테이지예요! 목표는 «${t.app}» 완성이에요.`, pose: 'talk_open' },
+    ...q.do.map((s, i) => ({ t: `${q.do.length > 1 ? CIRC[i] + ' ' : ''}${s}`, pose: i % 2 ? 'talk_open' : 'point_right' })),
+    ...(q.hint ? [{ t: `💡 비밀 힌트: ${q.hint}`, pose: 'thinking' }] : []),
+    { t: wasDone ? '이미 깬 스테이지지만 다시 연습해도 좋아요. 다 했으면 아래 MISSION에서 확인해요!' : '다 했으면 아래 MISSION에서 확인해요. 할 수 있어요!', pose: 'encourage' }];
+  const npc = G.talk($('#qTalk'), lines, { endLabel: 'MISSION으로 ▼', onEnd: () => { const m = $('.mission'); m.classList.add('glow'); m.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); const f = m.querySelector('a.btn, input, textarea, button'); if (f) f.focus({ preventScroll: true }); } });
+  if (!wasDone) G.banner('QUEST START', `STAGE ${sno} · ${q.title}`, `WORLD ${worldNo(t)} ${t.tool}`, 'start', 2000);
+
+  if ($('#goLive')) $('#goLive').addEventListener('click', () => window.postMessage({ source: 'hgm-page', type: 'setCur', id: q.id }, location.origin));
   const res = $('#res');
   const success = () => {
-    const first = !isDone(q.id); setDone(q.id);
-    const lvClear = levelDone(t, q.lv);
-    res.innerHTML = `<div class="clear show" role="status"><img src="assets/hyungaman.png" alt=""><h2>🎉 퀘스트 성공!</h2><p>${lvClear ? `<b>${esc(t.tool)} ${LV[q.lv][1]}</b> 단계를 모두 깼어요! 배지를 받았어요 🏅` : '좋아요! 다음 퀘스트로 가 볼까요?'}</p>${next ? `<a class="btn big" href="#/q/${next.id}">다음 퀘스트 →</a>` : '<a class="btn big" href="#/me">내 배지 보기</a>'}</div>`;
-    if (first) announce('퀘스트 성공!'); window.hgmPet?.cheer(); $('.clear h2', res).tabIndex = -1; $('.clear h2', res).focus();
+    const before = xpNow(), first = !isDone(q.id); setDone(q.id);
+    const after = xpNow(), lvClear = levelDone(t, q.lv);
+    const loot = (q.terms || []).filter(x => TERM[x]);
+    res.innerHTML = `<div class="clear show" role="status"><img src="${G.poseSrc('clap')}" alt=""><span class="kicker">QUEST COMPLETE</span><h2>🎉 스테이지 ${sno} 클리어!</h2>
+      <p class="xp-gain">${first ? `⭐ EXP +${after.xp - before.xp}` : '복습 완료!'} ${after.lv > before.lv ? ` · <b>LEVEL UP! Lv.${after.lv} ${esc(after.title)}</b>` : ''}</p>
+      ${loot.length ? `<p>🎁 획득한 용어 카드: ${loot.map(x => `<a class="chip loot got" href="#/t/${x}">🃏 ${esc(TERM[x].ko)}</a>`).join(' ')}</p>` : ''}
+      <p>${lvClear ? `<b>${esc(t.tool)} ZONE ${q.lv} (${LV[q.lv][1]})</b>를 모두 깼어요! 배지를 받았어요 🏅` : '좋아요! 다음 스테이지로 가 볼까요?'}</p>
+      <div class="row" style="justify-content:center">${next ? `<a class="btn big" href="#/q/${next.id}">다음 스테이지 ${stageNo(next)} →</a>` : '<a class="btn big" href="#/me">내 배지 보기</a>'}<a class="btn ghost" href="#/track/${t.id}">월드 지도</a></div></div>`;
+    $$('.loot:not(.got)').forEach(a => { a.classList.add('got'); a.textContent = a.textContent.replace('🔒', '🃏'); });
+    npc && npc.say(after.lv > before.lv ? `레벨 업! 이제 Lv.${after.lv} ${after.title}예요! 정말 대단해요!` : '참 잘했어요! 이 기세로 다음 스테이지도 가 봐요!', 'clap');
+    G.sfx('complete'); drawHud();
+    G.banner(after.lv > before.lv ? 'LEVEL UP!' : 'QUEST COMPLETE', after.lv > before.lv ? `Lv.${after.lv} ${after.title}` : '참 잘했어요!', loot.length ? '🎁 ' + loot.map(x => TERM[x].ko).join(' · ') : '', 'complete', 3200);
+    if (first) announce(`스테이지 ${sno} 클리어!${after.lv > before.lv ? ' 레벨 업!' : ''}`); window.hgmPet?.cheer(); $('.clear h2', res).tabIndex = -1; $('.clear h2', res).focus();
   };
-  const fail = (m) => { res.innerHTML = `<p class="result no" role="alert">${m}</p>`; };
+  const fail = (m) => { res.innerHTML = `<p class="result no" role="alert">${m}</p>`; npc && npc.say('괜찮아요, 거의 다 왔어요! 빨간 글을 보고 한 번만 더 해 봐요.', 'encourage'); G.sfx('pause'); };
   if (c.type === 'open') { $('#openBtn').addEventListener('click', () => { $('#openConfirm').hidden = false; }); $('#openOk').onchange = (e) => e.target.checked && success(); }
   if (c.type === 'see') $('#seeOk').onchange = (e) => e.target.checked ? success() : 0;
   if (c.type === 'check') $$('.ckItem').forEach(x => x.onchange = () => { if ($$('.ckItem').every(y => y.checked)) success(); });
@@ -441,6 +534,7 @@ function route(keep) {
   const [seg, arg] = path.split('/');
   const R = { play: () => pagePlay(params), coach: pageCoach, '': pageHome, diag: pageDiag, quests: pageQuests, track: () => pageTrack(arg, params), q: () => pageQuest(arg), dict: () => pageDict(params), t: () => pageTerm(arg), prompt: pagePrompt, anti: pageAnti, me: pageMe };
   (R[seg || ''] || notFound)();
+  drawHud();
   const navKey = { track: 'quests', q: 'quests', diag: 'home', t: 'dict', play: 'dict', anti: 'quests', coach: 'home' }[seg] || seg || 'home';
   $$('[data-nav]').forEach(a => a.dataset.nav === navKey ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
   const h = $('h1', main); document.title = (h && seg ? h.textContent.trim() + ' · ' : '') + '형아맨의 바이브코딩 교실';

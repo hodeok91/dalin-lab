@@ -7,8 +7,8 @@ window.DALIN_CONFIG = {
   // 1) Supabase (방문자 수 · 인기 앱 순위 · 게시판 · 댓글)
   //    비워 두면 '로컬 모드'로 동작합니다(내 브라우저에서만 숫자가 보임).
   //    값 넣는 법: 02_재구현/배포가이드.md 의 '2단계 Supabase'
-  supabaseUrl: '',      // 예: 'https://abcdefgh.supabase.co'
-  supabaseAnonKey: '',  // 예: 'eyJhbGciOi...' (anon public 키. service_role 키는 절대 넣지 마세요)
+  supabaseUrl: 'https://ysrvnmaulcbgdiahcnsr.supabase.co',
+  supabaseAnonKey: 'sb_publishable_RCoEZ3UIjDaHx6kb2Lr_XQ_ou4el4M8', // 공개용 키(publishable). secret·service_role 키는 절대 넣지 마세요
 
   // 2) 오늘 정보 기본값 (방문자는 화면에서 자기 학교·위치로 바꿀 수 있어요)
   defaultSchool: { name: '명현학교', office: 'J10', code: '7530509' }, // 예: { name:'서울맹학교', office:'B10', code:'1342098' }

@@ -94,7 +94,17 @@
       "제미나이"
     ],
     "added": "2026-11-04",
-    "featured": true
+    "featured": true,
+    "links": [
+      {
+        "label": "크롬·웨일에 설치",
+        "url": "https://chromewebstore.google.com/detail/fanadlplafffdgcppopnpaoochdelfce"
+      },
+      {
+        "label": "엣지에 설치",
+        "url": "https://microsoftedge.microsoft.com/addons/detail/pnhabhckjklcjhhjkjoieacpaopfkbdg"
+      }
+    ]
   },
   {
     "id": "promptmon",

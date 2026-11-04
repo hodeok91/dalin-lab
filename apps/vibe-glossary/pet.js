@@ -6,7 +6,9 @@
   const IMG = (n) => still ? 'assets/hyungaman.png' : `assets/pet/${n}.webp`;
   let mood = 'idle', back = 0;
   const set = (n, ms) => { if (mood === n && !ms) return; mood = n; img.src = IMG(n); clearTimeout(back); if (ms) back = setTimeout(() => set('idle'), ms); };
-  window.hgmPet = { cheer: () => set('cheer', 4000), think: () => set('thinking', 3000), hello: () => set('hello', 2500) };
+  const bub = $('#petBubble'); let bt = 0;
+  const say = (t, ms = 4000) => { if (!bub || pet.hidden) return; bub.textContent = t; bub.hidden = false; set('hello', 2500); clearTimeout(bt); bt = setTimeout(() => { bub.hidden = true; }, ms); };
+  window.hgmPet = { cheer: () => set('cheer', 4000), think: () => set('thinking', 3000), hello: () => set('hello', 2500), say };
   try { if (JSON.parse(localStorage.getItem('hgm:petHidden') || 'false')) { pet.hidden = true; call.hidden = false; } const pos = JSON.parse(localStorage.getItem('hgm:petPos') || 'null'); if (pos) Object.assign(pet.style, pos); } catch {}
   const open = (o) => { menu.hidden = !o; btn.setAttribute('aria-expanded', String(o)); btn.setAttribute('aria-label', o ? '형아맨 메뉴 닫기' : '형아맨 메뉴 열기'); if (o) { set('hello', 2500); menu.querySelector('.pm').focus(); } };
   // 끌어서 옮기기 (짧게 누르면 메뉴)

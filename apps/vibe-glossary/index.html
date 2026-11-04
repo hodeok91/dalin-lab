@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>형아맨의 바이브코딩 교실 — 말로 앱을 만들어요</title>
+<title>형아맨의 바이브코딩 교실 — 말로 앱을 만드는 모험</title>
 <meta name="description" content="코딩을 몰라도 괜찮아요. 제미나이 캔버스·구글 AI 스튜디오·안티그래비티로 초급부터 고급까지, 형아맨과 퀘스트로 배우는 바이브코딩 교실과 용어사전">
 <meta name="theme-color" content="#1d4fbf">
 <meta property="og:title" content="형아맨의 바이브코딩 교실">
@@ -18,10 +18,12 @@
 <a class="skip" href="#main">본문 바로가기</a>
 <header class="top">
   <div class="top-in">
+    <a class="lab-link" href="../../" target="_top"><span aria-hidden="true">🏠</span><span class="lbl">달인 연구소</span><span class="sr-only">로 돌아가기</span></a>
     <a class="brand" href="#/"><img src="assets/hyungaman-face.png" alt=""><span>형아맨의 바이브코딩 교실</span></a>
+    <a class="hud" id="hud" href="#/me"></a>
     <nav class="nav" aria-label="주 메뉴">
       <a href="#/" data-nav="home"><span aria-hidden="true">🏠</span>홈</a>
-      <a href="#/quests" data-nav="quests"><span aria-hidden="true">⚔️</span>퀘스트</a>
+      <a href="#/quests" data-nav="quests"><span aria-hidden="true">🗺️</span>월드</a>
       <a href="#/dict" data-nav="dict"><span aria-hidden="true">📖</span>용어사전</a>
       <a href="#/prompt" data-nav="prompt"><span aria-hidden="true">🪄</span>프롬프트 공식</a>
       <a href="#/me" data-nav="me"><span aria-hidden="true">🏅</span>내 배지</a>
@@ -29,16 +31,16 @@
     <div class="tools">
       <button type="button" class="tbtn" id="fontBtn" title="글자 크기" aria-label="글자 크기 바꾸기"><span aria-hidden="true">가+</span><span class="lbl">글자 크기</span></button>
       <button type="button" class="tbtn" id="darkBtn" title="다크 모드" aria-pressed="false"><span aria-hidden="true">🌙</span><span class="lbl">다크 모드</span></button>
-      <button type="button" class="tbtn" id="readBtn" title="누른 글 읽어 주기" aria-pressed="false"><span aria-hidden="true">🔊</span><span class="lbl">읽어 주기</span></button>
+      <button type="button" class="tbtn" id="sfxBtn" title="효과음" aria-pressed="false"><span aria-hidden="true">🔇</span><span class="lbl">효과음</span></button>
+      <button type="button" class="tbtn" id="readBtn" title="누른 글 읽어 주기" aria-pressed="false"><span aria-hidden="true">🗣️</span><span class="lbl">읽어 주기</span></button>
     </div>
-    <a class="home-link" href="../../">← 달인 연구소</a>
   </div>
 </header>
 <main id="main" tabindex="-1"></main>
-<footer class="vfoot"><p>형아맨의 바이브코딩 교실 · <span id="buildVer">2026.11.04 업데이트 (v3)</span> · <a href="privacy-coach.html">코치 개인정보 처리방침</a></p></footer>
+<footer class="vfoot"><p>형아맨의 바이브코딩 교실 · <span id="buildVer">2026.11.04 업데이트 (v4 게임판)</span> · <a href="privacy-coach.html">코치 개인정보 처리방침</a></p></footer>
 <nav class="bnav" aria-label="아래 메뉴">
   <a href="#/" data-nav="home"><span aria-hidden="true">🏠</span>홈</a>
-  <a href="#/quests" data-nav="quests"><span aria-hidden="true">⚔️</span>퀘스트</a>
+  <a href="#/quests" data-nav="quests"><span aria-hidden="true">🗺️</span>월드</a>
   <a href="#/dict" data-nav="dict"><span aria-hidden="true">📖</span>사전</a>
   <a href="#/prompt" data-nav="prompt"><span aria-hidden="true">🪄</span>공식</a>
   <a href="#/me" data-nav="me"><span aria-hidden="true">🏅</span>배지</a>
@@ -46,24 +48,27 @@
 <div id="live" class="sr-only" aria-live="polite"></div>
 <dialog id="dlg" aria-labelledby="dlgTitle"><div id="dlgBody"></div></dialog>
 <!-- 형아맨 펫: 누르면 메뉴가 열려요 -->
-<div class="pet" id="pet">
+<aside class="pet" id="pet" aria-label="형아맨 도우미">
+  <p class="pet-bubble" id="petBubble" role="status" hidden></p>
   <div class="pet-menu" id="petMenu" hidden>
     <p class="pet-say" id="petSay">무엇을 도와줄까요?</p>
-    <a href="#/quests" class="pm">⚔️ 퀘스트 이어 하기</a>
+    <a href="#/quests" class="pm">🗺️ 월드 지도·퀘스트</a>
     <a href="#/dict" class="pm">📖 모르는 말 찾기</a>
     <a href="#/play" class="pm">🧪 코드 놀이터</a>
     <a href="#/prompt" class="pm">🪄 프롬프트 공식</a>
     <a href="#/diag" class="pm">🧭 1분 진단</a>
+    <a href="../../" target="_top" class="pm pm-lab">🏠 달인 연구소로 돌아가기</a>
     <button type="button" class="pm" id="petHide">🙈 형아맨 잠깐 숨기기</button>
   </div>
   <button type="button" class="pet-btn" id="petBtn" aria-expanded="false" aria-controls="petMenu" aria-label="형아맨 메뉴 열기"><img id="petImg" src="assets/pet/idle.webp" alt="" width="120" height="120" draggable="false"></button>
-</div>
+</aside>
 <button type="button" class="pet-call" id="petCall" hidden aria-label="형아맨 다시 부르기"><img src="assets/hyungaman-face.png" alt=""></button>
-<script>window.COACH_LINKS = { chrome: "", edge: "", zip: "https://github.com/hodeok91/dalin-lab/releases" }; /* 스토어 주소를 받으면 여기에 넣어요 */</script>
+<script>window.COACH_LINKS = { chrome: "https://chromewebstore.google.com/detail/fanadlplafffdgcppopnpaoochdelfce", edge: "https://microsoftedge.microsoft.com/addons/detail/pnhabhckjklcjhhjkjoieacpaopfkbdg", zip: "https://github.com/hodeok91/dalin-lab/releases", desktop: "https://github.com/hodeok91/dalin-lab/releases" }; /* 스토어 주소를 받으면 여기에 넣어요 */</script>
 <script src="data/terms.js"></script>
 <script src="data/playground.js"></script>
 <script src="data/terms-more.js"></script>
 <script src="data/quests.js"></script>
+<script src="game.js"></script>
 <script src="app.js"></script>
 <script src="pet.js"></script>
 </body>
