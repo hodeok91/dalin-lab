@@ -1,0 +1,168 @@
+[
+  {
+    "id": "special-education-master",
+    "name": "특수교육의 달인",
+    "icon": "🧑‍🏫",
+    "category": "업무지원",
+    "type": "Windows",
+    "status": "live",
+    "desc": "IEP·관찰·평가·PBS와 일상 업무를 돕는 Windows 프로그램. Google 연동으로 PC와 폰 사이 선택 자료를 이어 써요.",
+    "url": "apps/special-education-master/",
+    "links": [
+      {
+        "label": "폰 연동",
+        "url": "https://special-education-master.web.app/"
+      }
+    ],
+    "tags": [
+      "IEP",
+      "관찰",
+      "평가",
+      "PBS",
+      "특수교육"
+    ],
+    "added": "2026-06-01",
+    "featured": true,
+    "image": "",
+    "features": [
+      "IEP 작성과 관리",
+      "학생 관찰·평가 기록",
+      "PBS(긍정적 행동지원) 기록",
+      "Google 연동으로 PC ↔ 폰 선택 자료 이어 쓰기"
+    ],
+    "howto": [
+      "자세히 → 서비스 소개에서 설치 파일 받기",
+      "처음 실행 시 학급·학생 정보 입력",
+      "폰에서 쓰려면 \"폰 연동\" 버튼으로 같은 계정 로그인"
+    ],
+    "launchLabel": "서비스 소개"
+  },
+  {
+    "id": "vibe-glossary",
+    "name": "바이브코딩 용어사전",
+    "icon": "📘",
+    "category": "교육도구",
+    "type": "웹앱",
+    "status": "live",
+    "desc": "AI로 앱을 만들 때 만나는 낯선 말을 쉬운 말로 풀어 둔 사전이에요.",
+    "url": "apps/vibe-glossary/",
+    "tags": [
+      "바이브코딩",
+      "용어",
+      "연수"
+    ],
+    "added": "2026-06-01",
+    "image": ""
+  },
+  {
+    "id": "promptmon",
+    "name": "프롬프트몬",
+    "icon": "🎮",
+    "category": "게임",
+    "type": "웹앱",
+    "status": "live",
+    "desc": "막연한 앱 요청을 역할·목표·대상·기능·화면·출력 형식 카드로 바꿔 보는 게임형 연습 도구.",
+    "url": "apps/promptmon/",
+    "tags": [
+      "프롬프트",
+      "게임",
+      "바이브코딩"
+    ],
+    "added": "2026-06-10",
+    "image": "",
+    "features": [
+      "막연한 요청을 역할·목표·대상·기능·화면 카드로 나누기",
+      "게임처럼 단계별로 연습"
+    ]
+  },
+  {
+    "id": "lunch-master",
+    "name": "급식의 달인",
+    "icon": "🍱",
+    "category": "교육도구",
+    "type": "웹앱",
+    "status": "live",
+    "desc": "오늘 급식을 확인하고 식판에 담아 보고, 한글로 써 보는 연습까지.",
+    "url": "https://lunch-master.netlify.app/",
+    "tags": [
+      "급식",
+      "한글",
+      "생활"
+    ],
+    "added": "2026-06-10",
+    "image": "",
+    "features": [
+      "오늘 우리 학교 급식 확인",
+      "식판에 반찬 담아 보기",
+      "메뉴 이름을 한글로 써 보는 연습"
+    ]
+  },
+  {
+    "id": "submit-master",
+    "name": "제출의 달인",
+    "icon": "🗂️",
+    "category": "업무지원",
+    "type": "구글 시트",
+    "status": "live",
+    "desc": "연수 이수증 제출과 이수 현황 확인을 한 시트에서. 사본을 만들어 바로 써요.",
+    "url": "https://docs.google.com/spreadsheets/d/1BP4oDMm-FEG3zfaTER3Gy9ietgM9TpbhibjfyBxOSwM/copy",
+    "tags": [
+      "연수",
+      "이수증",
+      "시트"
+    ],
+    "added": "2026-06-01",
+    "image": "",
+    "launchLabel": "사본 만들기"
+  },
+  {
+    "id": "smartfarm",
+    "name": "스마트팜 달인",
+    "icon": "🌱",
+    "category": "교육도구",
+    "type": "웹앱",
+    "status": "soon",
+    "desc": "토양 수분 센서와 펌프 제어를 블록으로 배우는 스마트팜 수업 앱.",
+    "url": "",
+    "tags": [
+      "스마트팜",
+      "센서",
+      "블록코딩"
+    ],
+    "added": "2026-06-01",
+    "image": ""
+  },
+  {
+    "id": "emotion-cards",
+    "name": "감정카드 달인",
+    "icon": "😊",
+    "category": "카드자료",
+    "type": "웹앱",
+    "status": "soon",
+    "desc": "감정 표현과 의사소통을 돕는 카드 자료.",
+    "url": "",
+    "tags": [
+      "감정",
+      "의사소통",
+      "AAC"
+    ],
+    "added": "2026-06-01",
+    "image": ""
+  },
+  {
+    "id": "assessment",
+    "name": "평가도구 달인",
+    "icon": "🧩",
+    "category": "평가",
+    "type": "웹앱",
+    "status": "soon",
+    "desc": "성취기준·활동·평가도구를 이어 주는 도구.",
+    "url": "",
+    "tags": [
+      "평가",
+      "성취기준"
+    ],
+    "added": "2026-06-01",
+    "image": ""
+  }
+]

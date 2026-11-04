@@ -1,0 +1,8 @@
+[
+  { "name": "수업의 달인", "icon": "💻", "type": "Windows 설치파일", "status": "soon", "version": "1.0.6",
+    "desc": "수업 준비와 진행을 돕는 Windows 프로그램.", "url": "https://github.com/hodeok91/dalin-lab/releases/download/v1.0.6/1.0.6.exe", "guide": "" },
+  { "name": "면접의 달인", "icon": "📱", "type": "Android APK", "status": "soon",
+    "desc": "면접 연습용 안드로이드 앱.", "url": "https://github.com/hodeok91/dalin-lab/releases", "guide": "" },
+  { "name": "사서의 달인", "icon": "📚", "type": "프로그램", "status": "soon",
+    "desc": "도서 대출·반납 연습 프로그램.", "url": "https://github.com/hodeok91/dalin-lab/releases", "guide": "" }
+]
