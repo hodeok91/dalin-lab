@@ -79,7 +79,7 @@ function pageHome() {
   <div style="margin-top:16px">${coachCard()}</div>
   <div class="how" aria-label="배우는 방법">
     <div><b>⚔️ 퀘스트로 실습</b>형아맨이 알려 주는 순서대로 따라 하며 실제 앱을 하나씩 완성해요.</div>
-    <div><b>📖 그림 사전으로 이론</b>모르는 말은 직접 눌러 보며 바로 이해해요. "사이드바"가 뭔지 보면 알아요.</div>
+    <div><b>📖 용어사전으로 이론</b>모르는 말은 버튼으로 체험하고, <b>진짜 코드를 직접 고쳐 보며</b> 화면이 어떻게 바뀌는지 눈으로 확인해요.</div>
     <div><b>🪄 프롬프트 공식</b>칸만 채우면 AI에게 보낼 문장이 완성돼요. 복사해서 붙여 넣기만!</div>
   </div>
   <h2 class="sec">도구 3개 × 3단계, 도구마다 앱 하나 완성</h2>
@@ -182,7 +182,7 @@ function pageQuest(id) {
     const first = !isDone(q.id); setDone(q.id);
     const lvClear = levelDone(t, q.lv);
     res.innerHTML = `<div class="clear show" role="status"><img src="assets/hyungaman.png" alt=""><h2>🎉 퀘스트 성공!</h2><p>${lvClear ? `<b>${esc(t.tool)} ${LV[q.lv][1]}</b> 단계를 모두 깼어요! 배지를 받았어요 🏅` : '좋아요! 다음 퀘스트로 가 볼까요?'}</p>${next ? `<a class="btn big" href="#/q/${next.id}">다음 퀘스트 →</a>` : '<a class="btn big" href="#/me">내 배지 보기</a>'}</div>`;
-    if (first) announce('퀘스트 성공!'); $('.clear h2', res).tabIndex = -1; $('.clear h2', res).focus();
+    if (first) announce('퀘스트 성공!'); window.hgmPet?.cheer(); $('.clear h2', res).tabIndex = -1; $('.clear h2', res).focus();
   };
   const fail = (m) => { res.innerHTML = `<p class="result no" role="alert">${m}</p>`; };
   if (c.type === 'open') { $('#openBtn').addEventListener('click', () => { $('#openConfirm').hidden = false; }); $('#openOk').onchange = (e) => e.target.checked && success(); }
@@ -204,12 +204,12 @@ function pageQuest(id) {
 }
 
 /* =========================================================
-   그림 사전
+   용어사전
    ========================================================= */
 function pageDict(params) {
   let lv = +params.get('lv') || 0, cat = params.get('c') || '', q = params.get('q') || '', more = store.get('more', false);
-  main.innerHTML = `<h1>📖 그림 사전</h1>
-  <p class="muted">용어를 누르면 쉬운 뜻, 비유, <b>직접 눌러 보는 체험</b>, AI에게 이렇게 말하면 되는 예시가 나와요.</p>
+  main.innerHTML = `<h1>📖 바이브코딩 용어사전</h1>
+  <p class="muted">용어를 누르면 쉬운 뜻과 비유, <b>버튼으로 체험</b>, <b>진짜 코드를 고쳐 보는 코드 놀이터</b>, AI에게 이렇게 말하면 되는 예시가 나와요. <a href="#/play">🧪 코드 놀이터 바로 가기</a></p>
   <div class="card" style="margin:12px 0" role="search">
     <label class="lb" for="dq" style="margin-top:0">용어 찾기</label><input type="search" id="dq" value="${esc(q)}" placeholder="예: 사이드바, div, 모달, API">
     <div class="row" style="margin-top:10px" role="group" aria-label="단계">${[0, 1, 2, 3].map(n => `<button type="button" class="chip" data-lv="${n}" aria-pressed="${lv === n}">${n ? LV[n][0] + ' ' + LV[n][1] : '전체 단계'}</button>`).join('')}</div>
@@ -221,7 +221,7 @@ function pageDict(params) {
     const k = norm(q).trim();
     const l = (more ? ALL_TERMS : window.TERMS).filter(t => (!lv || t.level === lv) && (!cat || t.cat === cat) && (!k || norm([t.ko, t.en, t.easy, t.like].join(' ')).includes(k)));
     $('#dcount').textContent = `용어 ${l.length}개`;
-    $('#dlist').innerHTML = l.map(t => `<a class="card term-card" href="#/t/${t.id}"><div class="term-top">${lvBadge(t.level)}<span class="small muted">${window.CATS[t.cat][0]} ${window.CATS[t.cat][1]}${t.demo ? ' · 🧪체험' : ''}</span></div><h2 class="tk">${esc(t.ko)}</h2>${t.en ? `<span class="en">${esc(t.en)}</span>` : ''}<p>${esc(t.easy.length > 80 ? t.easy.slice(0, 78) + '…' : t.easy)}</p></a>`).join('') || '<p class="card">찾는 용어가 없어요. 다른 말로 찾아보거나 분류를 "전체"로 바꿔 보세요.</p>';
+    $('#dlist').innerHTML = l.map(t => `<a class="card term-card" href="#/t/${t.id}"><div class="term-top">${lvBadge(t.level)}<span class="small muted">${window.CATS[t.cat][0]} ${window.CATS[t.cat][1]}${t.demo ? ' · 🧪체험' : ''}${window.PLAY[t.demo || t.id] ? ' · 💻코드' : ''}</span></div><h2 class="tk">${esc(t.ko)}</h2>${t.en ? `<span class="en">${esc(t.en)}</span>` : ''}<p>${esc(t.easy.length > 80 ? t.easy.slice(0, 78) + '…' : t.easy)}</p></a>`).join('') || '<p class="card">찾는 용어가 없어요. 다른 말로 찾아보거나 분류를 "전체"로 바꿔 보세요.</p>';
   };
   $('#dq').oninput = (e) => { q = e.target.value; draw(); };
   $$('[data-lv]').forEach(b => b.onclick = () => { lv = +b.dataset.lv; $$('[data-lv]').forEach(x => x.setAttribute('aria-pressed', String(x === b))); draw(); });
@@ -233,19 +233,79 @@ function pageTerm(id) {
   const t = TERM[id]; if (!t) return notFound();
   const demo = t.demo && DEMOS[t.demo];
   const usedIn = QUESTS.filter(q => (q.terms || []).includes(id));
-  main.innerHTML = `<div class="crumb"><a href="#/dict">그림 사전</a> › ${esc(t.ko)}</div>
+  main.innerHTML = `<div class="crumb"><a href="#/dict">용어사전</a> › ${esc(t.ko)}</div>
   <article class="term-detail">
     <div class="row">${lvBadge(t.level)}<span class="muted small">${window.CATS[t.cat][0]} ${window.CATS[t.cat][1]}${t.old ? ' · 기존 달인 사전' : ''}</span></div>
     <h1>${esc(t.ko)}</h1>${t.en ? `<p class="muted">${esc(t.en)}</p>` : ''}
     <div class="box easy"><h2>쉽게 말하면</h2><p style="margin:0">${esc(t.easy)}</p></div>
     ${t.like ? `<div class="box"><h2>🧸 비유하면</h2><p style="margin:0">${esc(t.like)}</p></div>` : ''}
-    ${demo ? `<section class="demo" aria-labelledby="demoT"><h2 id="demoT">🧪 직접 해 보기</h2><div id="demoBox"></div></section>` : ''}
+    ${demo ? `<section class="demo" aria-labelledby="demoT"><h2 id="demoT">🧪 버튼으로 체험하기</h2><div id="demoBox"></div></section>` : ''}
+    ${window.PLAY[t.demo || t.id] ? `<section class="demo play-wrap" aria-labelledby="playT"><h2 id="playT">💻 진짜 코드로 바꿔 보기</h2><div id="playBox"></div></section>` : ''}
     ${t.say ? `<div class="box good"><h2>✅ AI에게 이렇게 말해요</h2><p>${esc(t.say)}</p><button type="button" class="btn ghost" data-copy="${esc(t.say)}">📋 복사하기</button></div>` : ''}
     ${t.bad ? `<div class="box bad"><h2>❌ 이렇게만 말하면 아쉬워요</h2><p style="margin:0">${esc(t.bad)}</p></div>` : ''}
     ${(t.rel || []).length ? `<h2 class="sec">함께 보면 좋은 말</h2><div class="row">${t.rel.filter(r => TERM[r]).map(r => `<a class="chip" href="#/t/${r}">${esc(TERM[r].ko)}</a>`).join('')}</div>` : ''}
     ${usedIn.length ? `<h2 class="sec">이 말이 나오는 퀘스트</h2><div class="row">${usedIn.map(q => `<a class="chip" href="#/q/${q.id}">${q.track.icon} ${esc(q.title)}</a>`).join('')}</div>` : ''}
   </article>`;
   if (demo) demo($('#demoBox'));
+  if (window.PLAY[t.demo || t.id]) playground($('#playBox'), t.demo || t.id);
+}
+
+/* ---------- 코드 놀이터: 코드를 고치면 오른쪽 화면이 바로 바뀌어요 ---------- */
+function playground(el, key, opts = {}) {
+  const P = window.PLAY[key] || { h: '', c: '', j: '', tip: '' };
+  const cur = { h: P.h, c: P.c, j: P.j };
+  const id = 'pg' + Math.random().toString(36).slice(2, 7);
+  el.innerHTML = `${P.tip ? `<p class="hint">✏️ 이렇게 바꿔 보세요: ${esc(P.tip)}</p>` : ''}
+  <div class="pg">
+    <div class="pg-code">
+      <div role="tablist" aria-label="코드 종류" class="pg-tabs">${[['h', 'HTML 뼈대'], ['c', 'CSS 꾸미기'], ['j', 'JS 움직임']].map(([k, n], i) => `<button type="button" role="tab" id="${id}-t${k}" aria-selected="${!i}" aria-controls="${id}-p${k}" tabindex="${i ? -1 : 0}" data-k="${k}">${n}${cur[k] ? '' : ' (비어 있음)'}</button>`).join('')}</div>
+      ${['h', 'c', 'j'].map((k, i) => `<div role="tabpanel" id="${id}-p${k}" aria-labelledby="${id}-t${k}" ${i ? 'hidden' : ''}><label class="sr-only" for="${id}-e${k}">${{ h: 'HTML', c: 'CSS', j: '자바스크립트' }[k]} 코드</label><textarea id="${id}-e${k}" data-k="${k}" spellcheck="false" autocapitalize="off" class="code-ed">${esc(cur[k])}</textarea></div>`).join('')}
+      <div class="row" style="margin-top:6px"><button type="button" class="btn ghost" data-act="reset">↺ 처음 코드로</button><button type="button" class="btn ghost" data-act="copy">📋 코드 복사</button></div>
+    </div>
+    <div class="pg-view">
+      <div class="row" role="group" aria-label="미리보기 화면 너비" style="margin:0 0 6px">${[['100%', '꽉 차게'], ['375px', '📱 휴대폰'], ['768px', '📟 태블릿']].map(([w, n], i) => `<button type="button" class="chip" data-w="${w}" aria-pressed="${!i}">${n}</button>`).join('')}</div>
+      <iframe title="코드 결과 미리보기" sandbox="allow-scripts" class="pg-frame"></iframe>
+      <p class="small muted" style="margin:4px 0 0">코드를 고치면 0.5초 뒤 화면이 바뀌어요. 실수해도 [처음 코드로]를 누르면 돼요.</p>
+    </div>
+  </div>`;
+  const fr = $('.pg-frame', el);
+  const doc = () => `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font-family:"Malgun Gothic",sans-serif;margin:12px;color:#1c2433;background:#fff}${cur.c}</style></head><body>${cur.h}<script>window.onerror=function(m){var p=document.createElement('p');p.setAttribute('role','alert');p.style.cssText='color:#b3261e;background:#fde7e5;padding:6px;border-radius:6px';p.textContent='⚠️ 자바스크립트 오류: '+String(m).replace(/^Uncaught /,'');(document.body||document.documentElement).appendChild(p);return true};<\/script><script>${cur.j.replace(/<\/script/gi, '<\\/script')}<\/script></body></html>`;
+  const update = () => { fr.srcdoc = doc(); };
+  let tm; $$('.code-ed', el).forEach(t => t.addEventListener('input', () => { cur[t.dataset.k] = t.value; clearTimeout(tm); tm = setTimeout(update, 500); }));
+  $$('.code-ed', el).forEach(t => t.addEventListener('keydown', (e) => { if (e.key === 'Tab' && !e.shiftKey && !e.ctrlKey && t.dataset.tabmode === '1') { e.preventDefault(); t.setRangeText('  ', t.selectionStart, t.selectionEnd, 'end'); } if (e.key === 'Escape') t.dataset.tabmode = '0'; }));
+  const tabs = $$('[role=tab]', el);
+  tabs.forEach((b, i) => { b.onclick = () => { tabs.forEach(x => { const on = x === b; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; $('#' + x.getAttribute('aria-controls')).hidden = !on; }); };
+    b.onkeydown = (e) => { if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return; const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + 3) % 3]; n.focus(); n.click(); }; });
+  $$('[data-w]', el).forEach(b => b.onclick = () => { $$('[data-w]', el).forEach(x => x.setAttribute('aria-pressed', String(x === b))); fr.style.width = b.dataset.w; });
+  $('[data-act=reset]', el).onclick = () => { Object.assign(cur, { h: P.h, c: P.c, j: P.j }); $$('.code-ed', el).forEach(t => t.value = cur[t.dataset.k]); update(); announce('처음 코드로 돌렸어요'); };
+  $('[data-act=copy]', el).onclick = (e) => copy(`<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n<style>\n${cur.c}\n</style>\n</head>\n<body>\n${cur.h}\n<script>\n${cur.j}\n<\/script>\n</body>\n</html>`, e.currentTarget);
+  update();
+}
+function pagePlay(params) {
+  const keys = Object.keys(window.PLAY);
+  const name = (k) => (window.TERMS.find(t => t.demo === k || t.id === k) || {}).ko || k;
+  let k = params.get('k') || 'div';
+  main.innerHTML = `<div class="crumb"><a href="#/dict">용어사전</a> › 코드 놀이터</div>
+  <h1>🧪 코드 놀이터</h1><p class="muted">AI가 만들어 주는 코드가 실제로 어떤 화면이 되는지, 직접 고쳐 보며 눈으로 확인해요. 망가져도 괜찮아요!</p>
+  <label class="lb" for="pk">무엇을 만들어 볼까요?</label><select id="pk">${keys.map(x => `<option value="${x}" ${x === k ? 'selected' : ''}>${esc(name(x))}</option>`).join('')}</select>
+  <p style="margin-top:6px"><a id="pkTerm" href="#/t/${esc((window.TERMS.find(t => t.demo === k || t.id === k) || {}).id || '')}">이 용어 뜻 보기 →</a></p>
+  <div id="pgBox" class="demo"></div>`;
+  playground($('#pgBox'), k);
+  $('#pk').onchange = (e) => { k = e.target.value; history.replaceState(null, '', '#/play?k=' + k); $('#pkTerm').href = '#/t/' + ((window.TERMS.find(t => t.demo === k || t.id === k) || {}).id || ''); playground($('#pgBox'), k); };
+}
+
+/* ---------- 용어 빠른 보기 (프롬프트 공식의 ? 버튼) ---------- */
+function termDialog(id) {
+  const t = TERM[id]; if (!t) return;
+  const d = $('#dlg'); const demo = t.demo && DEMOS[t.demo];
+  $('#dlgBody').innerHTML = `<div class="row">${lvBadge(t.level)}<span class="muted small">${window.CATS[t.cat][1]}</span></div><h2 id="dlgTitle" style="font-size:24px;margin:6px 0">${esc(t.ko)} <span class="muted small">${esc(t.en || '')}</span></h2>
+    <div class="box easy" style="margin-top:6px"><p style="margin:0">${esc(t.easy)}</p></div>${t.like ? `<p style="margin-top:10px">🧸 ${esc(t.like)}</p>` : ''}
+    ${demo ? '<div class="demo"><h3 style="font-size:16px">🧪 눌러 보세요</h3><div id="dlgDemo"></div></div>' : ''}
+    ${t.say ? `<div class="box good"><b>✅ 이렇게 말해요</b><p style="margin:4px 0 0">${esc(t.say)}</p></div>` : ''}
+    <div class="row" style="margin-top:12px"><a class="btn" href="#/t/${t.id}" id="dlgMore">💻 코드로 더 해 보기</a><button type="button" class="btn ghost" id="dlgClose">닫기</button></div>`;
+  if (demo) demo($('#dlgDemo'));
+  $('#dlgClose').onclick = () => d.close(); $('#dlgMore').onclick = () => d.close();
+  d.showModal();
 }
 
 /* ---------- 체험(데모) — 실제로 눌러 보며 바뀌는 모습 확인 ---------- */
@@ -304,8 +364,9 @@ function pagePrompt() {
     <label class="lb" for="f1">1. 누가 쓰나요?</label><input type="text" id="f1" placeholder="예: 유치원 7세 반 아이들 / 특수학교 중학생 / 우리 학교 선생님">
     <label class="lb" for="f2">2. 무엇을 만들까요?</label><input type="text" id="f2" placeholder="예: 동물 이름 맞히기 퀴즈 앱">
     <label class="lb" for="f3">3. 꼭 필요한 기능은?</label><input type="text" id="f3" placeholder="예: 그림 보고 정답 고르기, 맞으면 박수 소리, 점수 보이기">
-    <fieldset style="border:0;padding:0;margin:12px 0 0"><legend class="lb" style="margin:0 0 6px">4. 화면 모양 (그림 사전 용어, 여러 개 골라요)</legend>
-      <div class="row">${uiTerms.map(t => `<label class="chip"><input type="checkbox" class="uiT" value="${esc(t.ko.replace(/\(.*\)/, ''))}"> ${esc(t.ko)}</label>`).join('')}</div></fieldset>
+    <fieldset style="border:0;padding:0;margin:12px 0 0"><legend class="lb" style="margin:0 0 6px">4. 화면 모양 (용어사전 용어, 여러 개 골라요)</legend>
+      <p class="small muted" style="margin:0 0 6px">모르는 말은 옆의 <b>?</b> 를 누르면 어떻게 생기고 움직이는지 바로 보여 줘요.</p>
+      <div class="row">${uiTerms.map(t => `<span class="chip q-chip"><label><input type="checkbox" class="uiT" value="${esc(t.ko.replace(/\(.*\)/, ''))}"> ${esc(t.ko)}</label><button type="button" class="qbtn" data-term="${t.id}" aria-label="${esc(t.ko)} 뜻과 체험 보기">?</button></span>`).join('')}</div></fieldset>
     <fieldset style="border:0;padding:0;margin:12px 0 0"><legend class="lb" style="margin:0 0 6px">5. 지킬 것</legend>
       <div class="row">${['버튼은 크게', '글자는 적게, 그림은 크게', '휴대폰에서 잘 보이게', '한국어로', '학생 실명·연락처 넣지 않기', '움직임은 약하게', '나머지 기능은 그대로'].map(x => `<label class="chip"><input type="checkbox" class="rule" value="${x}"> ${x}</label>`).join('')}</div></fieldset>
   </form>
@@ -324,6 +385,7 @@ function pagePrompt() {
     const s = [v('f1') && `${v('f1')}이(가) 쓸`, v('f2') ? `${v('f2')}을(를) 만들어줘.` : '앱을 만들어줘.', v('f3') && `꼭 필요한 기능: ${v('f3')}.`, ui.length && `화면은 ${ui.join(', ')}을(를) 써서 구성해줘.`, rules.length && `지킬 것: ${rules.join(', ')}.`].filter(Boolean).join(' ');
     $('#po').textContent = s;
   };
+  $$('.qbtn').forEach(b => b.onclick = () => termDialog(b.dataset.term));
   $('#pf').addEventListener('input', f); $('#pf').addEventListener('change', f); f();
   $('#pc').onclick = (e) => copy($('#po').textContent, e.currentTarget);
 }
@@ -377,9 +439,9 @@ function route(keep) {
   stopSpeak();
   const [path, qs] = location.hash.replace(/^#\/?/, '').split('?'); const params = new URLSearchParams(qs || '');
   const [seg, arg] = path.split('/');
-  const R = { coach: pageCoach, '': pageHome, diag: pageDiag, quests: pageQuests, track: () => pageTrack(arg, params), q: () => pageQuest(arg), dict: () => pageDict(params), t: () => pageTerm(arg), prompt: pagePrompt, anti: pageAnti, me: pageMe };
+  const R = { play: () => pagePlay(params), coach: pageCoach, '': pageHome, diag: pageDiag, quests: pageQuests, track: () => pageTrack(arg, params), q: () => pageQuest(arg), dict: () => pageDict(params), t: () => pageTerm(arg), prompt: pagePrompt, anti: pageAnti, me: pageMe };
   (R[seg || ''] || notFound)();
-  const navKey = { track: 'quests', q: 'quests', diag: 'home', t: 'dict', anti: 'quests' }[seg] || seg || 'home';
+  const navKey = { track: 'quests', q: 'quests', diag: 'home', t: 'dict', play: 'dict', anti: 'quests', coach: 'home' }[seg] || seg || 'home';
   $$('[data-nav]').forEach(a => a.dataset.nav === navKey ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
   const h = $('h1', main); document.title = (h && seg ? h.textContent.trim() + ' · ' : '') + '형아맨의 바이브코딩 교실';
   if (keep === true) return;

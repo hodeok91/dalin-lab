@@ -359,3 +359,71 @@ html.a11y-contrast img.director { background: #fff; border-radius: 12px; }
 }
 
 .card-h { font-size: 16px; margin: 0; }
+
+/* =========================================================
+   사이드바 (제미나이식 접기/펼치기) — 레이아웃 재구성
+   ========================================================= */
+.window { display: grid; grid-template-columns: auto 1fr; grid-template-rows: 1fr; height: 100vh; height: 100dvh; }
+.main-col { display: grid; grid-template-rows: 44px 1fr 24px; min-width: 0; min-height: 0; }
+.editor { min-height: 0; }
+.titlebar { padding: 0 0 0 14px; }
+.m-logo { display: none; }
+.cmd-trigger { margin: 0; max-width: 560px; }
+.title-actions { margin-left: auto; }
+.sidebar { width: 264px; background: var(--panel); border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; overflow: hidden auto; transition: width .18s ease; }
+.sb-head { display: flex; align-items: center; gap: 8px; padding: 10px 10px 8px 12px; min-height: 60px; }
+.sb-logo { flex: 0 0 40px; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: var(--panel2); display: grid; place-items: center; }
+.sb-logo img { width: 36px; height: 36px; border-radius: 50%; }
+.sb-logo:hover { box-shadow: 0 0 0 3px var(--card-hover); }
+.sb-brand { flex: 1; font-weight: 800; font-size: 17px; color: var(--strong); text-decoration: none !important; white-space: nowrap; }
+.sb-close { flex: 0 0 40px; width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent; color: var(--muted); font-size: 18px; position: relative; }
+.sb-close:hover, .sb-close:focus-visible { background: var(--panel2); color: var(--strong); }
+.sb-close:hover::after, .sb-nav a:hover::after { pointer-events: none; }
+/* 버튼 말풍선 (마우스·키보드 초점 모두) */
+.sb-close::after { content: attr(title); position: absolute; left: 50%; top: calc(100% + 6px); transform: translateX(-50%); padding: 6px 10px; border-radius: 6px; background: var(--strong); color: var(--bg); font-size: 12.5px; white-space: nowrap; opacity: 0; visibility: hidden; z-index: 30; }
+.sb-close:hover::after, .sb-close:focus-visible::after { opacity: 1; visibility: visible; }
+.sb-nav { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; outline: none; }
+.sb-nav a { position: relative; display: flex; align-items: center; gap: 14px; min-height: 44px; padding: 0 12px; border-radius: 22px; color: var(--text); text-decoration: none !important; font-size: 14.5px; }
+.sb-nav a .ico { width: 24px; text-align: center; font-size: 19px; filter: grayscale(.25); }
+.sb-nav a em { font-style: normal; white-space: nowrap; }
+.sb-nav a:hover { background: var(--panel2); }
+.sb-nav a.active { background: #0078d424; color: var(--strong); font-weight: 700; }
+html.a11y-contrast .sb-nav a.active { background: #333; outline: 2px solid #ffff00; }
+.sb-nav .badge { position: static; margin-left: auto; }
+.sb-title { font-size: 12.5px; color: var(--muted); font-weight: 700; margin: 18px 20px 6px; }
+.sb-favs .fav-list { padding: 0 12px 0 20px; } .fav-list a { padding: 6px 0; min-height: 32px; display: block; }
+.sb-foot { margin-top: auto; display: flex; gap: 10px; align-items: center; padding: 12px 14px; border-top: 1px solid var(--line); font-size: 12.5px; }
+.sb-foot img { width: 36px; height: 36px; border-radius: 50%; background: var(--panel2); }
+.sb-foot b { display: block; color: var(--strong); font-size: 13px; } .sb-foot span { color: var(--muted); }
+
+/* 접힌 상태: 캐릭터 + 아이콘만 */
+html.side-closed .sidebar { width: 64px; }
+html.side-closed .sb-head { padding: 10px 12px 8px; justify-content: center; }
+html.side-closed .sb-brand, html.side-closed .sb-close, html.side-closed .sb-favs, html.side-closed .sb-foot { display: none; }
+html.side-closed .sb-nav { padding: 4px 8px; align-items: center; }
+html.side-closed .sb-nav a { width: 48px; justify-content: center; padding: 0; gap: 0; }
+html.side-closed .sb-nav a em { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+html.side-closed .sb-nav .badge { position: absolute; top: 4px; right: 2px; }
+html.side-closed .sb-nav a::after, html.side-closed .sb-logo::after { content: attr(data-tip); position: absolute; left: calc(100% + 10px); top: 50%; transform: translateY(-50%); padding: 6px 10px; border-radius: 6px; background: var(--strong); color: var(--bg); font-size: 12.5px; white-space: nowrap; opacity: 0; visibility: hidden; z-index: 30; }
+html.side-closed .sb-logo { position: relative; } html.side-closed .sb-logo::after { content: "사이드바 열기"; }
+html.side-closed .sb-nav a:hover::after, html.side-closed .sb-nav a:focus-visible::after, html.side-closed .sb-logo:hover::after, html.side-closed .sb-logo:focus-visible::after { opacity: 1; visibility: visible; }
+html.side-closed .sidebar { overflow: visible; }
+
+/* 모바일: 아래 메뉴 막대 (안드로이드식) */
+@media (max-width: 900px) {
+  .window { grid-template-columns: 1fr; grid-template-rows: 1fr 62px; }
+  .main-col { grid-template-rows: 52px 1fr 0; grid-row: 1; }
+  .sidebar, html.side-closed .sidebar { grid-row: 2; width: auto; flex-direction: row; overflow: visible; border-right: 0; border-top: 1px solid var(--line); }
+  .sb-head, .sb-favs, .sb-foot { display: none !important; }
+  .sb-nav, html.side-closed .sb-nav { flex-direction: row; flex: 1; padding: 0; gap: 0; align-items: stretch; }
+  .sb-nav a, html.side-closed .sb-nav a { flex: 1; width: auto; flex-direction: column; justify-content: center; gap: 2px; padding: 0; min-height: 62px; border-radius: 0; font-size: 11.5px; }
+  .sb-nav a em, html.side-closed .sb-nav a em { position: static; width: auto; height: auto; clip: auto; overflow: visible; }
+  .sb-nav a.active { background: transparent; box-shadow: inset 0 3px 0 var(--accent-bg); }
+  .sb-nav a.m-hide { display: none; }
+  .sb-nav a::after { display: none; }
+  .sb-nav .badge, html.side-closed .sb-nav .badge { position: absolute; top: 6px; right: calc(50% - 22px); }
+  .m-logo { display: block; flex: 0 0 36px; } .m-logo img { width: 34px; height: 34px; border-radius: 50%; background: var(--panel2); display: block; }
+  .titlebar { padding: 0 8px; gap: 8px; }
+  .cmd-trigger { flex: 1; }
+  .statusbar { display: none; }
+}

@@ -195,3 +195,35 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus { outline: none; }
 .coach { border: 2px solid var(--blue); background: var(--blue-soft); }
 .coach.on { border-color: var(--l1); background: var(--l1-bg); }
 .coach.on b { color: var(--l1); }
+
+/* 코드 놀이터 */
+.pg { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pg-tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); }
+.pg-tabs [role=tab] { border: 0; background: none; padding: 8px 12px; min-height: 40px; border-bottom: 3px solid transparent; font-weight: 700; color: var(--muted); }
+.pg-tabs [aria-selected=true] { border-bottom-color: var(--blue); color: var(--strong); }
+.code-ed { font-family: Consolas, "D2Coding", monospace; font-size: 14.5px; min-height: 260px; line-height: 1.5; background: #1e1e2e; color: #e6e6f0; border-radius: 0 0 10px 10px; tab-size: 2; white-space: pre; }
+.pg-frame { width: 100%; max-width: 100%; height: 320px; border: 1px solid var(--line); border-radius: 10px; background: #fff; display: block; margin: 0 auto; transition: width .2s; }
+@media (max-width: 860px) { .pg { grid-template-columns: 1fr; } }
+/* ? 버튼 */
+.q-chip { padding: 2px 4px 2px 12px; gap: 6px; } .q-chip label { display: inline-flex; gap: 4px; align-items: center; cursor: pointer; }
+.qbtn { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--blue); background: var(--surface); color: var(--blue); font-weight: 900; display: grid; place-items: center; padding: 0; }
+.qbtn:hover { background: var(--blue-bg); color: #fff; }
+dialog#dlg { border: 0; border-radius: 16px; padding: 20px; width: min(560px, 94vw); max-height: 88vh; background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+dialog#dlg::backdrop { background: #0009; }
+/* 형아맨 펫 */
+.pet { position: fixed; right: 16px; bottom: 16px; z-index: 40; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; touch-action: none; }
+.pet-btn { border: 0; background: none; padding: 0; cursor: grab; border-radius: 16px; }
+.pet-btn img { width: 120px; height: 120px; display: block; filter: drop-shadow(0 6px 10px rgba(0,0,0,.25)); user-select: none; }
+.pet-menu { background: var(--surface); border: 2px solid var(--blue); border-radius: 16px 16px 4px 16px; padding: 10px; box-shadow: var(--shadow); min-width: 220px; display: grid; gap: 4px; }
+.pet-say { margin: 0 0 4px; font-weight: 800; color: var(--strong); }
+.pm { display: flex; align-items: center; min-height: 40px; padding: 6px 10px; border-radius: 10px; text-decoration: none; color: var(--text); border: 0; background: var(--surface2); text-align: left; font-size: 15px; }
+.pm:hover { background: var(--blue-soft); }
+.pet-call { position: fixed; right: 16px; bottom: 16px; z-index: 40; width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--blue); background: var(--surface); padding: 0; }
+.pet-call img { width: 100%; height: 100%; border-radius: 50%; }
+@media (max-width: 860px) { .pet { bottom: 74px; right: 8px; } .pet-btn img { width: 84px; height: 84px; } .pet-call { bottom: 74px; } }
+@media print { .pet, .pet-call { display: none !important; } }
+
+/* 버전 표시(업로드 확인용) */
+.vfoot { max-width: 1100px; margin: 24px auto 0; padding: 12px 16px 96px; text-align: center; font-size: 14px; color: var(--muted); }
+.vfoot a { color: inherit; }
+@media (min-width: 900px) { .vfoot { padding-bottom: 24px; } }

@@ -15,58 +15,55 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="assets/style.css">
 <script>/* 깜빡임 없이 저장된 테마·편의 설정 먼저 적용 */
-try{var t=JSON.parse(localStorage.getItem('dalin:theme')||'"light"');document.documentElement.dataset.theme=t;var o=JSON.parse(localStorage.getItem('dalin:a11y')||'{}');var c=document.documentElement.classList;if(o.font)c.add('a11y-font-'+o.font);['spacing','contrast','underline','motion','cursor'].forEach(function(k){if(o[k])c.add('a11y-'+k)});}catch(e){}
+try{var t=JSON.parse(localStorage.getItem('dalin:theme')||'"light"');document.documentElement.dataset.theme=t;var o=JSON.parse(localStorage.getItem('dalin:a11y')||'{}');var c=document.documentElement.classList;if(o.font)c.add('a11y-font-'+o.font);['spacing','contrast','underline','motion','cursor'].forEach(function(k){if(o[k])c.add('a11y-'+k)});if(JSON.parse(localStorage.getItem('dalin:sideClosed')||'false'))c.add('side-closed');}catch(e){}
 </script>
 </head>
 <body>
 <a class="skip" href="#view">본문 바로가기</a>
 <a class="skip" href="#mainNav">주 메뉴 바로가기</a>
 <div class="window">
-  <!-- 제목 표시줄 -->
-  <header class="titlebar">
-    <a class="ws-name" href="#/"><img src="assets/character/director-face.png" alt="" class="app-logo"> 달인연구소.lab<span class="sr-only"> 홈으로</span></a>
-    <button type="button" class="cmd-trigger" id="cmdOpen" aria-haspopup="dialog" aria-keyshortcuts="Control+K"><span aria-hidden="true">🔍</span> <span>실험·연구 노트 찾기</span> <kbd aria-hidden="true">Ctrl K</kbd></button>
-    <div class="title-actions">
-      <span class="visit-mini" id="visitMini">오늘 – · 누적 –</span>
-      <button type="button" class="tb-btn" id="themeBtn" aria-pressed="false"><span aria-hidden="true">🌙</span><span class="tb-label">다크 모드</span></button>
-      <button type="button" class="tb-btn a11y-open" id="a11yBtn" aria-haspopup="dialog"><span aria-hidden="true">♿</span><span class="tb-label">편의 기능</span></button>
+  <!-- 사이드바 (제미나이처럼 접고 펼치기) -->
+  <aside class="sidebar" id="sidebar" aria-label="사이드바">
+    <div class="sb-head">
+      <button type="button" class="sb-logo" id="sbOpen" aria-controls="sidebar" aria-expanded="true" title="사이드바 열기">
+        <img src="assets/character/director-face.png" alt=""><span class="sr-only">사이드바 열기</span>
+      </button>
+      <a class="sb-brand" href="#/">달인 연구소<span class="sr-only"> 홈으로</span></a>
+      <button type="button" class="sb-close" id="sbClose" aria-controls="sidebar" aria-expanded="true" title="사이드바 닫기">
+        <span aria-hidden="true">⇤</span><span class="sr-only">사이드바 닫기</span>
+      </button>
     </div>
-    <div class="win-ctrl">
-      <button type="button" id="winSide" aria-pressed="false" title="탐색기 접기/펴기"><span aria-hidden="true">─</span><span class="sr-only">탐색기 접기</span></button>
-      <button type="button" id="winFull" aria-pressed="false" title="전체 화면"><span aria-hidden="true">☐</span><span class="sr-only">전체 화면</span></button>
-    </div>
-  </header>
-
-  <div class="body">
-    <!-- 활동 막대 (주 메뉴) -->
-    <nav class="activitybar" id="mainNav" aria-label="주 메뉴" tabindex="-1">
-      <a href="#/" data-route="home"><span aria-hidden="true">🏠</span><em>연구소</em></a>
-      <a href="#/apps" data-route="apps"><span aria-hidden="true">🧪</span><em>실험실</em></a>
-      <a href="#/insights" data-route="insights"><span aria-hidden="true">📓</span><em>연구노트</em></a>
-      <a href="#/downloads" data-route="downloads"><span aria-hidden="true">📦</span><em>자료함</em></a>
-      <a href="#/board" data-route="board"><span aria-hidden="true">📮</span><em>제안함</em><b class="badge" id="boardBadge" hidden></b></a>
-      <a href="#/changelog" data-route="changelog"><span aria-hidden="true">🗒️</span><em>일지</em></a>
-      <a href="#/about" data-route="about" class="bottom"><span aria-hidden="true">👨‍🔬</span><em>소장</em></a>
+    <nav class="sb-nav" id="mainNav" aria-label="주 메뉴" tabindex="-1">
+      <a href="#/" data-route="home" data-tip="연구소 홈"><span class="ico" aria-hidden="true">🏠</span><em>연구소 홈</em></a>
+      <a href="#/apps" data-route="apps" data-tip="실험실"><span class="ico" aria-hidden="true">🧪</span><em>실험실</em></a>
+      <a href="#/insights" data-route="insights" data-tip="연구 노트"><span class="ico" aria-hidden="true">📓</span><em>연구 노트</em></a>
+      <a href="#/downloads" data-route="downloads" data-tip="자료 보관함"><span class="ico" aria-hidden="true">📦</span><em>자료 보관함</em></a>
+      <a href="#/board" data-route="board" data-tip="연구 제안함"><span class="ico" aria-hidden="true">📮</span><em>연구 제안함</em><b class="badge" id="boardBadge" hidden></b></a>
+      <a href="#/changelog" data-route="changelog" data-tip="연구 일지" class="m-hide"><span class="ico" aria-hidden="true">🗒️</span><em>연구 일지</em></a>
+      <a href="#/about" data-route="about" data-tip="연구소장"><span class="ico" aria-hidden="true">👨‍🔬</span><em>연구소장</em></a>
+      <a href="#/a11y" data-route="a11y" data-tip="접근성 안내" class="m-hide"><span class="ico" aria-hidden="true">♿</span><em>접근성 안내</em></a>
     </nav>
-
-    <!-- 탐색기 (데스크톱) -->
-    <aside class="explorer" aria-label="탐색기">
-      <div class="ex-head" aria-hidden="true">탐색기</div>
-      <div class="ex-director"><img src="assets/character/director-face.png" alt=""><div><b>연구소장 지호덕</b><span>명현학교 특수교사</span></div></div>
-      <nav aria-label="연구소 지도">
-        <div class="ex-group" aria-hidden="true">▾ 달인연구소.lab</div>
-        <a href="#/" data-route="home"><span aria-hidden="true">🏠</span> 연구소 홈</a>
-        <a href="#/apps" data-route="apps"><span aria-hidden="true">🧪</span> 실험실/</a>
-        <a href="#/insights" data-route="insights"><span aria-hidden="true">📓</span> 연구노트/</a>
-        <a href="#/downloads" data-route="downloads"><span aria-hidden="true">📦</span> 자료보관함/</a>
-        <a href="#/board" data-route="board"><span aria-hidden="true">📮</span> 연구제안함</a>
-        <a href="#/changelog" data-route="changelog"><span aria-hidden="true">🗒️</span> 연구일지</a>
-        <a href="#/about" data-route="about"><span aria-hidden="true">👨‍🔬</span> 연구소장</a>
-        <a href="#/a11y" data-route="a11y"><span aria-hidden="true">♿</span> 접근성 안내</a>
-      </nav>
-      <h2 class="ex-group" style="margin-top:14px">★ 즐겨찾기</h2>
+    <section class="sb-favs" aria-labelledby="favTitle">
+      <h2 id="favTitle" class="sb-title">★ 즐겨찾기</h2>
       <div id="favList" class="fav-list"><p class="muted small">실험 카드의 ☆ 버튼을 누르면 여기에 모여요</p></div>
-    </aside>
+    </section>
+    <div class="sb-foot">
+      <img src="assets/character/director-face.png" alt="">
+      <div><b>연구소장 지호덕</b><span>명현학교 특수교사</span></div>
+    </div>
+  </aside>
+
+  <div class="main-col">
+    <!-- 제목 표시줄 -->
+    <header class="titlebar">
+      <a class="m-logo" href="#/"><img src="assets/character/director-face.png" alt=""><span class="sr-only">달인 연구소 홈으로</span></a>
+      <button type="button" class="cmd-trigger" id="cmdOpen" aria-haspopup="dialog" aria-keyshortcuts="Control+K"><span aria-hidden="true">🔍</span> <span>실험·연구 노트 찾기</span> <kbd aria-hidden="true">Ctrl K</kbd></button>
+      <div class="title-actions">
+        <span class="visit-mini" id="visitMini">오늘 – · 누적 –</span>
+        <button type="button" class="tb-btn" id="themeBtn" aria-pressed="false"><span aria-hidden="true">🌙</span><span class="tb-label">다크 모드</span></button>
+        <button type="button" class="tb-btn a11y-open" id="a11yBtn" aria-haspopup="dialog"><span aria-hidden="true">♿</span><span class="tb-label">편의 기능</span></button>
+      </div>
+    </header>
 
     <!-- 본문 -->
     <main class="editor" id="main">
@@ -82,16 +79,17 @@ try{var t=JSON.parse(localStorage.getItem('dalin:theme')||'"light"');document.do
         <a href="https://github.com/hodeok91/dalin-lab" target="_blank" rel="noopener">GitHub</a>
       </footer>
     </main>
-  </div>
 
-  <!-- 상태 표시줄 (장식용 정보) -->
-  <div class="statusbar" aria-hidden="true">
-    <span>🧪 LAB ONLINE</span>
-    <span id="sbClock">--:--</span>
-    <span id="sbWeather"></span>
-    <span class="grow"></span>
-    <span id="sbDb">● 로컬 모드</span>
-    <span>KWCAG 2.2</span>
+    <!-- 상태 표시줄 (장식용 정보) -->
+    <div class="statusbar" aria-hidden="true">
+      <span>🧪 LAB ONLINE</span>
+      <span id="sbClock">--:--</span>
+      <span id="sbWeather"></span>
+      <span class="grow"></span>
+      <span id="sbDb">● 로컬 모드</span>
+      <span>KWCAG 2.2</span>
+      <span>v2026.11.04</span>
+    </div>
   </div>
 </div>
 

@@ -52,7 +52,7 @@ window.TRACKS = [
      { id: 'c6', auto: { ev: 'prompt', site: 'gemini' }, coach: [{ t: 'editor', m: '고칠 점 + "나머지는 그대로"' }], title: '찾은 문제를 고쳐라', do: ['찾은 문제를 고쳐 달라고 해요.', '"나머지는 그대로"를 꼭 붙여요.'],
        copy: '방금 찾은 오류를 수정해줘. 이미 맞는 내용과 디자인은 그대로 유지해줘.',
        check: { type: 'prompt', groups: [G.fix, G.keep], need: 2 }, terms: ['iterate', 'keep'] },
-     { id: 'c7', auto: { ev: 'prompt', site: 'gemini' }, coach: [{ t: 'editor', m: '화면 용어(탭·아코디언·카드)를 넣어 말해요' }], title: '화면 용어로 꾸며라', do: ['그림 사전에서 마음에 드는 화면 용어를 하나 골라요. (예: 탭, 아코디언, 카드, 고정 머리글)', '그 용어를 넣어 화면을 바꿔 달라고 해요.'],
+     { id: 'c7', auto: { ev: 'prompt', site: 'gemini' }, coach: [{ t: 'editor', m: '화면 용어(탭·아코디언·카드)를 넣어 말해요' }], title: '화면 용어로 꾸며라', do: ['용어사전에서 마음에 드는 화면 용어를 하나 골라요. (예: 탭, 아코디언, 카드, 고정 머리글)', '그 용어를 넣어 화면을 바꿔 달라고 해요.'],
        copy: '일정은 오늘·내일 탭으로 나누고, 안전 안내는 아코디언으로 접었다 펼 수 있게 해줘. 나머지 내용은 그대로 유지해줘.',
        check: { type: 'prompt', groups: [G.ui, G.fix], need: 2 }, terms: ['tabs', 'accordion', 'card', 'sticky'] },
    ]},

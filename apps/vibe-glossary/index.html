@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>형아맨의 바이브코딩 교실 — 말로 앱을 만들어요</title>
-<meta name="description" content="코딩을 몰라도 괜찮아요. 제미나이 캔버스·구글 AI 스튜디오·안티그래비티로 초급부터 고급까지, 형아맨과 퀘스트로 배우는 바이브코딩 교실과 그림 사전">
+<meta name="description" content="코딩을 몰라도 괜찮아요. 제미나이 캔버스·구글 AI 스튜디오·안티그래비티로 초급부터 고급까지, 형아맨과 퀘스트로 배우는 바이브코딩 교실과 용어사전">
 <meta name="theme-color" content="#1d4fbf">
 <meta property="og:title" content="형아맨의 바이브코딩 교실">
-<meta property="og:description" content="코딩 몰라도 말로 앱을 만들어요. 퀘스트로 배우고, 모르는 말은 그림 사전으로.">
+<meta property="og:description" content="코딩 몰라도 말로 앱을 만들어요. 퀘스트로 배우고, 모르는 말은 용어사전으로.">
 <meta property="og:image" content="assets/hyungaman.png">
 <link rel="icon" href="assets/hyungaman-face.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
@@ -22,7 +22,7 @@
     <nav class="nav" aria-label="주 메뉴">
       <a href="#/" data-nav="home"><span aria-hidden="true">🏠</span>홈</a>
       <a href="#/quests" data-nav="quests"><span aria-hidden="true">⚔️</span>퀘스트</a>
-      <a href="#/dict" data-nav="dict"><span aria-hidden="true">📖</span>그림 사전</a>
+      <a href="#/dict" data-nav="dict"><span aria-hidden="true">📖</span>용어사전</a>
       <a href="#/prompt" data-nav="prompt"><span aria-hidden="true">🪄</span>프롬프트 공식</a>
       <a href="#/me" data-nav="me"><span aria-hidden="true">🏅</span>내 배지</a>
     </nav>
@@ -35,6 +35,7 @@
   </div>
 </header>
 <main id="main" tabindex="-1"></main>
+<footer class="vfoot"><p>형아맨의 바이브코딩 교실 · <span id="buildVer">2026.11.04 업데이트 (v3)</span> · <a href="privacy-coach.html">코치 개인정보 처리방침</a></p></footer>
 <nav class="bnav" aria-label="아래 메뉴">
   <a href="#/" data-nav="home"><span aria-hidden="true">🏠</span>홈</a>
   <a href="#/quests" data-nav="quests"><span aria-hidden="true">⚔️</span>퀘스트</a>
@@ -43,10 +44,27 @@
   <a href="#/me" data-nav="me"><span aria-hidden="true">🏅</span>배지</a>
 </nav>
 <div id="live" class="sr-only" aria-live="polite"></div>
+<dialog id="dlg" aria-labelledby="dlgTitle"><div id="dlgBody"></div></dialog>
+<!-- 형아맨 펫: 누르면 메뉴가 열려요 -->
+<div class="pet" id="pet">
+  <div class="pet-menu" id="petMenu" hidden>
+    <p class="pet-say" id="petSay">무엇을 도와줄까요?</p>
+    <a href="#/quests" class="pm">⚔️ 퀘스트 이어 하기</a>
+    <a href="#/dict" class="pm">📖 모르는 말 찾기</a>
+    <a href="#/play" class="pm">🧪 코드 놀이터</a>
+    <a href="#/prompt" class="pm">🪄 프롬프트 공식</a>
+    <a href="#/diag" class="pm">🧭 1분 진단</a>
+    <button type="button" class="pm" id="petHide">🙈 형아맨 잠깐 숨기기</button>
+  </div>
+  <button type="button" class="pet-btn" id="petBtn" aria-expanded="false" aria-controls="petMenu" aria-label="형아맨 메뉴 열기"><img id="petImg" src="assets/pet/idle.webp" alt="" width="120" height="120" draggable="false"></button>
+</div>
+<button type="button" class="pet-call" id="petCall" hidden aria-label="형아맨 다시 부르기"><img src="assets/hyungaman-face.png" alt=""></button>
 <script>window.COACH_LINKS = { chrome: "", edge: "", zip: "https://github.com/hodeok91/dalin-lab/releases" }; /* 스토어 주소를 받으면 여기에 넣어요 */</script>
 <script src="data/terms.js"></script>
+<script src="data/playground.js"></script>
 <script src="data/terms-more.js"></script>
 <script src="data/quests.js"></script>
 <script src="app.js"></script>
+<script src="pet.js"></script>
 </body>
 </html>
