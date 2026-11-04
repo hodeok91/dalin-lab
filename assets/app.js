@@ -332,7 +332,7 @@ async function pagePost(slug) {
 }
 
 /* ---------- 게시판·댓글 ---------- */
-const CATS = ['앱 요청', '오류 제보', '건의', '응원'];
+const CATS = ['건의', '후기', '피드백', '버그 제보', '질문', '감사', '앱 요청'];
 const commentForm = (slug) => sb ? `<form class="post-form card" id="fbForm" novalidate>
   <div class="row"><div><label for="fbName">이름 <span class="req">(필수)</span></label><input id="fbName" name="name" maxlength="20" autocomplete="nickname" placeholder="별명도 괜찮아요" value="${esc(store.get('myName', ''))}" required aria-describedby="fbErr"></div>${slug ? '' : `<div><label for="fbCat">종류</label><select id="fbCat" name="category">${CATS.map(c => `<option>${c}</option>`).join('')}</select></div>`}</div>
   <label for="fbText">${slug ? '내용' : '제안 내용'} <span class="req">(필수, 2~1000자)</span></label>
@@ -546,9 +546,17 @@ document.addEventListener('click', (e) => {
 document.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) modal.close(); });
 
 /* 창 버튼 (윈도우식): 탐색기 접기 · 전체 화면 */
-$('#winSide').onclick = () => { const on = document.body.classList.toggle('side-off'); $('#winSide').setAttribute('aria-pressed', String(on)); announce(on ? '탐색기를 접었어요' : '탐색기를 펼쳤어요'); };
-$('#winFull').onclick = () => { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); };
-document.addEventListener('fullscreenchange', () => $('#winFull').setAttribute('aria-pressed', String(!!document.fullscreenElement)));
+/* 사이드바 접기·펼치기 (제미나이식) */
+function setSide(closed, focus) {
+  const c = document.documentElement.classList; c.toggle('side-closed', closed); store.set('sideClosed', closed);
+  ['#sbOpen', '#sbClose'].forEach(sel => $(sel).setAttribute('aria-expanded', String(!closed)));
+  $('#sbOpen').title = closed ? '사이드바 열기' : '연구소 홈'; $('#sbOpen .sr-only').textContent = closed ? '사이드바 열기' : '달인 연구소 홈';
+  if (focus) (closed ? $('#sbOpen') : $('#sbClose')).focus();
+  if (focus) announce(closed ? '사이드바를 접었어요' : '사이드바를 펼쳤어요');
+}
+$('#sbClose').onclick = () => setSide(true, true);
+$('#sbOpen').onclick = () => { if (document.documentElement.classList.contains('side-closed')) setSide(false, true); else location.hash = '#/'; };
+setSide(document.documentElement.classList.contains('side-closed'), false);
 
 /* ---------- 화면: 접근성 안내 ---------- */
 function pageA11y() {

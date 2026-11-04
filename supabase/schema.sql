@@ -45,7 +45,7 @@ $$;
 create table if not exists public.feedback (
   id bigserial primary key,
   name      text not null check (char_length(name) between 1 and 20),
-  category  text not null default '건의' check (category in ('앱 요청','오류 제보','건의','응원','댓글')),
+  category  text not null default '건의' check (category in ('건의','후기','피드백','버그 제보','질문','감사','앱 요청','댓글')),
   content   text not null check (char_length(content) between 2 and 1000),
   post_slug text check (post_slug is null or char_length(post_slug) <= 80),  -- 비어 있으면 게시판 글, 있으면 그 인사이트 글의 댓글
   reply     text,                    -- 관리자 답변 (Table Editor에서 직접 입력)
@@ -81,3 +81,8 @@ grant select on public.app_clicks to anon, authenticated;
 grant select (id, name, category, content, post_slug, reply, created_at, hidden), insert (name, category, content, post_slug) on public.feedback to anon, authenticated;
 grant usage, select on sequence public.feedback_id_seq to anon, authenticated;
 revoke all on public.visits from anon, authenticated;
+
+-- 5) (이미 예전 schema.sql을 실행했다면) 게시판 글 종류를 새 목록으로 바꾸기 — 이 부분만 다시 실행해도 돼요
+alter table public.feedback drop constraint if exists feedback_category_check;
+alter table public.feedback add constraint feedback_category_check
+  check (category in ('건의','후기','피드백','버그 제보','질문','감사','앱 요청','댓글'));
