@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const workspace=path.resolve(root,'../../../..');
+const output=path.join(workspace,'배포본','안전의달인_20261114','trip-escape');
+if(!output.startsWith(workspace+path.sep)||output===root)throw Error('배포 경로를 확인해 주세요.');
+fs.mkdirSync(output,{recursive:true});
+const files=[];
+function copy(rel){const src=path.join(root,rel),dst=path.join(output,rel);if(fs.statSync(src).isDirectory()){fs.mkdirSync(dst,{recursive:true});for(const ent of fs.readdirSync(src))copy(path.join(rel,ent));}else{fs.mkdirSync(path.dirname(dst),{recursive:true});fs.copyFileSync(src,dst);files.push(rel.replaceAll(path.sep,'/'));}}
+for(const f of ['index.html','app.css','brand.css','app.js','activities.js','content.js','model.js','mini-games.js','resources.js','tools/preview.mjs','media/illustrations','media/resources','media/brand','media/ui','media/game','media/maps','media/trip08_corridor.webp'])copy(f);
+for(const id of ['sports','cinema','museum','experience','theme-park','park','garden','heritage','lodging','bus','rest','night','escape'])copy(id+'/index.html');
+const start='@echo off\r\nchcp 65001 >nul\r\ncd /d "%~dp0"\r\nwhere node >nul 2>nul\r\nif errorlevel 1 (\r\n  start "" "%~dp0index.html"\r\n  exit /b\r\n)\r\nnode tools\\preview.mjs --open\r\n';
+fs.writeFileSync(path.join(output,'시작하기.cmd'),start,'utf8');
+const guide=`안전의 달인 — 2026-11-14\n\n[내 컴퓨터에서 보기]\n시작하기.cmd를 실행하세요. 또는 index.html을 브라우저에서 열 수 있습니다.\n실행 창을 닫으면 로컬 서버가 종료됩니다. 영상은 인터넷 연결이 필요합니다.\n\n[기존 홈페이지에 올리기]\n이 trip-escape 폴더의 내용을 GitHub 저장소 apps/safety/trip-escape에 올립니다.\nindex.html과 새 JS/CSS, media 폴더, 장소별 하위 폴더를 함께 올려야 합니다.\n기존 사이트가 배포된 뒤 /sports/, /cinema/, /museum/, /experience/, /theme-park/, /park/, /garden/, /heritage/, /lodging/, /night/, /escape/ 주소를 사용할 수 있습니다.\n\n[유형]\n1일형·반일형은 휴게소를 사용하지 않습니다. 숙박형만 일정에 따라 선택합니다.\n\n[자료와 검수]\n캐릭터 시트 기반 전용 로고·아이콘·그림, 장소별 독립 활동·그림 찾기·다른 그림 찾기·탐험 지도, 나침반 영상·썸네일을 연결했습니다. 버스는 선생님 도구에서 필요할 때만 추가합니다.\n영상 내용·재생·자막은 수업 전에 교사가 확인해 주세요. 학생별 실제 사용성·현장 안전 행동을 인증한 자료는 아닙니다.\n\n[개인정보]\n학생 이름·응답은 서버에 전송하지 않습니다. 결과 파일·인쇄는 사용자가 직접 선택합니다. 활동 배지는 기억하기를 켰을 때만 이름 없이 이 브라우저에 보관합니다.\n`;
+fs.writeFileSync(path.join(output,'사용안내.txt'),guide,'utf8');
+const assetManifest=files.map(f=>{const b=fs.readFileSync(path.join(output,f));return {path:f,bytes:b.length,sha256:crypto.createHash('sha256').update(b).digest('hex')};});
+fs.writeFileSync(path.join(output,'release-manifest.json'),JSON.stringify({app:'안전의 달인',version:'2.1.0',date:'2026-11-14',files:assetManifest},null,2));
+console.log(JSON.stringify({output,files:files.length,bytes:assetManifest.reduce((s,f)=>s+f.bytes,0)},null,2));
