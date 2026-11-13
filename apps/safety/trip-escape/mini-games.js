@@ -33,6 +33,8 @@ function create(place,kind){
  return null;
 }
 const targets=[{id:'ext',label:'소화기',x:13,y:56,area:'왼쪽 벽 살펴보기'},{id:'alarm',label:'화재경보기',x:42,y:52,area:'가운데 벽 살펴보기'},{id:'exit',label:'비상구 유도등',x:81,y:36,area:'오른쪽 위 살펴보기'}];
+targets[0].box=[5,29,15.5,42];targets[1].box=[40,42.5,8,16];targets[2].box=[74.5,30,9.5,11];
+function scoreFinding(g,id,validIds){g.rewarded??=[];if(validIds.includes(id)&&(g.rewarded.includes(id)||g.found?.includes(id)))return {kind:'repeat',delta:0};g.attempts=(g.attempts||0)+1;const hit=validIds.includes(id);const delta=hit?100:-10;if(hit)g.rewarded.push(id);else g.misses=(g.misses||0)+1;g.score=(g.score||0)+delta;return {kind:hit?'found':'miss',delta};}
 function act(g,action,value){
  if(!g||g.complete)return g;
  if(g.kind==='jump'){
@@ -67,5 +69,5 @@ function act(g,action,value){
  }
  return g;
 }
-const api={create,act,targets,pathLabels:{...pathLabels,cinema:['통로에서 천천히','계단·발밑 확인','선생님과 출구 앞 도착']},catalog,gameInfo,dodgeRounds,hazardNames,sequences};root.SafetyMiniGames=api;if(typeof module!=='undefined')module.exports=api;
+const api={create,act,targets,scoreFinding,pathLabels:{...pathLabels,cinema:['통로에서 천천히','계단·발밑 확인','선생님과 출구 앞 도착']},catalog,gameInfo,dodgeRounds,hazardNames,sequences};root.SafetyMiniGames=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

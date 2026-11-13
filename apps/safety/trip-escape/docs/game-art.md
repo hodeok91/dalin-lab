@@ -69,3 +69,21 @@
 
 - theme-park-find: Scientific educational 'find 4 unsafe actions' Korean amusement park, 3:2 1200×800. Keep HA exact identity/outfit and mint-polo male teacher from references, thick dark crisp cartoon outlines and simple flat2D cel shading. Four large distinct action groups with clear gaps: upperleft queue child cutting in/pushing another child's shoulder; uppercenter stationary ride car child beginning to stand with lapbar up; upperright safe-side child hand reaching over sturdy fence toward dropped blue cap, both feet on safeground; lowerright child running on open pedestrian lane. HA and teacher calmly stand lowercenter guiding. No other hazards, crowd clutter, text/UI/labels/markers/captions, scaryexpressions, injury/fall/collision. Only HA uniform emblem lettering. Background ferriswheel/trees/booth simplified.
 - rest-find: Scientific educational 'find 3 unsafe situations' rest-stop food court, 3:2 1200×800. HA exactcostume; longwavy chestnut female teacher identity fromsheet, peachhoodie/navypants/whitesneakers frompark reference. Bolddark contours, friendly clear matte2D cel shading. Left child running carrying upright tray and steaming hot soup bowl, NO spill/collision; upperright child alone walkingaway to faropen visible corridor, rearview; lowerright shallow wetpatch and yellow caution stand with slip-person pictogram/noletters, thirdchild about tostep towardpatch with nofall. HA andteacher stand lowercenter safely guiding. Distinct targetareas, fullbodyfeet, simplifiedfoodcourt background, no writtenmenus/labels/UI/numbers/captions/borders/extra hazards/injuries/scaryfaces.
+
+## 추가: 버스 위험 행동과 안전장치 함께 찾기
+
+`media/game/bus-find.webp`, 1200×800. 내장 `image_gen` 1회 생성. 원본 `exec-8e7fe7a4-7788-4831-97c2-f6a97523abb8.png` (위와 같은 생성 폴더). 기존 `media/illustrations/bus.webp`는 유지한다.
+
+그림은 학교에서 **출발 준비 중인 정지한 버스**이다. 왼쪽 일반 학생이 서 있고 옆 빈자리의 벨트가 풀려 있다. HA는 중앙에서 안전벨트를 맨 채 앉아 있다. 교사는 일상복과 운동화를 착용하고 출발 준비를 확인한다. 비상망치와 소화기는 가리지 않고 완전히 보이며, 위험 행동과 같은 장면에서 찾을 수 있는 안전장치이다. 장치를 함부로 쓰는 것이 미션은 아니다.
+
+권장 터치 영역(백분율 x,y,w,h):
+
+| 대상 | x | y | w | h |
+|---|---:|---:|---:|---:|
+| 서 있는 학생과 풀린 안전벨트 | 4 | 33 | 32 | 64 |
+| 왼쪽 위 비상망치 | 14 | 12 | 8 | 20 |
+| 오른쪽 위 소화기 | 81 | 17 | 9 | 21 |
+
+기기의 좁은 화면에서는 장치 영역의 터치가 작아지므로 아래 목록 버튼으로도 같은 대상을 선택할 수 있어야 한다. 움직이는 버스라고 단정하거나, 교사가 출발 준비 중 서 있는 것까지 오답으로 처리하지 않는다. 학생에게는 '출발 전에 자리에 앉아 안전벨트를 확인해요'로 안내한다.
+
+최종 프롬프트: Scientific-educational 3:2 landscape school-bus interior, 1200×800. Exact HA character-sheet identity/costume; existing bus scene as setting, male teacher identity and style reference. Thick dark clean cartoon ink, matte simple flat2D cel shading, warm cream/navy/blue palette; no3D/gloss/photo/painterly. Parked bus at school BEFORE DEPARTURE. Three distinct unobscured learning targets in one coherent scene: left foreground ordinary yellow-green-shirt boy standing on floor beside his seat, fullbody visible, NOT HA, two loose belt/buckle ends visibly unfastened on adjacent seat; upperleft T-shaped pointed emergency hammer in transparent wall case; right rear red fire extinguisher with black hose/handle and plain blank label. HA safely seated at centerfront wearing clear dark shoulder/lapbelt; casual lightblue/mint polo male teacher with navy pants and white sneakers checking preparations, no suit/tie. Empty other seats, clear gaps, school trees outside, no injury/fall/movingvehicle/crowd. No words/letters except HA emblem; no UI/markers/arrows/numbers/circles/badges/captions/borders. Exactly one hammer and one extinguisher. Final image inspected for identities, loose belt, full equipment visibility and separated targets; dimensions verified from saved WebP metadata.

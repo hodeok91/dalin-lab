@@ -54,6 +54,7 @@ const places={
     spots:[spot('adult','주변에 알리기','경보를 듣거나 불·연기를 보면 주변과 선생님께 알려요. 소리를 내기 어려우면 AAC·호출 수단을 사용해요.',42,51,core('fire'),'fire'),spot('route','안전한 경로 확인','선생님·직원의 안내에 따라 안전한 경로로 대피해요. 화재 시 일반 엘리베이터를 이용하지 않아요.',81,34,core('exit'),'exit'),spot('help','이동이 어려울 때','혼자 계단을 시도하지 말고 즉시 도움을 요청해요. 사전에 정한 피난계획과 담당자의 안내를 따라요.',20,64,core('help'),'help')],
     choices:[],quizzes:[quiz('lift','불이 나면 일반 엘리베이터를 타고 내려가요.',false,'선생님·직원의 안내와 미리 정한 피난계획을 따라요. 일반 엘리베이터를 이용하지 않아요.'),quiz('return','밖으로 대피한 뒤 가방을 찾으러 건물에 다시 들어가요.',false,'집결지에서 인원 확인과 안내를 기다려요. 물건을 찾으러 다시 들어가지 않아요.')],teacher:'실제 숙소의 화재 피난계획을 우선합니다. 학생별 이동·감각·의사소통 지원, 담당 인력, 안전한 대기·피난 공간과 119 위치 설명을 사전 확인하세요. 이 화면에서 실제 신고 전화는 연결되지 않습니다.'}
 };
+places.lodging.choices.push(...places.night.choices);
 places.heritage={title:'문화유산·궁궐',short:'문화유산·궁궐',example:'경복궁 · 고궁 · 문화유산 탐방',icon:'heritage',color:'#efb291',image:'media/venues/heritage.svg',description:'오래된 건물과 야외 길을 안전하게 함께 둘러봐요.',
  spots:[spot('boundary','관람 구역 확인','줄과 울타리를 넘지 않아요. 문화유산에 올라가거나 기대지 않아요.',26,44,core('stop'),'stop'),spot('step','돌계단과 문턱','울퉁불퉁한 돌바닥·높은 문턱·계단을 확인해요. 어려운 길은 도움이나 다른 경로를 요청해요.',54,69,core('help'),'help'),spot('together','함께 쉬며 이동','선생님과 정해진 길로 함께 가요. 덥거나 힘들면 그늘에서 쉴 수 있도록 알려요.',81,51,core('rest'),'rest')],
  choices:[choose('threshold','높은 문턱이나 돌계단을 지나기 어려워요.',['혼자 무리해서 넘어가요.','선생님께 알리고 도움이나 이용 가능한 다른 경로를 확인해요.'],1,'내게 맞는 길과 도움을 요청해요. 계단이나 문턱을 혼자 무리해서 지나가지 않아요.','help'),choose('photo','사진을 찍으려고 출입 금지 줄 안으로 가고 싶어요.',['관람 구역에서 사진을 찍어요.','줄을 넘어 건물에 올라가요.'],0,'출입 제한을 지키고 문화유산과 나의 안전을 함께 보호해요.','stop')],
@@ -84,11 +85,14 @@ const types=[{id:'day',title:'1일형 현장학습',subtitle:'하루 동안 다�
 const destinations=['sports','cinema','museum','experience','theme-park','park','garden','heritage','lodging'];
 const aacGroups=[{title:'도움과 몸',keys:['help','hurt','scared','rest','toilet','water']},{title:'내 생각',keys:['yes','no','again','unknown','wait','okay']},{title:'함께 이동',keys:['teacher','together','stop','slow','lost','here']}];
 const aac={help:'도와주세요',hurt:'아파요',scared:'무서워요',rest:'쉬고 싶어요',toilet:'화장실에 가고 싶어요',water:'물 마시고 싶어요',yes:'네',no:'아니요',again:'다시 보여 주세요',unknown:'모르겠어요',wait:'기다려 주세요',okay:'괜찮아요',teacher:'선생님',together:'같이 가요',stop:'멈춰요',slow:'천천히 가요',lost:'길을 잃었어요',here:'여기 있어요',exit:'비상구',fire:'불이야',bag:'가방에 넣어요',seatbelt:'안전벨트를 매요',sit:'자리에 앉아요'};
+places.homecoming={title:'안전하게 귀교',short:'귀교',example:'돌아오는 길 · 인원 확인',icon:'bus',color:'#ffce80',description:'돌아오는 길부터 내린 뒤까지 함께 마무리해요.',
+ spots:[spot('belt','돌아올 때도 안전벨트','학교로 돌아올 때도 자리에 앉아 안전벨트를 유지해요.',28,60,core('seatbelt'),'seatbelt'),spot('stop','완전히 멈춘 뒤 이동','버스가 완전히 멈추고 안내가 있을 때 일어나 내려요.',60,50,core('wait'),'wait'),spot('count','함께 인원 확인','내린 뒤 선생님과 정해진 곳에서 인원을 확인하고 안내를 기다려요.',60,70,core('together'),'together')],
+ choices:[choose('stop','학교가 보여요. 버스는 아직 움직이고 있어요.',['먼저 일어나 가방을 꺼내요.','안전벨트를 유지하고 완전히 멈춘 뒤 안내에 따라 이동해요.'],1,'도착해 가더라도 차가 움직일 때는 앉아 있어요. 완전히 멈추고 안내가 있을 때 내려요.','seatbelt'),choose('count','버스에서 내려 학교에 도착했어요.',['선생님과 정해진 곳에서 인원을 확인하고 다음 안내를 기다려요.','말하지 않고 혼자 다른 곳으로 가요.'],0,'내린 뒤에도 함께 움직여요. 선생님과 인원을 확인하고 학교의 귀교·귀가 안내를 따라요.','together')],quizzes:[quiz('stop','버스가 완전히 멈춘 뒤 안내에 따라 내려요.',true,'돌아오는 길에도 안전벨트와 승하차 약속을 지켜요.')],teacher:'귀교 시 승하차 위치·동행·인원 확인·보호자 인계 등 학교의 실제 귀교·귀가 계획을 따릅니다.'};
 /* 모든 공개 데이터의 그림도 현재 캐릭터 시트 기준 자산으로 연결합니다. */
 for(const [id,p] of Object.entries(places)){
- p.image=`media/illustrations/${id}.webp`;
+ p.image=`media/illustrations/${id==='homecoming'?'bus':id}.webp`;
  p.spots.forEach(s=>{s.image=`media/illustrations/aac-${s.signal}.webp`;});
 }
-const data={places,types,destinations,evacuation,aacGroups,aac,version:'2.1.0',reviewDate:'2026-11-14'};
+const data={places,types,destinations,evacuation,aacGroups,aac,version:'2.2.0',reviewDate:'2026-11-14'};
 root.TripContent=data;if(typeof module!=='undefined')module.exports=data;
 })(globalThis);

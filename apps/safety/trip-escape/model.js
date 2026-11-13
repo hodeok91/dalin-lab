@@ -5,17 +5,20 @@ const aliases={monthly:'halfday',schoolTrip:'overnight',retreat:'overnight',indo
 function normalize(config,content){
  const type=aliases[config.type]||config.type;
  const place=aliases[config.place]||config.place;
- return {type:validTypes.has(type)?type:'halfday',place:content.places[place]?place:null,move:config.move==='bus'?'bus':'none',rest:type==='overnight'&&(config.rest===true||config.rest==='1'),scope:config.scope==='lesson'?'lesson':'place'};
+ const scope=config.scope==='lesson'?'lesson':'place';
+ return {type:validTypes.has(type)?type:'halfday',place:content.places[place]?place:null,move:config.move==='bus'||scope==='lesson'&&config.move!=='none'?'bus':'none',rest:type==='overnight'&&(config.rest===true||config.rest==='1'),scope};
 }
 function routeFor(config,content){
  const c=normalize(config,content);if(!c.place)return [];
+ if(c.place==='homecoming')return ['homecoming'];
  if(c.scope==='place')return [c.place];
  const route=[];if(c.move==='bus'||c.place==='bus')route.push('bus');
  if(c.type==='overnight'&&(c.rest||c.place==='rest'))route.push('rest');
  if(c.type==='overnight'){
   if(!['bus','rest','lodging','night','escape'].includes(c.place))route.push(c.place);
-  route.push('lodging','night','escape');
+  route.push('lodging','escape');
  }else if(c.place!=='bus')route.push(c.place);
+ if(c.place!=='homecoming')route.push('homecoming');
  return [...new Set(route)];
 }
 function parseLocation(location,content){
@@ -26,7 +29,7 @@ function parseLocation(location,content){
 }
 function shareURL(base,config,content,view){
  const c=normalize(config,content);const u=new URL(c.place?`${c.place}/`:'./',base);
- u.searchParams.set('type',c.type);if(c.scope==='lesson'){u.searchParams.set('scope','lesson');if(c.move==='bus')u.searchParams.set('move','bus');if(c.rest)u.searchParams.set('rest','1');}
+ u.searchParams.set('type',c.type);if(c.scope==='lesson'){u.searchParams.set('scope','lesson');u.searchParams.set('move',c.move);if(c.rest)u.searchParams.set('rest','1');}
  if(view)u.searchParams.set('view',view);return u.href;
 }
 function createSession(config,content){const c=normalize(config,content);return {config:c,route:routeFor(c,content),index:0,phase:'explore',spotIds:[],gameCards:[],gameNotice:'',questionIndex:0,records:[],completed:[],startedAt:new Date().toISOString(),supportChoice:null,reported:[]};}
