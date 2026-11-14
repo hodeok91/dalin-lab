@@ -1,0 +1,37 @@
+{
+  "version": "2.7.0",
+  "date": "2026-11-15",
+  "note": "실행 원본과 앱 자산 연결. instructionSummary는 재현을 위한 작업 지시 요약이며 원문 프롬프트의 축어 전사가 아니다. 생성 후 포맷·크기 변환만 적용했다.",
+  "assets": [
+    {
+      "source": "C:\\Users\\호밀하우스\\.codex\\generated_images\\01a1d05a-04e7-77e0-b101-c5658a81f6c8\\exec-bc008351-755f-4ea0-9e95-1843f31674a6.png",
+      "asset": "media/rhythm/hero-jump.webp",
+      "instructionSummary": "제공한 점프 캐릭터의 얼굴·HA 복장·포즈를 유지하고 글자·화살표·장식 구름을 제거한 투명 단독 캐릭터.",
+      "sha256": "9ddec5108c6f8865d97c4dcfcc8677d65122dd64502850123391d209fd0720f0"
+    },
+    {
+      "source": "C:\\Users\\호밀하우스\\.codex\\generated_images\\01a1d05a-04e7-77e0-b101-c5658a81f6c8\\exec-41fb74ec-860b-4b7e-a7ac-fb49fb357ba8.png",
+      "asset": "media/maps/runner-ground.webp",
+      "instructionSummary": "캐릭터 시트와 맞는 둥근 남색 윤곽의 위에서 본 곧은 공원 산책길. 중앙 복숭아색 바닥과 양쪽 경계석·풀·수풀. 위아래 반복 가능한 타일. 장애물·글자·캐릭터 제외.",
+      "sha256": "c9c4e7e4b56f5aeca145f94d5df75ed7b17e4ad793b545b8a01708a3635bb421"
+    },
+    {
+      "source": "C:\\Users\\호밀하우스\\.codex\\generated_images\\01a1d05a-04e7-77e0-b101-c5658a81f6c8\\exec-822198eb-c056-45e1-933e-c38308b7221e.png",
+      "asset": "media/game/runner-walk.webp",
+      "instructionSummary": "형아맨 HA 원래 복장과 머리를 유지한 뒷모습 두 포즈. 같은 크기·바닥선, 좌우 팔·다리 교대. 투명 배경의 동일 크기 두 셀. 망토·글자 제외.",
+      "sha256": "453a45e638c0485382f1fd49274ab1bfa96a005ef0bfaf23006171366d4d97ab"
+    },
+    {
+      "source": "C:\\Users\\호밀하우스\\.codex\\generated_images\\01a1d05a-04e7-77e0-b101-c5658a81f6c8\\exec-e3770c52-ea6e-4127-a93c-9adbccde94b5.png",
+      "asset": "media/game/branch.webp",
+      "instructionSummary": "둥근 남색 외곽선과 따뜻한 갈색의 낮은 쓰러진 가지. 가로로 긴 단독 그림과 투명 배경.",
+      "sha256": "555497c1d7cd2f00d664c3ef071ceed60aa5377d4aa46e4402ba6120df2430f7"
+    },
+    {
+      "source": "C:\\Users\\호밀하우스\\.codex\\generated_images\\01a1d05a-04e7-77e0-b101-c5658a81f6c8\\exec-dd00d722-b5ea-4f01-a438-0591ac12fd6e.png",
+      "asset": "media/game/stone.webp",
+      "instructionSummary": "같은 삽화 화풍의 작은 회색 돌 무리. 단독 투명 그림.",
+      "sha256": "cad6ce043c251fe316944aee4ceb2488e86ca62372005cf846a1798cb0428333"
+    }
+  ]
+}

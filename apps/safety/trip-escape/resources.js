@@ -21240,6 +21240,7 @@ const data = {
     "previewNote": "제목·썸네일 추출은 영상 전체 내용·재생·자막의 검증을 의미하지 않습니다. 수업 전에 교사가 확인해 주세요."
   }
 };
+for(const v of data.videos){const t=[v.title,v.topic,v.keyword].join(' '),add=[];if(v.venues.includes('park'))add.push('playground','eco-park');if(/손.?씻|동물|농촌|농장/.test(t))add.push('farm');if(/물놀이|수영|수상|익수/.test(t))add.push('water');if(/도서관|공연|미아|소음|감각/.test(t))add.push('library');v.venues=[...new Set([...v.venues,...add])];}
 root.TripResources=data;
 if(typeof module==='object'&&module.exports) module.exports=data;
 })(typeof globalThis!=='undefined'?globalThis:this);

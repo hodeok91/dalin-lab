@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-15",
+  "method": "Built-in ImageGen; existing character references; format conversion only with sharp",
+  "fixes": [
+    {
+      "id": "museum-compare-v2",
+      "path": "C:\\Users\\호밀하우스\\.codex\\generated_images\\01a1d05a-04e7-77e0-b101-c5658a81f6c8\\exec-af9f82ec-bf46-4725-92ef-0ac1cfde31a8.png",
+      "reason": "유리장을 만지는 손으로 수정"
+    },
+    {
+      "id": "farm-feed",
+      "path": "C:\\Users\\호밀하우스\\.codex\\generated_images\\01a1d05a-04e7-77e0-b101-c5658a81f6c8\\exec-e8ebd179-c0e4-417f-9516-3fef059a72fb.png",
+      "prompt": "Farm animal visitor safety illustration, exact HA boy with brown hair white blue superhero suit, adult woman long brown hair coral casual jacket, and animal keeper in simple green vest. Outside a closed wooden fence containing rabbits, HA holds a packaged snack with NO readable text at his side, looking at teacher asking first; teacher gestures WAIT with one palm and keeper shows small approved rabbit feed cup. Nobody feeds packaged snacks, no hand reaches inside cage. Neutral attentive warm faces. Single clear situation, no captions."
+    },
+    {
+      "id": "library-noise",
+      "path": "C:\\Users\\호밀하우스\\.codex\\generated_images\\01a1d05a-04e7-77e0-b101-c5658a81f6c8\\exec-83dc9c80-c03e-435b-b0f1-c98518c1d5e2.png",
+      "prompt": "Small community performance hall sensory support illustration, exact HA boy white blue superhero suit, long brown-haired woman teacher coral casual jacket. HA looks uncomfortable covering ears with blue-gloved hands near teacher, eyebrows concerned not crying. Teacher calmly points toward a quiet side resting area and offers to accompany him. Small stage curtain and violin performer in background, no cinema screen/popcorn/no flames. Teacher attentive neutral lips, no joy at discomfort. No captions."
+    },
+    {
+      "id": "water-prep",
+      "path": "C:\\Users\\호밀하우스\\.codex\\generated_images\\01a1d05a-04e7-77e0-b101-c5658a81f6c8\\exec-2f5849b7-f42e-4161-b816-509f82eeecf7.png",
+      "prompt": "Correct ONLY swimwear and footwear, preserving each established person's facial identity, hairstyle identity, body proportions and the exact 2D character-sheet cartoon style and pool composition. This is a swimming pool, not a sports gym. HA boy must wear white-and-blue long-sleeved SWIM RASHGUARD with small red HA chest emblem, blue knee-length SWIM SHORTS, BLUE SWIM CAP, bare hands and BARE FEET. No superhero boots, no superhero gloves, no belt, no full superhero suit. Adult woman teacher must wear modest full-coverage navy-and-coral long-sleeved SWIM RASHGUARD with plain SWIM LEGGINGS, SWIM CAP with long brown hair tucked in, bare feet. No zip jacket, no tracksuit, no sneakers. The ordinary student retains blue cap/rashguard/shorts and correctly fastened orange life jacket. In-water staff also swim cap and swim rashguard. Lifeguard on dry raised chair can retain lifeguard shorts and shirt. No text or captions."
+    },
+    {
+      "id": "water-walk",
+      "path": "C:\\Users\\호밀하우스\\.codex\\generated_images\\01a1d05a-04e7-77e0-b101-c5658a81f6c8\\exec-3372eef6-af09-4be7-8700-fdb6804067c9.png",
+      "prompt": "Correct ONLY swimwear and footwear, preserving each established person's facial identity, hairstyle identity, body proportions and the exact 2D character-sheet cartoon style and pool composition. This is a swimming pool, not a sports gym. HA boy must wear white-and-blue long-sleeved SWIM RASHGUARD with small red HA chest emblem, blue knee-length SWIM SHORTS, BLUE SWIM CAP, bare hands and BARE FEET. No superhero boots, no superhero gloves, no belt, no full superhero suit. Adult woman teacher must wear modest full-coverage navy-and-coral long-sleeved SWIM RASHGUARD with plain SWIM LEGGINGS, SWIM CAP with long brown hair tucked in, bare feet. No zip jacket, no tracksuit, no sneakers. The ordinary student retains blue cap/rashguard/shorts and correctly fastened orange life jacket. In-water staff also swim cap and swim rashguard. Lifeguard on dry raised chair can retain lifeguard shorts and shirt. No text or captions."
+    },
+    {
+      "id": "eco-bee",
+      "path": "C:\\Users\\호밀하우스\\.codex\\generated_images\\01a1d05a-04e7-77e0-b101-c5658a81f6c8\\exec-12d24d19-8fa9-484c-96f2-3ebf72b2c6b5.png",
+      "reason": "온실에서 야외 생태공원으로 수정"
+    },
+    {
+      "id": "swim-student",
+      "path": "C:\\Users\\호밀하우스\\.codex\\generated_images\\01a1d05a-04e7-77e0-b101-c5658a81f6c8\\exec-d65ea7b6-64f8-44fd-a96a-e631b9aa4599.png",
+      "reason": "운동복·샌들을 수영복·맨발로 수정"
+    }
+  ]
+}

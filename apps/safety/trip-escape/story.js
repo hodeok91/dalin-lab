@@ -12,7 +12,7 @@ const chapters={
  ]},
  sports:{title:'점핑파크 · 내 차례의 문',intro:'신나는 놀이 공간에 도착했어요. 준비·차례·내 몸의 신호, 세 가지 약속을 기억하며 미션을 해결해요.',missions:[
   task('prep','놀이 준비 사물함','가방과 긴 끈을 정리하고 이용 안내를 확인해요. 필요한 행동으로 준비 칸을 채워요.','놀이 준비'),
-  task('jump','안전 리듬 점프','친구 차례에는 기다려요. 내 차례에는 초록 박자에 점프하고, 노랑과 빨강 박자에는 손을 떼요. 마지막에 쉬고 싶다고 알려요.','차례와 휴식'),
+  task('jump','안전 리듬 점프','노래가 끝날 때까지 점프 노트는 기준선에서 누르고 멈춰요 노트에는 손을 떼어요. 틀려도 다음 노트에서 다시 해봐요.','차례와 휴식'),
   q('injury','친구가 넘어졌어요','놀이 중 친구가 넘어졌어요. 안전하게 도움을 부르는 행동을 찾아요.','멈추고 도움 요청'),
   q('tired','내 몸의 신호','이번에는 내가 어지럽고 힘들어요. 마지막 단서는 내 몸을 지키는 표현이에요.','불편함 알리기')
  ]},
@@ -49,7 +49,7 @@ const chapters={
   q('lake','물가에 떨어진 물건','물건이 호수 가까이에 떨어졌어요. 물가로 내려가지 않고 해결할 방법을 찾아요.','물가에서 떨어지기'),
   task('path','만나는 곳으로 가는 길','정해진 산책로를 따라 안전 지점을 차례로 지나 만나는 곳에 도착해요.','정해진 길'),
   q('grass','풀숲 옆에서 가려워요','풀숲 옆을 지난 뒤 팔이 가려워요. 풀숲에서 떨어져 선생님께 알리는 방법을 골라요.','풀숲 피하기'),
-  task('dodge','공원 안전 피하기 기록 도전','위에서 내려오는 위험 그림을 좌우로 피해요. 오래 버티고 그림을 피하면 점수가 올라요. 화면 속 놀이이며 실제 벌·뱀에는 가까이 가지 않아요.','안전 거리'),
+  task('dodge','공원 안전 피하기 기록 도전','앞에 보이는 위험을 피해 빈 산책길로 이동해요. 실제 벌·뱀은 거리를 두고 선생님께 알려요.','안전 거리'),
   q('snake','생태공원에서 만난 뱀과 벌','길옆에 뱀이나 벌이 보여요. 잡거나 건드리지 않는 행동을 찾아요.','건드리지 않고 알리기'),
   q('heat','더워서 어지러워요','산책하다 몸이 힘들어졌어요. 쉬는 것도 안전 미션이에요.','휴식과 도움'),
   q('drowning','호수에 사람이 빠진 것 같아요','마지막은 구조 도움을 요청하는 연습이에요. 직접 물에 들어가지 않는 행동을 골라요.','어른과 119 도움')
@@ -136,5 +136,14 @@ function current(s,content){return plan(s.route[s.index],content,s.incidentChoic
 function complete(s,content,assisted=false){const m=current(s,content);if(!m)return false;const key=s.index+':'+s.missionIndex;if(s.missionRecords.some(r=>r.key===key))return false;s.missionRecords.push({key,module:s.route[s.index],mission:m.id,title:m.title,clue:m.clue,assisted:!!assisted});s.phase='mission-done';return true;}
 function advance(s,content,model){const m=current(s,content),key=s.index+':'+s.missionIndex;if(!m||!s.missionRecords.some(r=>r.key===key))return false;if(s.missionIndex+1<plan(s.route[s.index],content,s.incidentChoices).missions.length){s.missionIndex++;s.phase='mission-intro';}else{model.completeModule(s,s.route[s.index]);s.phase='module-done';}return true;}
 function interlude(s,content){const id=s.route[s.index],next=s.route[s.index+1];if(!next||next==='escape'||s.review)return null;const key=id+'->'+next;if(s.interludesDone?.includes(key))return null;if(id==='rest')return {key,kind:'choice',question:content.places.rest.choices.find(q=>q.id==='friend')};if(id==='bus')return {key,kind:'choice',question:{id:'arrival-group',prompt:'목적지에 도착했어요. 친구가 먼저 가자고 해요. 어떻게 할까요?',options:['선생님께 알리지 않고 먼저 가요.','정해진 곳에서 함께 인원을 확인하고 안내를 기다려요.'],correct:1,why:'목적지에 도착해도 일행과 함께해요. 선생님의 안내와 학교의 인원 확인 약속을 따라요.',signal:'together'}};if(content.destinations.includes(id)&&id!=='lodging'){const quiz=content.places[id].quizzes[0];if(quiz)return {key,kind:'quiz',question:{...quiz,id:'surprise-'+quiz.id}};}return null;}
+
+chapters.bus.missions[0].story='서 있는 친구의 위험한 행동과 벨트를 매고 앉은 형아맨의 안전한 행동을 찾아요. 소화기와 비상망치도 확인해요.';
+chapters.sports.missions.push(task('quiz','점핑파크 안전 약속 확인','위험한 공중제비 그림과 몸이 아플 때의 약속을 다시 확인해요.','안전한 놀이 열쇠'));
+chapters.cinema.missions.splice(1,0,task('maze','상영 뒤 출구 통로 미로','상영이 끝나고 불이 켜졌어요. 의자와 벽을 지나가지 않고 빈 통로를 따라 선생님이 있는 출구로 가요.','출구까지 안전 이동'));
+chapters.museum.missions.splice(1,0,task('compare','안전하게 달라진 전시실','두 그림에서 관람 줄을 넘는 다리, 전시물로 뻗은 손, 바닥의 음료를 비교해 찾아요.','관람 행동 비교'));
+chapters.experience.missions.splice(1,0,task('sort','오늘 사용할 도구','오늘은 나무 블록과 보호 안경을 함께 사용해요. 뜨거운 글루건과 커터 칼 작업은 선생님 담당이에요. 도구를 알맞은 바구니에 놓아요.','도구 담당 확인'));
+chapters.heritage.missions.splice(1,0,task('matching','안전 표지의 뜻','출입 제한, 계단 주의, 비상구 표지를 알맞은 행동에 선으로 연결해요.','안전 표지 이해'));
+chapters['theme-park'].missions.splice(1,0,task('ride-order','놀이기구 탑승 준비','이용 안내 확인부터 완전히 멈춘 뒤 하차까지, 지금 할 일을 차례대로 골라요.','탑승 순서'));
+for(const [id,kind,title,story]of [['playground','whack','공원에서 위험을 발견했어요','젖은 바닥, 풀숲, 물가처럼 가까이 가지 않을 곳을 발견하면 그림을 눌러 선생님께 알려요. 안전하게 쉬고 함께 걷는 그림은 그대로 두어요.'],['eco-park','signal','탐방 안내자의 신호','안내자의 초록색 걷기 신호에는 걷기 버튼을 누르고 빨간색 멈춤 신호에는 손을 떼어요. 일행과 함께 도착해요.'],['farm','wash','동물 체험 뒤 깨끗한 손','동물 체험이 끝났어요. 간식을 먹기 전에 물과 비누로 손을 씻어요. 여섯 부위를 골고루 문지르는 순서를 함께 연습해요.'],['water','dress','물놀이 준비 확인','오늘 이 시설의 준비물은 수영모, 수영복, 구명조끼예요. 준비 칸에 놓고 선생님의 착용 확인을 기다려요.'],['library','voice','관람할 때의 목소리','친구들이 책을 읽거나 공연을 보고 있어요. 작은 목소리를 연습해요. 마이크는 선택이고 그림 버튼으로도 할 수 있어요.']]){const p=root.TripContent?.places[id];chapters[id]={title:(p?.title||id)+' · 안전 미션',intro:story,missions:[task(kind,title,story,title),...(p?.choices||[]).map(c=>q(c.id,c.prompt,c.prompt,'안전한 행동')),task('quiz','안전 약속 확인','이 장소에서 연습한 안전 약속을 확인해요.','안전 열쇠')]};}
 const api={chapters,plan,chooseIncidents,create,current,complete,advance,interlude};root.SafetyStory=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
