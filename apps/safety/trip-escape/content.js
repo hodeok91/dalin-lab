@@ -93,6 +93,6 @@ for(const [id,p] of Object.entries(places)){
  p.image=`media/illustrations/${id==='homecoming'?'bus':id}.webp`;
  p.spots.forEach(s=>{s.image=`media/illustrations/aac-${s.signal}.webp`;});
 }
-const data={places,types,destinations,evacuation,aacGroups,aac,version:'2.2.0',reviewDate:'2026-11-14'};
+const data={places,types,destinations,evacuation,aacGroups,aac,version:'2.3.0',reviewDate:'2026-11-14'};
 root.TripContent=data;if(typeof module!=='undefined')module.exports=data;
 })(globalThis);
