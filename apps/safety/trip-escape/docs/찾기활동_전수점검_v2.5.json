@@ -1,0 +1,487 @@
+{
+  "version": "2.5.0",
+  "places": 9,
+  "targets": 32,
+  "rows": [
+    {
+      "place": "bus",
+      "image": "media/game/bus-find.webp",
+      "id": "belt",
+      "category": "위험한 행동·장소",
+      "task": "안전벨트를 매지 않고 서 있는 친구를 눌러요.",
+      "label": "일어나 있는 친구와 풀린 벨트",
+      "rule": "출발 전에 자리에 앉아 안전벨트를 매요. 차가 움직일 때는 앉아 있어요. 휠체어 고정장치와 안전벨트는 담당자가 확인해요.",
+      "box": [
+        4,
+        33,
+        32,
+        64
+      ]
+    },
+    {
+      "place": "bus",
+      "image": "media/game/bus-find.webp",
+      "id": "ext",
+      "category": "안전장치·표지",
+      "task": "오른쪽 벽에 걸린 빨간 소화기를 눌러요.",
+      "label": "소화기",
+      "rule": "버스 안 소화기 위치를 미리 알아둬요. 실제 위험에서는 선생님·기사님의 안내를 따라요.",
+      "box": [
+        81,
+        17,
+        9,
+        21
+      ]
+    },
+    {
+      "place": "bus",
+      "image": "media/game/bus-find.webp",
+      "id": "hammer",
+      "category": "안전장치·표지",
+      "task": "왼쪽 창문 위 빨간 비상망치를 눌러요.",
+      "label": "비상망치",
+      "rule": "비상망치 위치를 미리 알아둬요. 평소에는 꺼내 장난치지 않고 비상 시에는 담당자의 안내를 따라요.",
+      "box": [
+        14,
+        12,
+        8,
+        20
+      ]
+    },
+    {
+      "place": "bus",
+      "image": "media/game/bus-find.webp",
+      "id": "safe",
+      "category": "안전한 행동",
+      "task": "자리에 앉아 안전벨트를 맨 형아맨을 눌러요.",
+      "label": "벨트를 맨 형아맨",
+      "rule": "출발 전에 안전벨트를 매고 차가 완전히 멈출 때까지 앉아 있어요.",
+      "box": [
+        40,
+        29,
+        24,
+        66
+      ]
+    },
+    {
+      "place": "cinema",
+      "image": "media/game/cinema-find-v25.webp",
+      "id": "aisle",
+      "category": "위험한 행동·장소",
+      "task": "계단에서 뛰어 내려오는 친구를 눌러요.",
+      "label": "계단에서 뛰는 친구",
+      "rule": "어두운 통로와 계단에서는 뛰지 않고 천천히 이동해요. 필요하면 도움을 요청해요.",
+      "box": [
+        76,
+        28,
+        18,
+        41
+      ]
+    },
+    {
+      "place": "cinema",
+      "image": "media/game/cinema-find-v25.webp",
+      "id": "teacher",
+      "category": "안전한 행동",
+      "task": "통로에서 선생님과 함께 걷는 형아맨을 눌러요.",
+      "label": "선생님과 걷는 형아맨",
+      "rule": "혼자 나가지 않고 선생님께 알린 뒤 함께 이동해요.",
+      "box": [
+        11,
+        18,
+        49,
+        78
+      ]
+    },
+    {
+      "place": "cinema",
+      "image": "media/game/cinema-find-v25.webp",
+      "id": "exit",
+      "category": "안전장치·표지",
+      "task": "문 위에서 사람이 나가는 그림이 있는 초록색 표지를 눌러요.",
+      "label": "문 위 초록색 비상구 표지",
+      "rule": "영화가 시작하기 전에 출구와 비상구 위치를 함께 확인해요.",
+      "box": [
+        77,
+        4,
+        15,
+        14
+      ]
+    },
+    {
+      "place": "museum",
+      "image": "media/game/museum-find-v25.webp",
+      "id": "line",
+      "category": "위험한 행동·장소",
+      "task": "전시물 앞 빨간 줄을 넘으려는 친구를 눌러요.",
+      "label": "빨간 줄을 넘는 친구",
+      "rule": "관람 줄을 넘지 않아요. 만져도 되는 체험물인지 안내를 먼저 확인해요.",
+      "box": [
+        72,
+        30,
+        26,
+        61
+      ]
+    },
+    {
+      "place": "museum",
+      "image": "media/game/museum-find-v25.webp",
+      "id": "teacher",
+      "category": "안전한 행동",
+      "task": "빨간 줄 밖에서 선생님과 전시물을 보는 형아맨을 눌러요.",
+      "label": "선생님과 관람하는 형아맨",
+      "rule": "정해진 관람 구역에서 선생님과 함께 보고 이동해요.",
+      "box": [
+        10,
+        14,
+        36,
+        75
+      ]
+    },
+    {
+      "place": "museum",
+      "image": "media/game/museum-find-v25.webp",
+      "id": "exit",
+      "category": "안전장치·표지",
+      "task": "오른쪽 위 초록색 비상구 표지를 눌러요.",
+      "label": "오른쪽 위 비상구 표지",
+      "rule": "처음 들어갈 때 출구와 비상구 위치를 함께 확인해요.",
+      "box": [
+        88,
+        8,
+        8,
+        9
+      ]
+    },
+    {
+      "place": "theme-park",
+      "image": "media/game/theme-park-find.webp",
+      "id": "queue",
+      "category": "위험한 행동·장소",
+      "task": "줄에서 앞 친구를 미는 친구를 눌러요.",
+      "label": "줄에서 친구 밀기",
+      "rule": "줄에서는 친구를 밀거나 앞지르지 않고 차례를 기다려요.",
+      "box": [
+        5,
+        27,
+        23,
+        40
+      ]
+    },
+    {
+      "place": "theme-park",
+      "image": "media/game/theme-park-find.webp",
+      "id": "ride",
+      "category": "위험한 행동·장소",
+      "task": "놀이기구 안에서 자리에서 일어나려는 친구를 눌러요.",
+      "label": "놀이기구에서 일어나기",
+      "rule": "직원이 안내하기 전에 일어나지 않아요. 이용 조건과 안전장치를 확인하고 안내에 따라 타고 내려요.",
+      "box": [
+        44,
+        12,
+        20,
+        29
+      ]
+    },
+    {
+      "place": "theme-park",
+      "image": "media/game/theme-park-find.webp",
+      "id": "fence",
+      "category": "위험한 행동·장소",
+      "task": "울타리 너머 모자를 잡으려고 손을 뻗는 친구를 눌러요.",
+      "label": "울타리 너머로 손 뻗기",
+      "rule": "물건이 떨어져도 울타리를 넘거나 손을 뻗지 않고 직원에게 알려요.",
+      "box": [
+        71,
+        23,
+        27,
+        33
+      ]
+    },
+    {
+      "place": "theme-park",
+      "image": "media/game/theme-park-find.webp",
+      "id": "walk",
+      "category": "위험한 행동·장소",
+      "task": "사람들 사이에서 뛰는 친구를 눌러요.",
+      "label": "사람들 사이에서 뛰기",
+      "rule": "이동하는 길에서는 앞을 보고 천천히 걸어요.",
+      "box": [
+        64,
+        58,
+        23,
+        40
+      ]
+    },
+    {
+      "place": "theme-park",
+      "image": "media/game/theme-park-find.webp",
+      "id": "safe",
+      "category": "안전한 행동",
+      "task": "선생님 곁에서 안내를 듣는 형아맨을 눌러요.",
+      "label": "선생님과 함께 있는 형아맨",
+      "rule": "일행과 함께 이동하고 직원·선생님의 안내를 확인해요.",
+      "box": [
+        29,
+        47,
+        31,
+        50
+      ]
+    },
+    {
+      "place": "park",
+      "image": "media/game/park-find-v25.webp",
+      "id": "water",
+      "category": "위험한 행동·장소",
+      "task": "난간을 넘으려고 발을 올린 친구를 눌러요.",
+      "label": "난간에 발을 올린 친구",
+      "rule": "난간에 올라가거나 넘지 않아요. 물에 빠진 사람을 봐도 들어가지 않고 어른에게 즉시 알려요.",
+      "box": [
+        77,
+        38,
+        17,
+        40
+      ]
+    },
+    {
+      "place": "park",
+      "image": "media/game/park-find-v25.webp",
+      "id": "path",
+      "category": "안전한 행동",
+      "task": "산책로에서 선생님과 함께 걷는 형아맨을 눌러요.",
+      "label": "선생님과 걷는 형아맨",
+      "rule": "물가·풀숲에 들어가지 않고 정해진 산책로에서 함께 걸어요.",
+      "box": [
+        29,
+        25,
+        43,
+        67
+      ]
+    },
+    {
+      "place": "park",
+      "image": "media/game/park-find-v25.webp",
+      "id": "rest",
+      "category": "안전한 행동",
+      "task": "그늘의 벤치에 앉아 물을 마시는 친구를 눌러요.",
+      "label": "그늘에서 물 마시는 친구",
+      "rule": "덥거나 힘들면 알려요. 그늘에서 쉬고 물을 마셔요.",
+      "box": [
+        4,
+        40,
+        22,
+        43
+      ]
+    },
+    {
+      "place": "lodging",
+      "image": "media/game/lodging-find-v25.webp",
+      "id": "bed",
+      "category": "위험한 행동·장소",
+      "task": "왼쪽 침대에서 뛰는 친구를 눌러요.",
+      "label": "침대에서 뛰는 친구",
+      "rule": "침대는 쉬는 곳이에요. 침대 위에서 뛰거나 장난치지 않아요.",
+      "box": [
+        6,
+        38,
+        21,
+        46
+      ]
+    },
+    {
+      "place": "lodging",
+      "image": "media/game/lodging-find-v25.webp",
+      "id": "window",
+      "category": "위험한 행동·장소",
+      "task": "열린 창문에 몸을 내민 친구를 눌러요.",
+      "label": "창문에 몸을 내미는 친구",
+      "rule": "창문에 기대거나 몸을 밖으로 내밀지 않아요.",
+      "box": [
+        11,
+        10,
+        19,
+        28
+      ]
+    },
+    {
+      "place": "lodging",
+      "image": "media/game/lodging-find-v25.webp",
+      "id": "plug",
+      "category": "위험한 행동·장소",
+      "task": "오른쪽 아래에서 콘센트에 열쇠를 대는 친구를 눌러요.",
+      "label": "콘센트에 열쇠를 대는 친구",
+      "rule": "콘센트 구멍에 물건을 넣지 않고 충전기는 선생님과 확인해요.",
+      "box": [
+        73,
+        54,
+        26,
+        34
+      ]
+    },
+    {
+      "place": "lodging",
+      "image": "media/game/lodging-find-v25.webp",
+      "id": "bag",
+      "category": "안전한 행동",
+      "task": "파란 가방을 선반에 넣는 형아맨을 눌러요.",
+      "label": "가방을 선반에 넣는 형아맨",
+      "rule": "가방과 신발을 정해진 곳에 정리해서 통로를 비워요.",
+      "box": [
+        49,
+        23,
+        22,
+        59
+      ]
+    },
+    {
+      "place": "rest",
+      "image": "media/game/rest-find.webp",
+      "id": "food",
+      "category": "위험한 행동·장소",
+      "task": "뜨거운 음식이 담긴 쟁반을 들고 뛰는 친구를 눌러요.",
+      "label": "뜨거운 음식 들고 뛰기",
+      "rule": "뜨거운 음식은 정해진 자리에서 앉아서 먹어요. 옮기기 어렵다면 도움을 요청해요.",
+      "box": [
+        3,
+        34,
+        24,
+        44
+      ]
+    },
+    {
+      "place": "rest",
+      "image": "media/game/rest-find.webp",
+      "id": "group",
+      "category": "위험한 행동·장소",
+      "task": "혼자 출구 쪽으로 멀어지는 친구를 눌러요.",
+      "label": "혼자 일행에서 멀어지기",
+      "rule": "화장실·매점으로 갈 때 선생님께 알리고 학교의 동행 약속을 지켜요.",
+      "box": [
+        83,
+        23,
+        11,
+        30
+      ]
+    },
+    {
+      "place": "rest",
+      "image": "media/game/rest-find.webp",
+      "id": "floor",
+      "category": "위험한 행동·장소",
+      "task": "물기가 고인 바닥으로 걸어가는 친구를 눌러요.",
+      "label": "젖은 바닥으로 걷기",
+      "rule": "미끄럼 주의 표지와 물기를 살펴요. 젖은 곳은 피하고 천천히 이동해요.",
+      "box": [
+        63,
+        54,
+        36,
+        43
+      ]
+    },
+    {
+      "place": "rest",
+      "image": "media/game/rest-find.webp",
+      "id": "safe",
+      "category": "안전한 행동",
+      "task": "선생님 곁에 서 있는 형아맨을 눌러요.",
+      "label": "선생님과 함께 있는 형아맨",
+      "rule": "화장실이나 매점에 갈 때는 알리고 학교의 동행 약속을 지켜요.",
+      "box": [
+        28,
+        33,
+        32,
+        64
+      ]
+    },
+    {
+      "place": "garden",
+      "image": "media/game/garden-find-v25.webp",
+      "id": "fruit",
+      "category": "위험한 행동·장소",
+      "task": "울타리 너머 빨간 열매에 손을 뻗는 친구를 눌러요.",
+      "label": "열매에 손을 뻗는 친구",
+      "rule": "모르는 열매나 식물은 따거나 먹지 않고 눈으로 관찰해요.",
+      "box": [
+        58,
+        34,
+        27,
+        56
+      ]
+    },
+    {
+      "place": "garden",
+      "image": "media/game/garden-find-v25.webp",
+      "id": "wet",
+      "category": "위험한 행동·장소",
+      "task": "왼쪽 아래 길바닥에 고인 물을 눌러요.",
+      "label": "바닥에 고인 물",
+      "rule": "젖은 바닥을 피하고 천천히 이동해요. 물기는 선생님께 알려요.",
+      "box": [
+        0,
+        77,
+        15,
+        16
+      ]
+    },
+    {
+      "place": "garden",
+      "image": "media/game/garden-find-v25.webp",
+      "id": "path",
+      "category": "안전한 행동",
+      "task": "울타리 밖 관찰로에서 선생님과 보는 형아맨을 눌러요.",
+      "label": "관찰로에 있는 형아맨",
+      "rule": "정해진 관찰로에서 식물을 보고 일행과 함께 이동해요.",
+      "box": [
+        19,
+        12,
+        33,
+        70
+      ]
+    },
+    {
+      "place": "heritage",
+      "image": "media/game/heritage-find-v25.webp",
+      "id": "boundary",
+      "category": "위험한 행동·장소",
+      "task": "오른쪽에서 관람 제한 줄을 넘는 친구를 눌러요.",
+      "label": "관람 제한 줄을 넘는 친구",
+      "rule": "출입 제한 줄을 넘지 않고 관람 구역 안에서 이동해요.",
+      "box": [
+        70,
+        44,
+        22,
+        41
+      ]
+    },
+    {
+      "place": "heritage",
+      "image": "media/game/heritage-find-v25.webp",
+      "id": "steps",
+      "category": "위험한 행동·장소",
+      "task": "돌계단에서 뛰어 내려오는 친구를 눌러요.",
+      "label": "돌계단에서 뛰는 친구",
+      "rule": "계단에서는 뛰지 않아요. 도움이 필요하면 선생님께 알려요.",
+      "box": [
+        59,
+        28,
+        10,
+        22
+      ]
+    },
+    {
+      "place": "heritage",
+      "image": "media/game/heritage-find-v25.webp",
+      "id": "path",
+      "category": "안전한 행동",
+      "task": "관람로에서 선생님과 걷는 형아맨을 눌러요.",
+      "label": "관람로에서 함께 걷는 형아맨",
+      "rule": "정해진 관람로에서 함께 걷고 힘들면 쉬고 싶다고 알려요.",
+      "box": [
+        14,
+        18,
+        40,
+        64
+      ]
+    }
+  ]
+}

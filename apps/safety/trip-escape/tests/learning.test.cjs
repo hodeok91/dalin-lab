@@ -10,7 +10,7 @@ function app(url='https://school.example/apps/safety/trip-escape/',storage={}){
  const w=dom.window;const visualTimers=[];const timer=w.setTimeout.bind(w);w.setTimeout=(fn,ms)=>{if(ms===1600){visualTimers.push(fn);return -1;}return timer(fn,ms);};w.scrollTo=()=>{};w.HTMLElement.prototype.scrollIntoView=()=>{};w.HTMLDialogElement.prototype.showModal=function(){this.setAttribute('open','');};w.HTMLDialogElement.prototype.close=function(){this.removeAttribute('open');};w.speechSynthesis={speak(){},cancel(){}};w.SpeechSynthesisUtterance=function(t){this.text=t;};
  for(const[k,v]of Object.entries(storage))w.localStorage.setItem(k,v);
  const css=w.document.createElement('style');css.textContent=fs.readFileSync(path.join(root,'app.css'),'utf8');w.document.head.append(css);
- for(const f of ['content.js','model.js','resources.js','mini-games.js','rhythm.js','activities.js','story.js','app.js'])w.eval(fs.readFileSync(path.join(root,f),'utf8'));
+ w.HTMLMediaElement.prototype.play=function(){return Promise.resolve();};w.HTMLMediaElement.prototype.pause=function(){};for(const f of ['content.js','model.js','resources.js','mini-games.js','sound.js','dodge.js','rhythm.js','activities.js','story.js','app.js'])w.eval(fs.readFileSync(path.join(root,f),'utf8'));
  return {w,errors,doc:w.document,close:()=>w.close(),click(s){if(s.includes('close')||s.includes('next-question')){while(visualTimers.length)visualTimers.shift()();}const el=w.document.querySelector(s);assert.ok(el,'대상 요소 없음: '+s);assert.ok(!el.disabled,'비활성 버튼: '+s);el.click();return el;}};
 }
 function practice(a){click(a,'teacher');click(a,'open-practice');}
