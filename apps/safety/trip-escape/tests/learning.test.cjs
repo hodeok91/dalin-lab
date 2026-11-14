@@ -10,7 +10,7 @@ function app(url='https://school.example/apps/safety/trip-escape/',storage={}){
  const w=dom.window;const visualTimers=[];const timer=w.setTimeout.bind(w);w.setTimeout=(fn,ms)=>{if(ms===1600){visualTimers.push(fn);return -1;}return timer(fn,ms);};w.scrollTo=()=>{};w.HTMLElement.prototype.scrollIntoView=()=>{};w.HTMLDialogElement.prototype.showModal=function(){this.setAttribute('open','');};w.HTMLDialogElement.prototype.close=function(){this.removeAttribute('open');};w.speechSynthesis={speak(){},cancel(){}};w.SpeechSynthesisUtterance=function(t){this.text=t;};
  for(const[k,v]of Object.entries(storage))w.localStorage.setItem(k,v);
  const css=w.document.createElement('style');css.textContent=fs.readFileSync(path.join(root,'app.css'),'utf8');w.document.head.append(css);
- for(const f of ['content.js','model.js','resources.js','mini-games.js','activities.js','story.js','app.js'])w.eval(fs.readFileSync(path.join(root,f),'utf8'));
+ for(const f of ['content.js','model.js','resources.js','mini-games.js','rhythm.js','activities.js','story.js','app.js'])w.eval(fs.readFileSync(path.join(root,f),'utf8'));
  return {w,errors,doc:w.document,close:()=>w.close(),click(s){if(s.includes('close')||s.includes('next-question')){while(visualTimers.length)visualTimers.shift()();}const el=w.document.querySelector(s);assert.ok(el,'대상 요소 없음: '+s);assert.ok(!el.disabled,'비활성 버튼: '+s);el.click();return el;}};
 }
 function practice(a){click(a,'teacher');click(a,'open-practice');}
@@ -58,8 +58,8 @@ test('반일형과 1일형에는 휴게소를 넣지 않고 숙박형에서만 �
 });
 test('장소별 진입 파일이 이야기 시작과 그림의 base 경로를 유지한다',()=>{for(const id of Object.keys(C.places)){const a=app(`https://school.example/apps/safety/trip-escape/${id}/`);assert.ok(a.doc.querySelector('.automatic-stage'));const img=a.doc.querySelector('#main img');assert.ok(img.src.startsWith('https://school.example/apps/safety/trip-escape/media/'));a.close();}});
 test('미니게임의 실제 화면에서 점프·안전길·손전등 목표를 달성한다',async()=>{
- for(const place of ['sports','park','escape']){const a=app(`https://school.example/apps/safety/trip-escape/${place}/`,{safetyMasterSettings:'{"motion":false}'});try{practice(a);click(a,'start-activity',`[data-kind="${{sports:'jump',park:'path',escape:'torch'}[place]}"]`);
- if(place==='sports'){click(a,'mini-wait');for(let i=0;i<5;i++){click(a,'mini-jump');await new Promise(r=>a.w.requestAnimationFrame(r));}click(a,'mini-rest');}
+ for(const place of ['sports','park','escape']){const a=app(`https://school.example/apps/safety/trip-escape/${place}/`,{safetyMasterSettings:'{"motion":false}'});try{practice(a);if(place==='sports'){let clock=0;a.w.performance.now=()=>clock;a.w.requestAnimationFrame=fn=>a.w.setTimeout(()=>{clock+=100;fn(clock);},1);}click(a,'start-activity',`[data-kind="${{sports:'jump',park:'path',escape:'torch'}[place]}"]`);
+ if(place==='sports'){click(a,'mini-wait');for(let i=0;i<500&&!a.doc.querySelector('[data-action="mini-rest"]');i++){await new Promise(r=>a.w.requestAnimationFrame(r));const el=a.doc.querySelector('#rhythm-stage');if(el?.dataset.state==='jump'&&el.dataset.inWindow==='true')click(a,'mini-jump');}assert.ok(a.doc.querySelector('[data-action="mini-rest"]'));click(a,'mini-rest');}
  if(place==='park'){click(a,'mini-hazard');for(let i=0;i<3;i++)click(a,'mini-move',`[data-index="${i}"]`);}
  if(place==='escape'){click(a,'mini-bright');for(const id of ['ext','alarm','exit'])click(a,'mini-find',`[data-id="${id}"]`);}
  assert.ok(a.doc.querySelector('[data-action="mini-finish"]'));click(a,'mini-finish');assert.ok(a.doc.querySelector('.activity-done'));assert.equal(a.doc.querySelector('[data-action="answer"]'),null);assert.equal(a.errors.length,0,a.errors.join('\n'));

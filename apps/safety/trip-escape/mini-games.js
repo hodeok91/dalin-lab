@@ -14,7 +14,7 @@ const pairSets={
 };
 const dodgeRounds=[[{lane:1,key:'grass'}],[{lane:0,key:'water-edge'},{lane:2,key:'grass'}],[{lane:0,key:'bee'},{lane:2,key:'snake'}],[{lane:1,key:'puddle'}],[{lane:0,key:'grass'},{lane:2,key:'water-edge'}]];
 const hazardNames={'water-edge':'물가',grass:'풀숲',bee:'벌',snake:'뱀',puddle:'젖은 바닥'};
-const gameInfo={jump:{title:'터치 점프',goal:'내 차례에 점프하고 휴식하기',icon:'play'},torch:{title:'손전등 탐색',goal:'안전장치 세 곳 찾기',icon:'search'},path:{title:'안전한 길 찾기',goal:'안전 지점을 따라 목적지에 도착하기',icon:'start'},prep:{title:'안전 준비 카드',goal:'준비할 안전 행동 세 가지 모으기',icon:'goal'},matching:{title:'안전 짝맞추기',goal:'상황과 안전한 행동 연결하기',icon:'select'},memory:{title:'같은 그림 찾기',goal:'안전 그림 세 쌍 찾기',icon:'picture'},dodge:{title:'위험 구역 피하기',goal:'물가·풀숲을 피해 다섯 걸음 걷기',icon:'play'}};
+const gameInfo={jump:{title:'안전 리듬 점프',goal:'점프·기다림·멈춤 박자를 지키고 휴식하기',icon:'play'},torch:{title:'손전등 탐색',goal:'안전장치 세 곳 찾기',icon:'search'},path:{title:'안전한 길 찾기',goal:'안전 지점을 따라 목적지에 도착하기',icon:'start'},prep:{title:'안전 준비 카드',goal:'준비할 안전 행동 세 가지 모으기',icon:'goal'},matching:{title:'안전 짝맞추기',goal:'상황과 안전한 행동 연결하기',icon:'select'},memory:{title:'같은 그림 찾기',goal:'안전 그림 세 쌍 찾기',icon:'picture'},dodge:{title:'위험 구역 피하기',goal:'물가·풀숲을 피해 다섯 걸음 걷기',icon:'play'}};
 function catalog(place){const kinds=({sports:['jump','memory'],cinema:['memory'],museum:['matching','memory'],experience:['matching','prep'],'theme-park':['matching','memory'],park:['dodge','path','memory'],garden:['path','memory'],heritage:['path','memory'],lodging:['matching'],escape:['torch']})[place]||[];return kinds.map(id=>({id,...gameInfo[id]}));}
 function shuffle(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 const sequences={
@@ -27,22 +27,53 @@ function create(place,kind){
  if(kind==='matching'){const pairs=(pairSets[place]||pairSets.museum).map((p,i)=>({id:i,leftKey:p[0],left:p[1],rightKey:p[2],right:p[3]}));return {kind:'matching',pairs,rightOrder:shuffle([0,1,2]),selected:null,matched:[],complete:false,notice:'왼쪽 상황을 고르고, 짝이 되는 오른쪽 행동을 골라요.'};}
  if(kind==='dodge')return {kind:'dodge',round:0,lane:1,complete:false,notice:'위험이 없는 칸을 고른 뒤 앞으로 한 걸음 걸어요.'};
  if(kind==='prep')return null;
- if(place==='sports')return {kind:'jump',phase:'wait',count:0,inAir:false,complete:false,notice:'친구가 먼저 이용하고 있어요. 내 차례를 기다려요.'};
+ if(place==='sports')return {kind:'jump',rhythm:true,phase:'wait',pace:'slow',beatMs:1200,windowMs:420,assist:false,sound:true,count:0,cueIndex:0,accepted:false,blocked:false,inAir:false,retries:0,complete:false,notice:'친구가 먼저 이용하고 있어요. 내 차례를 기다려요.'};
  if(place==='escape')return {kind:'torch',found:[],bright:false,complete:false,notice:'손전등을 움직여 안전장치 3곳을 찾아 눌러요.'};
  if(pathPlaces.has(place)&&(place!=='cinema'||kind==='path'))return {kind:'path',place,step:0,complete:false,notice:'출발! 다음 안전 지점을 차례대로 골라요.'};
  return null;
+}
+/* 실제 박자 시계. 타이밍 결과는 학습 점수·실패 판정에 사용하지 않습니다. */
+const rhythmPattern=['jump','jump','wait','jump','stop','jump','jump','wait','jump','jump','stop','jump'];
+function rhythmCue(g){return rhythmPattern[g.cueIndex];}
+function rhythmAct(g,action,value){const now=Number.isFinite(value)?value:0;
+ if(g.complete)return g;
+ if(action==='pace'){if(g.phase!=='wait')return g;g.pace=value==='regular'?'regular':'slow';g.beatMs=g.pace==='slow'?1200:800;g.windowMs=g.pace==='slow'?420:280;return g;}
+ if(action==='assist'){g.assist=!g.assist;g.notice=g.assist?'점프 신호에서 누를 때까지 기다려 줄게요.':'박자가 기준선에 올 때 눌러요.';return g;}
+ if(action==='sound'){g.sound=!g.sound;return g;}
+ if(action==='wait'&&g.phase==='wait'){g.phase='countdown';g.startedAt=now;g.dueAt=now+3*g.beatMs;g.notice='친구가 마칠 때까지 기다려요. 준비, 셋, 둘, 하나!';return g;}
+ if(action==='pause'&&['countdown','ready'].includes(g.phase)){g.beforePause=g.phase;g.phase='paused';g.pausedAt=now;g.notice='잠시 쉬어요. 준비되면 이어서 해요.';return g;}
+ if(action==='resume'&&g.phase==='paused'){const shift=now-g.pausedAt;g.dueAt+=shift;g.startedAt+=shift;if(g.jumpAt!==undefined)g.jumpAt+=shift;if(g.assistEnd)g.assistEnd+=shift;g.phase=g.beforePause;g.notice='쉬던 박자부터 이어서 해요.';return g;}
+ if(action==='jump')return rhythmInput(g,now);
+ if(action==='rest'&&g.phase==='rest'){g.complete=true;g.notice='점프·기다림·멈춤 박자를 지키고 쉬고 싶다고 표현했어요!';}
+ return g;
+}
+function rhythmInput(g,now){
+ if(g.phase!=='ready'||g.complete){g.notice=g.phase==='countdown'||g.phase==='wait'?'아직 친구 차례예요. 기다려요.':g.notice;return g;}
+ const cue=rhythmCue(g);if(g.accepted)return g;
+ if(cue!=='jump'){if(!g.blocked){g.blocked=true;g.retries++;}g.notice=cue==='stop'?'빨강은 멈춰요. 손을 떼고 다음 박자를 기다려요.':'노랑은 기다려요. 손을 떼어요.';return g;}
+ if(g.assist&&now>=g.dueAt-g.windowMs||Math.abs(now-g.dueAt)<=g.windowMs){g.accepted=true;g.count++;g.jumpAt=now;g.inAir=true;g.notice=g.assist?'내 차례에 안전하게 점프했어요!':'박자에 맞춰 점프했어요!';if(g.assist)g.assistEnd=now+Math.min(400,g.beatMs/2);}
+ else{g.notice=now<g.dueAt?'조금 기다려요. 초록 신호가 기준선에 오면 눌러요.':'괜찮아요. 같은 박자를 다시 해봐요.';}
+ return g;
+}
+function rhythmTick(g,now){
+ if(g.inAir&&now-g.jumpAt>=550)g.inAir=false;
+ if(g.phase==='countdown'){if(now>=g.dueAt-g.windowMs){g.phase='ready';g.notice='이제 내 차례예요. 초록 신호에 맞춰 점프해요.';}else return g;}
+ if(g.phase!=='ready'||g.complete)return g;
+ const end=g.assist&&rhythmCue(g)==='jump'?(g.accepted?g.assistEnd:Infinity):g.dueAt+g.windowMs;
+ if(now<=end)return g;
+ const success=rhythmCue(g)==='jump'?g.accepted:!g.blocked;
+ if(success){g.cueIndex++;if(g.cueIndex===rhythmPattern.length){g.phase='rest';g.notice='모든 박자를 지켰어요. 이제 쉬고 싶다고 알려요.';return g;}}
+ else{g.retries++;g.notice='괜찮아요. 이 박자를 한 번 더 해봐요.';}
+ g.accepted=false;g.blocked=false;g.assistEnd=null;g.dueAt=Math.max(g.dueAt+g.beatMs,now+g.windowMs+120);
+ return g;
 }
 const targets=[{id:'ext',label:'소화기',x:13,y:56,area:'왼쪽 벽 살펴보기'},{id:'alarm',label:'화재경보기',x:42,y:52,area:'가운데 벽 살펴보기'},{id:'exit',label:'비상구 유도등',x:81,y:36,area:'오른쪽 위 살펴보기'}];
 targets[0].box=[5,29,15.5,42];targets[1].box=[40,42.5,8,16];targets[2].box=[74.5,30,9.5,11];
 function scoreFinding(g,id,validIds){g.rewarded??=[];if(validIds.includes(id)&&(g.rewarded.includes(id)||g.found?.includes(id)))return {kind:'repeat',delta:0};g.attempts=(g.attempts||0)+1;const hit=validIds.includes(id);const delta=hit?100:-10;if(hit)g.rewarded.push(id);else g.misses=(g.misses||0)+1;g.score=(g.score||0)+delta;return {kind:hit?'found':'miss',delta};}
 function act(g,action,value){
  if(!g||g.complete)return g;
- if(g.kind==='jump'){
-  if(action==='wait'&&g.phase==='wait'){g.phase='ready';g.notice='이제 내 차례예요. 점프 버튼을 눌러요.';}
-  if(action==='jump'&&g.phase==='ready'&&!g.inAir){g.inAir=true;g.notice='점프! 발이 매트에 닿으면 다시 눌러요.';}
-  if(action==='land'&&g.inAir){g.inAir=false;g.count++;if(g.count>=5){g.phase='rest';g.notice='점프 미션 완료! 이제 쉬고 싶다고 표현해요.';}else g.notice=`안전하게 착지했어요. ${g.count} / 5회` ;}
-  if(action==='rest'&&g.phase==='rest'){g.complete=true;g.notice='내 차례를 지키고 점프 5회와 휴식까지 마쳤어요!';}
- }
+ if(g.kind==='jump'){rhythmAct(g,action,value);return g;}
+
  if(g.kind==='torch'){
   if(action==='bright')g.bright=!g.bright;
   if(action==='find'&&targets.some(t=>t.id===value)&&!g.found.includes(value)){g.found.push(value);g.notice=targets.find(t=>t.id===value).label+' 위치를 찾았어요!';if(g.found.length===targets.length){g.complete=true;g.notice='안전장치 3곳 발견! 미리 위치를 알아뒀어요.';}}
@@ -69,5 +100,5 @@ function act(g,action,value){
  }
  return g;
 }
-const api={create,act,targets,scoreFinding,pathLabels:{...pathLabels,cinema:['통로에서 천천히','계단·발밑 확인','선생님과 출구 앞 도착']},catalog,gameInfo,dodgeRounds,hazardNames,sequences};root.SafetyMiniGames=api;if(typeof module!=='undefined')module.exports=api;
+const api={create,act,rhythmPattern,rhythmCue,rhythmTick,rhythmInput,targets,scoreFinding,pathLabels:{...pathLabels,cinema:['통로에서 천천히','계단·발밑 확인','선생님과 출구 앞 도착']},catalog,gameInfo,dodgeRounds,hazardNames,sequences};root.SafetyMiniGames=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
