@@ -28,7 +28,7 @@ const places={
     quizzes:[quiz('fence','떨어진 물건을 주우려고 울타리를 넘어가요.',false,'울타리 밖에서 직원에게 도움을 요청해요.'),quiz('condition','놀이기구 이용 조건을 선생님·직원과 확인해요.',true,'내게 맞는 활동인지 확인하고 이용해요.')],teacher:'탑승 제한과 건강·이동 지원을 개별 확인합니다. 이용하지 않는 학생도 선택할 수 있는 대체 활동과 쉬는 공간을 준비하세요.'},
   park:{title:'공원·야외 활동',short:'공원·야외',example:'호수공원 · 하늘공원 · 산책',icon:'park',color:'#9ddb91',image:'media/venues/park.svg',description:'정해진 길로 함께 가고, 물가와 날씨를 살펴요.',
     spots:[spot('water','물가와 난간','호수·분수·하천 가장자리에 가까이 가지 않아요. 난간을 넘거나 기대어 장난치지 않아요.',74,57,core('stop'),'stop'),spot('path','정해진 길','정해진 길에서 선생님과 함께 이동해요. 자전거가 다니는 길과 경사·계단을 확인해요.',45,70,core('together'),'together'),spot('shade','그늘과 휴식','덥고 힘들면 알려요. 안내에 따라 그늘에서 쉬고 물을 마셔요.',21,39,core('water'),'water')],
-    choices:[choose('lake','모자가 호수 난간 밖으로 떨어졌어요.',['물가로 내려가 주워요.','물가에서 떨어져 선생님께 알려요.'],1,'물가로 내려가지 않아요. 물에 빠진 사람을 보아도 직접 들어가지 않고 어른에게 즉시 알려요.','help'),choose('heat','야외에서 머리가 아프고 어지러워요.',['선생님께 알리고 활동을 멈춰요.','친구를 따라 계속 걸어요.'],0,'그늘 등 안전한 곳에서 도움을 받아요. 심하게 아프면 선생님이 필요한 도움과 신고를 요청해요.','hurt')],
+    choices:[choose('lake','모자가 호수 난간 밖으로 떨어졌어요.',['물가로 내려가 주워요.','물가에서 떨어져 선생님께 알려요.'],1,'물가로 내려가지 않아요. 물에 빠진 사람을 보아도 직접 들어가지 않고 어른에게 즉시 알려요.','help'),choose('heat','야외에서 머리가 아프고 어지러워요.',['선생님께 알리고 활동을 멈춰요.','힘들어도 참고 계속 걸어요.'],0,'그늘 등 안전한 곳에서 도움을 받아요. 심하게 아프면 선생님이 필요한 도움과 신고를 요청해요.','hurt')],
     quizzes:[quiz('rail','사진을 찍으려고 난간을 넘어가요.',false,'난간 밖과 물가에 접근하지 않아요.'),quiz('rest','덥거나 힘들면 쉬고 싶다고 알려요.',true,'몸의 신호를 알리고 물과 휴식을 챙겨요.')],teacher:'호수공원은 물가·데크·난간을, 하늘공원은 경사·계단·그늘·강풍을 실제 동선에서 확인하세요. 물놀이 허용 구역과 일반 관람 물가는 구분합니다.'},
   garden:{title:'수목원·식물원',short:'수목원·식물원',example:'온실 · 수목원 · 자연 관찰',icon:'leaf',color:'#80d8af',image:'media/venues/garden.svg',description:'눈으로 관찰하고, 정해진 길에서 함께 움직여요.',
     spots:[spot('plant','식물과 열매','모르는 식물·열매·버섯을 만지거나 먹지 않아요.',24,51,core('stop'),'stop'),spot('path','관찰하는 길','관찰로를 벗어나지 않아요. 젖은 바닥과 온실 문을 조심해요.',54,73,core('slow'),'slow'),spot('insect','벌레와 불편함','벌·곤충을 건드리지 않아요. 피부가 가렵거나 아프면 바로 선생님께 알려요.',82,40,core('hurt'),'hurt')],
@@ -70,7 +70,7 @@ places.park.quizzes.push(quiz('grass','풀숲을 피하고 정해진 산책로�
 places.park.teacher+=' 풀·식물 접촉성 피부 자극, 벌·모기·진드기 등에 대비해 활동에 맞는 긴 옷과 돗자리, 기피제의 표시사항·학생별 사용 가능 여부를 사전 확인합니다. 야외활동 후 옷과 몸을 확인하고, 발열 등 이상이 있으면 의료 도움을 받습니다.';
 places.park.spots.push(spot('wildlife','뱀·벌은 멀리서','뱀이나 벌을 보면 가까이 가거나 잡으려 하지 않아요. 선생님께 알리고 안내에 따라 거리를 둬요.',68,30,core('stop'),'stop'));
 places.park.choices.push(choose('drowning','호수에 사람이 빠진 것 같아요. 어떻게 할까요?',['나도 물에 들어가 도와줘요.','물가에서 떨어져 어른에게 즉시 알리고 119 도움을 요청해요.'],1,'직접 물에 들어가지 않아요. 물가에서 안전한 거리를 두고 선생님·직원 등 어른에게 즉시 알려 구조 도움을 요청해요.','help'));
-places.park.choices.push(choose('snake','생태공원 길옆에서 뱀이나 벌을 발견했어요.',['가까이 가서 잡거나 손으로 건드려요.','가까이 가지 않고 선생님께 알린 뒤 안내에 따라 멀어져요.'],1,'사진을 찍으려고 가까이 가지 않아요. 잡거나 건드리지 말고 선생님과 함께 거리를 둬요. 벌에 손을 휘젓거나 벌집을 건드리지 않아요.','stop'));
+places.park.choices.push(choose('snake','호수공원 산책길 옆에서 뱀이나 벌을 발견했어요. 어떻게 할까요?',['가까이 가서 잡거나 손으로 건드려요.','가까이 가지 않고 선생님께 알린 뒤 안내에 따라 멀어져요.'],1,'사진을 찍으려고 가까이 가지 않아요. 잡거나 건드리지 말고 선생님과 함께 거리를 둬요. 벌에 손을 휘젓거나 벌집을 건드리지 않아요.','stop'));
 places.park.quizzes.push(quiz('drowning','물에 빠진 사람을 보면 나도 바로 물에 뛰어들어요.',false,'직접 들어가지 않고 안전한 곳에서 어른에게 즉시 알려요. 119 구조 도움을 요청해요.'));
 places.park.teacher+=' 호수공원은 수심·추락 지점·난간·수변 동선과 인솔 위치를, 생태공원은 뱀·벌집 등 야생동물 접근 위험과 우회 동선을 점검합니다. 물에 빠짐·물림·쏘임 등 실제 사고는 즉시 119와 담당자의 도움을 요청합니다. 사고 뉴스는 학생의 감각·정서 반응을 고려해 교사가 사전 확인하고, 자극적인 장면을 자동 노출하지 않습니다.';
 const evacuation=[
@@ -125,6 +125,6 @@ places['eco-park']=newPlace('eco-park','생태공원','생태 탐방 · 숲길 �
 destinations.splice(destinations.indexOf('park'),0,'playground');destinations.splice(destinations.indexOf('garden'),0,'eco-park');destinations.splice(destinations.length-1,0,'farm','water','library');
 
 places.water.image='media/illustrations/water-swim.webp';
-const data={places,types,destinations,evacuation,aacGroups,aac,version:'2.7.0',reviewDate:'2026-11-15'};
+const data={places,types,destinations,evacuation,aacGroups,aac,version:'2.8.0',reviewDate:'2026-11-15'};
 root.TripContent=data;if(typeof module!=='undefined')module.exports=data;
 })(globalThis);

@@ -32,7 +32,7 @@ function shareURL(base,config,content,view){
  u.searchParams.set('type',c.type);if(c.scope==='lesson'){u.searchParams.set('scope','lesson');u.searchParams.set('move',c.move);if(c.rest)u.searchParams.set('rest','1');}
  if(view)u.searchParams.set('view',view);return u.href;
 }
-function createSession(config,content){const c=normalize(config,content);return {config:c,route:routeFor(c,content),index:0,phase:'explore',spotIds:[],gameCards:[],gameNotice:'',questionIndex:0,records:[],completed:[],startedAt:new Date().toISOString(),supportChoice:null,reported:[]};}
+function createSession(config,content){const c=normalize(config,content);return {config:c,route:routeFor(c,content),index:0,phase:'explore',spotIds:[],gameCards:[],gameNotice:'',questionIndex:0,records:[],quizCombo:0,bestQuizCombo:0,quizAwards:{},completed:[],startedAt:new Date().toISOString(),supportChoice:null,reported:[]};}
 function recordAttempt(session,moduleId,itemId,correct,{assisted=false,kind='choice'}={}){
  let r=session.records.find(r=>r.module===moduleId&&r.item===itemId&&r.kind===kind);
  if(!r){r={module:moduleId,item:itemId,kind,firstCorrect:!!correct,attempts:0,assisted:false,complete:false};session.records.push(r);}
@@ -44,5 +44,7 @@ function filterVideos(videos,{place='',domain='',level='',query=''}={}){
  const q=query.trim().toLocaleLowerCase('ko');return videos.filter(v=>(!place||(v.venues||[]).includes(place))&&(!domain||v.domain===domain)&&(!level||(v.levels||[]).includes(level))&&(!q||[v.title,v.keyword,v.topic,v.provider].join(' ').toLocaleLowerCase('ko').includes(q)));
 }
 function safeURL(value){try{const u=new URL(value);return u.protocol==='https:'||u.protocol==='http:'?u.href:null;}catch{return null;}}
-const api={normalize,routeFor,parseLocation,shareURL,createSession,recordAttempt,completeModule,summary,filterVideos,safeURL};root.TripModel=api;if(typeof module!=='undefined')module.exports=api;
+function quizAward(session,key,{baseAlready=0}={}){session.quizAwards??={};if(session.quizAwards[key])return {delta:0,bonus:0,combo:session.quizCombo||0,repeat:true};session.quizCombo=(session.quizCombo||0)+1;session.bestQuizCombo=Math.max(session.bestQuizCombo||0,session.quizCombo);const bonus=session.quizCombo%3===0?50:0,delta=(baseAlready?0:100)+bonus;session.score=(session.score||0)+delta;session.quizAwards[key]={bonus,base:100,combo:session.quizCombo};return {delta,bonus,combo:session.quizCombo,repeat:false};}
+function quizMiss(session){session.quizCombo=0;}
+const api={normalize,routeFor,parseLocation,shareURL,createSession,quizAward,quizMiss,recordAttempt,completeModule,summary,filterVideos,safeURL};root.TripModel=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

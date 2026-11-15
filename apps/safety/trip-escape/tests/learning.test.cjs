@@ -10,9 +10,10 @@ function app(url='https://school.example/apps/safety/trip-escape/',storage={}){
  const w=dom.window;const visualTimers=[];const timer=w.setTimeout.bind(w);w.setTimeout=(fn,ms)=>{if(ms===1600){visualTimers.push(fn);return -1;}return timer(fn,ms);};w.scrollTo=()=>{};w.HTMLElement.prototype.scrollIntoView=()=>{};w.HTMLDialogElement.prototype.showModal=function(){this.setAttribute('open','');};w.HTMLDialogElement.prototype.close=function(){this.removeAttribute('open');};w.speechSynthesis={speak(){},cancel(){}};w.SpeechSynthesisUtterance=function(t){this.text=t;};
  for(const[k,v]of Object.entries(storage))w.localStorage.setItem(k,v);
  const css=w.document.createElement('style');css.textContent=fs.readFileSync(path.join(root,'app.css'),'utf8');w.document.head.append(css);
- w.__media=require('./media-clock.cjs')(w);for(const f of ['content.js','model.js','resources.js','rhythm-song.js','place-games.js','mini-games.js','sound.js','dodge.js','rhythm.js','activities.js','story.js','place-gameplay.js','app.js'])w.eval(fs.readFileSync(path.join(root,f),'utf8'));
+ w.__media=require('./media-clock.cjs')(w);for(const f of ['content.js','model.js','resources.js','rhythm-song.js','place-games.js','mini-games.js','sound.js','dodge.js','rhythm.js','question-art.js','activities.js','story.js','place-gameplay.js','app.js'])w.eval(fs.readFileSync(path.join(root,f),'utf8'));
  return {w,errors,doc:w.document,close:()=>w.close(),click(s){if(s.includes('close')||s.includes('next-question')){while(visualTimers.length)visualTimers.shift()();}const el=w.document.querySelector(s);assert.ok(el,'대상 요소 없음: '+s+' · '+w.document.querySelector('#main')?.textContent.slice(0,450));assert.ok(!el.disabled,'비활성 버튼: '+s);el.click();return el;}};
 }
+function findQuestion(a){const ids=[...a.doc.querySelectorAll('[data-action=question-find-target]')].map(e=>e.dataset.id);assert.ok(ids.length);ids.forEach((id,i)=>{click(a,'question-find-target','[data-id="'+id+'"]');if(i<ids.length-1)click(a,'close');});}
 function practice(a){click(a,'teacher');click(a,'open-practice');}
 function click(a,action,attrs=''){return a.click(`[data-action="${action}"]${attrs}`);}
 test('25개 유형·장소 조합을 게임과 오답 재시도까지 진행해 완주한다',()=>{
@@ -22,10 +23,10 @@ test('25개 유형·장소 조합을 게임과 오답 재시도까지 진행해 
  click(a,'begin-goal');click(a,'goal-answer','[data-index="0"]');click(a,'start-learning');
  for(const id of route){for(const s of C.places[id].spots){click(a,'spot',`[data-id="${s.id}"]`);assert.ok(a.doc.querySelector('dialog[open]'));click(a,'spot-done',`[data-id="${s.id}"]`);}click(a,'to-game');if(id==='experience'){click(a,'choose-mini','[data-kind="prep"]');click(a,'game-card','[data-id="unsafe"]');for(const spot of C.places[id].spots)click(a,'game-card',`[data-id="${spot.id}"]`);click(a,'game-finish');}if(a.doc.querySelector('[data-action="find-finish"]')){for(const t of a.w.SafetyActivities.finds[id].targets){click(a,'find-target',`[data-id="${t.id}"]`);click(a,'close');}click(a,'find-finish');}if(a.doc.querySelector('[data-action="mini-next"]'))click(a,'mini-next');
  const qs=id==='escape'?C.evacuation:C.places[id].choices;
- for(let i=0;i<qs.length;i++){const q=qs[i];if(q.kind==='report'){for(const el of a.doc.querySelectorAll('[data-report]')){el.checked=true;el.dispatchEvent(new a.w.Event('change',{bubbles:true}));}click(a,'report-check');}
+ for(let i=0;i<qs.length;i++){const q=qs[i];if(a.doc.querySelector('[data-question-scene]')){findQuestion(a);}
  else if(q.kind==='support'){click(a,'answer','[data-index="1"]');}
  else{if(i===0){click(a,'answer',`[data-index="${q.correct?0:1}"]`);assert.match(a.doc.querySelector('.feedback').textContent,/함께 다시/);click(a,'try-again');}click(a,'answer',`[data-index="${q.correct}"]`);}click(a,'next-question');}
- for(const q of C.places[id].quizzes){click(a,'answer',`[data-index="${q.answer}"]`);click(a,'next-question');}click(a,'next-module');}
+ for(const q of C.places[id].quizzes){findQuestion(a);click(a,'next-question');}click(a,'next-module');}
  assert.match(a.doc.querySelector('h1').textContent,/함께 연습/);assert.equal(a.doc.querySelectorAll('.rule-summary .panel').length,route.length);assert.match(a.doc.querySelector('.metric-grid').textContent,/함께 다시/);assert.equal(a.errors.length,0,a.errors.join('\n'));
  }finally{a.close();}}
 });

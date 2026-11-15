@@ -2,17 +2,8 @@
 (function(root){
 'use strict';
 const kinds=new Set(['maze','whack','signal','sort','compare','wash','dress','voice']);
-const maze=[
- '11111111111',
- '100000100E1',
- '10111010101',
- '10100010101',
- '10101110101',
- '10001000101',
- '11101011101',
- '1S000000001',
- '11111111111'
-];
+const maze=["11111111111","100010001E1","10111010101","10000010101","11101110101","10001110001","10111110111","1S000110001","11111111111"];
+const mazeStars=[[3,3],[7,3],[9,5]];
 const tools=[{id:'blocks',label:'나무 블록',cell:0,bin:'student',why:'오늘 안내받은 나무 블록은 선생님과 함께 사용할 수 있어요.'},{id:'goggles',label:'보호 안경',cell:1,bin:'student',why:'오늘 체험에 필요한 보호 안경을 선생님과 맞게 써요.'},{id:'glue',label:'뜨거운 글루건',cell:2,bin:'staff',why:'오늘 체험의 뜨거운 글루건은 선생님·직원이 다뤄요.'},{id:'knife',label:'커터 칼',cell:3,bin:'staff',why:'오늘 커터 칼 작업은 선생님·직원에게 부탁해요.'}];
 const hazards=[
  {id:'wet',label:'물기가 고인 바닥',image:'media/game/puddle.webp',danger:true,why:'젖은 곳을 밟지 않고 선생님께 알려요.'},
@@ -30,7 +21,7 @@ const gear=[{id:'cap',label:'수영모',cell:0,zone:'head'},{id:'vest',label:'�
 const compareTargets=[{id:'rope',label:'관람 줄을 넘는 다리',box:[70,30,26,45],rule:'전시물 앞 관람 줄을 넘지 않아요.'},{id:'touch',label:'전시물로 뻗은 손',box:[26,35,30,22],rule:'만져도 된다는 안내가 없으면 전시물을 만지지 않아요.'},{id:'spill',label:'바닥에 쏟은 음료',box:[46,83,30,15],rule:'전시실에서 음식을 먹지 않고 물기를 보면 알려요.'}];
 function shuffled(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
 function create(place,kind){const g={kind,place,phase:'ready',complete:false,assisted:false,notice:'그림과 안내를 확인하고 시작해요.'};
- if(kind==='maze')return {...g,phase:'play',x:1,y:7,steps:0,hint:false,notice:'상영이 끝났어요. 의자 사이 통로를 따라 선생님이 있는 출구로 가요.'};
+ if(kind==='maze')return {...g,phase:'play',x:1,y:7,prevX:1,prevY:7,steps:0,stars:[],visited:['1,7'],bump:false,hint:false,notice:'상영이 끝났어요. 의자 사이 통로를 따라 선생님이 있는 출구로 가요.'};
  if(kind==='whack')return {...g,index:0,elapsed:0,found:[],hole:4,waitMode:false,notice:'튀어나오는 그림에서 위험한 곳만 눌러 선생님께 알려요.'};
  if(kind==='signal')return {...g,round:0,segmentMs:0,heldMs:0,stillMs:0,pressed:false,walked:0,tapMode:false,notice:'안내자의 걷기 신호에만 움직이고, 멈춤 신호에는 손을 떼요.'};
  if(kind==='sort')return {...g,phase:'play',order:shuffled(tools.map(t=>t.id)),index:0,selected:null,sorted:[],notice:'오늘은 나무 블록·보호 안경을 사용해요. 글루건·커터 칼 작업은 선생님 담당이에요.'};
@@ -44,7 +35,7 @@ function currentHazard(g){return hazards[g.index%hazards.length];}
 function nextHazard(g){g.index++;g.elapsed=0;g.hole=(g.index*5+4)%9;for(let i=0;i<hazards.length&&g.found.includes(currentHazard(g).id);i++)g.index++;}
 function finish(g,message){g.complete=true;g.phase='done';g.pressed=false;g.notice=message;return g;}
 function act(g,action,value){if(!g||g.complete)return g;
- if(g.kind==='maze'&&action==='move'){const [dx,dy]=({left:[-1,0],right:[1,0],up:[0,-1],down:[0,1]})[value]||[0,0];const x=g.x+dx,y=g.y+dy;if(!maze[y]||!maze[y][x]||maze[y][x]==='1'){g.notice='의자와 벽은 지나가지 않아요. 빈 통로를 골라요.';return g;}g.x=x;g.y=y;g.steps++;g.notice='통로를 따라 천천히 이동해요.';if(maze[y][x]==='E')finish(g,'선생님과 출구에 도착했어요. 실제 비상 상황에서는 직원의 안내를 따라요.');}
+ if(g.kind==='maze'&&action==='move'){const [dx,dy]=({left:[-1,0],right:[1,0],up:[0,-1],down:[0,1]})[value]||[0,0];const x=g.x+dx,y=g.y+dy;if(!maze[y]||!maze[y][x]||maze[y][x]==='1'){g.bump=true;g.notice='의자와 벽은 지나가지 않아요. 빈 통로를 골라요.';return g;}g.prevX=g.x;g.prevY=g.y;g.x=x;g.y=y;g.steps++;g.bump=false;if(!g.visited.includes(x+','+y))g.visited.push(x+','+y);const star=mazeStars.findIndex(p=>p[0]===x&&p[1]===y);if(star>=0&&!g.stars.includes(star)){g.stars.push(star);g.notice='길별 '+g.stars.length+'개! 다음 통로를 살펴봐요.';}else g.notice='통로를 따라 천천히 이동해요.';if(maze[y][x]==='E')finish(g,'선생님과 출구에 도착했어요. 실제 비상 상황에서는 직원의 안내를 따라요.');}
  if(g.kind==='maze'&&action==='hint'){g.hint=true;g.assisted=true;g.notice='한 칸씩 이어지는 빈 통로를 살펴봐요.';}
  if(g.kind==='whack'){
   if(action==='wait-mode'){g.waitMode=!g.waitMode;g.assisted=true;g.notice=g.waitMode?'그림이 사라지지 않아요. 충분히 본 뒤 골라요.':'그림이 차례로 나타나요.';}
@@ -97,5 +88,5 @@ function tick(g,now,inputRms=0){if(!g||g.complete)return g;const dt=Math.max(0,M
  return g;
 }
 function mazeRoute(g){const queue=[[g.x,g.y,[]]],seen=new Set([g.x+','+g.y]);while(queue.length){const[x,y,route]=queue.shift();if(maze[y][x]==='E')return route;for(const[dir,dx,dy]of [['left',-1,0],['right',1,0],['up',0,-1],['down',0,1]]){const a=x+dx,b=y+dy,k=a+','+b;if(maze[b]?.[a]&&maze[b][a]!=='1'&&!seen.has(k)){seen.add(k);queue.push([a,b,[...route,dir]]);}}}return [];}
-const api={has:k=>kinds.has(k),kinds:[...kinds],create,act,tick,maze,mazeRoute,tools,hazards,currentHazard,washSteps,gear,compareTargets};root.SafetyPlaceGames=api;if(typeof module!=='undefined')module.exports=api;
+const api={has:k=>kinds.has(k),kinds:[...kinds],create,act,tick,maze,mazeStars,mazeRoute,tools,hazards,currentHazard,washSteps,gear,compareTargets};root.SafetyPlaceGames=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
