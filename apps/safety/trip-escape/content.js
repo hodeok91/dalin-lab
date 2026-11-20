@@ -125,6 +125,6 @@ places['eco-park']=newPlace('eco-park','생태공원','생태 탐방 · 숲길 �
 destinations.splice(destinations.indexOf('park'),0,'playground');destinations.splice(destinations.indexOf('garden'),0,'eco-park');destinations.splice(destinations.length-1,0,'farm','water','library');
 
 places.water.image='media/illustrations/water-swim.webp';
-const data={places,types,destinations,evacuation,aacGroups,aac,version:'2.8.0',reviewDate:'2026-11-15'};
+const data={places,types,destinations,evacuation,aacGroups,aac,version:'2.9.0',reviewDate:'2026-11-16'};
 root.TripContent=data;if(typeof module!=='undefined')module.exports=data;
 })(globalThis);

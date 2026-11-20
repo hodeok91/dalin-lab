@@ -3,6 +3,7 @@
 'use strict';
 const song=root.SafetySong||(typeof require==='function'?require('./rhythm-song.js'):null);
 const PG=root.SafetyPlaceGames||(typeof require==='function'?require('./place-games.js'):null);
+const Arcade=root.SafetyArcade||(typeof require==='function'?require('./arcade'):null);
 const difficultyInfo={easy:{label:'쉬움',window:320,approach:3400},normal:{label:'보통',window:250,approach:2600},hard:{label:'어려움',window:180,approach:2200},expert:{label:'매우 어려움',window:120,approach:1800}};
 const rhythmCharts={normal:song.notes};
 let jumpSerial=0;rhythmCharts.easy=song.notes.filter(n=>n.kind==='stop'||jumpSerial++%2===0);
@@ -37,7 +38,7 @@ const dodgeRounds=[
  [{lane:1,key:'branch'},{lane:2,key:'bee'}]
 ];
 const hazardNames={branch:'쓰러진 가지',stone:'길 위의 돌','water-edge':'물가',grass:'풀숲',bee:'벌',snake:'뱀',puddle:'젖은 바닥'};
-const gameInfo={jump:{title:'안전 리듬 점프',goal:'노래 끝까지 점프·멈춤 노트를 연습하고 쉬기',icon:'play'},torch:{title:'손전등 탐색',goal:'안전장치 세 곳 찾기',icon:'search'},path:{title:'안전한 길 찾기',goal:'안전 지점을 따라 목적지에 도착하기',icon:'start'},prep:{title:'안전 준비 카드',goal:'준비할 안전 행동 세 가지 모으기',icon:'goal'},matching:{title:'안전 짝맞추기',goal:'상황과 안전한 행동 연결하기',icon:'select'},memory:{title:'같은 그림 찾기',goal:'안전 그림 세 쌍 찾기',icon:'picture'},dodge:{title:'공원 안전 피하기',goal:'산책길의 위험을 피하고 안전별을 모으며 기록 겨루기',icon:'play'}};
+const gameInfo={jump:{title:'안전 리듬 점프',goal:'노래 끝까지 점프·멈춤 노트를 연습하고 쉬기',icon:'play'},torch:{title:'손전등 탐색',goal:'안전장치 세 곳 찾기',icon:'search'},path:{title:'관찰 계단 기록 도전',goal:'다음 계단 방향을 골라 계속 올라가기',icon:'start'},prep:{title:'안전 행동 장면 찾기',goal:'한 장면에서 안전한 행동 세 곳 찾기',icon:'goal'},matching:{title:'안전 짝맞추기',goal:'상황과 안전한 행동 연결하기',icon:'select'},memory:{title:'같은 그림 찾기',goal:'안전 그림 세 쌍 찾기',icon:'picture'},dodge:{title:'공원 안전 피하기',goal:'산책길의 위험을 피하고 안전별을 모으며 기록 겨루기',icon:'play'}};
 function catalog(place){const kinds=({sports:['jump','memory'],cinema:['memory'],museum:['matching','memory'],experience:['matching','prep'],'theme-park':['matching','memory'],park:['dodge','path','memory'],garden:['path','memory'],heritage:['path','memory'],lodging:['matching'],escape:['torch']})[place]||[];return kinds.map(id=>({id,...gameInfo[id]}));}
 function shuffle(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 const sequences={
@@ -45,13 +46,14 @@ const sequences={
  'call-order':{title:'119 구조 요청을 연습해요',description:'실제 전화 연결은 없어요. 위치·상황·필요한 도움은 상담원의 질문에 맞춰 알려요.',cards:[['help','119에 연결하거나 가능한 연락 수단으로 도움 요청'],['here','어디인지 · 무슨 일인지 · 필요한 도움 알리기'],['wait','상담원의 질문과 안내를 확인하며 기다리기']]}
 };
 function create(place,kind){
+ if(!kind&&['garden','heritage','park'].includes(place))kind='path';
  if(PG.has(kind))return PG.create(place,kind);
  if(sequences[kind])return {kind:'sequence',sequence:kind,order:shuffle(sequences[kind].cards.map((_,i)=>i)),step:0,complete:false,notice:'처음 할 일부터 하나씩 골라요. 틀려도 처음부터 다시 하지 않아요.'};
  if(kind==='memory'){const keys=memoryKeys[place]||memoryKeys.museum;return {kind:'memory',cards:shuffle(keys.flatMap((key,i)=>[{id:i+'a',key},{id:i+'b',key}])),open:[],matched:[],awaiting:false,complete:false,notice:'카드를 눌러 같은 안전 그림 세 쌍을 찾아요.'};}
  if(kind==='matching'){const pairs=(pairSets[place]||pairSets.museum).map((p,i)=>({id:i,leftKey:p[0],left:p[1],rightKey:p[2],right:p[3]}));return {kind:'matching',pairs,rightOrder:shuffle([0,1,2]),selected:null,matched:[],complete:false,notice:'왼쪽 상황을 고르고, 짝이 되는 오른쪽 행동을 골라요.'};}
  if(kind==='dodge')return {kind:'dodge',phase:'ready',pace:'normal',difficulty:'normal',mode:'normal',cape:0,capeWorn:false,combo:0,maxCombo:0,feverCharge:0,feverWaves:0,feverCount:0,feverBonus:0,feverTimeMs:0,shieldHits:0,shieldAt:null,barrierRound:null,jumpUntil:0,jumpAt:0,round:0,lane:1,x:.5,direction:0,hearts:3,avoided:0,collected:0,elapsedMs:0,waveMs:0,score:0,complete:false,ended:false,notice:'방향키나 화면 버튼을 누르는 동안 산책길에서 좌우로 움직여요.'};
  if(kind==='prep')return null;
- if(place==='sports')return {kind:'jump',rhythm:true,phase:'wait',difficulty:'normal',pace:'normal',assist:false,volume:.8,count:0,cueIndex:0,results:[],positionMs:0,score:0,combo:0,maxCombo:0,feverCharge:0,feverUntilMs:0,feverCount:0,feverBonus:0,perfect:0,great:0,good:0,miss:0,stopCorrect:0,stopErrors:0,stray:0,inAir:false,complete:false,songEnded:false,notice:'점프 노트는 누르고, 멈춰요 노트는 누르지 않아요.'};
+ if(place==='sports')return {kind:'jump',rhythm:true,phase:'wait',difficulty:'normal',pace:'normal',assist:false,volume:.8,count:0,cueIndex:0,results:[],positionMs:0,score:0,combo:0,maxCombo:0,feverMode:'auto',feverReady:false,held:false,activeHold:null,feverCharge:0,feverUntilMs:0,feverCount:0,feverBonus:0,perfect:0,great:0,good:0,miss:0,stopCorrect:0,stopErrors:0,stray:0,inAir:false,complete:false,songEnded:false,notice:'점프 노트는 누르고, 멈춰요 노트는 누른 채 유지해요.'};
  if(place==='escape')return {kind:'torch',found:[],bright:false,complete:false,notice:'손전등을 움직여 안전장치 3곳을 찾아 눌러요.'};
  if(pathPlaces.has(place)&&(place!=='cinema'||kind==='path'))return {kind:'path',place,step:0,complete:false,notice:'출발! 다음 안전 지점을 차례대로 골라요.'};
  return null;
@@ -59,43 +61,49 @@ function create(place,kind){
 /* 노래 재생 위치를 기준으로 판정합니다. 틀려도 노래와 노트는 계속됩니다. */
 const rhythmPattern=song.notes.map(n=>n.kind);
 function rhythmCue(g){return rhythmNotes(g)[g.cueIndex]?.kind;}
+function rhythmHoldDuration(g,index=g.cueIndex){const notes=rhythmNotes(g),n=notes[index];return Math.max(180,Math.min(650,(notes[index+1]?.t||song.durationMs)-n.t-180));}
 function rhythmWindow(g){return difficultyInfo[g.difficulty||'normal'].window+(g.assist?70:0);}
 function rhythmFever(g,now=g.positionMs||0){return (g.feverUntilMs||0)>now;}
 function rhythmMultiplier(g,now=g.positionMs||0){return rhythmFever(g,now)?2:1;}
 function rhythmBreak(g){g.combo=0;g.feverCharge=0;}
-function rhythmAward(g,base,now){const multiplier=rhythmMultiplier(g,now),points=base*multiplier;g.score+=points;g.feverBonus=(g.feverBonus||0)+points-base;g.combo++;g.maxCombo=Math.max(g.maxCombo,g.combo);g.lastAward={base,multiplier,points};if(!rhythmFever(g,now)){g.feverCharge=Math.min(100,(g.feverCharge||0)+8+Math.min(g.combo,10));if(g.feverCharge===100){g.feverCharge=0;g.feverUntilMs=now+8000;g.feverCount=(g.feverCount||0)+1;}}return points;}
+function rhythmAward(g,base,now){const multiplier=rhythmMultiplier(g,now),points=base*multiplier;g.score+=points;g.feverBonus=(g.feverBonus||0)+points-base;g.combo++;g.maxCombo=Math.max(g.maxCombo,g.combo);g.lastAward={base,multiplier,points};if(!rhythmFever(g,now)){g.feverCharge=Math.min(100,(g.feverCharge||0)+8+Math.min(g.combo,10));if(g.feverCharge===100){if(g.feverMode==='manual')g.feverReady=true;else{g.feverCharge=0;g.feverUntilMs=now+8000;g.feverCount=(g.feverCount||0)+1;}} }return points;}
 function rhythmFeedback(g,kind,label,now){g.feedback={kind,label,at:now,serial:(g.feedback?.serial||0)+1};}
 function rhythmAct(g,action,value){
  if(g.complete)return g;
  if(action==='difficulty'&&['wait','error'].includes(g.phase)&&difficultyInfo[value]){g.difficulty=value;return g;}
  if(action==='pace'&&['wait','paused','error'].includes(g.phase)){g.pace=value==='slow'?'slow':'normal';return g;}
+ if(action==='fever-mode'&&['wait','error'].includes(g.phase)){g.feverMode=value==='manual'?'manual':'auto';return g;}
+ if(action==='fever'&&g.phase==='ready'&&g.feverReady){g.feverReady=false;g.feverCharge=0;g.feverUntilMs=(value??g.positionMs)+8000;g.feverCount=(g.feverCount||0)+1;return g;}
  if(action==='assist'){g.assist=!g.assist;return g;}
  if(action==='wait'&&['wait','loading','error'].includes(g.phase)){g.phase='ready';g.positionMs=0;g.notice='노래의 박자에 맞춰 점프 노트를 눌러요.';return g;}
- if(action==='pause'&&g.phase==='ready'){g.phase='paused';g.notice='노래와 노트가 함께 멈췄어요.';return g;}
+ if(action==='pause'&&g.phase==='ready'){g.held=false;if(g.activeHold)g.holdResume=true;g.phase='paused';g.notice='노래와 노트가 함께 멈췄어요.';return g;}
  if(action==='resume'&&g.phase==='paused'){g.phase='ready';g.notice='멈춘 노래부터 이어서 해요.';return g;}
  if(action==='jump')return rhythmInput(g,value);
  if(action==='rest'&&g.phase==='rest'&&g.songEnded){g.complete=true;g.notice='노래 끝까지 안전 점프를 연습하고 쉬고 싶다고 표현했어요.';}
  return g;
 }
-function rhythmInput(g,now){
- if(g.phase!=='ready'||g.complete||!Number.isFinite(now))return g;
- rhythmTick(g,now);const n=rhythmNotes(g)[g.cueIndex];if(!n)return g;
- const delta=now-n.t,window=rhythmWindow(g);if(g.results[g.cueIndex])return g;
- if(Math.abs(delta)>window){g.stray++;rhythmBreak(g);rhythmFeedback(g,'oops',delta<0?'노트가 기준선에 올 때 눌러요.':'다음 노트에서 다시 해봐요.',now);return g;}
- if(n.kind==='stop'){g.results[g.cueIndex]='oops';g.stopErrors++;rhythmBreak(g);rhythmFeedback(g,'oops','멈춰요 노트는 누르지 않아요.',now);return g;}
- const error=Math.abs(delta),base=difficultyInfo[g.difficulty||'normal'].window,grade=error<=Math.min(90,base*.45)?'perfect':error<=Math.min(170,base*.8)?'great':'good';g.results[g.cueIndex]=grade;g[grade]++;rhythmAward(g,grade==='perfect'?100:grade==='great'?80:50,now);g.count++;g.jumpAt=now;g.jumpDuration=Math.max(140,Math.min(500,((rhythmNotes(g)[g.cueIndex+1]?.t||now+700)-now)*.8));g.inAir=true;rhythmFeedback(g,grade,grade==='perfect'?'정확해요!':grade==='great'?'최고예요!':'좋아요!',now);return g;
+function rhythmDown(g,now){
+ if(g.phase!=='ready'||g.complete||!Number.isFinite(now)||g.held)return g;
+ rhythmTick(g,now);if(g.activeHold&&g.holdResume){g.held=true;delete g.holdResume;return g;}
+ const n=rhythmNotes(g)[g.cueIndex];g.held=true;if(!n||g.results[g.cueIndex])return g;
+ const delta=now-n.t,window=rhythmWindow(g);if(Math.abs(delta)>window){g.stray++;rhythmBreak(g);rhythmFeedback(g,'oops','기준선에서 눌러요.',now);return g;}
+ const error=Math.abs(delta),base=difficultyInfo[g.difficulty||'normal'].window,grade=error<=Math.min(90,base*.45)?'perfect':error<=Math.min(170,base*.8)?'great':'good';
+ if(n.kind==='stop'){g.activeHold={index:g.cueIndex,start:now,end:n.t+rhythmHoldDuration(g),grade};g.notice='꼬리가 기준선을 지날 때까지 누른 채 유지해요.';return g;}
+ g.results[g.cueIndex]=grade;g[grade]++;rhythmAward(g,grade==='perfect'?100:grade==='great'?80:50,now);g.count++;g.jumpAt=now;g.jumpDuration=Math.max(140,Math.min(500,((rhythmNotes(g)[g.cueIndex+1]?.t||now+700)-now)*.8));g.inAir=true;rhythmFeedback(g,grade,grade==='perfect'?'정확해요!':grade==='great'?'최고예요!':'좋아요!',now);return g;
 }
+function rhythmUp(g,now){if(g.phase==='ready')rhythmTick(g,now);g.held=false;if(g.activeHold&&!g.holdResume){const own=g.activeHold;g.results[own.index]='oops';g.stopErrors++;rhythmBreak(g);rhythmFeedback(g,'oops','멈춤 꼬리 끝까지 유지해요.',now);g.activeHold=null;}return g;}
+function rhythmInput(g,now){rhythmDown(g,now);rhythmUp(g,now);return g;}
 function rhythmTick(g,now){
  if(g.phase!=='ready'||g.complete||!Number.isFinite(now))return g;
  g.positionMs=Math.max(0,Math.min(song.durationMs,now));if(g.inAir&&now-g.jumpAt>=(g.jumpDuration||500))g.inAir=false;
- const notes=rhythmNotes(g);while(g.cueIndex<notes.length&&now>notes[g.cueIndex].t+rhythmWindow(g)){
-  const n=notes[g.cueIndex];if(!g.results[g.cueIndex]){if(n.kind==='stop'){g.results[g.cueIndex]='safe';g.stopCorrect++;rhythmAward(g,50,now);rhythmFeedback(g,'good','멈춤 약속을 지켰어요!',now);}else{g.results[g.cueIndex]='retry';g.miss++;rhythmBreak(g);rhythmFeedback(g,'retry','괜찮아요. 다음 노트에서 다시 해봐요.',now);}}
-  g.cueIndex++;
+ if(g.activeHold&&g.held&&now>=g.activeHold.end){const own=g.activeHold;g.results[own.index]='hold';g.stopCorrect++;rhythmAward(g,50,own.end);rhythmFeedback(g,'good','멈춤 유지 성공!',now);g.activeHold=null;g.cueIndex=own.index+1;}
+ const notes=rhythmNotes(g);while(g.cueIndex<notes.length){const n=notes[g.cueIndex],hold=g.activeHold?.index===g.cueIndex;
+  const deadline=n.t+(hold?rhythmHoldDuration(g):0)+rhythmWindow(g);if(now<=deadline)break;
+  if(!g.results[g.cueIndex]){g.results[g.cueIndex]='retry';if(n.kind==='stop'){g.stopErrors++;g.activeHold=null;}else g.miss++;rhythmBreak(g);rhythmFeedback(g,'retry','다음 노트에서 다시 해봐요.',now);}g.cueIndex++;
  }
- g.dueAt=notes[g.cueIndex]?.t??song.durationMs;
- return g;
+ g.dueAt=notes[g.cueIndex]?.t??song.durationMs;return g;
 }
-function rhythmEnd(g){if(g.phase!=='ready')return g;rhythmTick(g,song.durationMs+rhythmWindow(g)+1);g.songEnded=true;g.positionMs=song.durationMs;g.phase='rest';g.feverUntilMs=0;g.inAir=false;g.notice='노래 끝까지 함께했어요. 기록을 보고 잠깐 쉬어요.';return g;}
+function rhythmEnd(g){if(g.phase!=='ready')return g;rhythmTick(g,song.durationMs+rhythmWindow(g)+1);g.songEnded=true;g.positionMs=song.durationMs;g.phase='rest';g.feverUntilMs=0;g.held=false;g.activeHold=null;g.inAir=false;g.notice='노래 끝까지 함께했어요. 기록을 보고 잠깐 쉬어요.';return g;}
 const targets=[{id:'ext',label:'소화기',x:13,y:56,area:'왼쪽 벽 살펴보기'},{id:'alarm',label:'화재경보기',x:42,y:52,area:'가운데 벽 살펴보기'},{id:'exit',label:'비상구 유도등',x:81,y:36,area:'오른쪽 위 살펴보기'}];
 targets[0].box=[5,29,15.5,42];targets[1].box=[40,42.5,8,16];targets[2].box=[74.5,30,9.5,11];
 function scoreFinding(g,id,validIds){g.rewarded??=[];if(validIds.includes(id)&&(g.rewarded.includes(id)||g.found?.includes(id)))return {kind:'repeat',delta:0};g.attempts=(g.attempts||0)+1;const hit=validIds.includes(id);const delta=hit?100:-10;if(hit)g.rewarded.push(id);else g.misses=(g.misses||0)+1;g.score=(g.score||0)+delta;return {kind:hit?'found':'miss',delta};}
@@ -173,5 +181,5 @@ pairSets.heritage=[['sign-stop','출입 제한 표지가 있어요','stop','줄�
 Object.assign(gameInfo,...Object.entries({maze:['통로 미로','빈 통로를 따라 선생님이 있는 출구에 도착해요.'],whack:['위험 발견 알리기','위험한 장소 그림만 눌러 어른에게 알려요.'],signal:['안내자 걷기·멈춤','걷기 신호에 움직이고 멈춤 신호에 기다려요.'],sort:['오늘의 도구 분류','안내받고 쓸 도구와 선생님 담당 도구를 나눠요.'],compare:['다른 행동 찾기','안전하게 바뀐 관람 행동 세 곳을 비교해요.'],wash:['체험 뒤 손 씻기','물·비누·여섯 부위·헹굼·말리기를 연습해요.'],dress:['물놀이 준비','오늘 안내받은 복장과 장비를 준비해요.'],voice:['목소리 크기 연습','마이크 또는 그림으로 작은 목소리를 연습해요.']}).map(([id,[title,goal]])=>({[id]:{title,goal,icon:'play'}})));
 const oldCatalog=catalog;
 catalog=function(place){const extra={cinema:['maze','voice'],museum:['compare','voice'],experience:['sort','voice'],heritage:['matching','voice'],'theme-park':['ride-order'],playground:['whack'],'eco-park':['signal'],farm:['wash'],water:['dress'],library:['voice']}[place]||[];return [...extra.map(id=>({id,...(gameInfo[id]||{title:sequences[id].title,goal:sequences[id].description,icon:'select'})})),...oldCatalog(place)];};
-const api={create,act,rhythmNotes,rhythmApproach,rhythmCharts,difficultyInfo,dodgeDifficulties,dodgeSafeLane,dodgePickup,dodgeJumpReady,dodgeFever,dodgeMoveSpeed,dodgeDuration,dodgeObstacles,dodgeTick,dodgeAct,dodgeScore,rhythmPattern,rhythmFever,rhythmMultiplier,rhythmAct,rhythmCue,rhythmTick,rhythmInput,rhythmWindow,rhythmEnd,targets,scoreFinding,pathLabels:{...pathLabels,cinema:['통로에서 천천히','계단·발밑 확인','선생님과 출구 앞 도착']},catalog,gameInfo,dodgeRounds,hazardNames,sequences};root.SafetyMiniGames=api;if(typeof module!=='undefined')module.exports=api;
+const api={create,act,rhythmNotes,rhythmApproach,rhythmCharts,difficultyInfo,dodgeDifficulties,dodgeSafeLane,dodgePickup,dodgeJumpReady,dodgeFever,dodgeMoveSpeed,dodgeDuration,dodgeObstacles,dodgeTick,dodgeAct,dodgeScore,rhythmPattern,rhythmFever,rhythmMultiplier,rhythmAct,rhythmCue,rhythmTick,rhythmInput,rhythmDown,rhythmUp,rhythmHoldDuration,rhythmWindow,rhythmEnd,targets,scoreFinding,pathLabels:{...pathLabels,cinema:['통로에서 천천히','계단·발밑 확인','선생님과 출구 앞 도착']},catalog,gameInfo,dodgeRounds,hazardNames,sequences};root.SafetyMiniGames=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

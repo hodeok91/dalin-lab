@@ -1,0 +1,78 @@
+{
+  "version": "2.9.0",
+  "date": "2026-11-16",
+  "automatedTests": 159,
+  "gameplay": {
+    "checks": [
+      "stairs: keyboard/touch 26 floors, turn+climb, aura×2, coins, pause, finish, replay",
+      "sort: actual drag and arrow keys, all24, result",
+      "dress: three actual drags on head/clothes/body, sprite state7",
+      "call: invalid number retry,119,3 dispatcher AAC answers, finished without real call",
+      "evacuation: real drag cards and check",
+      "pop:10 actual dangerous-image touches, result",
+      "wash: actual wet hold, soap drag,6×5sec swipe rub,rinse hold,towel drag"
+    ],
+    "errors": []
+  },
+  "content": {
+    "checks": [
+      "sports: all5 safe/danger targets, no completion at3, individual explanation",
+      "experience: all5 safe/danger targets, no completion at3, individual explanation",
+      "night: all5 safe/danger targets, no completion at3, individual explanation",
+      "memory: wrong pair auto closes, same game continues through all3 matches",
+      "rhythm: real WAV ready and seek completed, actual pointer held across tail yields1 hold success, pause",
+      "call: real unavailable microphone path retains AAC alternative",
+      "headless download result: canceled; actual CSV Blob content validated and file saved separately",
+      "music:7 existing audio players,199 editable screen rows,CSV200 lines and UTF8 assignment preserved"
+    ],
+    "errors": []
+  },
+  "fever": {
+    "invincible": {
+      "fever": true,
+      "defended": true,
+      "hearts": "3 / 3",
+      "shieldCount": 1,
+      "round": 6
+    },
+    "rhythm": {
+      "sawFever": true,
+      "combo": 8,
+      "score": 800,
+      "audio": [
+        {
+          "src": "http://127.0.0.1:4173/audio/safety-jump.wav",
+          "rate": 1,
+          "paused": false,
+          "time": 7.732777
+        }
+      ],
+      "pauseFrozen": true,
+      "resumeTime": 8.637071,
+      "nativeDoubleAward": {
+        "judge": "perfect",
+        "points": 200
+      }
+    },
+    "quiz": {
+      "correctStreak": 3,
+      "totalScore": 350,
+      "lastAward": 150,
+      "bonus": 50
+    },
+    "errors": []
+  },
+  "physicalDevicesTested": false,
+  "screenSizes": [
+    "1440x1080",
+    "1024x768",
+    "390x844"
+  ],
+  "captureCount": 34,
+  "limitations": [
+    "목소리 내용 자동 채점 없음",
+    "실제 교실 마이크·전자칠판·태블릿 미연결",
+    "음악 CSV 실제 Blob 내용 검증·파일 제공; 이 headless Edge 환경의 다운로드 저장은 취소되어 미확인"
+  ],
+  "recheckedDate": "2026-11-21"
+}

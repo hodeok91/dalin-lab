@@ -4,17 +4,17 @@
 const a=(id,title,goal,icon='play',kind=id)=>({id,title,goal,icon,kind});
 const plans={
  bus:[a('find','출발 전 안전장치 찾기','그림 속 안전벨트·소화기·비상망치를 직접 찾아요.','search'),a('choice','버스가 멈추면 어떻게 할까요?','이동·승하차 상황에서 안전한 행동을 골라요.','select'),a('quiz','버스 약속 다시 확인','안전벨트와 승하차 약속을 확인해요.','review')],
- sports:[a('jump','형아맨의 안전 리듬 점프','제공된 노래의 점프·멈춤 노트를 끝까지 연습해요.'),a('prep','놀이 전 준비 카드','소지품·이용 안내·차례를 준비해요.','goal'),a('choice','넘어졌어요 · 어지러워요','놀이를 멈추고 도움을 요청해요.','help'),a('memory','같은 안전 그림 찾기','기다림·멈춤·휴식 그림 세 쌍을 찾아요.','picture')],
+ sports:[a('jump','형아맨의 안전 리듬 점프','제공된 노래의 점프·멈춤 노트를 끝까지 연습해요.'),a('prep','놀이 전 안전·위험 행동 찾기','소지품·이용 안내·차례를 준비해요.','goal'),a('choice','넘어졌어요 · 어지러워요','놀이를 멈추고 도움을 요청해요.','help'),a('memory','같은 안전 그림 찾기','기다림·멈춤·휴식 그림 세 쌍을 찾아요.','picture')],
  cinema:[a('find','영화 시작 전 표지 찾기','비상구와 이동 통로, 도움을 요청할 선생님을 찾아요.','search'),a('path','어두운 통로 천천히 걷기','다음 지점을 골라 출구 쪽으로 이동해요.','start'),a('choice','소리가 너무 커요','불편함을 알리고 함께 쉬는 상황을 연습해요.','help'),a('memory','안전 그림 같은 짝 찾기','출구·도움·천천히 그림을 기억해요.','picture')],
- museum:[a('find','전시실 속 약속 찾기','관람선·출구 표지·선생님을 그림에서 찾아요.','search'),a('matching','이럴 땐 이렇게! 짝맞추기','전시 관람·이동·휴식 상황을 안전 행동과 연결해요.','select'),a('choice','전시물을 만져도 될까요?','전시물 이용 안내와 도움 요청을 살펴봐요.','teacher'),a('quiz','관람 약속 그림 O·X','관람선과 함께 이동하기를 다시 확인해요.','review')],
- experience:[a('prep','체험 준비물과 행동 모으기','안내·도구·재료를 확인하는 카드를 골라요.','goal'),a('matching','도구 사용 도움 짝맞추기','모르는 방법·불편함을 도움 표현과 연결해요.','select'),a('choice','뜨거운 도구가 보여요','사용하기 전에 멈추고 물어보는 연습을 해요.','help')],
+ museum:[a('find','전시실 속 약속 찾기','관람선·출구 표지·선생님을 그림에서 찾아요.','search'),a('matching','이럴 땐 이렇게! 짝맞추기','전시 관람·이동·휴식 상황을 안전 행동과 연결해요.','select'),a('choice','전시물을 만져도 될까요?','전시물 이용 안내와 도움 요청을 살펴봐요.','teacher'),a('quiz','관람 약속 장면 찾기','관람선과 함께 이동하기를 다시 확인해요.','review')],
+ experience:[a('prep','체험실 안전·위험 행동 찾기','한 장면에서 안전 행동 세 곳과 위험 행동 두 곳을 찾아요.','goal'),a('matching','도구 사용 도움 짝맞추기','모르는 방법·불편함을 도움 표현과 연결해요.','select'),a('choice','뜨거운 도구가 보여요','사용하기 전에 멈추고 물어보는 연습을 해요.','help')],
  'theme-park':[a('find','놀이공원 안전 지점 찾기','줄·안전장치·울타리·이동 길을 살펴봐요.','search'),a('matching','떨어진 모자, 어떻게 할까요?','울타리와 탑승 상황을 안전 행동과 연결해요.','select'),a('choice','멈출 때까지 기다려요','탑승·하차와 직원에게 도움 요청을 연습해요.','teacher')],
- park:[a('dodge','공원 안전 피하기 기록 도전','산책길의 위험을 좌우로 피하고 안전별을 모으며 기록을 겨뤄요.'),a('find','호수공원 안전 지점 찾기','물가·난간·산책로·쉬는 곳을 살펴봐요.','search'),a('choice','물에 빠짐 · 뱀과 벌','물에 들어가지 않고 어른에게 알리는 상황을 연습해요.','help'),a('path','약속 장소까지 안전한 길','정해진 산책로로 함께 이동해요.','start')],
- garden:[a('find','관찰로와 쉬는 곳 찾기','식물·곤충과 거리를 두고 눈으로 관찰해요.','search'),a('path','온실 산책로 완성하기','정해진 길로 관찰하고 일행과 만나요.','start'),a('choice','열매와 벌을 발견했어요','먹거나 만지지 않고 도움을 요청해요.','help')],
- heritage:[a('path','궁궐 관람길 찾기','문턱·계단에서는 내게 맞는 길과 도움을 확인해요.','start'),a('find','관람 구역의 숨은 표식','줄·돌계단·쉼터를 그림에서 찾아요.','search'),a('choice','높은 문턱, 어떻게 할까요?','무리하지 않고 다른 경로와 도움을 요청해요.','help')],
+ park:[a('dodge','공원 안전 피하기 기록 도전','산책길의 위험을 좌우로 피하고 안전별을 모으며 기록을 겨뤄요.'),a('find','호수공원 안전 지점 찾기','물가·난간·산책로·쉬는 곳을 살펴봐요.','search'),a('choice','물에 빠짐 · 뱀과 벌','물에 들어가지 않고 어른에게 알리는 상황을 연습해요.','help'),a('path','공원 관찰 계단 도전','두 버튼으로 가상 계단을 오르며 코인과 기록에 도전해요.','start')],
+ garden:[a('find','관찰로와 쉬는 곳 찾기','식물·곤충과 거리를 두고 눈으로 관찰해요.','search'),a('path','온실 관찰 계단 도전','오르기·방향 전환으로 계단을 오르고 코인을 모아요.','start'),a('choice','열매와 벌을 발견했어요','먹거나 만지지 않고 도움을 요청해요.','help')],
+ heritage:[a('path','궁궐 관람 계단 도전','문턱·계단에서는 내게 맞는 길과 도움을 확인해요.','start'),a('find','관람 구역의 숨은 표식','줄·돌계단·쉼터를 그림에서 찾아요.','search'),a('choice','높은 문턱, 어떻게 할까요?','무리하지 않고 다른 경로와 도움을 요청해요.','help')],
  lodging:[a('find','우리 방 안전 점검','침대·창문·콘센트·소지품 위치를 찾아요.','search'),a('difference','정리 전후 다른 그림 찾기','안전하게 정리된 곳이 어디인지 찾아요.','picture'),a('matching','숙소에서 도움이 필요해요','밤의 건강·화장실·통로 정리 상황을 연결해요.','select'),a('choice','누군가 방문을 두드려요','담당 선생님에게 확인하는 연습을 해요.','help')],
  rest:[a('find','휴게소에서 살펴볼 곳','뜨거운 음식·화장실 이동·차량 통로를 찾아요.','search'),a('choice','일행과 떨어졌어요','혼자 주차장으로 가지 않고 도움을 요청해요.','help')],
- night:[a('prep','잠들기 전 방 정리','통로·연락 방법·화장실 경로를 확인해요.','goal'),a('choice','밤에도 말해도 괜찮아요','아픔·화장실·도움 요청을 연습해요.','help')],
+ night:[a('prep','남학생 방 안전·위험 행동 찾기','통로·연락 방법·화장실 경로를 확인해요.','goal'),a('choice','밤에도 말해도 괜찮아요','아픔·화장실·도움 요청을 연습해요.','help')],
  escape:[a('torch','손전등으로 안전장치 찾기','불이 나기 전에 복도의 소화기·경보기·유도등 위치를 알아봐요.','search'),a('evac-order','대피 행동 순서 놓기','안전 경로가 확인된 상황에서 알림·이동·집결을 연습해요.','select'),a('call-order','119 구조 요청 연습','실제 전화 없이 연결·내용 확인·안내 기다리기를 연습해요.','help'),a('choice','나갈 수 있을 때 · 어려울 때','이동 지원과 대피할 수 없는 상황을 나누어 생각해요.','teacher')]
 };
 plans.homecoming=[a('choice','안전한 귀교 마무리','완전히 멈춘 뒤 이동하고 인원을 확인해요.','teacher'),a('quiz','돌아올 때도 안전 약속','귀교 승하차 약속을 다시 확인해요.','review')];
@@ -66,7 +66,7 @@ finds.heritage={title:'궁궐에서 위험한 행동과 안전한 행동을 찾�
  behavior('boundary','관람 제한 줄을 넘는 친구','오른쪽에서 관람 제한 줄을 넘는 친구를 눌러요.','danger','출입 제한 줄을 넘지 않고 관람 구역 안에서 이동해요.','stop',[70,44,22,41]),
  behavior('steps','돌계단에서 뛰는 친구','돌계단에서 뛰어 내려오는 친구를 눌러요.','danger','계단에서는 뛰지 않아요. 도움이 필요하면 선생님께 알려요.','help',[59,28,10,22]),
  behavior('path','관람로에서 함께 걷는 형아맨','관람로에서 선생님과 걷는 형아맨을 눌러요.','safe','정해진 관람로에서 함께 걷고 힘들면 쉬고 싶다고 알려요.','together',[14,18,40,64])]};
-finds.lodging={title:'숙소에서 위험한 행동과 안전한 정리 행동을 찾아요',image:'media/game/lodging-find-v25.webp',targets:[
+finds.lodging={title:'숙소에서 위험한 행동과 안전한 정리 행동을 찾아요',image:'media/review-v29/lodging-find-v25.webp',targets:[
  behavior('bed','침대에서 뛰는 친구','왼쪽 침대에서 뛰는 친구를 눌러요.','danger','침대는 쉬는 곳이에요. 침대 위에서 뛰거나 장난치지 않아요.','rest',[6,38,21,46]),
  behavior('window','창문에 몸을 내미는 친구','열린 창문에 몸을 내민 친구를 눌러요.','danger','창문에 기대거나 몸을 밖으로 내밀지 않아요.','stop',[11,10,19,28]),
  behavior('plug','콘센트에 열쇠를 대는 친구','오른쪽 아래에서 콘센트에 열쇠를 대는 친구를 눌러요.','danger','콘센트 구멍에 물건을 넣지 않고 충전기는 선생님과 확인해요.','teacher',[73,54,26,34]),
@@ -92,10 +92,10 @@ const worlds={cinema:{title:'형아맨의 영화관 탐험',activities:['find','
 for(const f of Object.values(finds)){if(!f.instruction)f.instruction=f.targets.map(t=>t.label).join(' · ')+' — '+f.targets.length+'곳을 그림에서 찾아 눌러요.';}
 for(const[id,f]of Object.entries(finds)){const entry=plans[id].find(a=>a.kind==='find');if(entry){entry.title=f.title;entry.goal=f.targets.map(t=>t.label).join(' · ')+'을 구분해 찾아요.';}}
 
-plans.sports.push(a('quiz','공중제비·멈춤 약속 확인','위험한 공중제비와 몸의 신호를 그림 O·X로 확인해요.','review'));
+plans.sports.push(a('quiz','공중제비·멈춤 약속 확인','위험한 공중제비와 몸의 신호를 장면 찾기로 확인해요.','review'));
 plans.cinema=plans.cinema.filter(x=>x.id!=='path');plans.cinema.splice(1,0,a('maze','영화관 출구 통로 미로','의자와 벽을 피하며 출구까지 천천히 이동해요.','start'));worlds.cinema.activities[1]='maze';
-for(const [id,kind,title,goal]of [['museum','compare','달라진 관람 행동 세 곳','두 그림에서 관람 줄·전시물에 뻗은 손·바닥 음료를 비교해요.'],['experience','sort','오늘 체험 도구 분류','함께 쓸 도구와 선생님이 다룰 도구를 바구니에 놓아요.'],['theme-park','ride-order','놀이기구 탑승 순서','안내 확인부터 멈춘 뒤 하차까지 여섯 순서를 놓아요.'],['heritage','matching','안전 표지와 행동 선 연결','출입 제한·계단 주의·비상구 표지를 안전 행동과 연결해요.'],['playground','whack','위험한 곳 발견 알리기','튀어나오는 위험 그림만 골라 선생님께 알려요.'],['eco-park','signal','안내자의 걷기·멈춤 신호','걷기에는 누르고 멈춤에는 손을 떼어 함께 이동해요.'],['farm','wash','동물 체험 뒤 손 씻기','비누로 여섯 부위를 30초 이상 문지르는 순서를 연습해요.'],['water','dress','오늘 물놀이 장비 준비','수영모·수영복·구명조끼를 준비 칸에 놓아요.'],['library','voice','관람 시간의 목소리 크기','마이크 또는 그림으로 작은 목소리를 연습해요.']]){plans[id]??=[];plans[id]=plans[id].filter(x=>x.id!==kind);plans[id].unshift(a(kind,title,goal));}
+for(const [id,kind,title,goal]of [['museum','compare','달라진 관람 행동 세 곳','두 그림에서 관람 줄·전시물에 뻗은 손·바닥 음료를 비교해요.'],['experience','sort','오늘 체험 도구 분류','함께 쓸 도구와 선생님이 다룰 도구를 바구니에 놓아요.'],['theme-park','ride-order','놀이기구 탑승 순서','안내 확인부터 멈춘 뒤 하차까지 여섯 순서를 놓아요.'],['heritage','matching','안전 표지와 행동 선 연결','출입 제한·계단 주의·비상구 표지를 안전 행동과 연결해요.'],['playground','whack','위험한 곳 발견 알리기','튀어나오는 위험 그림만 골라 선생님께 알려요.'],['eco-park','signal','안내자의 걷기·멈춤 신호','걷기에는 누르고 멈춤에는 손을 떼어 함께 이동해요.'],['farm','wash','동물 체험 뒤 손 씻기','비누로 여섯 부위를 30초 이상 문지르는 순서를 연습해요.'],['water','dress','오늘 물놀이 장비 준비','수영모·수영복·구명조끼를 캐릭터에게 직접 입혀요.'],['library','voice','관람 시간의 목소리 크기','마이크 또는 그림으로 작은 목소리를 연습해요.']]){plans[id]??=[];plans[id]=plans[id].filter(x=>x.id!==kind);plans[id].unshift(a(kind,title,goal));}
 for(const id of ['cinema','museum','experience','heritage'])plans[id].push(a('voice','관람 시간 목소리 연습','마이크 또는 그림으로 목소리 크기를 함께 확인해요.'));
-for(const id of ['farm','water','library','playground','eco-park'])plans[id].push(a('choice','이 장소의 안전한 선택','도움 요청과 실제 행동을 구체적인 상황으로 연습해요.','help'),a('quiz','안전 약속 다시 확인','장소에 맞는 약속을 O·X로 확인해요.','review'));
+for(const id of ['farm','water','library','playground','eco-park'])plans[id].push(a('choice','이 장소의 안전한 선택','도움 요청과 실제 행동을 구체적인 상황으로 연습해요.','help'),a('quiz','안전 약속 다시 확인','장소에 맞는 약속을 그림에서 찾아 확인해요.','review'));
 const api={plans,finds,worlds};root.SafetyActivities=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
