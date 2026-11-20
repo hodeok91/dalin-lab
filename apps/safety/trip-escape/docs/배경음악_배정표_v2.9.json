@@ -1,0 +1,2045 @@
+{
+  "date": "2026-11-16",
+  "existingFiles": [
+    {
+      "name": "bus.mp3",
+      "bytes": 2713861,
+      "title": "파일에 대응하는 표시명: bus"
+    },
+    {
+      "name": "rest.mp3",
+      "bytes": 1666351,
+      "title": "파일에 대응하는 표시명: rest"
+    },
+    {
+      "name": "park.mp3",
+      "bytes": 1482710,
+      "title": "파일에 대응하는 표시명: park"
+    },
+    {
+      "name": "museum.mp3",
+      "bytes": 1877421,
+      "title": "파일에 대응하는 표시명: museum"
+    },
+    {
+      "name": "room.mp3",
+      "bytes": 1138207,
+      "title": "파일에 대응하는 표시명: room"
+    },
+    {
+      "name": "escape.mp3",
+      "bytes": 1253094,
+      "title": "파일에 대응하는 표시명: escape"
+    },
+    {
+      "name": "safety-jump.wav",
+      "bytes": 28783098,
+      "title": "형아맨의 안전 점프",
+      "durationSeconds": 149.84
+    }
+  ],
+  "effects": [
+    "tap",
+    "dial",
+    "ring",
+    "ok",
+    "bad",
+    "found",
+    "clear",
+    "egg",
+    "stage",
+    "alert"
+  ],
+  "rows": [
+    {
+      "id": "home",
+      "type": "공통 화면",
+      "place": "전체",
+      "title": "처음 화면",
+      "current": "없음",
+      "suggestion": "밝고 편안한 브랜드 테마",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "destinations",
+      "type": "공통 화면",
+      "place": "전체",
+      "title": "장소 선택",
+      "current": "없음",
+      "suggestion": "기대감을 주는 여행 준비",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "free",
+      "type": "공통 화면",
+      "place": "전체",
+      "title": "자유 모드·게임 선택",
+      "current": "없음",
+      "suggestion": "가볍고 반복해도 부담 없는 메뉴 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "place",
+      "type": "공통 화면",
+      "place": "전체",
+      "title": "장소 소개",
+      "current": "없음",
+      "suggestion": "장소를 둘러보는 짧고 편안한 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "practice",
+      "type": "공통 화면",
+      "place": "전체",
+      "title": "교사 개별 활동 선택",
+      "current": "없음",
+      "suggestion": "차분한 선택 화면",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "prepare",
+      "type": "공통 화면",
+      "place": "전체",
+      "title": "여행 준비",
+      "current": "없음",
+      "suggestion": "기대감 있는 출발 준비",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "goal",
+      "type": "공통 화면",
+      "place": "전체",
+      "title": "학습 목표",
+      "current": "없음",
+      "suggestion": "설명을 가리지 않는 잔잔한 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "resources",
+      "type": "공통 화면",
+      "place": "전체",
+      "title": "영상·자료 목록",
+      "current": "없음",
+      "suggestion": "차분한 자료 선택",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "result",
+      "type": "공통 화면",
+      "place": "전체",
+      "title": "최종 결과·배지",
+      "current": "없음",
+      "suggestion": "즐겁고 따뜻한 마무리",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:sports:stage-intro",
+      "type": "이야기",
+      "place": "스포츠 놀이시설",
+      "title": "스테이지 제목·페이드",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:sports:mission-intro",
+      "type": "이야기",
+      "place": "스포츠 놀이시설",
+      "title": "미션 소개·형아맨 대화",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:sports:find",
+      "type": "이야기",
+      "place": "스포츠 놀이시설",
+      "title": "장면 요소 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:sports:play",
+      "type": "이야기",
+      "place": "스포츠 놀이시설",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:sports:choice",
+      "type": "이야기",
+      "place": "스포츠 놀이시설",
+      "title": "상황 선택 문제",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:sports:quiz",
+      "type": "이야기",
+      "place": "스포츠 놀이시설",
+      "title": "안전 약속 확인",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:sports:module-done",
+      "type": "이야기",
+      "place": "스포츠 놀이시설",
+      "title": "스테이지 완료",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:sports:venue-incident",
+      "type": "이야기",
+      "place": "스포츠 놀이시설",
+      "title": "장소 돌발 상황 알림",
+      "current": "park.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:sports:mini:jump",
+      "type": "미니게임",
+      "place": "스포츠 놀이시설",
+      "title": "형아맨의 안전 리듬 점프",
+      "current": "safety-jump.wav",
+      "suggestion": "제공된 형아맨의 안전 점프 곡 전체. 다른 음악과 섞지 않음",
+      "assign": "",
+      "note": "음성·마이크 전용. 배경음 재생 안 함"
+    },
+    {
+      "id": "learn:sports:mini:memory",
+      "type": "미니게임",
+      "place": "스포츠 놀이시설",
+      "title": "같은 안전 그림 찾기",
+      "current": "park.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:cinema:stage-intro",
+      "type": "이야기",
+      "place": "영화관",
+      "title": "스테이지 제목·페이드",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:cinema:mission-intro",
+      "type": "이야기",
+      "place": "영화관",
+      "title": "미션 소개·형아맨 대화",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:cinema:find",
+      "type": "이야기",
+      "place": "영화관",
+      "title": "장면 요소 찾기",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:cinema:play",
+      "type": "이야기",
+      "place": "영화관",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:cinema:choice",
+      "type": "이야기",
+      "place": "영화관",
+      "title": "상황 선택 문제",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:cinema:quiz",
+      "type": "이야기",
+      "place": "영화관",
+      "title": "안전 약속 확인",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:cinema:module-done",
+      "type": "이야기",
+      "place": "영화관",
+      "title": "스테이지 완료",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:cinema:venue-incident",
+      "type": "이야기",
+      "place": "영화관",
+      "title": "장소 돌발 상황 알림",
+      "current": "museum.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:cinema:mini:maze",
+      "type": "미니게임",
+      "place": "영화관",
+      "title": "영화관 출구 통로 미로",
+      "current": "museum.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:cinema:mini:memory",
+      "type": "미니게임",
+      "place": "영화관",
+      "title": "안전 그림 같은 짝 찾기",
+      "current": "museum.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:cinema:mini:voice",
+      "type": "미니게임",
+      "place": "영화관",
+      "title": "관람 시간 목소리 연습",
+      "current": "없음",
+      "suggestion": "목소리 연습: 배경음 없이",
+      "assign": "",
+      "note": "음성·마이크 전용. 배경음 재생 안 함"
+    },
+    {
+      "id": "learn:museum:stage-intro",
+      "type": "이야기",
+      "place": "박물관·전시관",
+      "title": "스테이지 제목·페이드",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:museum:mission-intro",
+      "type": "이야기",
+      "place": "박물관·전시관",
+      "title": "미션 소개·형아맨 대화",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:museum:find",
+      "type": "이야기",
+      "place": "박물관·전시관",
+      "title": "장면 요소 찾기",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:museum:play",
+      "type": "이야기",
+      "place": "박물관·전시관",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:museum:choice",
+      "type": "이야기",
+      "place": "박물관·전시관",
+      "title": "상황 선택 문제",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:museum:quiz",
+      "type": "이야기",
+      "place": "박물관·전시관",
+      "title": "안전 약속 확인",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:museum:module-done",
+      "type": "이야기",
+      "place": "박물관·전시관",
+      "title": "스테이지 완료",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:museum:venue-incident",
+      "type": "이야기",
+      "place": "박물관·전시관",
+      "title": "장소 돌발 상황 알림",
+      "current": "museum.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:museum:mini:compare",
+      "type": "미니게임",
+      "place": "박물관·전시관",
+      "title": "달라진 관람 행동 세 곳",
+      "current": "museum.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:museum:mini:matching",
+      "type": "미니게임",
+      "place": "박물관·전시관",
+      "title": "이럴 땐 이렇게! 짝맞추기",
+      "current": "museum.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:museum:mini:voice",
+      "type": "미니게임",
+      "place": "박물관·전시관",
+      "title": "관람 시간 목소리 연습",
+      "current": "없음",
+      "suggestion": "목소리 연습: 배경음 없이",
+      "assign": "",
+      "note": "음성·마이크 전용. 배경음 재생 안 함"
+    },
+    {
+      "id": "learn:experience:stage-intro",
+      "type": "이야기",
+      "place": "체험관",
+      "title": "스테이지 제목·페이드",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:experience:mission-intro",
+      "type": "이야기",
+      "place": "체험관",
+      "title": "미션 소개·형아맨 대화",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:experience:find",
+      "type": "이야기",
+      "place": "체험관",
+      "title": "장면 요소 찾기",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:experience:play",
+      "type": "이야기",
+      "place": "체험관",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:experience:choice",
+      "type": "이야기",
+      "place": "체험관",
+      "title": "상황 선택 문제",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:experience:quiz",
+      "type": "이야기",
+      "place": "체험관",
+      "title": "안전 약속 확인",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:experience:module-done",
+      "type": "이야기",
+      "place": "체험관",
+      "title": "스테이지 완료",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:experience:venue-incident",
+      "type": "이야기",
+      "place": "체험관",
+      "title": "장소 돌발 상황 알림",
+      "current": "museum.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:experience:mini:sort",
+      "type": "미니게임",
+      "place": "체험관",
+      "title": "오늘 체험 도구 분류",
+      "current": "museum.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:experience:mini:matching",
+      "type": "미니게임",
+      "place": "체험관",
+      "title": "도구 사용 도움 짝맞추기",
+      "current": "museum.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:experience:mini:voice",
+      "type": "미니게임",
+      "place": "체험관",
+      "title": "관람 시간 목소리 연습",
+      "current": "없음",
+      "suggestion": "목소리 연습: 배경음 없이",
+      "assign": "",
+      "note": "음성·마이크 전용. 배경음 재생 안 함"
+    },
+    {
+      "id": "learn:theme-park:stage-intro",
+      "type": "이야기",
+      "place": "놀이공원",
+      "title": "스테이지 제목·페이드",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:theme-park:mission-intro",
+      "type": "이야기",
+      "place": "놀이공원",
+      "title": "미션 소개·형아맨 대화",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:theme-park:find",
+      "type": "이야기",
+      "place": "놀이공원",
+      "title": "장면 요소 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:theme-park:play",
+      "type": "이야기",
+      "place": "놀이공원",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:theme-park:choice",
+      "type": "이야기",
+      "place": "놀이공원",
+      "title": "상황 선택 문제",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:theme-park:quiz",
+      "type": "이야기",
+      "place": "놀이공원",
+      "title": "안전 약속 확인",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:theme-park:module-done",
+      "type": "이야기",
+      "place": "놀이공원",
+      "title": "스테이지 완료",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:theme-park:venue-incident",
+      "type": "이야기",
+      "place": "놀이공원",
+      "title": "장소 돌발 상황 알림",
+      "current": "park.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:theme-park:mini:ride-order",
+      "type": "미니게임",
+      "place": "놀이공원",
+      "title": "놀이기구 탑승 순서",
+      "current": "park.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:theme-park:mini:matching",
+      "type": "미니게임",
+      "place": "놀이공원",
+      "title": "떨어진 모자, 어떻게 할까요?",
+      "current": "park.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:park:stage-intro",
+      "type": "이야기",
+      "place": "호수공원",
+      "title": "스테이지 제목·페이드",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:park:mission-intro",
+      "type": "이야기",
+      "place": "호수공원",
+      "title": "미션 소개·형아맨 대화",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:park:find",
+      "type": "이야기",
+      "place": "호수공원",
+      "title": "장면 요소 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:park:play",
+      "type": "이야기",
+      "place": "호수공원",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:park:choice",
+      "type": "이야기",
+      "place": "호수공원",
+      "title": "상황 선택 문제",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:park:quiz",
+      "type": "이야기",
+      "place": "호수공원",
+      "title": "안전 약속 확인",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:park:module-done",
+      "type": "이야기",
+      "place": "호수공원",
+      "title": "스테이지 완료",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:park:venue-incident",
+      "type": "이야기",
+      "place": "호수공원",
+      "title": "장소 돌발 상황 알림",
+      "current": "park.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:park:mini:dodge",
+      "type": "미니게임",
+      "place": "호수공원",
+      "title": "공원 안전 피하기 기록 도전",
+      "current": "park.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:park:mini:dodge:fever",
+      "type": "피버",
+      "place": "호수공원",
+      "title": "산책길 피버",
+      "current": "park.mp3",
+      "suggestion": "기존 곡을 바꾸거나 더 빠른 피버 곡 하나로 교체. 두 곡을 겹치지 않음",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:park:mini:path",
+      "type": "미니게임",
+      "place": "호수공원",
+      "title": "공원 관찰 계단 도전",
+      "current": "park.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:garden:stage-intro",
+      "type": "이야기",
+      "place": "수목원·식물원",
+      "title": "스테이지 제목·페이드",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:garden:mission-intro",
+      "type": "이야기",
+      "place": "수목원·식물원",
+      "title": "미션 소개·형아맨 대화",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:garden:find",
+      "type": "이야기",
+      "place": "수목원·식물원",
+      "title": "장면 요소 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:garden:play",
+      "type": "이야기",
+      "place": "수목원·식물원",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:garden:choice",
+      "type": "이야기",
+      "place": "수목원·식물원",
+      "title": "상황 선택 문제",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:garden:quiz",
+      "type": "이야기",
+      "place": "수목원·식물원",
+      "title": "안전 약속 확인",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:garden:module-done",
+      "type": "이야기",
+      "place": "수목원·식물원",
+      "title": "스테이지 완료",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:garden:venue-incident",
+      "type": "이야기",
+      "place": "수목원·식물원",
+      "title": "장소 돌발 상황 알림",
+      "current": "park.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:garden:mini:path",
+      "type": "미니게임",
+      "place": "수목원·식물원",
+      "title": "온실 관찰 계단 도전",
+      "current": "park.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:lodging:stage-intro",
+      "type": "이야기",
+      "place": "숙소 생활",
+      "title": "스테이지 제목·페이드",
+      "current": "room.mp3",
+      "suggestion": "말소리를 가리지 않는 차분한 밤",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:lodging:mission-intro",
+      "type": "이야기",
+      "place": "숙소 생활",
+      "title": "미션 소개·형아맨 대화",
+      "current": "room.mp3",
+      "suggestion": "말소리를 가리지 않는 차분한 밤",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:lodging:find",
+      "type": "이야기",
+      "place": "숙소 생활",
+      "title": "장면 요소 찾기",
+      "current": "room.mp3",
+      "suggestion": "말소리를 가리지 않는 차분한 밤",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:lodging:play",
+      "type": "이야기",
+      "place": "숙소 생활",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "room.mp3",
+      "suggestion": "말소리를 가리지 않는 차분한 밤",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:lodging:choice",
+      "type": "이야기",
+      "place": "숙소 생활",
+      "title": "상황 선택 문제",
+      "current": "room.mp3",
+      "suggestion": "말소리를 가리지 않는 차분한 밤",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:lodging:quiz",
+      "type": "이야기",
+      "place": "숙소 생활",
+      "title": "안전 약속 확인",
+      "current": "room.mp3",
+      "suggestion": "말소리를 가리지 않는 차분한 밤",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:lodging:module-done",
+      "type": "이야기",
+      "place": "숙소 생활",
+      "title": "스테이지 완료",
+      "current": "room.mp3",
+      "suggestion": "말소리를 가리지 않는 차분한 밤",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:lodging:venue-incident",
+      "type": "이야기",
+      "place": "숙소 생활",
+      "title": "장소 돌발 상황 알림",
+      "current": "room.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:lodging:mini:matching",
+      "type": "미니게임",
+      "place": "숙소 생활",
+      "title": "숙소에서 도움이 필요해요",
+      "current": "room.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:bus:stage-intro",
+      "type": "이야기",
+      "place": "버스 이동",
+      "title": "스테이지 제목·페이드",
+      "current": "bus.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:bus:mission-intro",
+      "type": "이야기",
+      "place": "버스 이동",
+      "title": "미션 소개·형아맨 대화",
+      "current": "bus.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:bus:find",
+      "type": "이야기",
+      "place": "버스 이동",
+      "title": "장면 요소 찾기",
+      "current": "bus.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:bus:play",
+      "type": "이야기",
+      "place": "버스 이동",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "bus.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:bus:choice",
+      "type": "이야기",
+      "place": "버스 이동",
+      "title": "상황 선택 문제",
+      "current": "bus.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:bus:quiz",
+      "type": "이야기",
+      "place": "버스 이동",
+      "title": "안전 약속 확인",
+      "current": "bus.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:bus:module-done",
+      "type": "이야기",
+      "place": "버스 이동",
+      "title": "스테이지 완료",
+      "current": "bus.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:bus:venue-incident",
+      "type": "이야기",
+      "place": "버스 이동",
+      "title": "장소 돌발 상황 알림",
+      "current": "bus.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:rest:stage-intro",
+      "type": "이야기",
+      "place": "휴게소",
+      "title": "스테이지 제목·페이드",
+      "current": "rest.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:rest:mission-intro",
+      "type": "이야기",
+      "place": "휴게소",
+      "title": "미션 소개·형아맨 대화",
+      "current": "rest.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:rest:find",
+      "type": "이야기",
+      "place": "휴게소",
+      "title": "장면 요소 찾기",
+      "current": "rest.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:rest:play",
+      "type": "이야기",
+      "place": "휴게소",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "rest.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:rest:choice",
+      "type": "이야기",
+      "place": "휴게소",
+      "title": "상황 선택 문제",
+      "current": "rest.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:rest:quiz",
+      "type": "이야기",
+      "place": "휴게소",
+      "title": "안전 약속 확인",
+      "current": "rest.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:rest:module-done",
+      "type": "이야기",
+      "place": "휴게소",
+      "title": "스테이지 완료",
+      "current": "rest.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:rest:venue-incident",
+      "type": "이야기",
+      "place": "휴게소",
+      "title": "장소 돌발 상황 알림",
+      "current": "rest.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:night:stage-intro",
+      "type": "이야기",
+      "place": "숙박형 밤 미션",
+      "title": "스테이지 제목·페이드",
+      "current": "room.mp3",
+      "suggestion": "말소리를 가리지 않는 차분한 밤",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:night:mission-intro",
+      "type": "이야기",
+      "place": "숙박형 밤 미션",
+      "title": "미션 소개·형아맨 대화",
+      "current": "room.mp3",
+      "suggestion": "말소리를 가리지 않는 차분한 밤",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:night:find",
+      "type": "이야기",
+      "place": "숙박형 밤 미션",
+      "title": "장면 요소 찾기",
+      "current": "room.mp3",
+      "suggestion": "말소리를 가리지 않는 차분한 밤",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:night:play",
+      "type": "이야기",
+      "place": "숙박형 밤 미션",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "room.mp3",
+      "suggestion": "말소리를 가리지 않는 차분한 밤",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:night:choice",
+      "type": "이야기",
+      "place": "숙박형 밤 미션",
+      "title": "상황 선택 문제",
+      "current": "room.mp3",
+      "suggestion": "말소리를 가리지 않는 차분한 밤",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:night:quiz",
+      "type": "이야기",
+      "place": "숙박형 밤 미션",
+      "title": "안전 약속 확인",
+      "current": "room.mp3",
+      "suggestion": "말소리를 가리지 않는 차분한 밤",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:night:module-done",
+      "type": "이야기",
+      "place": "숙박형 밤 미션",
+      "title": "스테이지 완료",
+      "current": "room.mp3",
+      "suggestion": "말소리를 가리지 않는 차분한 밤",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:night:venue-incident",
+      "type": "이야기",
+      "place": "숙박형 밤 미션",
+      "title": "장소 돌발 상황 알림",
+      "current": "room.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:escape:stage-intro",
+      "type": "이야기",
+      "place": "대피 시뮬레이션",
+      "title": "스테이지 제목·페이드",
+      "current": "escape.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:escape:mission-intro",
+      "type": "이야기",
+      "place": "대피 시뮬레이션",
+      "title": "미션 소개·형아맨 대화",
+      "current": "escape.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:escape:find",
+      "type": "이야기",
+      "place": "대피 시뮬레이션",
+      "title": "장면 요소 찾기",
+      "current": "escape.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:escape:play",
+      "type": "이야기",
+      "place": "대피 시뮬레이션",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "escape.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:escape:choice",
+      "type": "이야기",
+      "place": "대피 시뮬레이션",
+      "title": "상황 선택 문제",
+      "current": "escape.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:escape:quiz",
+      "type": "이야기",
+      "place": "대피 시뮬레이션",
+      "title": "안전 약속 확인",
+      "current": "escape.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:escape:module-done",
+      "type": "이야기",
+      "place": "대피 시뮬레이션",
+      "title": "스테이지 완료",
+      "current": "escape.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:escape:venue-incident",
+      "type": "이야기",
+      "place": "대피 시뮬레이션",
+      "title": "장소 돌발 상황 알림",
+      "current": "escape.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:escape:mini:torch",
+      "type": "미니게임",
+      "place": "대피 시뮬레이션",
+      "title": "손전등으로 안전장치 찾기",
+      "current": "escape.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:escape:mini:evac-order",
+      "type": "미니게임",
+      "place": "대피 시뮬레이션",
+      "title": "대피 행동 순서 놓기",
+      "current": "escape.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:escape:mini:call-order",
+      "type": "미니게임",
+      "place": "대피 시뮬레이션",
+      "title": "119 구조 요청 연습",
+      "current": "없음",
+      "suggestion": "전화 효과음·상담원 질문·학생 목소리만",
+      "assign": "",
+      "note": "음성·마이크 전용. 배경음 재생 안 함"
+    },
+    {
+      "id": "learn:heritage:stage-intro",
+      "type": "이야기",
+      "place": "문화유산·궁궐",
+      "title": "스테이지 제목·페이드",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:heritage:mission-intro",
+      "type": "이야기",
+      "place": "문화유산·궁궐",
+      "title": "미션 소개·형아맨 대화",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:heritage:find",
+      "type": "이야기",
+      "place": "문화유산·궁궐",
+      "title": "장면 요소 찾기",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:heritage:play",
+      "type": "이야기",
+      "place": "문화유산·궁궐",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:heritage:choice",
+      "type": "이야기",
+      "place": "문화유산·궁궐",
+      "title": "상황 선택 문제",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:heritage:quiz",
+      "type": "이야기",
+      "place": "문화유산·궁궐",
+      "title": "안전 약속 확인",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:heritage:module-done",
+      "type": "이야기",
+      "place": "문화유산·궁궐",
+      "title": "스테이지 완료",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:heritage:venue-incident",
+      "type": "이야기",
+      "place": "문화유산·궁궐",
+      "title": "장소 돌발 상황 알림",
+      "current": "museum.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:heritage:mini:matching",
+      "type": "미니게임",
+      "place": "문화유산·궁궐",
+      "title": "안전 표지와 행동 선 연결",
+      "current": "museum.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:heritage:mini:path",
+      "type": "미니게임",
+      "place": "문화유산·궁궐",
+      "title": "궁궐 관람 계단 도전",
+      "current": "museum.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:heritage:mini:voice",
+      "type": "미니게임",
+      "place": "문화유산·궁궐",
+      "title": "관람 시간 목소리 연습",
+      "current": "없음",
+      "suggestion": "목소리 연습: 배경음 없이",
+      "assign": "",
+      "note": "음성·마이크 전용. 배경음 재생 안 함"
+    },
+    {
+      "id": "learn:homecoming:stage-intro",
+      "type": "이야기",
+      "place": "안전하게 귀교",
+      "title": "스테이지 제목·페이드",
+      "current": "bus.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:homecoming:mission-intro",
+      "type": "이야기",
+      "place": "안전하게 귀교",
+      "title": "미션 소개·형아맨 대화",
+      "current": "bus.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:homecoming:find",
+      "type": "이야기",
+      "place": "안전하게 귀교",
+      "title": "장면 요소 찾기",
+      "current": "bus.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:homecoming:play",
+      "type": "이야기",
+      "place": "안전하게 귀교",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "bus.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:homecoming:choice",
+      "type": "이야기",
+      "place": "안전하게 귀교",
+      "title": "상황 선택 문제",
+      "current": "bus.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:homecoming:quiz",
+      "type": "이야기",
+      "place": "안전하게 귀교",
+      "title": "안전 약속 확인",
+      "current": "bus.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:homecoming:module-done",
+      "type": "이야기",
+      "place": "안전하게 귀교",
+      "title": "스테이지 완료",
+      "current": "bus.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:homecoming:venue-incident",
+      "type": "이야기",
+      "place": "안전하게 귀교",
+      "title": "장소 돌발 상황 알림",
+      "current": "bus.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:farm:stage-intro",
+      "type": "이야기",
+      "place": "농촌·동물체험장",
+      "title": "스테이지 제목·페이드",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:farm:mission-intro",
+      "type": "이야기",
+      "place": "농촌·동물체험장",
+      "title": "미션 소개·형아맨 대화",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:farm:find",
+      "type": "이야기",
+      "place": "농촌·동물체험장",
+      "title": "장면 요소 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:farm:play",
+      "type": "이야기",
+      "place": "농촌·동물체험장",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:farm:choice",
+      "type": "이야기",
+      "place": "농촌·동물체험장",
+      "title": "상황 선택 문제",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:farm:quiz",
+      "type": "이야기",
+      "place": "농촌·동물체험장",
+      "title": "안전 약속 확인",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:farm:module-done",
+      "type": "이야기",
+      "place": "농촌·동물체험장",
+      "title": "스테이지 완료",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:farm:venue-incident",
+      "type": "이야기",
+      "place": "농촌·동물체험장",
+      "title": "장소 돌발 상황 알림",
+      "current": "park.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:farm:mini:wash",
+      "type": "미니게임",
+      "place": "농촌·동물체험장",
+      "title": "동물 체험 뒤 손 씻기",
+      "current": "park.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:water:stage-intro",
+      "type": "이야기",
+      "place": "물놀이시설",
+      "title": "스테이지 제목·페이드",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:water:mission-intro",
+      "type": "이야기",
+      "place": "물놀이시설",
+      "title": "미션 소개·형아맨 대화",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:water:find",
+      "type": "이야기",
+      "place": "물놀이시설",
+      "title": "장면 요소 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:water:play",
+      "type": "이야기",
+      "place": "물놀이시설",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:water:choice",
+      "type": "이야기",
+      "place": "물놀이시설",
+      "title": "상황 선택 문제",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:water:quiz",
+      "type": "이야기",
+      "place": "물놀이시설",
+      "title": "안전 약속 확인",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:water:module-done",
+      "type": "이야기",
+      "place": "물놀이시설",
+      "title": "스테이지 완료",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:water:venue-incident",
+      "type": "이야기",
+      "place": "물놀이시설",
+      "title": "장소 돌발 상황 알림",
+      "current": "park.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:water:mini:dress",
+      "type": "미니게임",
+      "place": "물놀이시설",
+      "title": "오늘 물놀이 장비 준비",
+      "current": "park.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:library:stage-intro",
+      "type": "이야기",
+      "place": "도서관·공연장",
+      "title": "스테이지 제목·페이드",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:library:mission-intro",
+      "type": "이야기",
+      "place": "도서관·공연장",
+      "title": "미션 소개·형아맨 대화",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:library:find",
+      "type": "이야기",
+      "place": "도서관·공연장",
+      "title": "장면 요소 찾기",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:library:play",
+      "type": "이야기",
+      "place": "도서관·공연장",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:library:choice",
+      "type": "이야기",
+      "place": "도서관·공연장",
+      "title": "상황 선택 문제",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:library:quiz",
+      "type": "이야기",
+      "place": "도서관·공연장",
+      "title": "안전 약속 확인",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:library:module-done",
+      "type": "이야기",
+      "place": "도서관·공연장",
+      "title": "스테이지 완료",
+      "current": "museum.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:library:venue-incident",
+      "type": "이야기",
+      "place": "도서관·공연장",
+      "title": "장소 돌발 상황 알림",
+      "current": "museum.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:library:mini:voice",
+      "type": "미니게임",
+      "place": "도서관·공연장",
+      "title": "관람 시간의 목소리 크기",
+      "current": "없음",
+      "suggestion": "목소리 연습: 배경음 없이",
+      "assign": "",
+      "note": "음성·마이크 전용. 배경음 재생 안 함"
+    },
+    {
+      "id": "learn:playground:stage-intro",
+      "type": "이야기",
+      "place": "공원·놀이터",
+      "title": "스테이지 제목·페이드",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:playground:mission-intro",
+      "type": "이야기",
+      "place": "공원·놀이터",
+      "title": "미션 소개·형아맨 대화",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:playground:find",
+      "type": "이야기",
+      "place": "공원·놀이터",
+      "title": "장면 요소 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:playground:play",
+      "type": "이야기",
+      "place": "공원·놀이터",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:playground:choice",
+      "type": "이야기",
+      "place": "공원·놀이터",
+      "title": "상황 선택 문제",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:playground:quiz",
+      "type": "이야기",
+      "place": "공원·놀이터",
+      "title": "안전 약속 확인",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:playground:module-done",
+      "type": "이야기",
+      "place": "공원·놀이터",
+      "title": "스테이지 완료",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:playground:venue-incident",
+      "type": "이야기",
+      "place": "공원·놀이터",
+      "title": "장소 돌발 상황 알림",
+      "current": "park.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:playground:mini:whack",
+      "type": "미니게임",
+      "place": "공원·놀이터",
+      "title": "위험한 곳 발견 알리기",
+      "current": "park.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:eco-park:stage-intro",
+      "type": "이야기",
+      "place": "생태공원",
+      "title": "스테이지 제목·페이드",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:eco-park:mission-intro",
+      "type": "이야기",
+      "place": "생태공원",
+      "title": "미션 소개·형아맨 대화",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:eco-park:find",
+      "type": "이야기",
+      "place": "생태공원",
+      "title": "장면 요소 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:eco-park:play",
+      "type": "이야기",
+      "place": "생태공원",
+      "title": "한 장면 안전 행동 찾기",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:eco-park:choice",
+      "type": "이야기",
+      "place": "생태공원",
+      "title": "상황 선택 문제",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:eco-park:quiz",
+      "type": "이야기",
+      "place": "생태공원",
+      "title": "안전 약속 확인",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:eco-park:module-done",
+      "type": "이야기",
+      "place": "생태공원",
+      "title": "스테이지 완료",
+      "current": "park.mp3",
+      "suggestion": "말소리를 가리지 않는 장소 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:eco-park:venue-incident",
+      "type": "이야기",
+      "place": "생태공원",
+      "title": "장소 돌발 상황 알림",
+      "current": "park.mp3",
+      "suggestion": "위급함을 알리되 겁을 주지 않는 짧은 긴장감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "learn:eco-park:mini:signal",
+      "type": "미니게임",
+      "place": "생태공원",
+      "title": "안내자의 걷기·멈춤 신호",
+      "current": "park.mp3",
+      "suggestion": "장소와 게임 템포에 맞는 반복 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "new:common:transition",
+      "type": "추가 음원 후보",
+      "place": "미배정",
+      "title": "장소 이동·버스 이동 장면",
+      "current": "없음",
+      "suggestion": "짧은 이동 장면용",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "new:common:surprise",
+      "type": "추가 음원 후보",
+      "place": "미배정",
+      "title": "돌발 퀴즈 프리징·팝업",
+      "current": "없음",
+      "suggestion": "갑작스러운 알림 뒤 문제 집중",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "new:common:praise",
+      "type": "추가 음원 후보",
+      "place": "미배정",
+      "title": "잘했어요 전체 화면",
+      "current": "없음",
+      "suggestion": "짧은 성취감",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "new:farm",
+      "type": "추가 음원 후보",
+      "place": "미배정",
+      "title": "농촌·동물체험장 전용",
+      "current": "없음",
+      "suggestion": "자연·동물 체험에 맞는 밝고 편안한 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "new:water",
+      "type": "추가 음원 후보",
+      "place": "미배정",
+      "title": "물놀이시설 전용",
+      "current": "없음",
+      "suggestion": "물놀이 준비에 맞는 밝고 맑은 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "new:library",
+      "type": "추가 음원 후보",
+      "place": "미배정",
+      "title": "도서관·공연장 전용",
+      "current": "없음",
+      "suggestion": "말소리 방해 없는 조용한 분위기",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "new:stairs",
+      "type": "추가 음원 후보",
+      "place": "미배정",
+      "title": "계단 기록 도전 전용",
+      "current": "없음",
+      "suggestion": "박자감 있지만 과도하게 재촉하지 않는 게임 음악",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "new:sort",
+      "type": "추가 음원 후보",
+      "place": "미배정",
+      "title": "도구 스피드 분류 전용",
+      "current": "없음",
+      "suggestion": "짧은 판단을 돕는 경쾌한 리듬",
+      "assign": "",
+      "note": ""
+    },
+    {
+      "id": "new:whack",
+      "type": "추가 음원 후보",
+      "place": "미배정",
+      "title": "위험 발견 게임 전용",
+      "current": "없음",
+      "suggestion": "가볍고 경쾌한 게임 음악",
+      "assign": "",
+      "note": ""
+    }
+  ]
+}

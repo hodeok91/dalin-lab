@@ -1,0 +1,3445 @@
+{
+  "version": "2.8.0",
+  "date": "2026-11-15",
+  "counts": {
+    "primaryScenes": 105,
+    "pairedOptionSheets": 63,
+    "optionPictures": 126,
+    "clues": 59,
+    "convertedFindQuestions": 42,
+    "destinations": 14
+  },
+  "duplicateAudit": {
+    "images": 119,
+    "questions": 105,
+    "choices": 63,
+    "finds": 42,
+    "clues": 59,
+    "destinations": 14,
+    "near": [],
+    "rows": [
+      {
+        "key": "sports/choice/injury",
+        "file": "media/scenarios/sports-injury-serious.webp",
+        "sha256": "f413d354f40855de09ab5e116cee2468c9c8e533ae26df58d5a41fba20eacaf4"
+      },
+      {
+        "key": "sports/choice/tired",
+        "file": "media/scenarios/sports-tired-serious.webp",
+        "sha256": "9031c0d55a6ffd452bbb058e04074df7306cf9c28c2a0339e81137692797771d"
+      },
+      {
+        "key": "sports/quiz/flip",
+        "file": "media/scenarios/sports-flip-user.webp",
+        "sha256": "8ca08eaa3d90cd7c5c667a96ee4d086534c04ff9959a3f82362ae0f7f956d21b"
+      },
+      {
+        "key": "sports/quiz/stop",
+        "file": "media/question-art/scene-sports-quiz-stop.webp",
+        "sha256": "5c491368c195c351741b17f6633ff546947f195da7d8173c87480f6486a21883"
+      },
+      {
+        "key": "cinema/choice/noise",
+        "file": "media/scenarios/cinema-noise-serious.webp",
+        "sha256": "c5e214b8c496dcf987c955b8e1b5e9f2d75498f242807e1bfe0fb3881f4bbaa0"
+      },
+      {
+        "key": "cinema/choice/alarm",
+        "file": "media/scenarios/cinema-fire-serious.webp",
+        "sha256": "5ca6eeb195dcc9210f2d603fc4cd72babfdf5a9c4b6760ff5751d62c4b6b087b"
+      },
+      {
+        "key": "cinema/quiz/aisle",
+        "file": "media/question-art/scene-cinema-quiz-aisle.webp",
+        "sha256": "342278debd76166514586c39a76c8803732a9f1db90df754609496abe08d2f01"
+      },
+      {
+        "key": "cinema/quiz/help",
+        "file": "media/question-art/scene-cinema-quiz-help.webp",
+        "sha256": "dcc5196e6fdeae0b4603328f03d9252b4cda0c16457db77a713a7ffd3bd7c930"
+      },
+      {
+        "key": "museum/choice/touch",
+        "file": "media/scenarios/museum-touch.webp",
+        "sha256": "9b42454b98e083b8cf21da6d5454e897234f357190deebe93c504b39dc5c9ba1"
+      },
+      {
+        "key": "museum/choice/lost",
+        "file": "media/scenarios/museum-lost-serious.webp",
+        "sha256": "e80a2091b2fa2c80883cf44d40ed06208fd27c7006b2c6d8224ccac91f45969b"
+      },
+      {
+        "key": "museum/choice/voice",
+        "file": "media/scenarios/museum-voice.webp",
+        "sha256": "555163b71205f3df7b87ad9c9409f77e85ca1b9c09e4fe0df31145b484b3459e"
+      },
+      {
+        "key": "museum/quiz/group",
+        "file": "media/question-art/scene-museum-quiz-group.webp",
+        "sha256": "651e5157629d12247f8acd650a31f62b27598e1c676cc7f8246b826a4f3fd407"
+      },
+      {
+        "key": "museum/quiz/touch",
+        "file": "media/question-art/scene-museum-quiz-touch.webp",
+        "sha256": "80cd73b98329a92fc2d7dace6737fd63c9c2718957a3e90db45ee410f24fc2fc"
+      },
+      {
+        "key": "museum/quiz/flash",
+        "file": "media/question-art/scene-museum-quiz-flash.webp",
+        "sha256": "cde096a2dd2a2137e1bf71b4648dda5e0ac6546412a9532e7a6bf7be080b507a"
+      },
+      {
+        "key": "museum/quiz/food",
+        "file": "media/question-art/scene-museum-quiz-food-review1.webp",
+        "sha256": "6d7cf849316ebd0642b0a343ca9f1ed18fa467fdd11a104d0593a7bdbe1212e2"
+      },
+      {
+        "key": "experience/choice/tool",
+        "file": "media/scenarios/experience-tool-serious.webp",
+        "sha256": "154dd0562b9d55b19c5887a81d28d7ba0e8508ba45cd918f2382ea17e60a0d91"
+      },
+      {
+        "key": "experience/choice/unknown",
+        "file": "media/question-art/experience-unknown.webp",
+        "sha256": "4458e47a12dd822d15f8b52b9c78c4c816c421591ff74e50fd46619f837c3d81"
+      },
+      {
+        "key": "experience/quiz/material",
+        "file": "media/question-art/scene-experience-quiz-material.webp",
+        "sha256": "db452d51f7bdf505216415020f3cecd616d24c11cb4dab057b7831aaad51bfcb"
+      },
+      {
+        "key": "experience/quiz/guide",
+        "file": "media/question-art/scene-experience-quiz-guide.webp",
+        "sha256": "e7624ffc4eab8175838400df4543d76ab42de0868453cfdafe51d58e2d1ed356"
+      },
+      {
+        "key": "theme-park/choice/item",
+        "file": "media/scenarios/theme-item-serious.webp",
+        "sha256": "27ccb148fd84264633efbc49e54bce88570114debf152ff2c6e27ae5fab4bf77"
+      },
+      {
+        "key": "theme-park/choice/ride",
+        "file": "media/scenarios/theme-ride.webp",
+        "sha256": "b1337965186daec8c8f58e5f53a35b8cf899d2263fce74705dc8359d7364abbf"
+      },
+      {
+        "key": "theme-park/choice/lost",
+        "file": "media/scenarios/theme-lost-serious.webp",
+        "sha256": "2246ae8fa9b12a22a8db21fe879531d0e5039c38690244c92ff485bf5e75b56f"
+      },
+      {
+        "key": "theme-park/quiz/fence",
+        "file": "media/question-art/scene-theme-park-quiz-fence.webp",
+        "sha256": "94f8fd1a171465b004a19b37dd69f729d4804f0f9b50feda97a7ff8eb8a60df8"
+      },
+      {
+        "key": "theme-park/quiz/condition",
+        "file": "media/question-art/scene-theme-park-quiz-condition.webp",
+        "sha256": "771bb6b1b8c301f060a8e9126116ac78a5a1506526f983e7e202915d264a95ac"
+      },
+      {
+        "key": "park/choice/lake",
+        "file": "media/scenarios/park-lake.webp",
+        "sha256": "fcc470620fab17de3d60c4dfe7db7f4a02d8a194fe924aeadb0431b76aeea2e6"
+      },
+      {
+        "key": "park/choice/heat",
+        "file": "media/scenarios/park-heat-serious.webp",
+        "sha256": "40e26959f6126f9ddbf0ef348aa4b4fda1da8132d2770fc6623bd38fe5a7e27b"
+      },
+      {
+        "key": "park/choice/grass",
+        "file": "media/scenarios/park-grass-serious.webp",
+        "sha256": "c8572d3f2b95d4c6dacadcab5467de5f7af91ae3217369412b9d8b61b6b7d26f"
+      },
+      {
+        "key": "park/choice/drowning",
+        "file": "media/scenarios/park-rescue-serious.webp",
+        "sha256": "a3b9eaa5072cf8c120e1f175e2cf3989777a8ee95803b0f87124eea86eb418a3"
+      },
+      {
+        "key": "park/choice/snake",
+        "file": "media/scenarios/park-wildlife-serious.webp",
+        "sha256": "0b89cbdb88c16301f6f041f5ed0b04e8c21ce4351fe6dae2c0a3069552bc1de9"
+      },
+      {
+        "key": "park/quiz/rail",
+        "file": "media/question-art/scene-park-quiz-rail.webp",
+        "sha256": "b640a98e170ad5f60ec93b263fec6fe21d625ae53cf4894ebe861d5796011404"
+      },
+      {
+        "key": "park/quiz/rest",
+        "file": "media/question-art/scene-park-quiz-rest-review1.webp",
+        "sha256": "2cab81ff97a6964433b2bebe15f324b5358dd2b69292a3aa3954ac90af705def"
+      },
+      {
+        "key": "park/quiz/grass",
+        "file": "media/question-art/scene-park-quiz-grass.webp",
+        "sha256": "94f64bdb59392365c2395f67469bd0ee0b05655bc750640eb0ce4b0be5e70401"
+      },
+      {
+        "key": "park/quiz/drowning",
+        "file": "media/question-art/scene-park-quiz-drowning.webp",
+        "sha256": "4dd1d3e1ecdebfd5a51d259ac781718fa883d99bfaaabdda266ef24f10d7a313"
+      },
+      {
+        "key": "garden/choice/berry",
+        "file": "media/scenarios/garden-berry.webp",
+        "sha256": "c95ff30acc892c4a06b8bbbe4ca8b41123415c969e22b113d1386a4f3c011eb5"
+      },
+      {
+        "key": "garden/choice/bee",
+        "file": "media/scenarios/garden-bee-serious.webp",
+        "sha256": "9b851874d61212e7547e4f1f0c4489c7ea512c8767c83c52930b06aaadccaf97"
+      },
+      {
+        "key": "garden/quiz/fruit",
+        "file": "media/question-art/scene-garden-quiz-fruit.webp",
+        "sha256": "446dfa77d243e119567f653e74cc81ae7de90e263e3a2508829bdc5256661e46"
+      },
+      {
+        "key": "garden/quiz/path",
+        "file": "media/question-art/scene-garden-quiz-path.webp",
+        "sha256": "9cf8963d56ba074c9461eefc6ee364f4b31e13ae3145d95e25f5e8de3324f454"
+      },
+      {
+        "key": "lodging/choice/hurt",
+        "file": "media/scenarios/lodging-health-serious.webp",
+        "sha256": "e82c85555cd42dce9d741ff3fc947555d3eea47b57892a103d689f88c37980ca"
+      },
+      {
+        "key": "lodging/choice/door",
+        "file": "media/question-art/lodging-door.webp",
+        "sha256": "f1cb23aa7ed4086f0e382bc99a80e4387d36ab5baa7868ab7720b50e1fc8792a"
+      },
+      {
+        "key": "lodging/choice/toilet",
+        "file": "media/scenarios/lodging-night.webp",
+        "sha256": "6a70f122a5c5d3a501186dbac3984b13b0eee7eb3a9978201798121387e9d95e"
+      },
+      {
+        "key": "lodging/choice/medicine",
+        "file": "media/scenarios/lodging-medicine-serious.webp",
+        "sha256": "4354d5b0645000af4e19402123e3e9cfc3a71fc93b9a93ac6a53eaf71a085a70"
+      },
+      {
+        "key": "lodging/quiz/jump",
+        "file": "media/question-art/scene-lodging-quiz-jump.webp",
+        "sha256": "3cb5d1f955f17743c20686880443159cc7f6a8616695132dff117d44a3dded04"
+      },
+      {
+        "key": "lodging/quiz/help",
+        "file": "media/question-art/scene-lodging-quiz-help.webp",
+        "sha256": "991e204f0fea1a73ea7d395d44f3aec30b29c8d20f6a4134dad5bc2ff070c394"
+      },
+      {
+        "key": "bus/choice/stand",
+        "file": "media/game/bus-stand.webp",
+        "sha256": "2e41b8522ec82e0b2375a373baba376c065dd9b8bdebc38f2eb014772258f887"
+      },
+      {
+        "key": "bus/choice/cross",
+        "file": "media/game/bus-cross.webp",
+        "sha256": "014af0a4d4c6994f61a7c04e3f7ece38dcaa1d364c571d2e64a5c34c872d30bc"
+      },
+      {
+        "key": "bus/quiz/belt",
+        "file": "media/question-art/scene-bus-quiz-belt-review2.webp",
+        "sha256": "1b8ceacd90c8819bcb1d5c9d03b4785e9b05fc3859780f58006bbc6b30cbaa72"
+      },
+      {
+        "key": "bus/quiz/cross",
+        "file": "media/question-art/scene-bus-quiz-cross.webp",
+        "sha256": "35f08241ad13569c4865008ab2df67af2a7d9546b13da9452274b8ca3e598ca4"
+      },
+      {
+        "key": "rest/choice/alone",
+        "file": "media/scenarios/rest-toilet.webp",
+        "sha256": "e252587d05c94ffb094827c60c8fc035e32e91e9b5257f58b570d2b6046785b2"
+      },
+      {
+        "key": "rest/choice/lost",
+        "file": "media/scenarios/rest-lost-serious.webp",
+        "sha256": "a94303380daa3df7ce25d6bddc879a0a5f2a641ba36e16af01a16d64c1627181"
+      },
+      {
+        "key": "rest/choice/friend",
+        "file": "media/question-art/rest-friend.webp",
+        "sha256": "7353d20f00ef6437f199cb61583311c8ffee00f702aeda6e3191a73921475d30"
+      },
+      {
+        "key": "rest/quiz/food",
+        "file": "media/question-art/scene-rest-quiz-food.webp",
+        "sha256": "93c872104e232b0dd93653c72b3bd81e716ae482e97034f846c3519fdd47813f"
+      },
+      {
+        "key": "rest/quiz/teacher",
+        "file": "media/question-art/scene-rest-quiz-teacher.webp",
+        "sha256": "7121dc36eaac07924f5217227cb81a26a5a8586c821a605a35f43c39d49c3886"
+      },
+      {
+        "key": "night/choice/toilet",
+        "file": "media/question-art/scene-night-choice-toilet.webp",
+        "sha256": "b512a67d0cf93856c8cbcc566daaa194349700fd06c808b842dd0e2a021bdab5"
+      },
+      {
+        "key": "night/choice/medicine",
+        "file": "media/question-art/scene-night-choice-medicine.webp",
+        "sha256": "98111e67e2084d1b887730cc4b99462c9b5c6883506c5586408b630ae74f9ace"
+      },
+      {
+        "key": "night/quiz/night-help",
+        "file": "media/question-art/scene-night-quiz-night-help.webp",
+        "sha256": "af3e4a69a050ef0ebbc56d7c719b3ccc4c54b623356ea12e7dab76d837980a25"
+      },
+      {
+        "key": "night/quiz/corridor",
+        "file": "media/question-art/scene-night-quiz-corridor.webp",
+        "sha256": "a2ef36b8db205328bb0b21cb567b0d6968fe3fa72c4ee1d2ef8d12b8b266c409"
+      },
+      {
+        "key": "escape/quiz/lift",
+        "file": "media/question-art/scene-escape-quiz-lift.webp",
+        "sha256": "985b1bb84a6182144e5bef75fda93ac09c633c514478509ccea2be8833263c1b"
+      },
+      {
+        "key": "escape/quiz/return",
+        "file": "media/question-art/scene-escape-quiz-return.webp",
+        "sha256": "4e1e18c40b879a9cff5da903a5162521b0e96b2806ebf2f29b67f4487242f569"
+      },
+      {
+        "key": "heritage/choice/threshold",
+        "file": "media/scenarios/heritage-threshold.webp",
+        "sha256": "baf50890852a2d37aaddc987294e0b6fb28caa2d850ed731d89d94c4c823d958"
+      },
+      {
+        "key": "heritage/choice/photo",
+        "file": "media/scenarios/heritage-photo.webp",
+        "sha256": "05a05a7ffab4786754a5ddf51fc08d0a0a36e02d21a66be4cdf0603851c2878c"
+      },
+      {
+        "key": "heritage/quiz/boundary",
+        "file": "media/question-art/scene-heritage-quiz-boundary.webp",
+        "sha256": "8190a66845400cc866a8c2108d1b4a74e5b771653581519d04996e0dd9237d42"
+      },
+      {
+        "key": "heritage/quiz/help",
+        "file": "media/question-art/scene-heritage-quiz-help.webp",
+        "sha256": "7189c51edbf9a3827baecef5478aac080706514c98a02d8c0ad6563029f4f949"
+      },
+      {
+        "key": "homecoming/choice/stop",
+        "file": "media/question-art/scene-homecoming-choice-stop-review1.webp",
+        "sha256": "bd299f72e6ec9c3e4d4c31542d5b6e2221fe0989aa5dc40add93adf587b32d70"
+      },
+      {
+        "key": "homecoming/choice/count",
+        "file": "media/scenarios/home-count.webp",
+        "sha256": "ff7362850f80616ba533cf2c116192be8469b90ca15ce7e219a21833a87a0514"
+      },
+      {
+        "key": "homecoming/quiz/stop",
+        "file": "media/question-art/scene-homecoming-quiz-stop.webp",
+        "sha256": "2d843170a43dd72eb8aa6c853a85cc3fcb826bbce0ea9dc36fa37c64747bd86c"
+      },
+      {
+        "key": "farm/choice/feed",
+        "file": "media/scenarios/farm-feed.webp",
+        "sha256": "a937f0d220fb58ea0716ef33dddc4edc5a4c0cc515e3de74a96e4d1c91bd18fe"
+      },
+      {
+        "key": "farm/choice/wash",
+        "file": "media/question-art/scene-farm-choice-wash.webp",
+        "sha256": "62fce9ae7751f45a034a4b2c4e6d189e1f15a06df33857f4844def6af72be85d"
+      },
+      {
+        "key": "farm/quiz/fence",
+        "file": "media/question-art/scene-farm-quiz-fence.webp",
+        "sha256": "7ed49d319c9dd17b6e7ab3b3fb627fdededeecffe23e32fdaf64dfa3675e5340"
+      },
+      {
+        "key": "farm/quiz/wash",
+        "file": "media/question-art/scene-farm-quiz-wash.webp",
+        "sha256": "a978781b06f12f8ddfc0dcd13e212f3abfe5364e5129892cbfc1ae53988162e1"
+      },
+      {
+        "key": "water/choice/entry",
+        "file": "media/question-art/scene-water-choice-entry.webp",
+        "sha256": "37abeaedf91c2594e380dcd37e19ad34600561a06184510e72d08b4e1b98c68e"
+      },
+      {
+        "key": "water/choice/slip",
+        "file": "media/scenarios/water-walk-swim.webp",
+        "sha256": "bde78485b77d5c9f23fa9b30bc96f1778e4c2edd477504b14115ecc08f3cff3c"
+      },
+      {
+        "key": "water/quiz/alone",
+        "file": "media/question-art/scene-water-quiz-alone.webp",
+        "sha256": "e654203c3297b0ab45768adcbdb678f0333b0a09284ff27637b2d6f15f07f90e"
+      },
+      {
+        "key": "water/quiz/run",
+        "file": "media/question-art/scene-water-quiz-run.webp",
+        "sha256": "f644ddf00ed800beab8d0ff62c76fba38e8e2d067cf0d70145378d8b2f4a6f70"
+      },
+      {
+        "key": "library/choice/voice",
+        "file": "media/question-art/scene-library-choice-voice.webp",
+        "sha256": "1ee4d3c0a37656a78de4d2346e15eca2a80ea9e18468e2409c4320c6757875ad"
+      },
+      {
+        "key": "library/choice/noise",
+        "file": "media/scenarios/library-noise.webp",
+        "sha256": "03caa5d61bc2fef3a7da2a6d346fb5aaae2a4858423a0b0245ac2e4c779d33dc"
+      },
+      {
+        "key": "library/quiz/help",
+        "file": "media/question-art/scene-library-quiz-help.webp",
+        "sha256": "d4d16593bcdc8f6925b0769bb6701d7b68366d192a8d26a3b572d817d8fc2e44"
+      },
+      {
+        "key": "library/quiz/move",
+        "file": "media/question-art/scene-library-quiz-move.webp",
+        "sha256": "02ffb82600b1f37ed626e9717e0841c64c63f095acebbd6416b442f51640a286"
+      },
+      {
+        "key": "playground/choice/grass",
+        "file": "media/question-art/scene-playground-choice-grass.webp",
+        "sha256": "741d89826bd583415a5d2b0ceb26e452aa4cb68f12fe1f4ce480dfb02ce7446a"
+      },
+      {
+        "key": "playground/choice/heat",
+        "file": "media/question-art/scene-playground-choice-heat.webp",
+        "sha256": "d5dbde543738392ae16f0685670c164aab4f340f59213efe404f68f571e29e59"
+      },
+      {
+        "key": "playground/quiz/wet",
+        "file": "media/question-art/scene-playground-quiz-wet.webp",
+        "sha256": "40998dd544afd96e2d285cdd9f7764e34c6f3c7ebf15b98137783f13f7814d1e"
+      },
+      {
+        "key": "playground/quiz/grass",
+        "file": "media/question-art/scene-playground-quiz-grass.webp",
+        "sha256": "40a510531138fadeccd6a8b820175d542c8d403d01786905ccaaa9727a2eea11"
+      },
+      {
+        "key": "eco-park/choice/snake",
+        "file": "media/question-art/scene-eco-park-choice-snake.webp",
+        "sha256": "5c56e1718fbdab485a923026c5bbb02b5bbc4fd2b977ffccf92f1971c3e93715"
+      },
+      {
+        "key": "eco-park/choice/bee",
+        "file": "media/scenarios/eco-bee.webp",
+        "sha256": "ae46a5f380aa84b15b52ca20a53b67b066308392b1ea31958eeb51b3d1397cab"
+      },
+      {
+        "key": "eco-park/quiz/path",
+        "file": "media/question-art/scene-eco-park-quiz-path.webp",
+        "sha256": "67256569078598447d60ec8d4c16cded428a9245ad5fb4f1adca06432baaeee9"
+      },
+      {
+        "key": "eco-park/quiz/wildlife",
+        "file": "media/question-art/scene-eco-park-quiz-wildlife.webp",
+        "sha256": "3edc6f5b5a9336c495d35bd56ce19f5d9da44ff526cbfdc5984e2b7213b1f586"
+      },
+      {
+        "key": "escape/choice/alarm",
+        "file": "media/scenarios/escape-alarm-serious.webp",
+        "sha256": "a57a674752d8f3393c05241ba250b56d35f3b1000bb5363188a96f54ceb476d1"
+      },
+      {
+        "key": "escape/choice/clear",
+        "file": "media/scenarios/escape-clear-serious.webp",
+        "sha256": "b4acf1b3ac9b9e5dbfd897aa6e0ad9786efeaf72f5238afcfb07da7dfbf68717"
+      },
+      {
+        "key": "escape/choice/mobility",
+        "file": "media/scenarios/escape-support-serious.webp",
+        "sha256": "e7b88f87ee38105e5d9090d8e6f54c8facb09d2db9339ac0f9254c048eddbe64"
+      },
+      {
+        "key": "escape/choice/blocked",
+        "file": "media/scenarios/escape-blocked-serious.webp",
+        "sha256": "f0bcaaac62439b44fc631336fc9cf9e67d2591e1ac9ca0995d98d3b05799182a"
+      },
+      {
+        "key": "escape/choice/call",
+        "file": "media/question-art/escape-call-fix.webp",
+        "sha256": "aa8770c42cd2777662d75b8110cdbf9b2a8f019b70d2948a25bd05d2f6687023"
+      },
+      {
+        "key": "escape/choice/assembly",
+        "file": "media/scenarios/escape-assembly-serious.webp",
+        "sha256": "031249d919f4038991af008912887366e4203eca9dafcb857af8eb9e7f8d0407"
+      },
+      {
+        "key": "sports/choice/sports-fire",
+        "file": "media/scenarios/sports-fire-serious.webp",
+        "sha256": "f560f09d1187efc425bcf59cafe447933a194d4caa997ee5e84c75a05010e020"
+      },
+      {
+        "key": "sports/choice/sports-quake",
+        "file": "media/scenarios/sports-quake-serious.webp",
+        "sha256": "f5e7f68e93a64ba89836b1026ed33674a40e384c0881744673ee44b5e1757b86"
+      },
+      {
+        "key": "cinema/choice/cinema-fire",
+        "file": "media/question-art/scene-cinema-choice-cinema-fire.webp",
+        "sha256": "7b9777cf8940490e84175bcb99e1897e2ff064d9a0732910a4b346417184a39c"
+      },
+      {
+        "key": "cinema/choice/cinema-smoke",
+        "file": "media/scenarios/cinema-smoke-serious.webp",
+        "sha256": "e645e6ff87f9c71c8064d98c544fbfcfca52894e76598415ecf117a0034d44b4"
+      },
+      {
+        "key": "cinema/choice/cinema-quake",
+        "file": "media/scenarios/cinema-quake.webp",
+        "sha256": "a9d3bdced9d29502cdf6d508d58a080ab859b5a04521039524be22f9e406207a"
+      },
+      {
+        "key": "cinema/choice/cinema-quake-exit",
+        "file": "media/question-art/cinema-quake-exit.webp",
+        "sha256": "dc41f933aa7f4d6b82f538c5979b31c4ca9ed581b57e10bc84193cd369721f2c"
+      },
+      {
+        "key": "museum/choice/museum-fire",
+        "file": "media/scenarios/museum-fire-serious.webp",
+        "sha256": "137f12e29d3d1d948cef2a0e03df87b282e7cf02e4cfb8e097e829283eee16ea"
+      },
+      {
+        "key": "museum/choice/museum-quake",
+        "file": "media/scenarios/museum-quake-serious.webp",
+        "sha256": "f1ccfe824b91aac19d203dd4e71ccde7aa39a26b524e205481a0ce7119058f09"
+      },
+      {
+        "key": "experience/choice/experience-fire",
+        "file": "media/scenarios/experience-fire-serious.webp",
+        "sha256": "9baab589aeacdf5090ade7ceec683634fe04fe8768267c750a1d3621b8b5ac7c"
+      },
+      {
+        "key": "experience/choice/experience-quake",
+        "file": "media/scenarios/experience-quake-serious.webp",
+        "sha256": "c8f34eeb4066b6e371582e9e6b89667fc99af3568ae4b1b9dca4e54fb2b2d98d"
+      },
+      {
+        "key": "theme-park/choice/ride-quake",
+        "file": "media/question-art/scene-theme-park-choice-ride-quake.webp",
+        "sha256": "b96d96b12936fe9bd9a436c7827451c51019cc5c9ce024b6f48b5b95b76a31ae"
+      },
+      {
+        "key": "heritage/choice/heritage-quake",
+        "file": "media/scenarios/heritage-quake-serious.webp",
+        "sha256": "e99f1224ea76eba80ce521ddeb014674b450591b90aac8a31acb144835c3d94e"
+      },
+      {
+        "key": "heritage/choice/heritage-open",
+        "file": "media/scenarios/heritage-open-serious.webp",
+        "sha256": "9e4d9ebfe76559880a3b8738bbaf37195e81a20c1f1b7d0a5ba219e10804de40"
+      },
+      {
+        "key": "bus/choice/arrival-group",
+        "file": "media/question-art/scene-bus-choice-arrival-group.webp",
+        "sha256": "434a14a5e107aff5794784338edad706db277198d8417de5d841e8b0171fdfb3"
+      },
+      {
+        "key": "venue/sports",
+        "file": "media/illustrations/sports.webp",
+        "sha256": "e7595e39b5e00f71b12d03999fcb8cd545dda8b45ca4dcc5975fa6db141c6e09"
+      },
+      {
+        "key": "venue/cinema",
+        "file": "media/illustrations/cinema.webp",
+        "sha256": "f0229a827b6c3b8e4b2be2a2e8afbb7a4a2224354ab11f95621dbc4ed7d9d37f"
+      },
+      {
+        "key": "venue/museum",
+        "file": "media/illustrations/museum.webp",
+        "sha256": "0570a101303f6506bfb384aafcb694044ee16c82b92dce5c21d146e5d66791e5"
+      },
+      {
+        "key": "venue/experience",
+        "file": "media/illustrations/experience.webp",
+        "sha256": "74b9c6fbaf5e569978691e6dc42763f52a46088fe7facde6beaa84c4e3a06014"
+      },
+      {
+        "key": "venue/theme-park",
+        "file": "media/illustrations/theme-park.webp",
+        "sha256": "bcb7961369af011572f045dae55b4068ce8216fd82a6214b7423ee3b58828b14"
+      },
+      {
+        "key": "venue/playground",
+        "file": "media/illustrations/playground.webp",
+        "sha256": "50587ba6a9c6492d9a13247af61e8fb77d12b25b9f2b5e7f32d368b4d5828c67"
+      },
+      {
+        "key": "venue/park",
+        "file": "media/illustrations/park.webp",
+        "sha256": "cb8ac795f0ef6d57d7af80097b493f20b8a384c26f87c8642c3b90c5cdbc15c2"
+      },
+      {
+        "key": "venue/eco-park",
+        "file": "media/question-art/venue-eco.webp",
+        "sha256": "69664b5ace3e1a7161ac5333ecc879ca2dec65b5ffa9b3979fe410f8c9e304ac"
+      },
+      {
+        "key": "venue/garden",
+        "file": "media/illustrations/garden.webp",
+        "sha256": "1e735c7ae0b4652b527cd1f0113ee5c271e1d366a463d6b8d54cf5581a902c0d"
+      },
+      {
+        "key": "venue/heritage",
+        "file": "media/illustrations/heritage.webp",
+        "sha256": "7149e91e2dd3c4ba139094a9b7dd20248f33faa73aa14258410581fb504f5749"
+      },
+      {
+        "key": "venue/farm",
+        "file": "media/illustrations/farm.webp",
+        "sha256": "704b231ac2cf5a9383b5a71e5f20cf72fbaf490f8db06485f6aada19190e72df"
+      },
+      {
+        "key": "venue/water",
+        "file": "media/illustrations/water-swim.webp",
+        "sha256": "7f86a6d8e3598ab7787377f5deef322906aea9b3451f26e0b02cb62ad604f9ff"
+      },
+      {
+        "key": "venue/library",
+        "file": "media/illustrations/library.webp",
+        "sha256": "d048d221852f6157e6d680fb5137eb5275e121fdcdf563b1affa00adfcf27893"
+      },
+      {
+        "key": "venue/lodging",
+        "file": "media/illustrations/lodging.webp",
+        "sha256": "5d993a59cd3a6dd2da9910dc8e195ca8e0599feb7e8a91ede71772e2115157cf"
+      }
+    ]
+  },
+  "questions": [
+    {
+      "key": "sports/choice/injury",
+      "place": "스포츠 놀이시설",
+      "originalPrompt": "친구가 넘어져 아프고, 움직이기 어려워해요. 어떻게 할까요?",
+      "options": [
+        "놀이를 멈추고 선생님이나 직원에게 알려요.",
+        "친구를 잡아당겨 다시 뛰게 해요."
+      ],
+      "correct": "놀이를 멈추고 선생님이나 직원에게 알려요.",
+      "explanation": "놀이를 멈추고 도움을 요청해요. 친구를 억지로 움직이지 않게 하고 다른 친구들과 거리를 둬요.",
+      "scene": "media/scenarios/sports-injury-serious.webp",
+      "currentPrompt": "친구가 넘어져 아프고, 움직이기 어려워해요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-sports-injury-fix.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "sports/choice/tired",
+      "place": "스포츠 놀이시설",
+      "originalPrompt": "놀이를 하다가 어지럽고 힘들어요. 어떻게 할까요?",
+      "options": [
+        "참고 계속 뛰어요.",
+        "멈추고 선생님께 쉬고 싶다고 알려요."
+      ],
+      "correct": "멈추고 선생님께 쉬고 싶다고 알려요.",
+      "explanation": "내 몸의 신호가 먼저예요. 말·그림·손짓으로 쉬고 싶다고 알려요.",
+      "scene": "media/scenarios/sports-tired-serious.webp",
+      "currentPrompt": "놀이를 하다가 어지럽고 힘들어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-sports-tired.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "sports/quiz/flip",
+      "place": "스포츠 놀이시설",
+      "originalPrompt": "트램펄린에서 위험한 공중제비를 해도 괜찮아요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "위험한 묘기와 과한 점프는 하지 않아요.",
+      "scene": "media/scenarios/sports-flip-user.webp",
+      "currentPrompt": "공중제비를 도는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "flip",
+          "label": "공중제비를 도는 형아맨",
+          "kind": "danger",
+          "box": [
+            19,
+            8,
+            47,
+            62
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "sports/quiz/stop",
+      "place": "스포츠 놀이시설",
+      "originalPrompt": "몸이 아프면 멈추고 도움을 요청해요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "아프면 놀이를 멈추고 선생님께 알려요.",
+      "scene": "media/question-art/scene-sports-quiz-stop.webp",
+      "currentPrompt": "아파서 놀이를 멈추고 도움을 알리는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "stop",
+          "label": "아파서 놀이를 멈추고 도움을 알리는 형아맨",
+          "kind": "safe",
+          "box": [
+            52,
+            24,
+            28,
+            69
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "cinema/choice/noise",
+      "place": "영화관",
+      "originalPrompt": "영화 소리가 너무 커서 힘들어요. 어떻게 할까요?",
+      "options": [
+        "혼자 밖으로 나가요.",
+        "선생님께 알리고 함께 잠시 쉬어요."
+      ],
+      "correct": "선생님께 알리고 함께 잠시 쉬어요.",
+      "explanation": "귀가 아프거나 무서우면 알려요. 혼자 이동하지 않고 선생님과 함께 쉬어요.",
+      "scene": "media/scenarios/cinema-noise-serious.webp",
+      "currentPrompt": "영화 소리가 너무 커서 힘들어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-cinema-noise.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "cinema/choice/alarm",
+      "place": "영화관",
+      "originalPrompt": "영화관에서 경보와 대피 안내가 나와요. 어떻게 할까요?",
+      "options": [
+        "물건을 챙기느라 기다려요.",
+        "선생님·직원의 안내를 확인하며 안전한 출구로 이동해요."
+      ],
+      "correct": "선생님·직원의 안내를 확인하며 안전한 출구로 이동해요.",
+      "explanation": "가방과 간식을 찾으러 돌아가지 않아요. 안내에 따라 이동하고, 이동이 어렵다면 도움을 요청해요.",
+      "scene": "media/scenarios/cinema-fire-serious.webp",
+      "currentPrompt": "영화관에서 경보와 대피 안내가 나와요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-cinema-alarm.webp",
+        "width": 1600,
+        "height": 800
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "cinema/quiz/aisle",
+      "place": "영화관",
+      "originalPrompt": "어두운 통로에서 뛰어도 괜찮아요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "통로에서는 천천히 이동하고 필요한 도움을 요청해요.",
+      "scene": "media/question-art/scene-cinema-quiz-aisle.webp",
+      "currentPrompt": "어두운 계단에서 뛰는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "aisle",
+          "label": "어두운 계단에서 뛰는 친구",
+          "kind": "danger",
+          "box": [
+            64,
+            29,
+            25,
+            58
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "cinema/quiz/help",
+      "place": "영화관",
+      "originalPrompt": "소리나 화면이 힘들면 선생님께 알려요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "불편하다는 표현도 안전을 지키는 행동이에요.",
+      "scene": "media/question-art/scene-cinema-quiz-help.webp",
+      "currentPrompt": "소리가 힘들다고 선생님께 알리는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "help",
+          "label": "소리가 힘들다고 선생님께 알리는 형아맨",
+          "kind": "safe",
+          "box": [
+            48,
+            17,
+            24,
+            78
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "museum/choice/touch",
+      "place": "박물관·전시관",
+      "originalPrompt": "마음에 드는 전시물이 보여요. 만져도 될까요?",
+      "options": [
+        "만져도 되는 체험물인지 선생님·안내판에 확인해요.",
+        "모든 전시물을 손으로 만져요."
+      ],
+      "correct": "만져도 되는 체험물인지 선생님·안내판에 확인해요.",
+      "explanation": "전시물마다 안내가 달라요. 만져도 되는 체험물만 안내에 따라 이용해요.",
+      "scene": "media/scenarios/museum-touch.webp",
+      "currentPrompt": "마음에 드는 전시물이 보여요. 만져도 될까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-museum-touch.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "museum/choice/lost",
+      "place": "박물관·전시관",
+      "originalPrompt": "일행이 보이지 않아요. 어떻게 할까요?",
+      "options": [
+        "여러 전시실을 혼자 돌아다녀요.",
+        "안전한 곳에서 멈추고 직원에게 선생님을 찾아 달라고 알려요."
+      ],
+      "correct": "안전한 곳에서 멈추고 직원에게 선생님을 찾아 달라고 알려요.",
+      "explanation": "혼자 돌아다니지 않아요. 직원에게 도움을 요청해요. 약속 장소 이동은 사전에 정한 방법을 따라요.",
+      "scene": "media/scenarios/museum-lost-serious.webp",
+      "currentPrompt": "일행이 보이지 않아요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-museum-lost-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "museum/choice/voice",
+      "place": "박물관·전시관",
+      "originalPrompt": "관람 중 친구와 이야기하고 싶어요. 어떻게 할까요?",
+      "options": [
+        "친구 가까이에서 작은 목소리로 말해요. 도움이 필요하면 선생님께 알려요.",
+        "사람들 사이를 뛰어다니며 큰 소리로 불러요."
+      ],
+      "correct": "친구 가까이에서 작은 목소리로 말해요. 도움이 필요하면 선생님께 알려요.",
+      "explanation": "관람 중 하고 싶은 말은 친구 가까이에서 작은 목소리로 전해요. 말하기 어렵거나 소리가 나도 괜찮아요. 그림·손짓으로 표현하고, 소리나 환경이 힘들면 선생님께 알려 함께 쉬어요.",
+      "scene": "media/scenarios/museum-voice.webp",
+      "currentPrompt": "관람 중 친구와 이야기하고 싶어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-museum-voice.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "museum/quiz/group",
+      "place": "박물관·전시관",
+      "originalPrompt": "말하지 않고 혼자 다른 전시실로 가요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "선생님께 알리고 함께 이동해요.",
+      "scene": "media/question-art/scene-museum-quiz-group.webp",
+      "currentPrompt": "혼자 다른 전시실로 가는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "group",
+          "label": "혼자 다른 전시실로 가는 친구",
+          "kind": "danger",
+          "box": [
+            68,
+            27,
+            19,
+            65
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "museum/quiz/touch",
+      "place": "박물관·전시관",
+      "originalPrompt": "마음에 드는 전시물이 보여요. 만져도 될까요?",
+      "options": [
+        "만져도 되는 체험물인지 선생님·안내판에 확인해요.",
+        "모든 전시물을 손으로 만져요."
+      ],
+      "correct": "만져도 되는 체험물인지 선생님·안내판에 확인해요.",
+      "explanation": "전시물마다 안내가 달라요. 만져도 되는 체험물만 안내에 따라 이용해요.",
+      "scene": "media/question-art/scene-museum-quiz-touch.webp",
+      "currentPrompt": "전시물 안내를 확인하는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "touch",
+          "label": "전시물 안내를 확인하는 형아맨",
+          "kind": "safe",
+          "box": [
+            45,
+            20,
+            30,
+            73
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "museum/quiz/flash",
+      "place": "박물관·전시관",
+      "originalPrompt": "안내를 확인하지 않고 전시실에서 플래시를 켜요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "촬영·플래시 허용 여부는 전시실 안내를 먼저 확인해요.",
+      "scene": "media/question-art/scene-museum-quiz-flash.webp",
+      "currentPrompt": "플래시를 켜고 사진 찍는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "flash",
+          "label": "플래시를 켜고 사진 찍는 친구",
+          "kind": "danger",
+          "box": [
+            62,
+            25,
+            22,
+            71
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "museum/quiz/food",
+      "place": "박물관·전시관",
+      "originalPrompt": "음식은 안내된 휴게 공간에서 먹어요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "음식을 먹어도 되는 장소와 나에게 맞는 음식을 선생님과 확인해요.",
+      "scene": "media/question-art/scene-museum-quiz-food-review1.webp",
+      "currentPrompt": "휴게 공간에서 간식을 먹는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "food",
+          "label": "휴게 공간에서 간식을 먹는 형아맨",
+          "kind": "safe",
+          "box": [
+            50,
+            27,
+            19,
+            69
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "experience/choice/tool",
+      "place": "체험관",
+      "originalPrompt": "뜨거운 도구가 놓여 있어요. 어떻게 할까요?",
+      "options": [
+        "바로 손으로 만져 봐요.",
+        "멈추고 선생님께 사용 방법과 도움을 물어봐요."
+      ],
+      "correct": "멈추고 선생님께 사용 방법과 도움을 물어봐요.",
+      "explanation": "뜨겁거나 날카로운 도구는 함께 사용 방법을 확인해요. 허락되지 않은 도구는 만지지 않아요.",
+      "scene": "media/scenarios/experience-tool-serious.webp",
+      "currentPrompt": "뜨거운 도구가 놓여 있어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-experience-tool.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "experience/choice/unknown",
+      "place": "체험관",
+      "originalPrompt": "체험 방법을 잘 모르겠어요. 어떻게 할까요?",
+      "options": [
+        "다시 보여 달라고 알려요.",
+        "친구를 보고 아무렇게나 따라 해요."
+      ],
+      "correct": "다시 보여 달라고 알려요.",
+      "explanation": "모를 때 다시 묻는 것도 안전한 행동이에요. 말·그림·손짓으로 표현해요.",
+      "scene": "media/question-art/experience-unknown.webp",
+      "currentPrompt": "체험 방법을 잘 모르겠어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-experience-unknown-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "experience/quiz/material",
+      "place": "체험관",
+      "originalPrompt": "체험 재료를 마음대로 맛봐도 괜찮아요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "먹는 재료인지, 내가 먹어도 되는지 먼저 확인해요.",
+      "scene": "media/question-art/scene-experience-quiz-material.webp",
+      "currentPrompt": "체험 재료를 입에 가져가는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "material",
+          "label": "체험 재료를 입에 가져가는 친구",
+          "kind": "danger",
+          "box": [
+            49,
+            31,
+            24,
+            47
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "experience/quiz/guide",
+      "place": "체험관",
+      "originalPrompt": "도구를 쓰기 전에 안내와 필요한 도움을 확인해요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "안내를 확인하고 내게 맞는 도움을 받아요.",
+      "scene": "media/question-art/scene-experience-quiz-guide.webp",
+      "currentPrompt": "도구 안내를 확인하는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "guide",
+          "label": "도구 안내를 확인하는 형아맨",
+          "kind": "safe",
+          "box": [
+            59,
+            14,
+            20,
+            81
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "theme-park/choice/item",
+      "place": "놀이공원",
+      "originalPrompt": "모자가 울타리 안쪽으로 떨어졌어요. 어떻게 할까요?",
+      "options": [
+        "울타리를 넘어 직접 주워요.",
+        "울타리 밖에서 직원에게 알려요."
+      ],
+      "correct": "울타리 밖에서 직원에게 알려요.",
+      "explanation": "울타리를 넘거나 운행 중인 시설에 들어가지 않아요.",
+      "scene": "media/scenarios/theme-item-serious.webp",
+      "currentPrompt": "모자가 울타리 안쪽으로 떨어졌어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-theme-park-item.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "theme-park/choice/ride",
+      "place": "놀이공원",
+      "originalPrompt": "놀이기구가 아직 움직이고 있어요. 어떻게 할까요?",
+      "options": [
+        "안전장치를 유지하고 멈출 때까지 앉아 있어요.",
+        "빨리 내리려고 일어나요."
+      ],
+      "correct": "안전장치를 유지하고 멈출 때까지 앉아 있어요.",
+      "explanation": "완전히 멈추고 직원이 안내할 때 내릴 준비를 해요.",
+      "scene": "media/scenarios/theme-ride.webp",
+      "currentPrompt": "놀이기구가 아직 움직이고 있어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-theme-park-ride-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "theme-park/choice/lost",
+      "place": "놀이공원",
+      "originalPrompt": "일행이 보이지 않아요. 어떻게 할까요?",
+      "options": [
+        "안전한 곳에서 멈추고 직원에게 선생님을 찾아 달라고 알려요.",
+        "혼자 출구 밖으로 나가 찾아봐요."
+      ],
+      "correct": "안전한 곳에서 멈추고 직원에게 선생님을 찾아 달라고 알려요.",
+      "explanation": "혼자 돌아다니지 않고 직원에게 도움을 요청해요. 약속 장소 이동은 사전에 정한 방법을 따라요.",
+      "scene": "media/scenarios/theme-lost-serious.webp",
+      "currentPrompt": "일행이 보이지 않아요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-theme-park-lost-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "theme-park/quiz/fence",
+      "place": "놀이공원",
+      "originalPrompt": "떨어진 물건을 주우려고 울타리를 넘어가요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "울타리 밖에서 직원에게 도움을 요청해요.",
+      "scene": "media/question-art/scene-theme-park-quiz-fence.webp",
+      "currentPrompt": "울타리를 넘으려는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "fence",
+          "label": "울타리를 넘으려는 친구",
+          "kind": "danger",
+          "box": [
+            58,
+            31,
+            28,
+            61
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "theme-park/quiz/condition",
+      "place": "놀이공원",
+      "originalPrompt": "놀이기구 이용 조건을 선생님·직원과 확인해요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "내게 맞는 활동인지 확인하고 이용해요.",
+      "scene": "media/question-art/scene-theme-park-quiz-condition.webp",
+      "currentPrompt": "직원과 이용 조건을 확인하는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "condition",
+          "label": "직원과 이용 조건을 확인하는 형아맨",
+          "kind": "safe",
+          "box": [
+            49,
+            24,
+            25,
+            72
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "park/choice/lake",
+      "place": "호수공원",
+      "originalPrompt": "모자가 호수 난간 밖으로 떨어졌어요. 어떻게 할까요?",
+      "options": [
+        "물가로 내려가 주워요.",
+        "물가에서 떨어져 선생님께 알려요."
+      ],
+      "correct": "물가에서 떨어져 선생님께 알려요.",
+      "explanation": "물가로 내려가지 않아요. 물에 빠진 사람을 보아도 직접 들어가지 않고 어른에게 즉시 알려요.",
+      "scene": "media/scenarios/park-lake.webp",
+      "currentPrompt": "모자가 호수 난간 밖으로 떨어졌어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-park-lake-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "park/choice/heat",
+      "place": "호수공원",
+      "originalPrompt": "야외에서 머리가 아프고 어지러워요. 어떻게 할까요?",
+      "options": [
+        "선생님께 알리고 활동을 멈춰요.",
+        "친구를 따라 계속 걸어요."
+      ],
+      "correct": "선생님께 알리고 활동을 멈춰요.",
+      "explanation": "그늘 등 안전한 곳에서 도움을 받아요. 심하게 아프면 선생님이 필요한 도움과 신고를 요청해요.",
+      "scene": "media/scenarios/park-heat-serious.webp",
+      "currentPrompt": "야외에서 머리가 아프고 어지러워요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-park-heat.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "park/choice/grass",
+      "place": "호수공원",
+      "originalPrompt": "풀숲 옆을 지난 뒤 팔이 가려워요. 어떻게 할까요?",
+      "options": [
+        "풀숲에서 떨어져 선생님께 가렵다고 알려요.",
+        "풀숲으로 들어가 피부를 계속 긁어요."
+      ],
+      "correct": "풀숲에서 떨어져 선생님께 가렵다고 알려요.",
+      "explanation": "풀숲을 피하고 정해진 길로 이동해요. 가렵거나 벌레에 물리면 선생님께 바로 알려요. 필요한 처치는 담당자의 도움을 받아요.",
+      "scene": "media/scenarios/park-grass-serious.webp",
+      "currentPrompt": "풀숲 옆을 지난 뒤 팔이 가려워요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-park-grass.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "park/choice/drowning",
+      "place": "호수공원",
+      "originalPrompt": "호수에 사람이 빠진 것 같아요. 어떻게 할까요?",
+      "options": [
+        "나도 물에 들어가 도와줘요.",
+        "물가에서 떨어져 어른에게 즉시 알리고 119 도움을 요청해요."
+      ],
+      "correct": "물가에서 떨어져 어른에게 즉시 알리고 119 도움을 요청해요.",
+      "explanation": "직접 물에 들어가지 않아요. 물가에서 안전한 거리를 두고 선생님·직원 등 어른에게 즉시 알려 구조 도움을 요청해요.",
+      "scene": "media/scenarios/park-rescue-serious.webp",
+      "currentPrompt": "호수에 사람이 빠진 것 같아요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-park-drowning-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "park/choice/snake",
+      "place": "호수공원",
+      "originalPrompt": "생태공원 길옆에서 뱀이나 벌을 발견했어요. 어떻게 할까요?",
+      "options": [
+        "가까이 가서 잡거나 손으로 건드려요.",
+        "가까이 가지 않고 선생님께 알린 뒤 안내에 따라 멀어져요."
+      ],
+      "correct": "가까이 가지 않고 선생님께 알린 뒤 안내에 따라 멀어져요.",
+      "explanation": "사진을 찍으려고 가까이 가지 않아요. 잡거나 건드리지 말고 선생님과 함께 거리를 둬요. 벌에 손을 휘젓거나 벌집을 건드리지 않아요.",
+      "scene": "media/scenarios/park-wildlife-serious.webp",
+      "currentPrompt": "생태공원 길옆에서 뱀이나 벌을 발견했어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-park-snake-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "park/quiz/rail",
+      "place": "호수공원",
+      "originalPrompt": "사진을 찍으려고 난간을 넘어가요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "난간 밖과 물가에 접근하지 않아요.",
+      "scene": "media/question-art/scene-park-quiz-rail.webp",
+      "currentPrompt": "난간을 넘으려는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "rail",
+          "label": "난간을 넘으려는 친구",
+          "kind": "danger",
+          "box": [
+            65,
+            28,
+            25,
+            64
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "park/quiz/rest",
+      "place": "호수공원",
+      "originalPrompt": "덥거나 힘들면 쉬고 싶다고 알려요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "몸의 신호를 알리고 물과 휴식을 챙겨요.",
+      "scene": "media/question-art/scene-park-quiz-rest-review1.webp",
+      "currentPrompt": "쉬고 싶다고 선생님께 알리는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "rest",
+          "label": "쉬고 싶다고 선생님께 알리는 형아맨",
+          "kind": "safe",
+          "box": [
+            53,
+            31,
+            25,
+            65
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "park/quiz/grass",
+      "place": "호수공원",
+      "originalPrompt": "풀숲 옆을 지난 뒤 팔이 가려워요. 어떻게 할까요?",
+      "options": [
+        "풀숲에서 떨어져 선생님께 가렵다고 알려요.",
+        "풀숲으로 들어가 피부를 계속 긁어요."
+      ],
+      "correct": "풀숲에서 떨어져 선생님께 가렵다고 알려요.",
+      "explanation": "풀숲을 피하고 정해진 길로 이동해요. 가렵거나 벌레에 물리면 선생님께 바로 알려요. 필요한 처치는 담당자의 도움을 받아요.",
+      "scene": "media/question-art/scene-park-quiz-grass.webp",
+      "currentPrompt": "풀숲을 피해 산책로를 걷는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "grass",
+          "label": "풀숲을 피해 산책로를 걷는 형아맨",
+          "kind": "safe",
+          "box": [
+            52,
+            28,
+            22,
+            63
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "park/quiz/drowning",
+      "place": "호수공원",
+      "originalPrompt": "호수에 사람이 빠진 것 같아요. 어떻게 할까요?",
+      "options": [
+        "나도 물에 들어가 도와줘요.",
+        "물가에서 떨어져 어른에게 즉시 알리고 119 도움을 요청해요."
+      ],
+      "correct": "물가에서 떨어져 어른에게 즉시 알리고 119 도움을 요청해요.",
+      "explanation": "직접 물에 들어가지 않아요. 물가에서 안전한 거리를 두고 선생님·직원 등 어른에게 즉시 알려 구조 도움을 요청해요.",
+      "scene": "media/question-art/scene-park-quiz-drowning.webp",
+      "currentPrompt": "물에 뛰어들려는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "drowning",
+          "label": "물에 뛰어들려는 친구",
+          "kind": "danger",
+          "box": [
+            53,
+            28,
+            26,
+            66
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "garden/choice/berry",
+      "place": "수목원·식물원",
+      "originalPrompt": "예쁜 열매를 발견했어요. 어떻게 할까요?",
+      "options": [
+        "사진이나 눈으로 관찰하고 선생님께 물어봐요.",
+        "하나 먹어 봐요."
+      ],
+      "correct": "사진이나 눈으로 관찰하고 선생님께 물어봐요.",
+      "explanation": "먹을 수 있는지 모르는 열매는 입에 넣지 않아요. 만져도 되는 식물인지도 안내를 확인해요.",
+      "scene": "media/scenarios/garden-berry.webp",
+      "currentPrompt": "예쁜 열매를 발견했어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-garden-berry-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "garden/choice/bee",
+      "place": "수목원·식물원",
+      "originalPrompt": "꽃 주변에 벌 한 마리가 보여요. 어떻게 할까요?",
+      "options": [
+        "벌을 손으로 치고 잡으려 해요.",
+        "건드리지 않고 선생님께 알린 뒤 함께 멀어져요."
+      ],
+      "correct": "건드리지 않고 선생님께 알린 뒤 함께 멀어져요.",
+      "explanation": "벌과 벌집을 건드리지 않아요. 벌 떼가 공격하면 머리를 보호하고 선생님의 도움을 받아 그곳에서 빠르게 벗어나요. 쏘였거나 불편하면 즉시 알려요.",
+      "scene": "media/scenarios/garden-bee-serious.webp",
+      "currentPrompt": "꽃 주변에 벌 한 마리가 보여요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-garden-bee-review3.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "garden/quiz/fruit",
+      "place": "수목원·식물원",
+      "originalPrompt": "모르는 열매는 맛을 봐도 괜찮아요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "모르는 열매와 식물을 먹거나 만지지 않아요.",
+      "scene": "media/question-art/scene-garden-quiz-fruit.webp",
+      "currentPrompt": "모르는 열매를 입에 가져가는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "fruit",
+          "label": "모르는 열매를 입에 가져가는 친구",
+          "kind": "danger",
+          "box": [
+            67,
+            26,
+            23,
+            68
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "garden/quiz/path",
+      "place": "수목원·식물원",
+      "originalPrompt": "정해진 관찰로에서 함께 이동해요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "온실 바닥·문·경사를 살피고 안내에 따라 이동해요.",
+      "scene": "media/question-art/scene-garden-quiz-path.webp",
+      "currentPrompt": "관찰로에서 함께 걷는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "path",
+          "label": "관찰로에서 함께 걷는 형아맨",
+          "kind": "safe",
+          "box": [
+            55,
+            26,
+            21,
+            64
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "lodging/choice/hurt",
+      "place": "숙소 생활",
+      "originalPrompt": "밤에 몸이 아프거나 불편해요. 어떻게 할까요?",
+      "options": [
+        "혼자 참고 자요.",
+        "담당 선생님께 말·그림·손짓으로 알려요."
+      ],
+      "correct": "담당 선생님께 말·그림·손짓으로 알려요.",
+      "explanation": "아프면 언제든 알려요. 필요한 약과 건강 지원은 사전에 정한 담당 선생님이 도와줘요.",
+      "scene": "media/scenarios/lodging-health-serious.webp",
+      "currentPrompt": "밤에 몸이 아프거나 불편해요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-lodging-hurt.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "lodging/choice/door",
+      "place": "숙소 생활",
+      "originalPrompt": "모르는 사람이 방에 찾아와 문을 열어 달라고 해요. 어떻게 할까요?",
+      "options": [
+        "문을 열지 않고 담당 선생님께 확인해요.",
+        "누구인지 몰라도 문을 열어요."
+      ],
+      "correct": "문을 열지 않고 담당 선생님께 확인해요.",
+      "explanation": "모르는 사람에게 문을 열거나 따라가지 않아요. 선생님께 먼저 확인해요.",
+      "scene": "media/question-art/lodging-door.webp",
+      "currentPrompt": "모르는 사람이 방에 찾아와 문을 열어 달라고 해요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-lodging-door.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "lodging/choice/toilet",
+      "place": "숙소 생활",
+      "originalPrompt": "밤에 화장실에 가고 싶어요. 어떻게 할까요?",
+      "options": [
+        "아무에게도 알리지 않고 밖으로 나가요.",
+        "선생님께 알리고 정해진 지원·동행 방법으로 가요."
+      ],
+      "correct": "선생님께 알리고 정해진 지원·동행 방법으로 가요.",
+      "explanation": "학교에서 미리 약속한 방법으로 도움을 요청하고 함께 이동해요.",
+      "scene": "media/scenarios/lodging-night.webp",
+      "currentPrompt": "밤에 화장실에 가고 싶어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-lodging-toilet-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "lodging/choice/medicine",
+      "place": "숙소 생활",
+      "originalPrompt": "친구가 약을 나누어 주겠다고 해요. 어떻게 할까요?",
+      "options": [
+        "친구 약을 받아먹어요.",
+        "먹지 않고 담당 선생님께 알려요."
+      ],
+      "correct": "먹지 않고 담당 선생님께 알려요.",
+      "explanation": "내게 정해진 약만 담당자의 도움을 받아 사용해요. 다른 사람의 약을 먹지 않아요.",
+      "scene": "media/scenarios/lodging-medicine-serious.webp",
+      "currentPrompt": "친구가 약을 나누어 주겠다고 해요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-lodging-medicine.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "lodging/quiz/jump",
+      "place": "숙소 생활",
+      "originalPrompt": "침대에서 뛰어도 괜찮아요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "침대는 쉬는 곳이에요. 뛰면 떨어질 수 있어요.",
+      "scene": "media/question-art/scene-lodging-quiz-jump.webp",
+      "currentPrompt": "침대 위에서 뛰는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "jump",
+          "label": "침대 위에서 뛰는 친구",
+          "kind": "danger",
+          "box": [
+            55,
+            9,
+            25,
+            57
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "lodging/quiz/help",
+      "place": "숙소 생활",
+      "originalPrompt": "밤에도 아프거나 불편하면 선생님께 알려요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "몸과 마음이 불편하면 도움을 요청해요.",
+      "scene": "media/question-art/scene-lodging-quiz-help.webp",
+      "currentPrompt": "아프다고 선생님께 알리는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "help",
+          "label": "아프다고 선생님께 알리는 형아맨",
+          "kind": "safe",
+          "box": [
+            49,
+            12,
+            23,
+            82
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "bus/choice/stand",
+      "place": "버스 이동",
+      "originalPrompt": "버스가 달리는데 친구에게 가고 싶어요. 어떻게 할까요?",
+      "options": [
+        "안전벨트를 유지하고 자리에 앉아 있어요.",
+        "일어나 통로로 걸어가요."
+      ],
+      "correct": "안전벨트를 유지하고 자리에 앉아 있어요.",
+      "explanation": "달리는 차 안에서는 안전벨트를 매고 앉아 있어요. 필요한 것은 선생님께 알려요.",
+      "scene": "media/game/bus-stand.webp",
+      "currentPrompt": "버스가 달리는데 친구에게 가고 싶어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-bus-stand-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "bus/choice/cross",
+      "place": "버스 이동",
+      "originalPrompt": "버스에서 내렸어요. 길 건너편에 친구가 보여요. 어떻게 할까요?",
+      "options": [
+        "버스 앞이나 뒤로 바로 뛰어가요.",
+        "인솔자의 안내에 따라 안전한 횡단 장소로 함께 이동해요."
+      ],
+      "correct": "인솔자의 안내에 따라 안전한 횡단 장소로 함께 이동해요.",
+      "explanation": "버스 앞뒤는 운전자에게 잘 보이지 않을 수 있어요. 혼자 건너지 않아요.",
+      "scene": "media/game/bus-cross.webp",
+      "currentPrompt": "버스에서 내렸어요. 길 건너편에 친구가 보여요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-bus-cross.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "bus/quiz/belt",
+      "place": "버스 이동",
+      "originalPrompt": "버스가 달릴 때는 안전벨트를 매고 앉아 있어요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "안전벨트와 필요한 고정장치를 확인해요.",
+      "scene": "media/question-art/scene-bus-quiz-belt-review2.webp",
+      "currentPrompt": "안전벨트를 매고 앉은 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "belt",
+          "label": "안전벨트를 매고 앉은 형아맨",
+          "kind": "safe",
+          "box": [
+            53,
+            18,
+            25,
+            79
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "bus/quiz/cross",
+      "place": "버스 이동",
+      "originalPrompt": "버스에서 내렸어요. 길 건너편에 친구가 보여요. 어떻게 할까요?",
+      "options": [
+        "버스 앞이나 뒤로 바로 뛰어가요.",
+        "인솔자의 안내에 따라 안전한 횡단 장소로 함께 이동해요."
+      ],
+      "correct": "인솔자의 안내에 따라 안전한 횡단 장소로 함께 이동해요.",
+      "explanation": "버스 앞뒤는 운전자에게 잘 보이지 않을 수 있어요. 혼자 건너지 않아요.",
+      "scene": "media/question-art/scene-bus-quiz-cross.webp",
+      "currentPrompt": "버스 앞으로 길을 건너려는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "cross",
+          "label": "버스 앞으로 길을 건너려는 친구",
+          "kind": "danger",
+          "box": [
+            62,
+            27,
+            25,
+            63
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "rest/choice/alone",
+      "place": "휴게소",
+      "originalPrompt": "화장실에 가고 싶어요. 어떻게 할까요?",
+      "options": [
+        "선생님께 알리고 정해진 동행 방법으로 가요.",
+        "말없이 혼자 주차장 건너편으로 가요."
+      ],
+      "correct": "선생님께 알리고 정해진 동행 방법으로 가요.",
+      "explanation": "화장실에 가고 싶다고 표현해요. 누구와 어디로 가는지 선생님과 확인해요.",
+      "scene": "media/scenarios/rest-toilet.webp",
+      "currentPrompt": "화장실에 가고 싶어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-rest-alone.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "rest/choice/lost",
+      "place": "휴게소",
+      "originalPrompt": "버스와 선생님이 보이지 않아요. 어떻게 할까요?",
+      "options": [
+        "주차장을 계속 돌아다녀요.",
+        "차가 다니지 않는 안전한 곳에서 멈추고 직원에게 도움을 요청해요."
+      ],
+      "correct": "차가 다니지 않는 안전한 곳에서 멈추고 직원에게 도움을 요청해요.",
+      "explanation": "혼자 버스를 찾아다니지 않아요. 직원에게 선생님을 찾아 달라고 알려요.",
+      "scene": "media/scenarios/rest-lost-serious.webp",
+      "currentPrompt": "버스와 선생님이 보이지 않아요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-rest-lost-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "rest/choice/friend",
+      "place": "휴게소",
+      "originalPrompt": "친구가 선생님께 말하지 말고 매점에 가자고 해요. 어떻게 할까요?",
+      "options": [
+        "친구와 몰래 빠르게 다녀와요.",
+        "선생님께 알리고 동행 약속을 확인해요."
+      ],
+      "correct": "선생님께 알리고 동행 약속을 확인해요.",
+      "explanation": "친구도 혼자 보내지 않아요. 선생님께 알리고 학교에서 정한 동행 약속을 지켜요.",
+      "scene": "media/question-art/rest-friend.webp",
+      "currentPrompt": "친구가 선생님께 말하지 말고 매점에 가자고 해요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-rest-friend-review2.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "rest/quiz/food",
+      "place": "휴게소",
+      "originalPrompt": "뜨거운 음식을 들고 뛰어도 괜찮아요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "뜨거운 음식은 앉아서 먹어요.",
+      "scene": "media/question-art/scene-rest-quiz-food.webp",
+      "currentPrompt": "뜨거운 음식을 들고 뛰는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "food",
+          "label": "뜨거운 음식을 들고 뛰는 친구",
+          "kind": "danger",
+          "box": [
+            58,
+            29,
+            25,
+            64
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "rest/quiz/teacher",
+      "place": "휴게소",
+      "originalPrompt": "다른 곳으로 갈 때는 선생님께 알려요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "동행·만나는 장소·시간 약속을 확인해요.",
+      "scene": "media/question-art/scene-rest-quiz-teacher.webp",
+      "currentPrompt": "이동 전에 선생님께 알리는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "teacher",
+          "label": "이동 전에 선생님께 알리는 형아맨",
+          "kind": "safe",
+          "box": [
+            49,
+            28,
+            26,
+            67
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "night/choice/toilet",
+      "place": "숙박형 밤 미션",
+      "originalPrompt": "밤에 화장실에 가고 싶어요. 어떻게 할까요?",
+      "options": [
+        "아무에게도 알리지 않고 밖으로 나가요.",
+        "선생님께 알리고 정해진 지원·동행 방법으로 가요."
+      ],
+      "correct": "선생님께 알리고 정해진 지원·동행 방법으로 가요.",
+      "explanation": "학교에서 미리 약속한 방법으로 도움을 요청하고 함께 이동해요.",
+      "scene": "media/question-art/scene-night-choice-toilet.webp",
+      "currentPrompt": "밤에 화장실에 가고 싶어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-night-toilet-review1.webp",
+        "width": 1600,
+        "height": 800
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "night/choice/medicine",
+      "place": "숙박형 밤 미션",
+      "originalPrompt": "친구가 약을 나누어 주겠다고 해요. 어떻게 할까요?",
+      "options": [
+        "친구 약을 받아먹어요.",
+        "먹지 않고 담당 선생님께 알려요."
+      ],
+      "correct": "먹지 않고 담당 선생님께 알려요.",
+      "explanation": "내게 정해진 약만 담당자의 도움을 받아 사용해요. 다른 사람의 약을 먹지 않아요.",
+      "scene": "media/question-art/scene-night-choice-medicine.webp",
+      "currentPrompt": "친구가 약을 나누어 주겠다고 해요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-night-medicine.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "night/quiz/night-help",
+      "place": "숙박형 밤 미션",
+      "originalPrompt": "밤에도 아프거나 불편하면 선생님께 알려요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "밤에도 불편하거나 도움이 필요하면 알려요.",
+      "scene": "media/question-art/scene-night-quiz-night-help.webp",
+      "currentPrompt": "밤에 아프다고 선생님께 알리는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "night-help",
+          "label": "밤에 아프다고 선생님께 알리는 형아맨",
+          "kind": "safe",
+          "box": [
+            49,
+            13,
+            23,
+            82
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "night/quiz/corridor",
+      "place": "숙박형 밤 미션",
+      "originalPrompt": "가방은 통로를 막지 않는 곳에 놓아요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "어두울 때도 이동할 수 있도록 통로를 정리해요.",
+      "scene": "media/question-art/scene-night-quiz-corridor.webp",
+      "currentPrompt": "통로 옆 보관대에 둔 파란 가방을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "corridor",
+          "label": "통로 옆 보관대에 둔 파란 가방",
+          "kind": "safe",
+          "box": [
+            69,
+            51,
+            14,
+            26
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "escape/quiz/lift",
+      "place": "대피 시뮬레이션",
+      "originalPrompt": "불이 나면 일반 엘리베이터를 타고 내려가요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "선생님·직원의 안내와 미리 정한 피난계획을 따라요. 일반 엘리베이터를 이용하지 않아요.",
+      "scene": "media/question-art/scene-escape-quiz-lift.webp",
+      "currentPrompt": "화재 때 타면 안 되는 일반 엘리베이터를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "lift",
+          "label": "화재 때 타면 안 되는 일반 엘리베이터",
+          "kind": "danger",
+          "box": [
+            69,
+            14,
+            28,
+            77
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "escape/quiz/return",
+      "place": "대피 시뮬레이션",
+      "originalPrompt": "밖으로 대피한 뒤 가방을 찾으러 건물에 다시 들어가요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "집결지에서 인원 확인과 안내를 기다려요. 물건을 찾으러 다시 들어가지 않아요.",
+      "scene": "media/question-art/scene-escape-quiz-return.webp",
+      "currentPrompt": "가방을 찾으러 건물에 다시 들어가려는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "return",
+          "label": "가방을 찾으러 건물에 다시 들어가려는 친구",
+          "kind": "danger",
+          "box": [
+            60,
+            28,
+            22,
+            62
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "heritage/choice/threshold",
+      "place": "문화유산·궁궐",
+      "originalPrompt": "높은 문턱이나 돌계단을 지나기 어려워요. 어떻게 할까요?",
+      "options": [
+        "혼자 무리해서 넘어가요.",
+        "선생님께 알리고 도움이나 이용 가능한 다른 경로를 확인해요."
+      ],
+      "correct": "선생님께 알리고 도움이나 이용 가능한 다른 경로를 확인해요.",
+      "explanation": "내게 맞는 길과 도움을 요청해요. 계단이나 문턱을 혼자 무리해서 지나가지 않아요.",
+      "scene": "media/scenarios/heritage-threshold.webp",
+      "currentPrompt": "높은 문턱이나 돌계단을 지나기 어려워요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-heritage-threshold-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "heritage/choice/photo",
+      "place": "문화유산·궁궐",
+      "originalPrompt": "사진을 찍으려고 출입 금지 줄 안으로 가고 싶어요. 어떻게 할까요?",
+      "options": [
+        "관람 구역에서 사진을 찍어요.",
+        "줄을 넘어 건물에 올라가요."
+      ],
+      "correct": "관람 구역에서 사진을 찍어요.",
+      "explanation": "출입 제한을 지키고 문화유산과 나의 안전을 함께 보호해요.",
+      "scene": "media/scenarios/heritage-photo.webp",
+      "currentPrompt": "사진을 찍으려고 출입 금지 줄 안으로 가고 싶어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-heritage-photo.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "heritage/quiz/boundary",
+      "place": "문화유산·궁궐",
+      "originalPrompt": "사진을 찍으려고 출입 금지 줄을 넘어가요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "정해진 관람 구역에서 관찰하고 사진을 찍어요.",
+      "scene": "media/question-art/scene-heritage-quiz-boundary.webp",
+      "currentPrompt": "출입 금지 줄을 넘으려는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "boundary",
+          "label": "출입 금지 줄을 넘으려는 친구",
+          "kind": "danger",
+          "box": [
+            53,
+            26,
+            29,
+            67
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "heritage/quiz/help",
+      "place": "문화유산·궁궐",
+      "originalPrompt": "문턱이나 계단이 어려우면 도움을 요청해요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "이용 가능한 경로와 필요한 도움을 확인해요.",
+      "scene": "media/question-art/scene-heritage-quiz-help.webp",
+      "currentPrompt": "문턱 앞에서 도움을 요청하는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "help",
+          "label": "문턱 앞에서 도움을 요청하는 형아맨",
+          "kind": "safe",
+          "box": [
+            49,
+            27,
+            24,
+            65
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "homecoming/choice/stop",
+      "place": "안전하게 귀교",
+      "originalPrompt": "학교가 보여요. 버스는 아직 움직이고 있어요. 어떻게 할까요?",
+      "options": [
+        "먼저 일어나 가방을 꺼내요.",
+        "안전벨트를 유지하고 완전히 멈춘 뒤 안내에 따라 이동해요."
+      ],
+      "correct": "안전벨트를 유지하고 완전히 멈춘 뒤 안내에 따라 이동해요.",
+      "explanation": "도착해 가더라도 차가 움직일 때는 앉아 있어요. 완전히 멈추고 안내가 있을 때 내려요.",
+      "scene": "media/question-art/scene-homecoming-choice-stop-review1.webp",
+      "currentPrompt": "학교가 보여요. 버스는 아직 움직이고 있어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-homecoming-stop-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "homecoming/choice/count",
+      "place": "안전하게 귀교",
+      "originalPrompt": "버스에서 내려 학교에 도착했어요. 어떻게 할까요?",
+      "options": [
+        "선생님과 정해진 곳에서 인원을 확인하고 다음 안내를 기다려요.",
+        "말하지 않고 혼자 다른 곳으로 가요."
+      ],
+      "correct": "선생님과 정해진 곳에서 인원을 확인하고 다음 안내를 기다려요.",
+      "explanation": "내린 뒤에도 함께 움직여요. 선생님과 인원을 확인하고 학교의 귀교·귀가 안내를 따라요.",
+      "scene": "media/scenarios/home-count.webp",
+      "currentPrompt": "버스에서 내려 학교에 도착했어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-homecoming-count.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "homecoming/quiz/stop",
+      "place": "안전하게 귀교",
+      "originalPrompt": "학교가 보여요. 버스는 아직 움직이고 있어요. 어떻게 할까요?",
+      "options": [
+        "먼저 일어나 가방을 꺼내요.",
+        "안전벨트를 유지하고 완전히 멈춘 뒤 안내에 따라 이동해요."
+      ],
+      "correct": "안전벨트를 유지하고 완전히 멈춘 뒤 안내에 따라 이동해요.",
+      "explanation": "도착해 가더라도 차가 움직일 때는 앉아 있어요. 완전히 멈추고 안내가 있을 때 내려요.",
+      "scene": "media/question-art/scene-homecoming-quiz-stop.webp",
+      "currentPrompt": "버스가 멈춘 뒤 천천히 내리는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "stop",
+          "label": "버스가 멈춘 뒤 천천히 내리는 형아맨",
+          "kind": "safe",
+          "box": [
+            57,
+            23,
+            25,
+            65
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "farm/choice/feed",
+      "place": "농촌·동물체험장",
+      "originalPrompt": "토끼가 보여요. 가지고 온 과자를 주어도 될까요?",
+      "options": [
+        "직원에게 정해진 먹이와 주는 방법을 확인해요.",
+        "내 과자를 울타리 안으로 넣어요."
+      ],
+      "correct": "직원에게 정해진 먹이와 주는 방법을 확인해요.",
+      "explanation": "동물에게 임의로 먹이를 주지 않아요. 허용된 먹이와 방법을 안내받아요.",
+      "scene": "media/scenarios/farm-feed.webp",
+      "currentPrompt": "토끼가 보여요. 가지고 온 과자를 주어도 될까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-farm-feed-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "farm/choice/wash",
+      "place": "농촌·동물체험장",
+      "originalPrompt": "동물 체험이 끝났어요. 간식을 먹기 전에 무엇을 할까요?",
+      "options": [
+        "손을 씻지 않고 바로 간식을 먹어요.",
+        "흐르는 물과 비누로 손을 씻고 물기를 닦아요."
+      ],
+      "correct": "흐르는 물과 비누로 손을 씻고 물기를 닦아요.",
+      "explanation": "동물을 만진 손으로 음식이나 얼굴을 만지기 전에 손을 깨끗이 씻어요.",
+      "scene": "media/question-art/scene-farm-choice-wash.webp",
+      "currentPrompt": "동물 체험이 끝났어요. 간식을 먹기 전에 무엇을 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-farm-wash.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "farm/quiz/fence",
+      "place": "농촌·동물체험장",
+      "originalPrompt": "동물 울타리 안으로 혼자 들어가요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "울타리 밖의 허용된 장소에서 직원 안내를 확인해요.",
+      "scene": "media/question-art/scene-farm-quiz-fence.webp",
+      "currentPrompt": "동물 울타리 안으로 혼자 들어가려는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "fence",
+          "label": "동물 울타리 안으로 혼자 들어가려는 친구",
+          "kind": "danger",
+          "box": [
+            60,
+            29,
+            24,
+            66
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "farm/quiz/wash",
+      "place": "농촌·동물체험장",
+      "originalPrompt": "동물 체험이 끝났어요. 간식을 먹기 전에 무엇을 할까요?",
+      "options": [
+        "손을 씻지 않고 바로 간식을 먹어요.",
+        "흐르는 물과 비누로 손을 씻고 물기를 닦아요."
+      ],
+      "correct": "흐르는 물과 비누로 손을 씻고 물기를 닦아요.",
+      "explanation": "동물을 만진 손으로 음식이나 얼굴을 만지기 전에 손을 깨끗이 씻어요.",
+      "scene": "media/question-art/scene-farm-quiz-wash.webp",
+      "currentPrompt": "비누로 손을 씻는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "wash",
+          "label": "비누로 손을 씻는 형아맨",
+          "kind": "safe",
+          "box": [
+            57,
+            19,
+            24,
+            76
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "water/choice/entry",
+      "place": "물놀이시설",
+      "originalPrompt": "준비가 끝났어요. 선생님은 아직 입수 안내를 하지 않았어요. 어떻게 할까요?",
+      "options": [
+        "친구를 따라 먼저 물에 들어가요.",
+        "안전한 곳에서 선생님의 안내와 착용 확인을 기다려요."
+      ],
+      "correct": "안전한 곳에서 선생님의 안내와 착용 확인을 기다려요.",
+      "explanation": "장비를 준비해도 혼자 물에 들어가지 않아요. 선생님·직원의 입수 안내를 따라요.",
+      "scene": "media/question-art/scene-water-choice-entry.webp",
+      "currentPrompt": "준비가 끝났어요. 선생님은 아직 입수 안내를 하지 않았어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-water-entry-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "water/choice/slip",
+      "place": "물놀이시설",
+      "originalPrompt": "수영장 바닥에 물기가 있어요. 어떻게 이동할까요?",
+      "options": [
+        "앞을 보며 천천히 이동하고 필요하면 도움을 요청해요.",
+        "미끄러운 바닥을 뛰어가요."
+      ],
+      "correct": "앞을 보며 천천히 이동하고 필요하면 도움을 요청해요.",
+      "explanation": "젖은 바닥에서는 뛰거나 친구를 밀지 않아요.",
+      "scene": "media/scenarios/water-walk-swim.webp",
+      "currentPrompt": "수영장 바닥에 물기가 있어요. 어떻게 이동할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-water-slip.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "water/quiz/alone",
+      "place": "물놀이시설",
+      "originalPrompt": "구명조끼를 입으면 혼자 물에 들어가도 돼요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "구명조끼가 있어도 허용된 곳에서 인솔자와 함께해요.",
+      "scene": "media/question-art/scene-water-quiz-alone.webp",
+      "currentPrompt": "혼자 물에 들어가려는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "alone",
+          "label": "혼자 물에 들어가려는 친구",
+          "kind": "danger",
+          "box": [
+            64,
+            21,
+            27,
+            74
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "water/quiz/run",
+      "place": "물놀이시설",
+      "originalPrompt": "수영장 바닥에서는 천천히 이동해요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "젖은 바닥에서 뛰지 않아요.",
+      "scene": "media/question-art/scene-water-quiz-run.webp",
+      "currentPrompt": "수영장 바닥을 천천히 걷는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "run",
+          "label": "수영장 바닥을 천천히 걷는 형아맨",
+          "kind": "safe",
+          "box": [
+            50,
+            15,
+            25,
+            81
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "library/choice/voice",
+      "place": "도서관·공연장",
+      "originalPrompt": "친구들이 책을 읽고 있어요. 선생님에게 물어볼 말이 있어요. 어떻게 할까요?",
+      "options": [
+        "선생님 가까이에서 작은 목소리나 그림으로 알려요.",
+        "멀리서 큰 소리로 계속 불러요."
+      ],
+      "correct": "선생님 가까이에서 작은 목소리나 그림으로 알려요.",
+      "explanation": "가까이에서 작은 목소리·AAC·손짓으로 알려요. 긴급한 도움이 필요하면 즉시 도움을 요청해요.",
+      "scene": "media/question-art/scene-library-choice-voice.webp",
+      "currentPrompt": "친구들이 책을 읽고 있어요. 선생님에게 물어볼 말이 있어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-library-voice-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "library/choice/noise",
+      "place": "도서관·공연장",
+      "originalPrompt": "공연 소리가 커서 힘들어요. 어떻게 할까요?",
+      "options": [
+        "혼자 밖으로 나가요.",
+        "선생님께 알리고 함께 쉴 수 있는 곳으로 가요."
+      ],
+      "correct": "선생님께 알리고 함께 쉴 수 있는 곳으로 가요.",
+      "explanation": "소리가 불편하다는 표현도 안전 행동이에요. 혼자 이동하지 않아요.",
+      "scene": "media/scenarios/library-noise.webp",
+      "currentPrompt": "공연 소리가 커서 힘들어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-library-noise-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "library/quiz/help",
+      "place": "도서관·공연장",
+      "originalPrompt": "공연이 힘들면 선생님께 도움을 알려요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "말·AAC·손짓 등 편한 방법으로 알려요.",
+      "scene": "media/question-art/scene-library-quiz-help.webp",
+      "currentPrompt": "공연이 힘들다고 선생님께 알리는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "help",
+          "label": "공연이 힘들다고 선생님께 알리는 형아맨",
+          "kind": "safe",
+          "box": [
+            52,
+            20,
+            20,
+            72
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "library/quiz/move",
+      "place": "도서관·공연장",
+      "originalPrompt": "말하지 않고 혼자 관람실 밖으로 나가요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "이동할 때는 선생님께 알리고 함께 가요.",
+      "scene": "media/question-art/scene-library-quiz-move.webp",
+      "currentPrompt": "혼자 관람실 밖으로 나가는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "move",
+          "label": "혼자 관람실 밖으로 나가는 친구",
+          "kind": "danger",
+          "box": [
+            60,
+            30,
+            22,
+            64
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "playground/choice/grass",
+      "place": "공원·놀이터",
+      "originalPrompt": "산책하다가 팔이 가렵고 따가워요. 어떻게 할까요?",
+      "options": [
+        "풀숲에 들어가 계속 놀아요.",
+        "풀숲에 가지 않고 선생님께 팔이 불편하다고 알려요."
+      ],
+      "correct": "풀숲에 가지 않고 선생님께 팔이 불편하다고 알려요.",
+      "explanation": "피부가 가렵거나 따가우면 긁거나 모르는 것을 바르지 않고 선생님께 알려요. 정해진 길에서 안내를 기다려요.",
+      "scene": "media/question-art/scene-playground-choice-grass.webp",
+      "currentPrompt": "산책하다가 팔이 가렵고 따가워요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-playground-grass.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "playground/choice/heat",
+      "place": "공원·놀이터",
+      "originalPrompt": "걷다가 덥고 어지러워요. 어떻게 할까요?",
+      "options": [
+        "선생님께 알리고 안전한 그늘에서 쉬어요.",
+        "참고 계속 뛰어요."
+      ],
+      "correct": "선생님께 알리고 안전한 그늘에서 쉬어요.",
+      "explanation": "몸의 불편함을 바로 알려요. 학교의 건강 지원 안내를 따라 쉬어요.",
+      "scene": "media/question-art/scene-playground-choice-heat.webp",
+      "currentPrompt": "걷다가 덥고 어지러워요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-playground-heat-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "playground/quiz/wet",
+      "place": "공원·놀이터",
+      "originalPrompt": "물기가 고인 바닥을 피해 천천히 가요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "젖은 곳을 피하고 선생님께 알려요.",
+      "scene": "media/question-art/scene-playground-quiz-wet.webp",
+      "currentPrompt": "물기가 고인 바닥을 피해 걷는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "wet",
+          "label": "물기가 고인 바닥을 피해 걷는 형아맨",
+          "kind": "safe",
+          "box": [
+            54,
+            22,
+            24,
+            66
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "playground/quiz/grass",
+      "place": "공원·놀이터",
+      "originalPrompt": "산책하다가 팔이 가렵고 따가워요. 어떻게 할까요?",
+      "options": [
+        "풀숲에 들어가 계속 놀아요.",
+        "풀숲에 가지 않고 선생님께 팔이 불편하다고 알려요."
+      ],
+      "correct": "풀숲에 가지 않고 선생님께 팔이 불편하다고 알려요.",
+      "explanation": "피부가 가렵거나 따가우면 긁거나 모르는 것을 바르지 않고 선생님께 알려요. 정해진 길에서 안내를 기다려요.",
+      "scene": "media/question-art/scene-playground-quiz-grass.webp",
+      "currentPrompt": "모르는 풀을 만지려는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "grass",
+          "label": "모르는 풀을 만지려는 친구",
+          "kind": "danger",
+          "box": [
+            43,
+            35,
+            37,
+            60
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "eco-park/choice/snake",
+      "place": "생태공원",
+      "originalPrompt": "탐방로 옆에 뱀이 보여요. 어떻게 할까요?",
+      "options": [
+        "가까이 가서 잡으려고 해요.",
+        "다가가지 않고 선생님께 알린 뒤 안내에 따라 멀어져요."
+      ],
+      "correct": "다가가지 않고 선생님께 알린 뒤 안내에 따라 멀어져요.",
+      "explanation": "뱀을 잡거나 건드리지 않아요. 사진을 찍으려고 다가가지 않아요.",
+      "scene": "media/question-art/scene-eco-park-choice-snake.webp",
+      "currentPrompt": "탐방로 옆에 뱀이 보여요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-eco-park-snake-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "eco-park/choice/bee",
+      "place": "생태공원",
+      "originalPrompt": "생태공원 꽃 주변에 벌이 보여요. 어떻게 할까요?",
+      "options": [
+        "벌을 건드리지 않고 선생님께 알리며 거리를 둬요.",
+        "손을 휘저으며 벌을 잡아요."
+      ],
+      "correct": "벌을 건드리지 않고 선생님께 알리며 거리를 둬요.",
+      "explanation": "벌이나 벌집을 건드리거나 손을 휘젓지 않아요. 안내에 따라 가까이 가지 않아요.",
+      "scene": "media/scenarios/eco-bee.webp",
+      "currentPrompt": "생태공원 꽃 주변에 벌이 보여요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-eco-park-bee.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "eco-park/quiz/path",
+      "place": "생태공원",
+      "originalPrompt": "정해진 탐방로에서 일행과 함께 가요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "O · 맞아요",
+      "explanation": "풀숲으로 들어가지 않고 함께 이동해요.",
+      "scene": "media/question-art/scene-eco-park-quiz-path.webp",
+      "currentPrompt": "탐방로에서 함께 걷는 형아맨을 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "path",
+          "label": "탐방로에서 함께 걷는 형아맨",
+          "kind": "safe",
+          "box": [
+            53,
+            22,
+            24,
+            71
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "eco-park/quiz/wildlife",
+      "place": "생태공원",
+      "originalPrompt": "뱀이나 벌을 발견하면 손으로 잡아요.",
+      "options": [
+        "O · 맞아요",
+        "X · 아니에요"
+      ],
+      "correct": "X · 아니에요",
+      "explanation": "다가가거나 잡지 않고 어른에게 알려요.",
+      "scene": "media/question-art/scene-eco-park-quiz-wildlife.webp",
+      "currentPrompt": "뱀에게 손을 뻗는 친구를 찾아 눌러요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "wildlife",
+          "label": "뱀에게 손을 뻗는 친구",
+          "kind": "danger",
+          "box": [
+            60,
+            36,
+            30,
+            52
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "escape/choice/alarm",
+      "place": "대피 시뮬레이션",
+      "originalPrompt": "숙소에서 화재경보가 울려요. 먼저 어떻게 할까요?",
+      "options": [
+        "경보를 끄고 다시 자요.",
+        "주변과 선생님께 알리고 안내를 확인해요."
+      ],
+      "correct": "주변과 선생님께 알리고 안내를 확인해요.",
+      "explanation": "불을 확인하러 혼자 가지 않아요. 말·그림·손짓·호출 수단으로 주변에 알리고 담당자의 안내를 확인해요.",
+      "scene": "media/scenarios/escape-alarm-serious.webp",
+      "currentPrompt": "숙소에서 화재경보가 울려요. 먼저 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-escape-alarm-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "escape/choice/clear",
+      "place": "대피 시뮬레이션",
+      "originalPrompt": "장면 1. 선생님이 연기 없는 대피 경로를 확인했어요. 어떻게 할까요?",
+      "options": [
+        "물건을 두고 안내에 따라 함께 대피해요.",
+        "가방을 찾고 일반 엘리베이터를 타요."
+      ],
+      "correct": "물건을 두고 안내에 따라 함께 대피해요.",
+      "explanation": "선생님이 확인한 안전한 경로로 함께 이동해요. 연기가 많아 길이 막혔다면 들어가지 말고 선생님께 알려요. 수건이나 물건을 찾느라 대피를 늦추지 않아요.",
+      "scene": "media/scenarios/escape-clear-serious.webp",
+      "currentPrompt": "장면 1. 선생님이 연기 없는 대피 경로를 확인했어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-escape-clear.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "escape/choice/mobility",
+      "place": "대피 시뮬레이션",
+      "originalPrompt": "숙소에서 대피할 때 어떤 도움이 필요한가요?",
+      "options": [
+        "안내를 확인하며 함께 이동해요.",
+        "계단 이동에 도움이 필요하다고 알려요."
+      ],
+      "correct": [
+        "안내를 확인하며 함께 이동해요.",
+        "계단 이동에 도움이 필요하다고 알려요."
+      ],
+      "explanation": "어느 표현을 선택해도 괜찮아요. 이동 지원이 필요하면 즉시 알려요. 혼자 계단을 시도하거나 무리하게 이동하지 않고, 사전에 정한 피난계획과 담당자의 안내를 따라요.",
+      "scene": "media/scenarios/escape-support-serious.webp",
+      "currentPrompt": "숙소에서 대피할 때 어떤 도움이 필요한가요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-escape-mobility.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "escape/choice/blocked",
+      "place": "대피 시뮬레이션",
+      "originalPrompt": "장면 2. 다른 상황이에요. 복도에 연기가 많아 나갈 수 없어요. 어떻게 할까요?",
+      "options": [
+        "연기 속으로 혼자 뛰어가요.",
+        "연기 속으로 가지 않고 선생님께 즉시 알려요."
+      ],
+      "correct": "연기 속으로 가지 않고 선생님께 즉시 알려요.",
+      "explanation": "연기 속으로 무리하게 들어가지 않아요. 담당자와 함께 사전에 확인한 안전한 공간으로 피하고 문을 닫아 연기 유입을 줄여요. 119에 위치와 상황을 알리고 안내를 따라요.",
+      "scene": "media/scenarios/escape-blocked-serious.webp",
+      "currentPrompt": "장면 2. 다른 상황이에요. 복도에 연기가 많아 나갈 수 없어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-escape-blocked-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "escape/choice/call",
+      "place": "대피 시뮬레이션",
+      "originalPrompt": "구조 요청 연습이에요. 119에 알려야 할 내용을 골라요.",
+      "options": [
+        "어디에 있는지",
+        "무슨 일이 생겼는지",
+        "도움이 필요한 사람과 상황"
+      ],
+      "correct": [
+        "어디에 있는지",
+        "무슨 일이 생겼는지",
+        "도움이 필요한 사람과 상황"
+      ],
+      "explanation": "실제 신고할 때는 위치·상황·필요한 도움을 알리고 상담원의 질문에 답해요. 말을 하기 어렵다면 가능한 신고·연락 수단을 미리 선생님과 연습해요. 이 화면은 실제 전화를 걸지 않아요.",
+      "scene": "media/question-art/escape-call-fix.webp",
+      "currentPrompt": "방 번호, 화재경보, 이동에 도움이 필요한 사람을 찾아요.",
+      "activity": "scene-find",
+      "targets": [
+        {
+          "id": "location",
+          "label": "방 번호 203",
+          "kind": "safe",
+          "box": [
+            69,
+            20,
+            9,
+            9
+          ]
+        },
+        {
+          "id": "situation",
+          "label": "빨간 화재경보",
+          "kind": "danger",
+          "box": [
+            81,
+            0,
+            9,
+            10
+          ]
+        },
+        {
+          "id": "support",
+          "label": "이동에 도움이 필요한 사람",
+          "kind": "safe",
+          "box": [
+            2,
+            28,
+            31,
+            68
+          ]
+        }
+      ],
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "escape/choice/assembly",
+      "place": "대피 시뮬레이션",
+      "originalPrompt": "안전한 집결지에 도착했어요. 가방이 방에 남아 있어요. 어떻게 할까요?",
+      "options": [
+        "가방을 찾으러 돌아가요.",
+        "집결지에서 인원 확인과 안내를 기다려요."
+      ],
+      "correct": "집결지에서 인원 확인과 안내를 기다려요.",
+      "explanation": "다시 건물 안으로 들어가지 않아요. 선생님과 인원을 확인하고 구조대·직원의 안내를 기다려요.",
+      "scene": "media/scenarios/escape-assembly-serious.webp",
+      "currentPrompt": "안전한 집결지에 도착했어요. 가방이 방에 남아 있어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-escape-assembly.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "sports/choice/sports-fire",
+      "place": "스포츠 놀이시설",
+      "originalPrompt": "놀이 중 화재 대피 안내가 나와요. 직원이 안전한 이동 경로를 확인했어요. 어떻게 할까요?",
+      "options": [
+        "점프를 멈추고 안내에 따라 놀이 구역에서 나와 함께 대피해요.",
+        "가방을 챙긴 뒤 다시 점프해요."
+      ],
+      "correct": "점프를 멈추고 안내에 따라 놀이 구역에서 나와 함께 대피해요.",
+      "explanation": "놀이를 멈추고 직원에게 필요한 도움을 알려요. 확인된 안전 경로로 이동하고 물건을 찾으러 돌아가지 않아요.",
+      "scene": "media/scenarios/sports-fire-serious.webp",
+      "currentPrompt": "놀이 중 화재 대피 안내가 나와요. 직원이 안전한 이동 경로를 확인했어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-sports-sports-fire.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "sports/choice/sports-quake",
+      "place": "스포츠 놀이시설",
+      "originalPrompt": "뛰려고 하는데 시설이 흔들려요. 어떻게 할까요?",
+      "options": [
+        "계속 높이 뛰어요.",
+        "놀이를 멈추고 떨어질 수 있는 기구를 주의하며 몸을 보호하고 직원의 안내를 확인해요."
+      ],
+      "correct": "놀이를 멈추고 떨어질 수 있는 기구를 주의하며 몸을 보호하고 직원의 안내를 확인해요.",
+      "explanation": "흔들릴 때 놀이를 계속하지 않아요. 머리와 몸을 보호하고, 흔들림이 멈추면 확인된 경로로 직원과 함께 이동해요.",
+      "scene": "media/scenarios/sports-quake-serious.webp",
+      "currentPrompt": "뛰려고 하는데 시설이 흔들려요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-sports-sports-quake-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "cinema/choice/cinema-fire",
+      "place": "영화관",
+      "originalPrompt": "영화관에 화재경보와 대피 안내가 나와요. 직원이 안전한 출구를 확인했어요. 어떻게 할까요?",
+      "options": [
+        "물건을 찾으러 좌석으로 돌아가요.",
+        "물건을 두고 선생님·직원의 안내에 따라 확인된 안전한 출구로 이동해요."
+      ],
+      "correct": "물건을 두고 선생님·직원의 안내에 따라 확인된 안전한 출구로 이동해요.",
+      "explanation": "영화관의 안내를 확인하고 함께 이동해요. 일반 엘리베이터는 이용하지 않아요. 이동이 어렵다면 필요한 도움을 즉시 알려요.",
+      "scene": "media/question-art/scene-cinema-choice-cinema-fire.webp",
+      "currentPrompt": "영화관에 화재경보와 대피 안내가 나와요. 직원이 안전한 출구를 확인했어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-cinema-cinema-fire.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "cinema/choice/cinema-smoke",
+      "place": "영화관",
+      "originalPrompt": "다른 화재 연습 장면이에요. 나가려는 영화관 통로에 연기가 많아요. 어떻게 할까요?",
+      "options": [
+        "연기 속으로 혼자 뛰어가요.",
+        "멈추고 선생님·직원에게 알려 다른 안전 경로와 필요한 구조 도움을 확인해요."
+      ],
+      "correct": "멈추고 선생님·직원에게 알려 다른 안전 경로와 필요한 구조 도움을 확인해요.",
+      "explanation": "연기 속으로 무리하게 들어가지 않아요. 담당자와 사전에 확인한 안전한 대피·대기 방법을 따르고, 위치와 상황을 알려 구조 도움을 요청해요.",
+      "scene": "media/scenarios/cinema-smoke-serious.webp",
+      "currentPrompt": "다른 화재 연습 장면이에요. 나가려는 영화관 통로에 연기가 많아요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-cinema-cinema-smoke.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "cinema/choice/cinema-quake",
+      "place": "영화관",
+      "originalPrompt": "새로운 연습 장면이에요. 영화관에서 앉아 있는데 바닥이 흔들려요. 어떻게 할까요?",
+      "options": [
+        "출구로 한꺼번에 뛰어요.",
+        "가방이나 손 등으로 머리와 몸을 보호하며 흔들림이 멈출 때까지 자리에 있어요."
+      ],
+      "correct": "가방이나 손 등으로 머리와 몸을 보호하며 흔들림이 멈출 때까지 자리에 있어요.",
+      "explanation": "극장에서는 흔들림이 계속될 때 출구로 몰려가지 않아요. 머리와 몸을 보호하고, 혼자 보호 자세를 취하기 어렵다면 바로 도움을 알려요.",
+      "scene": "media/scenarios/cinema-quake.webp",
+      "currentPrompt": "새로운 연습 장면이에요. 영화관에서 앉아 있는데 바닥이 흔들려요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-cinema-cinema-quake.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "cinema/choice/cinema-quake-exit",
+      "place": "영화관",
+      "originalPrompt": "영화관의 흔들림이 멈췄어요. 이제 어떻게 할까요?",
+      "options": [
+        "선생님·직원의 안내에 따라 서로 밀지 않고 안전한 경로로 대피해요.",
+        "주변을 밀치며 혼자 빨리 나가요."
+      ],
+      "correct": "선생님·직원의 안내에 따라 서로 밀지 않고 안전한 경로로 대피해요.",
+      "explanation": "흔들림이 멈추면 영화관의 안내에 따라 침착하게 대피해요. 군중에 휩쓸리지 않도록 함께 이동하고 필요한 지원을 알려요.",
+      "scene": "media/question-art/cinema-quake-exit.webp",
+      "currentPrompt": "영화관의 흔들림이 멈췄어요. 이제 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-cinema-cinema-quake-exit.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "museum/choice/museum-fire",
+      "place": "박물관·전시관",
+      "originalPrompt": "전시실에서 화재 대피 안내가 나와요. 안전한 경로가 확인됐어요. 어떻게 할까요?",
+      "options": [
+        "전시물 사진을 더 찍고 나가요.",
+        "관람을 멈추고 선생님·직원의 안내에 따라 함께 대피해요."
+      ],
+      "correct": "관람을 멈추고 선생님·직원의 안내에 따라 함께 대피해요.",
+      "explanation": "전시물을 보거나 소지품을 찾느라 지체하지 않아요. 안전한 경로로 이동하고, 이동이 어렵거나 통로에 연기가 있으면 즉시 알려요.",
+      "scene": "media/scenarios/museum-fire-serious.webp",
+      "currentPrompt": "전시실에서 화재 대피 안내가 나와요. 안전한 경로가 확인됐어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-museum-museum-fire.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "museum/choice/museum-quake",
+      "place": "박물관·전시관",
+      "originalPrompt": "전시실에서 흔들림이 느껴져요. 유리 진열장과 큰 전시물이 가까이 있어요. 어떻게 할까요?",
+      "options": [
+        "전시물이 쓰러지지 않게 혼자 붙잡아요.",
+        "떨어질 수 있는 물건에 주의하며 머리와 몸을 보호하고 선생님께 알려요."
+      ],
+      "correct": "떨어질 수 있는 물건에 주의하며 머리와 몸을 보호하고 선생님께 알려요.",
+      "explanation": "전시물이나 진열장을 붙잡으러 가지 않아요. 떨어지는 물건으로부터 몸을 보호하고, 흔들림이 멈추면 직원의 안내에 따라 안전한 경로로 대피해요.",
+      "scene": "media/scenarios/museum-quake-serious.webp",
+      "currentPrompt": "전시실에서 흔들림이 느껴져요. 유리 진열장과 큰 전시물이 가까이 있어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-museum-museum-quake.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "experience/choice/experience-fire",
+      "place": "체험관",
+      "originalPrompt": "도구를 사용하던 중 화재 대피 안내가 나와요. 어떻게 할까요?",
+      "options": [
+        "체험을 멈추고 선생님·직원의 안내에 따라 안전하게 이동해요.",
+        "작품을 끝내려고 계속 도구를 사용해요."
+      ],
+      "correct": "체험을 멈추고 선생님·직원의 안내에 따라 안전하게 이동해요.",
+      "explanation": "작품이나 재료보다 안전이 먼저예요. 체험을 멈추고 필요한 도움을 알린 뒤 확인된 경로로 함께 이동해요.",
+      "scene": "media/scenarios/experience-fire-serious.webp",
+      "currentPrompt": "도구를 사용하던 중 화재 대피 안내가 나와요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-experience-experience-fire.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "experience/choice/experience-quake",
+      "place": "체험관",
+      "originalPrompt": "체험관이 흔들려요. 뜨거운 도구와 떨어질 수 있는 재료가 있어요. 어떻게 할까요?",
+      "options": [
+        "도구를 들고 혼자 뛰어요.",
+        "활동을 멈추고 위험한 도구·낙하물에 주의하며 몸을 보호하고 도움을 요청해요."
+      ],
+      "correct": "활동을 멈추고 위험한 도구·낙하물에 주의하며 몸을 보호하고 도움을 요청해요.",
+      "explanation": "뜨겁거나 날카로운 도구를 들고 이동하지 않아요. 머리와 몸을 보호하고, 흔들림이 멈추면 담당자의 안내에 따라 함께 이동해요.",
+      "scene": "media/scenarios/experience-quake-serious.webp",
+      "currentPrompt": "체험관이 흔들려요. 뜨거운 도구와 떨어질 수 있는 재료가 있어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-experience-experience-quake.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "theme-park/choice/ride-quake",
+      "place": "놀이공원",
+      "originalPrompt": "놀이기구가 멈추고 지진 안내가 나와요. 어떻게 할까요?",
+      "options": [
+        "혼자 안전장치를 풀고 뛰어내려요.",
+        "안전장치를 유지하고 위험하거나 불편한 점을 직원에게 알리며 안전한 하차 안내를 따라요."
+      ],
+      "correct": "안전장치를 유지하고 위험하거나 불편한 점을 직원에게 알리며 안전한 하차 안내를 따라요.",
+      "explanation": "직원이 안전하게 내리는 방법을 알려 줄 때까지 안전장치를 유지하고 앉아 있어요. 도움이 필요하면 직원에게 알려요.",
+      "scene": "media/question-art/scene-theme-park-choice-ride-quake.webp",
+      "currentPrompt": "놀이기구가 멈추고 지진 안내가 나와요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-theme-park-ride-quake-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "heritage/choice/heritage-quake",
+      "place": "문화유산·궁궐",
+      "originalPrompt": "궁궐을 걷다가 흔들림이 느껴져요. 담장과 지붕 가까이에 있어요. 어떻게 할까요?",
+      "options": [
+        "머리와 몸을 보호하고 떨어지는 물건·담장에 주의하며 선생님께 알려요.",
+        "담장에 바짝 기대어 있어요."
+      ],
+      "correct": "머리와 몸을 보호하고 떨어지는 물건·담장에 주의하며 선생님께 알려요.",
+      "explanation": "오래된 담장·지붕·간판 등에서 떨어질 수 있는 물건을 주의해요. 무리해서 혼자 이동하지 말고 필요한 도움을 알려요.",
+      "scene": "media/scenarios/heritage-quake-serious.webp",
+      "currentPrompt": "궁궐을 걷다가 흔들림이 느껴져요. 담장과 지붕 가까이에 있어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-heritage-heritage-quake-review1.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "heritage/choice/heritage-open",
+      "place": "문화유산·궁궐",
+      "originalPrompt": "흔들림이 멈췄어요. 선생님이 안전한 이동 경로를 확인했어요. 어떻게 할까요?",
+      "options": [
+        "건물과 담장에서 떨어진 안전한 넓은 공간으로 함께 이동해요.",
+        "건물 안에 물건을 찾으러 혼자 들어가요."
+      ],
+      "correct": "건물과 담장에서 떨어진 안전한 넓은 공간으로 함께 이동해요.",
+      "explanation": "확인된 경로로 넓고 안전한 공간에 함께 이동해요. 떨어지는 물건과 차량 통행을 피하고 인원을 확인해요.",
+      "scene": "media/scenarios/heritage-open-serious.webp",
+      "currentPrompt": "흔들림이 멈췄어요. 선생님이 안전한 이동 경로를 확인했어요. 어떻게 할까요?",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-heritage-heritage-open.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    },
+    {
+      "key": "bus/choice/arrival-group",
+      "place": "버스 이동",
+      "originalPrompt": "버스 이동 중 돌발 문항",
+      "options": [],
+      "scene": "media/question-art/scene-bus-choice-arrival-group.webp",
+      "activity": "choice",
+      "optionCards": {
+        "file": "media/question-art/cards-bus-arrival-group.webp",
+        "width": 1600,
+        "height": 800
+      },
+      "review": "문항·장소·행동·표정 대조, 그림 파일·클릭 범위 확인"
+    }
+  ],
+  "clues": {
+    "sports/one": {
+      "file": "media/question-art/clue-sports-one.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "이용 안내 확인"
+    },
+    "sports/clothes": {
+      "file": "media/question-art/clue-sports-clothes.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "놀이 전 준비"
+    },
+    "sports/queue": {
+      "file": "media/question-art/clue-sports-queue.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "차례와 거리"
+    },
+    "cinema/exit": {
+      "file": "media/question-art/cards-cinema-alarm.webp",
+      "width": 1600,
+      "height": 800,
+      "panel": 1,
+      "label": "출구 먼저 확인"
+    },
+    "cinema/aisle": {
+      "file": "media/question-art/cards-cinema-cinema-quake-exit.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "통로에서는 천천히"
+    },
+    "cinema/sound": {
+      "file": "media/question-art/cards-cinema-noise.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 1,
+      "label": "불편하면 알려요"
+    },
+    "museum/line": {
+      "file": "media/question-art/cards-museum-touch.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "관람선 확인"
+    },
+    "museum/group": {
+      "file": "media/question-art/clue-museum-group.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "일행과 함께"
+    },
+    "museum/guide": {
+      "file": "media/question-art/cards-museum-touch.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "안내 확인"
+    },
+    "experience/guide": {
+      "file": "media/question-art/cards-experience-unknown-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "시작 신호 확인"
+    },
+    "experience/tool": {
+      "file": "media/question-art/cards-experience-tool.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 1,
+      "label": "도구와 보호구"
+    },
+    "experience/food": {
+      "file": "media/question-art/clue-experience-food.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "먹기 전에 확인"
+    },
+    "theme-park/wait": {
+      "file": "media/question-art/clue-theme-park-wait.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "차례 기다리기"
+    },
+    "theme-park/bar": {
+      "file": "media/question-art/cards-theme-park-ride-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "안전장치 확인"
+    },
+    "theme-park/fence": {
+      "file": "media/question-art/cards-theme-park-item.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 1,
+      "label": "울타리 밖에 있어요"
+    },
+    "park/water": {
+      "file": "media/question-art/cards-park-lake-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 1,
+      "label": "물가와 난간"
+    },
+    "park/path": {
+      "file": "media/question-art/scene-park-quiz-grass.webp",
+      "label": "정해진 길"
+    },
+    "park/shade": {
+      "file": "media/question-art/clue-park-shade.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "그늘과 휴식"
+    },
+    "park/grass": {
+      "file": "media/question-art/cards-park-grass.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "풀숲과 벌레 주의"
+    },
+    "park/wildlife": {
+      "file": "media/question-art/cards-park-snake-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 1,
+      "label": "뱀·벌은 멀리서"
+    },
+    "garden/plant": {
+      "file": "media/question-art/cards-garden-berry-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "식물과 열매"
+    },
+    "garden/path": {
+      "file": "media/question-art/scene-garden-quiz-path.webp",
+      "label": "관찰하는 길"
+    },
+    "garden/insect": {
+      "file": "media/question-art/cards-garden-bee-review3.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 1,
+      "label": "벌레와 불편함"
+    },
+    "lodging/window": {
+      "file": "media/question-art/clue-lodging-window.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "창문과 침대"
+    },
+    "lodging/plug": {
+      "file": "media/question-art/clue-lodging-plug.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "전기와 뜨거운 물"
+    },
+    "lodging/teacher": {
+      "file": "media/question-art/clue-lodging-teacher.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "선생님과 만나는 곳"
+    },
+    "bus/belt": {
+      "file": "media/question-art/scene-bus-quiz-belt-review2.webp",
+      "label": "안전벨트와 고정장치"
+    },
+    "bus/device": {
+      "file": "media/question-art/clue-bus-device.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "안전장치 위치"
+    },
+    "bus/stop": {
+      "file": "media/question-art/scene-homecoming-quiz-stop.webp",
+      "label": "멈춘 뒤 내리기"
+    },
+    "rest/food": {
+      "file": "media/question-art/clue-rest-food.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "뜨거운 음식"
+    },
+    "rest/group": {
+      "file": "media/question-art/cards-rest-alone.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "약속과 인원 확인"
+    },
+    "rest/floor": {
+      "file": "media/question-art/clue-rest-floor.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "차량과 바닥"
+    },
+    "night/contact": {
+      "file": "media/question-art/scene-night-quiz-night-help.webp",
+      "label": "도움 요청 연습"
+    },
+    "night/route": {
+      "file": "media/question-art/cards-night-toilet-review1.webp",
+      "width": 1600,
+      "height": 800,
+      "panel": 1,
+      "label": "이동 경로 확인"
+    },
+    "night/belongings": {
+      "file": "media/question-art/scene-night-quiz-corridor.webp",
+      "label": "통로 정리"
+    },
+    "escape/adult": {
+      "file": "media/question-art/cards-escape-alarm-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 1,
+      "label": "주변에 알리기"
+    },
+    "escape/route": {
+      "file": "media/question-art/cards-escape-clear.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "안전한 경로 확인"
+    },
+    "escape/help": {
+      "file": "media/question-art/cards-escape-mobility.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 1,
+      "label": "이동이 어려울 때"
+    },
+    "heritage/boundary": {
+      "file": "media/question-art/cards-heritage-photo.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "관람 구역 확인"
+    },
+    "heritage/step": {
+      "file": "media/question-art/cards-heritage-threshold-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 1,
+      "label": "돌계단과 문턱"
+    },
+    "heritage/together": {
+      "file": "media/question-art/clue-heritage-together.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "함께 쉬며 이동"
+    },
+    "homecoming/belt": {
+      "file": "media/question-art/cards-homecoming-stop-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 1,
+      "label": "돌아올 때도 안전벨트"
+    },
+    "homecoming/stop": {
+      "file": "media/question-art/scene-homecoming-quiz-stop.webp",
+      "label": "완전히 멈춘 뒤 이동"
+    },
+    "homecoming/count": {
+      "file": "media/question-art/cards-homecoming-count.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "함께 인원 확인"
+    },
+    "farm/rule0": {
+      "file": "media/question-art/cards-farm-feed-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "동물에게 다가가기 전"
+    },
+    "farm/rule1": {
+      "file": "media/question-art/cards-farm-feed-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "동물 울타리 지키기"
+    },
+    "farm/rule2": {
+      "file": "media/question-art/scene-farm-quiz-wash.webp",
+      "label": "체험 뒤 손 씻기"
+    },
+    "water/rule0": {
+      "file": "media/question-art/cards-water-entry-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 1,
+      "label": "오늘의 준비물"
+    },
+    "water/rule1": {
+      "file": "media/question-art/scene-water-quiz-run.webp",
+      "label": "젖은 바닥"
+    },
+    "water/rule2": {
+      "file": "media/question-art/clue-water-rule2.webp",
+      "width": 1280,
+      "height": 853,
+      "label": "물에서는 함께"
+    },
+    "library/rule0": {
+      "file": "media/question-art/cards-library-voice-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "관람할 때 목소리"
+    },
+    "library/rule1": {
+      "file": "media/question-art/scene-library-quiz-help.webp",
+      "label": "불편하면 알리기"
+    },
+    "library/rule2": {
+      "file": "media/question-art/cards-library-noise-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 1,
+      "label": "이동 안내 확인"
+    },
+    "playground/rule0": {
+      "file": "media/question-art/scene-playground-quiz-wet.webp",
+      "label": "젖은 바닥 피하기"
+    },
+    "playground/rule1": {
+      "file": "media/question-art/cards-playground-grass.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 1,
+      "label": "풀숲에 들어가지 않기"
+    },
+    "playground/rule2": {
+      "file": "media/question-art/cards-playground-heat-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 0,
+      "label": "힘들면 쉬기"
+    },
+    "eco-park/rule0": {
+      "file": "media/question-art/scene-eco-park-quiz-path.webp",
+      "label": "안내에 따라 이동"
+    },
+    "eco-park/rule1": {
+      "file": "media/question-art/cards-eco-park-snake-review1.webp",
+      "width": 1536,
+      "height": 1024,
+      "panel": 1,
+      "label": "뱀과 벌은 멀리서"
+    },
+    "eco-park/rule2": {
+      "file": "media/question-art/scene-eco-park-quiz-path.webp",
+      "label": "풀숲 피하기"
+    }
+  },
+  "venueOverrides": {
+    "eco-park": "media/question-art/venue-eco.webp",
+    "homecoming": "media/question-art/venue-homecoming.webp"
+  }
+}

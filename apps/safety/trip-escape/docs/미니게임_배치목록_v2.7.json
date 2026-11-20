@@ -1,0 +1,560 @@
+{
+  "version": "2.7.0",
+  "counts": {
+    "placements": 41,
+    "primary": 32,
+    "supplemental": 9,
+    "screenshots": 61
+  },
+  "placements": [
+    {
+      "place": "bus",
+      "placeName": "버스 이동",
+      "kind": "find",
+      "title": "출발 전, 위험한 행동과 안전장치를 찾아요",
+      "goal": "일어나 있는 친구와 풀린 벨트 · 소화기 · 비상망치 · 벨트를 맨 형아맨을 구분해 찾아요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 버스 이동",
+      "photos": [
+        "18-bus-find.png"
+      ]
+    },
+    {
+      "place": "sports",
+      "placeName": "스포츠 놀이시설",
+      "kind": "jump",
+      "title": "형아맨의 안전 리듬 점프",
+      "goal": "제공된 노래의 점프·멈춤 노트를 끝까지 연습해요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 2",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 스포츠 놀이시설",
+      "photos": [
+        "리듬난이도_easy.png",
+        "리듬난이도_expert.png",
+        "리듬난이도_hard.png",
+        "리듬난이도_normal.png",
+        "리듬점프동작.png"
+      ]
+    },
+    {
+      "place": "sports",
+      "placeName": "스포츠 놀이시설",
+      "kind": "prep",
+      "title": "놀이 전 준비 카드",
+      "goal": "소지품·이용 안내·차례를 준비해요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 스포츠 놀이시설",
+      "photos": [
+        "30-sports-preparation.png"
+      ]
+    },
+    {
+      "place": "sports",
+      "placeName": "스포츠 놀이시설",
+      "kind": "memory",
+      "title": "같은 안전 그림 찾기",
+      "goal": "기다림·멈춤·휴식 그림 세 쌍을 찾아요.",
+      "primary": false,
+      "entry": "선생님 → 개별 활동 자료",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 스포츠 놀이시설",
+      "photos": [
+        "05-sports-memory.png"
+      ]
+    },
+    {
+      "place": "cinema",
+      "placeName": "영화관",
+      "kind": "find",
+      "title": "영화관에서 위험한 행동과 안전한 행동·표지를 찾아요",
+      "goal": "계단에서 뛰는 친구 · 선생님과 걷는 형아맨 · 문 위 초록색 비상구 표지을 구분해 찾아요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 영화관",
+      "photos": [
+        "19-cinema-find.png"
+      ]
+    },
+    {
+      "place": "cinema",
+      "placeName": "영화관",
+      "kind": "maze",
+      "title": "영화관 출구 통로 미로",
+      "goal": "의자와 벽을 피하며 출구까지 천천히 이동해요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 2",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 영화관",
+      "photos": [
+        "40-cinema-maze.png"
+      ]
+    },
+    {
+      "place": "cinema",
+      "placeName": "영화관",
+      "kind": "memory",
+      "title": "안전 그림 같은 짝 찾기",
+      "goal": "출구·도움·천천히 그림을 기억해요.",
+      "primary": false,
+      "entry": "선생님 → 개별 활동 자료",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 영화관",
+      "photos": [
+        "15-cinema-memory.png"
+      ]
+    },
+    {
+      "place": "cinema",
+      "placeName": "영화관",
+      "kind": "voice",
+      "title": "관람 시간 목소리 연습",
+      "goal": "마이크 또는 그림으로 목소리 크기를 함께 확인해요.",
+      "primary": false,
+      "entry": "선생님 → 개별 활동 자료",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 영화관",
+      "photos": [
+        "56-cinema-voice.png"
+      ]
+    },
+    {
+      "place": "museum",
+      "placeName": "박물관·전시관",
+      "kind": "compare",
+      "title": "달라진 관람 행동 세 곳",
+      "goal": "두 그림에서 관람 줄·전시물에 뻗은 손·바닥 음료를 비교해요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 2",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 박물관·전시관",
+      "photos": [
+        "41-museum-compare.png"
+      ]
+    },
+    {
+      "place": "museum",
+      "placeName": "박물관·전시관",
+      "kind": "find",
+      "title": "박물관에서 위험한 행동과 안전한 행동·표지를 찾아요",
+      "goal": "빨간 줄을 넘는 친구 · 선생님과 관람하는 형아맨 · 오른쪽 위 비상구 표지을 구분해 찾아요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 박물관·전시관",
+      "photos": [
+        "20-museum-find.png"
+      ]
+    },
+    {
+      "place": "museum",
+      "placeName": "박물관·전시관",
+      "kind": "matching",
+      "title": "이럴 땐 이렇게! 짝맞추기",
+      "goal": "전시 관람·이동·휴식 상황을 안전 행동과 연결해요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 4",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 박물관·전시관",
+      "photos": [
+        "04-museum-matching.png"
+      ]
+    },
+    {
+      "place": "museum",
+      "placeName": "박물관·전시관",
+      "kind": "voice",
+      "title": "관람 시간 목소리 연습",
+      "goal": "마이크 또는 그림으로 목소리 크기를 함께 확인해요.",
+      "primary": false,
+      "entry": "선생님 → 개별 활동 자료",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 박물관·전시관",
+      "photos": [
+        "57-museum-voice.png"
+      ]
+    },
+    {
+      "place": "experience",
+      "placeName": "체험관",
+      "kind": "sort",
+      "title": "오늘 체험 도구 분류",
+      "goal": "함께 쓸 도구와 선생님이 다룰 도구를 바구니에 놓아요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 2",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 체험관",
+      "photos": [
+        "42-experience-sort.png"
+      ]
+    },
+    {
+      "place": "experience",
+      "placeName": "체험관",
+      "kind": "prep",
+      "title": "체험 준비물과 행동 모으기",
+      "goal": "안내·도구·재료를 확인하는 카드를 골라요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 체험관",
+      "photos": [
+        "12-experience-preparation.png"
+      ]
+    },
+    {
+      "place": "experience",
+      "placeName": "체험관",
+      "kind": "matching",
+      "title": "도구 사용 도움 짝맞추기",
+      "goal": "모르는 방법·불편함을 도움 표현과 연결해요.",
+      "primary": false,
+      "entry": "선생님 → 개별 활동 자료",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 체험관",
+      "photos": [
+        "27-experience-matching.png"
+      ]
+    },
+    {
+      "place": "experience",
+      "placeName": "체험관",
+      "kind": "voice",
+      "title": "관람 시간 목소리 연습",
+      "goal": "마이크 또는 그림으로 목소리 크기를 함께 확인해요.",
+      "primary": false,
+      "entry": "선생님 → 개별 활동 자료",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 체험관",
+      "photos": [
+        "58-experience-voice.png"
+      ]
+    },
+    {
+      "place": "theme-park",
+      "placeName": "놀이공원",
+      "kind": "ride-order",
+      "title": "놀이기구 탑승 순서",
+      "goal": "안내 확인부터 멈춘 뒤 하차까지 여섯 순서를 놓아요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 2",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 놀이공원",
+      "photos": [
+        "49-ride-order.png"
+      ]
+    },
+    {
+      "place": "theme-park",
+      "placeName": "놀이공원",
+      "kind": "find",
+      "title": "안전하게 바꿀 행동 네 곳을 찾아요",
+      "goal": "줄에서 친구 밀기 · 놀이기구에서 일어나기 · 울타리 너머로 손 뻗기 · 사람들 사이에서 뛰기 · 선생님과 함께 있는 형아맨을 구분해 찾아요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 놀이공원",
+      "photos": [
+        "21-theme-park-find.png"
+      ]
+    },
+    {
+      "place": "theme-park",
+      "placeName": "놀이공원",
+      "kind": "matching",
+      "title": "떨어진 모자, 어떻게 할까요?",
+      "goal": "울타리와 탑승 상황을 안전 행동과 연결해요.",
+      "primary": false,
+      "entry": "선생님 → 개별 활동 자료",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 놀이공원",
+      "photos": [
+        "28-theme-park-matching.png"
+      ]
+    },
+    {
+      "place": "park",
+      "placeName": "호수공원",
+      "kind": "dodge",
+      "title": "공원 안전 피하기 기록 도전",
+      "goal": "산책길의 위험을 좌우로 피하고 안전별을 모으며 기록을 겨뤄요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 4",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 호수공원",
+      "photos": [
+        "노말선택_1024.png",
+        "노말선택_1440.png",
+        "노말선택_390.png",
+        "도전선택_1024.png",
+        "도전선택_1440.png",
+        "도전선택_390.png",
+        "망토점프.png",
+        "망토획득.png",
+        "산책길_1024.png",
+        "산책길_1440.png",
+        "산책길_390.png"
+      ]
+    },
+    {
+      "place": "park",
+      "placeName": "호수공원",
+      "kind": "find",
+      "title": "공원에서 위험한 행동과 안전한 행동을 찾아요",
+      "goal": "난간에 발을 올린 친구 · 선생님과 걷는 형아맨 · 그늘에서 물 마시는 친구을 구분해 찾아요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 호수공원",
+      "photos": [
+        "22-park-find.png"
+      ]
+    },
+    {
+      "place": "park",
+      "placeName": "호수공원",
+      "kind": "path",
+      "title": "약속 장소까지 안전한 길",
+      "goal": "정해진 산책로로 함께 이동해요.",
+      "primary": false,
+      "entry": "선생님 → 개별 활동 자료",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 호수공원",
+      "photos": [
+        "32-park-path.png"
+      ]
+    },
+    {
+      "place": "garden",
+      "placeName": "수목원·식물원",
+      "kind": "find",
+      "title": "식물원에서 위험한 행동·장소와 안전한 행동을 찾아요",
+      "goal": "열매에 손을 뻗는 친구 · 바닥에 고인 물 · 관찰로에 있는 형아맨을 구분해 찾아요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 수목원·식물원",
+      "photos": [
+        "23-garden-find.png"
+      ]
+    },
+    {
+      "place": "garden",
+      "placeName": "수목원·식물원",
+      "kind": "path",
+      "title": "온실 산책로 완성하기",
+      "goal": "정해진 길로 관찰하고 일행과 만나요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 3",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 수목원·식물원",
+      "photos": [
+        "07-garden-path.png"
+      ]
+    },
+    {
+      "place": "heritage",
+      "placeName": "문화유산·궁궐",
+      "kind": "matching",
+      "title": "안전 표지와 행동 선 연결",
+      "goal": "출입 제한·계단 주의·비상구 표지를 안전 행동과 연결해요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 2",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 문화유산·궁궐",
+      "photos": [
+        "48-heritage-signs.png"
+      ]
+    },
+    {
+      "place": "heritage",
+      "placeName": "문화유산·궁궐",
+      "kind": "path",
+      "title": "궁궐 관람길 찾기",
+      "goal": "문턱·계단에서는 내게 맞는 길과 도움을 확인해요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 3",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 문화유산·궁궐",
+      "photos": [
+        "14-heritage-path.png"
+      ]
+    },
+    {
+      "place": "heritage",
+      "placeName": "문화유산·궁궐",
+      "kind": "find",
+      "title": "궁궐에서 위험한 행동과 안전한 행동을 찾아요",
+      "goal": "관람 제한 줄을 넘는 친구 · 돌계단에서 뛰는 친구 · 관람로에서 함께 걷는 형아맨을 구분해 찾아요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 문화유산·궁궐",
+      "photos": [
+        "24-heritage-find.png"
+      ]
+    },
+    {
+      "place": "heritage",
+      "placeName": "문화유산·궁궐",
+      "kind": "voice",
+      "title": "관람 시간 목소리 연습",
+      "goal": "마이크 또는 그림으로 목소리 크기를 함께 확인해요.",
+      "primary": false,
+      "entry": "선생님 → 개별 활동 자료",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 문화유산·궁궐",
+      "photos": [
+        "59-heritage-voice.png"
+      ]
+    },
+    {
+      "place": "lodging",
+      "placeName": "숙소 생활",
+      "kind": "find",
+      "title": "숙소에서 위험한 행동과 안전한 정리 행동을 찾아요",
+      "goal": "침대에서 뛰는 친구 · 창문에 몸을 내미는 친구 · 콘센트에 열쇠를 대는 친구 · 가방을 선반에 넣는 형아맨을 구분해 찾아요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 숙소 생활",
+      "photos": [
+        "25-lodging-find.png"
+      ]
+    },
+    {
+      "place": "lodging",
+      "placeName": "숙소 생활",
+      "kind": "difference",
+      "title": "정리 전후 다른 그림 찾기",
+      "goal": "안전하게 정리된 곳이 어디인지 찾아요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 2",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 숙소 생활",
+      "photos": [
+        "08-lodging-difference.png"
+      ]
+    },
+    {
+      "place": "lodging",
+      "placeName": "숙소 생활",
+      "kind": "matching",
+      "title": "숙소에서 도움이 필요해요",
+      "goal": "밤의 건강·화장실·통로 정리 상황을 연결해요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 4",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 숙소 생활",
+      "photos": [
+        "13-lodging-matching.png"
+      ]
+    },
+    {
+      "place": "rest",
+      "placeName": "휴게소",
+      "kind": "find",
+      "title": "휴게소에서 함께 고칠 상황 세 곳을 찾아요",
+      "goal": "뜨거운 음식 들고 뛰기 · 혼자 일행에서 멀어지기 · 젖은 바닥으로 걷기 · 선생님과 함께 있는 형아맨을 구분해 찾아요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 휴게소",
+      "photos": [
+        "26-rest-find.png"
+      ]
+    },
+    {
+      "place": "night",
+      "placeName": "숙박형 밤 미션",
+      "kind": "prep",
+      "title": "잠들기 전 방 정리",
+      "goal": "통로·연락 방법·화장실 경로를 확인해요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 숙박형 밤 미션",
+      "photos": [
+        "29-night-preparation.png"
+      ]
+    },
+    {
+      "place": "escape",
+      "placeName": "대피 시뮬레이션",
+      "kind": "torch",
+      "title": "손전등으로 안전장치 찾기",
+      "goal": "불이 나기 전에 복도의 소화기·경보기·유도등 위치를 알아봐요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 대피 시뮬레이션",
+      "photos": [
+        "09-escape-torch.png"
+      ]
+    },
+    {
+      "place": "escape",
+      "placeName": "대피 시뮬레이션",
+      "kind": "evac-order",
+      "title": "대피 행동 순서 놓기",
+      "goal": "안전 경로가 확인된 상황에서 알림·이동·집결을 연습해요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 5",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 대피 시뮬레이션",
+      "photos": [
+        "10-escape-evac-order.png"
+      ]
+    },
+    {
+      "place": "escape",
+      "placeName": "대피 시뮬레이션",
+      "kind": "call-order",
+      "title": "119 구조 요청 연습",
+      "goal": "실제 전화 없이 연결·내용 확인·안내 기다리기를 연습해요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 7",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 대피 시뮬레이션",
+      "photos": [
+        "11-escape-call-order.png"
+      ]
+    },
+    {
+      "place": "playground",
+      "placeName": "공원·놀이터",
+      "kind": "whack",
+      "title": "위험한 곳 발견 알리기",
+      "goal": "튀어나오는 위험 그림만 골라 선생님께 알려요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 공원·놀이터",
+      "photos": [
+        "43-playground-whack.png"
+      ]
+    },
+    {
+      "place": "eco-park",
+      "placeName": "생태공원",
+      "kind": "signal",
+      "title": "안내자의 걷기·멈춤 신호",
+      "goal": "걷기에는 누르고 멈춤에는 손을 떼어 함께 이동해요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 생태공원",
+      "photos": [
+        "44-eco-park-signal.png"
+      ]
+    },
+    {
+      "place": "farm",
+      "placeName": "농촌·동물체험장",
+      "kind": "wash",
+      "title": "동물 체험 뒤 손 씻기",
+      "goal": "비누로 여섯 부위를 30초 이상 문지르는 순서를 연습해요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 농촌·동물체험장",
+      "photos": [
+        "45-farm-wash.png"
+      ]
+    },
+    {
+      "place": "water",
+      "placeName": "물놀이시설",
+      "kind": "dress",
+      "title": "오늘 물놀이 장비 준비",
+      "goal": "수영모·수영복·구명조끼를 준비 칸에 놓아요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 물놀이시설",
+      "photos": [
+        "46-water-dress.png",
+        "55-water-phone.png"
+      ]
+    },
+    {
+      "place": "library",
+      "placeName": "도서관·공연장",
+      "kind": "voice",
+      "title": "관람 시간의 목소리 크기",
+      "goal": "마이크 또는 그림으로 작은 목소리를 연습해요.",
+      "primary": true,
+      "entry": "기본 이야기 · 과제 1",
+      "freeEntry": "홈 → 자유 모드 → 미니게임 → 도서관·공연장",
+      "photos": [
+        "47-library-voice.png",
+        "53-voice-complete.png"
+      ]
+    }
+  ]
+}

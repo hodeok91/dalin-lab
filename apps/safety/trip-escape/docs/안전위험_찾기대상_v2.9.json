@@ -1,0 +1,450 @@
+{
+  "quizzes": 41,
+  "targets": 82,
+  "preparations": 3,
+  "prepTargets": 15,
+  "replaced": [
+    {
+      "id": "private-01",
+      "from": "media/scenarios/lodging-health-serious.webp",
+      "to": "media/review-v29/lodging-health-serious.webp"
+    },
+    {
+      "id": "private-02",
+      "from": "media/question-art/cards-lodging-hurt.webp",
+      "to": "media/review-v29/cards-lodging-hurt.webp"
+    },
+    {
+      "id": "private-03",
+      "from": "media/question-art/lodging-door.webp",
+      "to": "media/review-v29/lodging-door.webp"
+    },
+    {
+      "id": "private-04",
+      "from": "media/question-art/cards-lodging-door.webp",
+      "to": "media/review-v29/cards-lodging-door.webp"
+    },
+    {
+      "id": "private-05",
+      "from": "media/scenarios/lodging-night.webp",
+      "to": "media/review-v29/lodging-night.webp"
+    },
+    {
+      "id": "private-06",
+      "from": "media/question-art/cards-lodging-toilet-review1.webp",
+      "to": "media/review-v29/cards-lodging-toilet-review1.webp"
+    },
+    {
+      "id": "private-07",
+      "from": "media/scenarios/lodging-medicine-serious.webp",
+      "to": "media/review-v29/lodging-medicine-serious.webp"
+    },
+    {
+      "id": "private-08",
+      "from": "media/question-art/cards-lodging-medicine.webp",
+      "to": "media/review-v29/cards-lodging-medicine.webp"
+    },
+    {
+      "id": "private-09",
+      "from": "media/question-art/scene-lodging-quiz-jump.webp",
+      "to": "media/review-v29/scene-lodging-quiz-jump.webp"
+    },
+    {
+      "id": "private-10",
+      "from": "media/question-art/scene-lodging-quiz-help.webp",
+      "to": "media/review-v29/scene-lodging-quiz-help.webp"
+    },
+    {
+      "id": "private-11",
+      "from": "media/question-art/scene-night-choice-toilet.webp",
+      "to": "media/review-v29/scene-night-choice-toilet.webp"
+    },
+    {
+      "id": "private-12",
+      "from": "media/question-art/cards-night-toilet-review1.webp",
+      "to": "media/review-v29/cards-night-toilet-review1.webp"
+    },
+    {
+      "id": "private-13",
+      "from": "media/question-art/scene-night-choice-medicine.webp",
+      "to": "media/review-v29/scene-night-choice-medicine.webp"
+    },
+    {
+      "id": "private-14",
+      "from": "media/question-art/cards-night-medicine.webp",
+      "to": "media/review-v29/cards-night-medicine.webp"
+    },
+    {
+      "id": "private-15",
+      "from": "media/question-art/scene-night-quiz-night-help.webp",
+      "to": "media/review-v29/scene-night-quiz-night-help.webp"
+    },
+    {
+      "id": "private-16",
+      "from": "media/question-art/scene-night-quiz-corridor.webp",
+      "to": "media/review-v29/scene-night-quiz-corridor.webp"
+    },
+    {
+      "id": "private-17",
+      "from": "media/scenarios/escape-alarm-serious.webp",
+      "to": "media/review-v29/escape-alarm-serious.webp"
+    },
+    {
+      "id": "private-18",
+      "from": "media/question-art/cards-escape-alarm-review1.webp",
+      "to": "media/review-v29/cards-escape-alarm-review1.webp"
+    },
+    {
+      "id": "private-19",
+      "from": "media/scenarios/escape-blocked-serious.webp",
+      "to": "media/review-v29/escape-blocked-serious.webp"
+    },
+    {
+      "id": "private-20",
+      "from": "media/question-art/cards-escape-blocked-review1.webp",
+      "to": "media/review-v29/cards-escape-blocked-review1.webp"
+    },
+    {
+      "id": "private-21",
+      "from": "media/question-art/escape-call-fix.webp",
+      "to": "media/review-v29/escape-call-fix.webp"
+    },
+    {
+      "id": "private-22",
+      "from": "media/question-art/clue-lodging-window.webp",
+      "to": "media/review-v29/clue-lodging-window.webp"
+    },
+    {
+      "id": "private-23",
+      "from": "media/question-art/clue-lodging-plug.webp",
+      "to": "media/review-v29/clue-lodging-plug.webp"
+    },
+    {
+      "id": "private-24",
+      "from": "media/question-art/clue-lodging-teacher.webp",
+      "to": "media/review-v29/clue-lodging-teacher.webp"
+    },
+    {
+      "id": "private-25",
+      "from": "media/question-art/cards-escape-clear.webp",
+      "to": "media/review-v29/cards-escape-clear.webp"
+    },
+    {
+      "id": "private-26",
+      "from": "media/question-art/cards-escape-mobility.webp",
+      "to": "media/review-v29/cards-escape-mobility.webp"
+    },
+    {
+      "id": "private-27",
+      "from": "media/game/lodging-find-v25.webp",
+      "to": "media/review-v29/lodging-find-v25.webp"
+    },
+    {
+      "id": "context-heritage-quake",
+      "from": "media/scenarios/heritage-quake-serious.webp",
+      "to": "media/review-v29/heritage-quake-serious.webp"
+    },
+    {
+      "id": "context-eco-bee",
+      "from": "media/scenarios/eco-bee.webp",
+      "to": "media/review-v29/eco-bee.webp"
+    },
+    {
+      "id": "context-lodging-venue",
+      "from": "media/illustrations/lodging.webp",
+      "to": "media/review-v29/lodging-venue.webp"
+    },
+    {
+      "id": "mixed-01",
+      "from": "media/scenarios/sports-flip-user.webp",
+      "to": "media/review-v29/mixed-sports-flip.webp"
+    },
+    {
+      "id": "mixed-02",
+      "from": "media/question-art/scene-sports-quiz-stop.webp",
+      "to": "media/review-v29/mixed-sports-stop.webp"
+    },
+    {
+      "id": "mixed-03",
+      "from": "media/question-art/scene-cinema-quiz-help.webp",
+      "to": "media/review-v29/mixed-cinema-help.webp"
+    },
+    {
+      "id": "mixed-04",
+      "from": "media/question-art/scene-museum-quiz-touch.webp",
+      "to": "media/review-v29/mixed-museum-touch.webp"
+    },
+    {
+      "id": "mixed-05",
+      "from": "media/question-art/scene-museum-quiz-food-review1.webp",
+      "to": "media/review-v29/mixed-museum-food.webp"
+    },
+    {
+      "id": "mixed-06",
+      "from": "media/question-art/scene-experience-quiz-guide.webp",
+      "to": "media/review-v29/mixed-experience-guide.webp"
+    },
+    {
+      "id": "mixed-07",
+      "from": "media/question-art/scene-theme-park-quiz-condition.webp",
+      "to": "media/review-v29/mixed-theme-park-condition.webp"
+    },
+    {
+      "id": "mixed-08",
+      "from": "media/question-art/scene-park-quiz-rest-review1.webp",
+      "to": "media/review-v29/mixed-park-rest.webp"
+    },
+    {
+      "id": "mixed-09",
+      "from": "media/question-art/scene-park-quiz-grass.webp",
+      "to": "media/review-v29/mixed-park-grass.webp"
+    },
+    {
+      "id": "mixed-10",
+      "from": "media/question-art/scene-garden-quiz-path.webp",
+      "to": "media/review-v29/mixed-garden-path.webp"
+    },
+    {
+      "id": "mixed-11",
+      "from": "media/question-art/scene-lodging-quiz-help.webp",
+      "to": "media/review-v29/mixed-lodging-help.webp"
+    },
+    {
+      "id": "mixed-12",
+      "from": "media/question-art/scene-bus-quiz-belt-review2.webp",
+      "to": "media/review-v29/mixed-bus-belt.webp"
+    },
+    {
+      "id": "mixed-13",
+      "from": "media/question-art/scene-rest-quiz-food.webp",
+      "to": "media/review-v29/mixed-rest-food.webp"
+    },
+    {
+      "id": "mixed-14",
+      "from": "media/question-art/scene-rest-quiz-teacher.webp",
+      "to": "media/review-v29/mixed-rest-teacher.webp"
+    },
+    {
+      "id": "mixed-15",
+      "from": "media/question-art/scene-night-quiz-night-help.webp",
+      "to": "media/review-v29/mixed-night-night-help.webp"
+    },
+    {
+      "id": "mixed-16",
+      "from": "media/question-art/scene-night-quiz-corridor.webp",
+      "to": "media/review-v29/mixed-night-corridor.webp"
+    },
+    {
+      "id": "mixed-17",
+      "from": "media/question-art/scene-escape-quiz-lift.webp",
+      "to": "media/review-v29/mixed-escape-lift.webp"
+    },
+    {
+      "id": "mixed-18",
+      "from": "media/question-art/scene-heritage-quiz-help.webp",
+      "to": "media/review-v29/mixed-heritage-help.webp"
+    },
+    {
+      "id": "mixed-19",
+      "from": "media/question-art/scene-homecoming-quiz-stop.webp",
+      "to": "media/review-v29/mixed-homecoming-stop.webp"
+    },
+    {
+      "id": "mixed-20",
+      "from": "media/question-art/scene-farm-quiz-wash.webp",
+      "to": "media/review-v29/mixed-farm-wash.webp"
+    },
+    {
+      "id": "mixed-21",
+      "from": "media/question-art/scene-water-quiz-run.webp",
+      "to": "media/review-v29/mixed-water-run.webp"
+    },
+    {
+      "id": "mixed-22",
+      "from": "media/question-art/scene-library-quiz-help.webp",
+      "to": "media/review-v29/mixed-library-help.webp"
+    },
+    {
+      "id": "mixed-23",
+      "from": "media/question-art/scene-playground-quiz-wet.webp",
+      "to": "media/review-v29/mixed-playground-wet.webp"
+    },
+    {
+      "id": "mixed-24",
+      "from": "media/question-art/scene-eco-park-quiz-path.webp",
+      "to": "media/review-v29/mixed-eco-park-path.webp"
+    }
+  ],
+  "safe": {
+    "cinema/aisle": [
+      "통로에서 뛰지 않고 선생님 곁에 있는 형아맨",
+      [
+        21,
+        30,
+        20,
+        66
+      ],
+      "어두운 상영관 통로에서는 뛰지 않고 선생님과 천천히 이동해요."
+    ],
+    "museum/group": [
+      "선생님 곁에 함께 있는 형아맨",
+      [
+        3,
+        22,
+        15,
+        72
+      ],
+      "다른 전시실로 옮길 때는 알리고 일행과 함께 이동해요."
+    ],
+    "museum/flash": [
+      "사진 찍기 전에 선생님과 확인하는 형아맨",
+      [
+        40,
+        33,
+        19,
+        61
+      ],
+      "촬영할 수 있는지, 플래시를 꺼야 하는지 안내를 확인해요."
+    ],
+    "experience/material": [
+      "재료를 입에 넣지 않고 기다리는 형아맨",
+      [
+        1,
+        27,
+        20,
+        49
+      ],
+      "만들기 재료는 먹지 않고 손으로만 안내에 맞게 사용해요."
+    ],
+    "theme-park/fence": [
+      "놀이기구 울타리 밖에서 기다리는 형아맨",
+      [
+        23,
+        25,
+        17,
+        70
+      ],
+      "울타리 밖 정해진 자리에서 기다리고 직원 안내를 따라요."
+    ],
+    "park/rail": [
+      "난간을 넘지 않고 선생님 곁에 있는 형아맨",
+      [
+        4,
+        31,
+        16,
+        65
+      ],
+      "난간은 넘어가는 곳이 아니에요. 산책로 안에서 함께 걸어요."
+    ],
+    "park/drowning": [
+      "물에 뛰어들지 않고 어른 곁에서 알리는 형아맨",
+      [
+        30,
+        33,
+        20,
+        62
+      ],
+      "물에 빠진 사람을 보면 직접 뛰어들지 않고 주변 어른과 119에 알려요."
+    ],
+    "garden/fruit": [
+      "식물을 먹지 않고 관찰하는 형아맨",
+      [
+        20,
+        27,
+        19,
+        64
+      ],
+      "정체를 모르는 열매나 식물은 먹거나 따지 않고 눈으로 관찰해요."
+    ],
+    "lodging/jump": [
+      "침대에서 뛰지 않고 바닥에 서 있는 형아맨",
+      [
+        4,
+        24,
+        17,
+        70
+      ],
+      "침대는 쉬는 곳이에요. 바닥에서도 뛰거나 밀지 않아요."
+    ],
+    "bus/cross": [
+      "버스 옆 보도에서 선생님과 기다리는 형아맨",
+      [
+        16,
+        29,
+        19,
+        63
+      ],
+      "버스 앞뒤로 바로 뛰어나가지 않고 선생님과 안전한 이동 경로를 확인해요."
+    ],
+    "escape/return": [
+      "건물 밖에서 선생님과 기다리는 형아맨",
+      [
+        16,
+        30,
+        19,
+        65
+      ],
+      "대피한 뒤에는 물건을 가지러 다시 들어가지 않고 집결지에서 인원을 확인해요."
+    ],
+    "heritage/boundary": [
+      "관람 줄 바깥에 머무르는 형아맨",
+      [
+        21,
+        32,
+        18,
+        65
+      ],
+      "보호 구역의 줄을 넘지 않고 허용된 관람로에서 봐요."
+    ],
+    "farm/fence": [
+      "동물 울타리 밖에서 선생님과 기다리는 형아맨",
+      [
+        21,
+        24,
+        18,
+        71
+      ],
+      "동물 우리에 임의로 들어가지 않고 담당자의 안내를 받아요."
+    ],
+    "water/alone": [
+      "수영모를 쓰고 선생님 곁에 앉아 기다리는 친구",
+      [
+        27,
+        24,
+        20,
+        65
+      ],
+      "수영복과 구명조끼를 갖춰도 혼자 먼저 물에 들어가지 않아요. 선생님 안내를 기다려요."
+    ],
+    "library/move": [
+      "선생님 곁에 머물러 이동을 확인하는 형아맨",
+      [
+        36,
+        28,
+        19,
+        68
+      ],
+      "관람 중 이동하거나 밖으로 나가려면 먼저 선생님께 알려요."
+    ],
+    "playground/grass": [
+      "산책로 안에서 친구에게 멈추라고 알리는 형아맨",
+      [
+        31,
+        25,
+        19,
+        67
+      ],
+      "풀숲과 돌 틈에 손을 넣지 않고 정해진 길에서 함께 움직여요."
+    ],
+    "eco-park/wildlife": [
+      "동물과 거리를 두고 어른 곁에 있는 형아맨",
+      [
+        2,
+        27,
+        16,
+        70
+      ],
+      "벌이나 뱀은 만지거나 쫓지 않아요. 거리를 두고 천천히 물러나 어른에게 알려요."
+    ]
+  }
+}

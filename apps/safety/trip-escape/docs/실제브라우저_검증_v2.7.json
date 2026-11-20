@@ -1,0 +1,146 @@
+{
+  "date": "2026-11-15",
+  "version": "2.7.0",
+  "method": "Actual Edge native keyboard/mouse/touch, read-only DOM observations",
+  "input": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1080
+      },
+      "before": {
+        "x": 295,
+        "y": 111,
+        "width": 438.75,
+        "height": 780
+      },
+      "ratio": 0.5625,
+      "keyboard": "0.7618200000000018",
+      "stopped": "0.7618200000000018",
+      "mouse": "0.49551500000000015",
+      "touch": "0.7076100000000014",
+      "touchStopped": "0.7076100000000014",
+      "metrics": {
+        "frames": 222,
+        "uniqueX": 92,
+        "maxStep": 0.022620000000000084,
+        "groundFrames": 222,
+        "overflow": false,
+        "controls": [
+          {
+            "x": 759.75,
+            "bottom": 685.078125,
+            "width": 186.625
+          },
+          {
+            "x": 958.375,
+            "bottom": 685.078125,
+            "width": 186.625
+          }
+        ]
+      },
+      "reset": "ready",
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "before": {
+        "x": 87,
+        "y": 82,
+        "width": 330.75,
+        "height": 588
+      },
+      "ratio": 0.5625,
+      "keyboard": "0.7663050000000009",
+      "stopped": "0.7663050000000009",
+      "mouse": "0.49993499999999874",
+      "touch": "0.7120299999999999",
+      "touchStopped": "0.7120299999999999",
+      "metrics": {
+        "frames": 227,
+        "uniqueX": 146,
+        "maxStep": 0.004615000000000091,
+        "groundFrames": 227,
+        "overflow": false,
+        "controls": [
+          {
+            "x": 443.75,
+            "bottom": 540.546875,
+            "width": 240.625
+          },
+          {
+            "x": 696.375,
+            "bottom": 540.546875,
+            "width": 240.625
+          }
+        ]
+      },
+      "reset": "ready",
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "x": 50.4375,
+        "y": 84,
+        "width": 289.125,
+        "height": 514
+      },
+      "ratio": 0.5625,
+      "keyboard": "0.7707900000000015",
+      "stopped": "0.7707900000000015",
+      "mouse": "0.4999349999999997",
+      "touch": "0.7075450000000008",
+      "touchStopped": "0.7075450000000008",
+      "metrics": {
+        "frames": 224,
+        "uniqueX": 126,
+        "maxStep": 0.004810000000000092,
+        "groundFrames": 224,
+        "overflow": false,
+        "controls": [
+          {
+            "x": 25,
+            "bottom": 673,
+            "width": 164
+          },
+          {
+            "x": 201,
+            "bottom": 673,
+            "width": 164
+          }
+        ]
+      },
+      "reset": "ready",
+      "errors": []
+    }
+  ],
+  "games": {
+    "cape": {
+      "gotCape": true,
+      "jumped": true,
+      "final": {
+        "phase": "running",
+        "round": 5,
+        "x": 0.9966650000000016,
+        "safe": 1,
+        "jumpEnabled": false,
+        "cape": false,
+        "inAir": true,
+        "hearts": "3 / 3"
+      },
+      "samples": 537
+    },
+    "rhythm": {
+      "jumpPose": true,
+      "replayReady": true
+    },
+    "errors": []
+  }
+}
