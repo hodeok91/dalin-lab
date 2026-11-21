@@ -37,3 +37,10 @@ body:has(.ar-game) .lesson-top{display:none}body:has(.ar-game) #main{padding-top
 .ar-energy{height:23px}.ar-energy:after{content:'체력';position:absolute;left:8px;top:0;font-size:12px;line-height:19px;font-weight:900;color:#264851;text-shadow:0 1px #ffffffcc}.ar-energy.low i{background:#e88d76}.ar-energy{background:#efedd7}.ar-climber-sprite{background-size:200% 100%}@media(max-width:700px){.ar-path>.ar-stair-field{height:calc(100svh - 410px);max-height:510px}}
 
 body:has(.prep-scene-game) .lesson-top{display:none}body:has(.prep-scene-game) #main{padding-top:20px}.prep-hot.danger.found{outline-color:#bd5a61;background:#d9797c12}.prep-hot.danger.found:after{color:#af4550}.prep-targets .danger.found{background:#f9e1db;border-color:#bd5a61}@media(max-width:700px){body:has(.free-place-grid) .badge-companion{display:none}}
+
+/* 긴 노트의 머리와 꼬리는 같은 한 줄을 통과합니다. */
+.song-rhythm .rhythm-target{width:4px;left:20%;border:0;background:#d89034;box-shadow:0 0 0 1px #fff7dc;z-index:4;pointer-events:none}
+.song-rhythm .rhythm-note[data-cue=stop]:after{left:50%;box-sizing:border-box}
+.song-rhythm .rhythm-note.holding:after{background:repeating-linear-gradient(90deg,#ffb83e 0 12px,#fff4bf 13px 22px);box-shadow:0 0 12px #ffd258}
+.song-rhythm [data-action="mini-jump"],.song-rhythm [data-action="mini-jump"] *{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.song-rhythm [data-action="mini-jump"] img{-webkit-user-drag:none;pointer-events:none}
