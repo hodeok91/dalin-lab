@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-21",
+  "automatedTests": 165,
+  "fullSong": [
+    {
+      "mode": "full149.84secSong",
+      "inputs": [
+        "mouse",
+        "touch-with-drift",
+        "Space"
+      ],
+      "jump": 151,
+      "hold": 22,
+      "miss": 0,
+      "holdErrors": 0,
+      "complete": true,
+      "score": 25550
+    }
+  ],
+  "matrix": [
+    {
+      "difficulty": "easy",
+      "width": 390,
+      "mode": "touch",
+      "heldThenReleased": true,
+      "stopCorrect": 1,
+      "stopErrors": 0
+    },
+    {
+      "difficulty": "normal",
+      "width": 1440,
+      "mode": "mouse",
+      "heldThenReleased": true,
+      "stopCorrect": 1,
+      "stopErrors": 0
+    },
+    {
+      "difficulty": "hard",
+      "width": 1024,
+      "mode": "key",
+      "heldThenReleased": true,
+      "stopCorrect": 1,
+      "stopErrors": 0
+    },
+    {
+      "difficulty": "expert",
+      "width": 390,
+      "mode": "touch",
+      "heldThenReleased": true,
+      "stopCorrect": 1,
+      "stopErrors": 0
+    }
+  ],
+  "physicalHardwareTested": false
+}
